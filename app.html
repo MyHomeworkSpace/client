@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>MyHomeworkSpace</title>
+
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+		<link href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" rel="stylesheet" />
+
+		<link rel="stylesheet" href="css/app.css" />
+		<link rel="stylesheet" href="css/prefixes.css" />
+
+		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="css/homework.css" />
+		<link rel="stylesheet" href="css/classes.css" />
+		<link rel="stylesheet" href="css/planner.css" />
+
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<script src="js/nlp_compromise.min.js"></script>
+		<script src="js/modernizr.min.js"></script>
+		<script src="js/moment.min.js"></script>
+
+		<script src="js/date-polyfill.min.js"></script>
+
+		<script src="js/app.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/quickAdd.js"></script>
+
+		<script src="js/login.js"></script>
+		<script src="js/homework.js"></script>
+		<script src="js/classes.js"></script>
+		<script src="js/planner.js"></script>
+	</head>
+	<body>
+		<div id="loadingModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<i class="fa fa-refresh fa-spin"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="classModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title"><span id="classModalType"></span> class</h4>
+					</div>
+					<div class="modal-body">
+						<input type="text" id="className" placeholder="Name" class="form-control"/>
+						<input type="text" id="classTeacher" placeholder="Teacher" class="form-control"/>
+					</div>
+					<div class="modal-footer">
+						<button id="submitClassModal" type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="homeworkModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title"><span id="homeworkModalType"></span> homework</h4>
+					</div>
+					<div class="modal-body">
+						<input type="text" id="homeworkName" placeholder="Name" class="form-control"/>
+						<input type="date" id="homeworkDue" placeholder="Due date" class="form-control"/>
+						<select id="homeworkClass"></select>
+						<br />
+						<input type="checkbox" id="homeworkComplete" />
+						<label for="homeworkComplete"> Done?</label><br/>
+						<textarea id="homeworkDesc" class="form-control" placeholder="Description"></textarea>
+					</div>
+					<div class="modal-footer">
+						<button id="submitHomeworkModal" type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="addHWInfo" style="display: none;">
+			<div id="addHWName">
+				<span id="addHWTag"></span>
+				<span id="addHWRemain"> </span>
+			</div>
+			<span>Class:</span> <strong id="addHWClass">unknown</strong><br/>
+			<span>Due:</span> <strong id="addHWDue">unknown</strong>
+		</div>
+		<div id="topBar">
+			MyHomeworkSpace
+			<span id="addHomework">
+				<div id="addHWBtn">
+					<i class="fa fa-plus-square"></i> Add Homework
+				</div>
+				<div id="addHWText" class="hidden">
+					<div id="addHWClose">&times;</div>
+					<input type="text" id="addHWInput" placeholder="just start typing..." />
+				</div>
+			</span>
+			<span id="user">
+				<span id="topName"></span>
+				<span id="logout"><i class="fa fa-sign-out"></i></span>
+			</span>
+		</div>
+		<div id="sidebar">
+			<div class="sidebarItem" data-page="homework">
+				<i class="fa fa-file-o" aria-hidden="true"></i>
+				Homework
+			</div>
+			<div class="sidebarItem" data-page="classes">
+				<i class="fa fa-list" aria-hidden="true"></i>
+				Classes
+			</div>
+			<div class="sidebarItem" data-page="planner">
+				<i class="fa fa-book" aria-hidden="true"></i>
+				Planner
+			</div>
+			<div class="sidebarItem" data-page="settings">
+				<i class="fa fa-cogs" aria-hidden="true"></i>
+				Settings
+			</div>
+		</div>
+		<div id="loadingStart" class="page">
+			Loading...
+		</div>
+		<div id="login" class="page hidden">
+			<h1 id="loginTitle">Log in</h1>
+			<h3 id="loginSubtitle">Sign in using your Dalton account.</h3>
+			<h4 id="loginError"></h4>
+			<div id="loginForm">
+				<input type="text" id="loginUsername" placeholder="Username" class="form-control" />
+				<input type="password" id="loginPassword" placeholder="Password" class="form-control" />
+				<button id="loginSubmit" class="btn btn-primary">Log in</button>
+			</div>
+		</div>
+		<div id="homework" class="page hidden">
+			<div class="row">
+				<div id="homeworkSoon" class="col-md-3">
+					<h2>Soon</h2>
+					<div class="hwList"></div>
+				</div>
+				<div id="homeworkLongterm" class="col-md-3">
+					<h2>Long-term</h2>
+					<div class="hwList"></div>
+				</div>
+			</div>
+		</div>
+		<div id="classes" class="page hidden">
+			<h2>Classes <button id="addClass" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add</button></h2>
+			<div class="row">
+				<div class="col-md-3">
+					<div class="classList"></div>
+				</div>
+				<div id="classPane" class="col-md-6">
+					<!-- Class info here -->
+				</div>
+			</div>
+		</div>
+		<div id="planner" class="page hidden">
+			<div id="plannerControls">
+				<button id="plannerPrev" class="btn btn-default btn-xs">&laquo;</button>
+				Week of <span id="plannerWeek"></span>
+				<button id="plannerNext" class="btn btn-default btn-xs">&raquo;</button>
+			</div>
+			<table id="plannerTable">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Monday <span id="dowDay0" class="dowDay"></span></th>
+						<th>Tuesday <span id="dowDay1" class="dowDay"></span></th>
+						<th>Wednesday <span id="dowDay2" class="dowDay"></span></th>
+						<th>Thursday <span id="dowDay3" class="dowDay"></span></th>
+						<th>Friday <span id="dowDay4" class="dowDay"></span></th>
+						<th>Saturday <span id="dowDay5" class="dowDay"></span></th>
+						<th>Sunday <span id="dowDay6" class="dowDay"></span></th>
+					</tr>
+				</thead>
+				<tbody id="plannerTableBody">
+
+				</tbody>
+			</table>
+		</div>
+		<div id="settings" class="page hidden">
+			<h2>Settings</h2>
+			<p>There's nothing here yet.</p>
+		</div>
+	</body>
+</html>

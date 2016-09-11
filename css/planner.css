@@ -1,0 +1,60 @@
+#planner {
+	padding: 10px;
+	overflow: scroll;
+}
+#plannerTable {
+	border: solid 1px black;
+}
+#plannerTable th {
+	border: solid 1px black;
+	text-align: center;
+	width: 140px;
+}
+#plannerTableBody td {
+	border: solid 1px black;
+	width: 140px;
+	height: 100px;
+}
+#plannerTableBody td ul {
+	list-style-type: none;
+	padding: 0;
+}
+#plannerTableBody td:not(.subjectCell) {
+	vertical-align: top;
+}
+#plannerTableBody td.subjectCell {
+	padding-right: 10px;
+	text-align: right;
+}
+.plannerItem {
+	cursor: default;
+	transition: all 0.2s;
+	padding-right: 34px;
+	position: relative;
+}
+.plannerItem:hover {
+	background: rgb(220, 220, 220);
+}
+.plannerItem.done {
+	background: rgb(200, 200, 200);
+	text-decoration: line-through;
+}
+.plannerHWControls {
+	color: rgb(30, 30, 30);
+	position: absolute;
+	top: 1px;
+	right: 7px;
+	opacity: 0;
+	transition: all 0.2s;
+}
+.plannerItem:hover .plannerHWControls {
+	opacity: 1;
+}
+.plannerHWControls .fa {
+	cursor: pointer;
+	color: rgb(60, 60, 60);
+	transition: all 0.2;
+}
+.plannerHWControls .fa:hover {
+	color: rgb(10, 10, 10);
+}

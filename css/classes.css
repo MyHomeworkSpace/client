@@ -1,0 +1,40 @@
+#classes .row {
+	width: 100%;
+	height: calc(100% - 80px);
+}
+#classes .col-md-3 {
+	height: 100%;
+}
+
+.classList {
+	border: solid 1px black;
+	height: 100%;
+}
+
+.classList ul {
+	padding-left: 0;
+	list-style-type: none;
+}
+
+.classItem {
+	cursor: pointer;
+	padding: 5px;
+	transition: all 0.2s;
+}
+.classItem:hover {
+	background-color: rgb(200, 200, 200);
+}
+
+.className {
+	font-size: 16px;
+}
+.classTeacher {
+	font-size: 12px;
+}
+
+#classModal .modal-body .form-control {
+	width: 300px;
+}
+#className {
+	font-size: 18px;
+}
