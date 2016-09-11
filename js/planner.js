@@ -16,6 +16,7 @@ MyHomeworkSpace.Pages.planner = {
 		MyHomeworkSpace.Pages.planner.currentWeek = monday;
 		$("#plannerWeek").text(monday.format("M/D"));
 		$("#plannerTableBody tr td ul").text("");
+		$(".announcementDay").text("");
 		// fill in days
 		for (var i = 0; i < 7; i++) {
 			$("#dowDay" + i).text(monday.format("M/D"));
@@ -24,42 +25,55 @@ MyHomeworkSpace.Pages.planner = {
 
 		monday.subtract(7, "days"); // reset variable
 
-		MyHomeworkSpace.API.get("homework/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
-			var hw = xhr.responseJSON.homework;
-			for (var hwIndex in hw) {
-				var hwItem = hw[hwIndex];
-				var due = moment(hwItem.due);
-				var plannerDow = due.day();
-
+		MyHomeworkSpace.API.get("planner/announcements/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
+			var announcements = xhr.responseJSON.announcements;
+			for (var announcementIndex in announcements) {
+				var announcement = announcements[announcementIndex];
+				var announcementDay = moment(announcement.date);
+				var plannerDow = announcementDay.day();
 				if (plannerDow == 0) {
 					plannerDow = 7;
 				}
 				plannerDow--;
-
-				var $item = $('<li></li>');
-					$item.addClass("plannerItem");
-					$item.attr("data-hwId", hwItem.id);
-					$item.append($('<span></span>').text(hwItem.name.split(" ")[0]).addClass(MyHomeworkSpace.Prefixes.matchClass(hwItem.name.split(" ")[0])));
-					$item.append(" " + hwItem.name.substr(hwItem.name.indexOf(" ")));
-					if (hwItem.complete == "1") {
-						$item.addClass("done");
-					}
-					var $controls = $('<div class="plannerHWControls"></div>');
-						var $done = $('<i class="fa fa-check-square-o"></i>');
-							$done.click(function() {
-								$(this).parent().parent().toggleClass("done");
-								MyHomeworkSpace.Pages.homework.markComplete($(this).parent().parent().attr("data-hwId"), ($(this).parent().parent().hasClass("done") ? "1" : "0"));
-							});
-						$controls.append($done);
-						$controls.append(" ");
-						var $edit = $('<i class="fa fa-edit"></i>');
-							$edit.click(function() {
-								MyHomeworkSpace.Pages.homework.edit($(this).parent().parent().attr("data-hwId"));
-							});
-						$controls.append($edit);
-					$item.append($controls);
-				$("#plannerTableBody tr[data-classId=" + hwItem.classId + "] td[data-dow=" + plannerDow + "] ul").append($item);
+				$("#announcementDay" + plannerDow).text(announcement.text);
 			}
+			MyHomeworkSpace.API.get("homework/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
+				var hw = xhr.responseJSON.homework;
+				for (var hwIndex in hw) {
+					var hwItem = hw[hwIndex];
+					var due = moment(hwItem.due);
+					var plannerDow = due.day();
+
+					if (plannerDow == 0) {
+						plannerDow = 7;
+					}
+					plannerDow--;
+
+					var $item = $('<li></li>');
+						$item.addClass("plannerItem");
+						$item.attr("data-hwId", hwItem.id);
+						$item.append($('<span></span>').text(hwItem.name.split(" ")[0]).addClass(MyHomeworkSpace.Prefixes.matchClass(hwItem.name.split(" ")[0])));
+						$item.append(" " + hwItem.name.substr(hwItem.name.indexOf(" ")));
+						if (hwItem.complete == "1") {
+							$item.addClass("done");
+						}
+						var $controls = $('<div class="plannerHWControls"></div>');
+							var $done = $('<i class="fa fa-check-square-o"></i>');
+								$done.click(function() {
+									$(this).parent().parent().toggleClass("done");
+									MyHomeworkSpace.Pages.homework.markComplete($(this).parent().parent().attr("data-hwId"), ($(this).parent().parent().hasClass("done") ? "1" : "0"));
+								});
+							$controls.append($done);
+							$controls.append(" ");
+							var $edit = $('<i class="fa fa-edit"></i>');
+								$edit.click(function() {
+									MyHomeworkSpace.Pages.homework.edit($(this).parent().parent().attr("data-hwId"));
+								});
+							$controls.append($edit);
+						$item.append($controls);
+					$("#plannerTableBody tr[data-classId=" + hwItem.classId + "] td[data-dow=" + plannerDow + "] ul").append($item);
+				}
+			});
 		});
 	},
 	open: function() {

@@ -4,6 +4,8 @@
 }
 #plannerTable {
 	border: solid 1px black;
+	table-layout: fixed;
+	width: 1120px;
 }
 #plannerTable th {
 	border: solid 1px black;
@@ -57,4 +59,7 @@
 }
 .plannerHWControls .fa:hover {
 	color: rgb(10, 10, 10);
+}
+#plannerAnnouncementRow th {
+	height: 21px;
 }
