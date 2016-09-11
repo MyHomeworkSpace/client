@@ -20,9 +20,24 @@
 	cursor: pointer;
 	padding: 5px;
 	transition: all 0.2s;
+	position: relative;
 }
 .classItem:hover {
 	background-color: rgb(200, 200, 200);
+}
+.classItem i {
+	color: rgb(60, 60, 60);
+	position: absolute;
+	top: 9px;
+	right: 5px;
+	transition: all 0.2s;
+	opacity: 0;
+}
+.classItem:hover i {
+	opacity: 1;
+}
+.classItem i:hover {
+	color: rgb(10, 10, 10);
 }
 
 .className {
