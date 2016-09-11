@@ -17,6 +17,7 @@ MyHomeworkSpace.Pages.planner = {
 		$("#plannerWeek").text(monday.format("M/D"));
 		$("#plannerTableBody tr td ul").text("");
 		$(".announcementDay").text("");
+		$("#plannerFridayIndex").text("");
 		// fill in days
 		for (var i = 0; i < 7; i++) {
 			$("#dowDay" + i).text(monday.format("M/D"));
@@ -25,8 +26,9 @@ MyHomeworkSpace.Pages.planner = {
 
 		monday.subtract(7, "days"); // reset variable
 
-		MyHomeworkSpace.API.get("planner/announcements/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
+		MyHomeworkSpace.API.get("planner/getWeekInfo/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
 			var announcements = xhr.responseJSON.announcements;
+			var friday = xhr.responseJSON.friday;
 			for (var announcementIndex in announcements) {
 				var announcement = announcements[announcementIndex];
 				var announcementDay = moment(announcement.date);
@@ -36,6 +38,9 @@ MyHomeworkSpace.Pages.planner = {
 				}
 				plannerDow--;
 				$("#announcementDay" + plannerDow).text(announcement.text);
+			}
+			if (friday.id != -1) {
+				$("#plannerFridayIndex").text(friday.index + " ");
 			}
 			MyHomeworkSpace.API.get("homework/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
 				var hw = xhr.responseJSON.homework;
