@@ -21,6 +21,52 @@ MyHomeworkSpace.QuickAdd = {
 		// TODO: multi-word classes
 		return MyHomeworkSpace.QuickAdd.classes.indexOf(text.toLowerCase());
 	},
+	parseDate: function(text) {
+		var textToParse = text.toLowerCase().split(" ");
+		var result = {
+			last: false,
+			next: false,
+			dow: -1
+		};
+		for (var wordIndex in textToParse) {
+			var word = textToParse[wordIndex];
+			if (word == "last") {
+				result.last = true;
+			} else if (word == "next") {
+				result.next = true;
+			} else if (word.substr(0, 3) == "sun") {
+				result.dow = 0;
+			} else if (word.substr(0, 3) == "mon") {
+				result.dow = 1;
+			} else if (word.substr(0, 3) == "tue") {
+				result.dow = 2;
+			} else if (word.substr(0, 3) == "wed") {
+				result.dow = 3;
+			} else if (word.substr(0, 3) == "thu") {
+				result.dow = 4;
+			} else if (word.substr(0, 3) == "fri") {
+				result.dow = 5;
+			} else if (word.substr(0, 3) == "sat") {
+				result.dow = 6;
+			}
+		}
+		if (result.dow == -1) {
+			return "";
+		}
+		var resultDate = moment();
+		var thisWeek = resultDate.week();
+		while (
+			((result.last || result.next) && (resultDate.week() == thisWeek || resultDate.day() != result.dow)) ||
+			((!result.last && !result.next) && (resultDate.day() != result.dow))
+		) {
+			if (result.last) {
+				resultDate.subtract(1, "day");
+			} else {
+				resultDate.add(1, "day");
+			}
+		}
+		return resultDate.format("YYYY-MM-DD");
+	},
 	parseText: function(text) {
 		// examples:
 		// [read poem] [for English] for [tomorrow]

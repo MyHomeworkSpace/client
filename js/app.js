@@ -192,7 +192,7 @@ $(document).ready(function() {
 			if (e.keyCode == 13) {
 				$("#homeworkName").val(info.tag + " " + info.name);
 				$("#homeworkClass").val((info.classId ? info.classId : -1));
-				$("#homeworkDue").val("");
+				$("#homeworkDue").val(MyHomeworkSpace.QuickAdd.parseDate(info.due));
 				$("#homeworkComplete").prop("checked", false);
 				$("#homeworkDesc").val("");
 				$("#deleteHomeworkModal").hide();
