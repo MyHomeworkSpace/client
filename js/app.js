@@ -195,6 +195,7 @@ $(document).ready(function() {
 				$("#homeworkDue").val("");
 				$("#homeworkComplete").prop("checked", false);
 				$("#homeworkDesc").val("");
+				$("#deleteHomeworkModal").hide();
 				$("#homeworkModalType").text("Add");
 				$("#homeworkModal").attr("data-actionType", "add");
 				$("#homeworkModal").modal();

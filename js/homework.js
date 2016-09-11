@@ -1,5 +1,20 @@
 MyHomeworkSpace.Pages.homework = {
 	init: function() {
+		$("#deleteHomeworkModal").click(function() {
+			if (confirm("Are you sure you want to delete this?")) {
+				$("#homeworkModal").modal('hide');
+				$("#loadingModal").modal({
+					backdrop: "static",
+					keyboard: false
+				});
+				MyHomeworkSpace.API.post("homework/delete", {
+					id: $("#homeworkModal").attr("data-actionId")
+				}, function(xhr) {
+					MyHomeworkSpace.Pages.homework.handleNew();
+					$("#loadingModal").modal('hide');
+				});
+			}
+		});
 		$("#submitHomeworkModal").click(function() {
 			if ($("#homeworkClass").val() == -1) {
 				alert("You must select a class.");
@@ -51,6 +66,8 @@ MyHomeworkSpace.Pages.homework = {
 			$("#homeworkDesc").val(hw.desc);
 			$("#homeworkComplete").prop("checked", (hw.complete == "1"));
 			$("#homeworkClass").val(hw.classId);
+
+			$("#deleteHomeworkModal").show();
 
 			$("#loadingModal").modal('hide');
 			$("#homeworkModal").modal();
