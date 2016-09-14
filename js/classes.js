@@ -1,6 +1,8 @@
 MyHomeworkSpace.Pages.classes = {
 	init: function() {
 		$("#addClass").click(function() {
+			$("#className").val("");
+			$("#classTeacher").val("");
 			$("#classModal").attr("data-actionType", "add");
 			$("#classModalType").text("Add");
 			$("#classModal").modal();
