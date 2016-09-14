@@ -63,3 +63,6 @@
 #plannerAnnouncementRow th {
 	height: 21px;
 }
+#plannerWeek {
+	cursor: default;
+}

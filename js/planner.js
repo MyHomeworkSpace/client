@@ -7,6 +7,22 @@ MyHomeworkSpace.Pages.planner = {
 		$("#plannerNext").click(function() {
 			MyHomeworkSpace.Pages.planner.changeWeek(1);
 		});
+		$("#plannerWeek").tooltip();
+		$("#plannerWeek").click(function() {
+			$.datepicker._gotoToday = function (id) {
+				$(id).datepicker('setDate', new Date());
+				$('.ui-datepicker-current-day').click();
+			};
+			$("body").datepicker("dialog", MyHomeworkSpace.Pages.planner.currentWeek.toDate(), function(dateStr) {
+				var monday = moment(dateStr);
+				while (monday.day() != 1) {
+					monday.subtract(1, "day");
+				}
+				MyHomeworkSpace.Pages.planner.loadWeek(monday);
+			}, {
+				showButtonPanel: true
+			});
+		})
 	},
 	changeWeek: function(direction) {
 		MyHomeworkSpace.Pages.planner.currentWeek.add(7 * direction, "days");
