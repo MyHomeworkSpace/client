@@ -3,6 +3,11 @@ MyHomeworkSpace.QuickAdd = {
 	classIds: [],
 	prefixList: [],
 	init: function() {
+		var nlp = window.nlp_compromise;
+		// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
+		nlp.lexicon()["day"] = undefined;
+		nlp.lexicon()["week"] = undefined;
+
 		MyHomeworkSpace.QuickAdd.classes = [];
 		MyHomeworkSpace.QuickAdd.classIds = [];
 		MyHomeworkSpace.QuickAdd.prefixList = [];
@@ -77,6 +82,11 @@ MyHomeworkSpace.QuickAdd = {
 				result.dow = 5;
 			} else if (word.substr(0, 3) == "sat") {
 				result.dow = 6;
+			} else if (word.substr(0, 3) == "tom") { // tomorrow
+				result.dow = moment().day() + 1;
+				if (result.dow == 7) {
+					result.dow = 0;
+				}
 			}
 		}
 		if (result.dow == -1) {
@@ -135,6 +145,8 @@ MyHomeworkSpace.QuickAdd = {
 					response.name += term.text;
 					response.name += " ";
 				}
+			} else if (term.text.toLowerCase() == "due" || term.text.toLowerCase() == "class") {
+				// skip it
 			} else if (nameTrack) {
 				response.name += term.text;
 				response.name += " ";
@@ -143,6 +155,6 @@ MyHomeworkSpace.QuickAdd = {
 
 		response.name = response.name.trim();
 
-		return response
+		return response;
 	}
 };
