@@ -88,6 +88,7 @@ MyHomeworkSpace.Pages.homework = {
 		});
 	},
 	open: function() {
+		$("#homeworkTomorrow .hwList").html('<ul></ul');
 		$("#homeworkSoon .hwList").html('<ul></ul>');
 		$("#homeworkLongterm .hwList").html('<ul></ul>');
 		var classes = MyHomeworkSpace.Classes.list;
@@ -101,7 +102,7 @@ MyHomeworkSpace.Pages.homework = {
 				var daysTo = Math.ceil(due.diff(moment()) / 1000 / 60 / 60 / 24);
 				var prefix = hwItem.name.split(" ")[0];
 
-				if (daysTo < 0 && hwItem.complete == "1") {
+				if (daysTo < 1 && hwItem.complete == "1") {
 					continue;
 				}
 
@@ -132,7 +133,7 @@ MyHomeworkSpace.Pages.homework = {
 					var $name = $('<div class="hwName"></div>');
 						$name.append($("<span></span>").text(prefix).addClass(MyHomeworkSpace.Prefixes.matchClass(prefix)));
 						$name.append($("<span></span>").text(hwItem.name.substr(hwItem.name.indexOf(" "))));
-						if (daysTo < 0) {
+						if (daysTo < 1) {
 							$name.append(" (late)");
 						}
 					$item.append($name);
@@ -145,11 +146,13 @@ MyHomeworkSpace.Pages.homework = {
 						}
 					$item.append($subtext);
 
-					if (daysTo < 0) {
+					if (daysTo < 1) {
 						$item.addClass("hwLate");
 					}
 
-				if (daysTo < 5) {
+				if (daysTo < 2) {
+					$("#homeworkTomorrow .hwList ul").append($item);
+				} else if (daysTo < 5) {
 					$("#homeworkSoon .hwList ul").append($item);
 				} else {
 					$("#homeworkLongterm .hwList ul").append($item);
