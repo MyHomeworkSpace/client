@@ -17,9 +17,38 @@ MyHomeworkSpace.QuickAdd = {
 			MyHomeworkSpace.QuickAdd.classIds.push(MyHomeworkSpace.Classes.list[classIndex].id);
 		}
 	},
-	isClass: function(text) {
-		// TODO: multi-word classes
-		return MyHomeworkSpace.QuickAdd.classes.indexOf(text.toLowerCase());
+	isClass: function(array, index) {
+		var classMatches = false;
+		var termsToSkip = 0;
+		var arrIndex = index;
+		for (var classIndex in MyHomeworkSpace.QuickAdd.classes) {
+			var classItem = MyHomeworkSpace.QuickAdd.classes[classIndex];
+			var classWords = classItem.split(" ");
+			arrIndex = index;
+			for (var i = 0; i < classWords.length; i++) {
+				if (array.length <= arrIndex) {
+					if (classMatches) {
+						break;
+					} else {
+						continue;
+					}
+				}
+				if (classWords[i].toLowerCase() == array[arrIndex].text.toLowerCase()) {
+					classMatches = true;
+				} else {
+					classMatches = false;
+				}
+				arrIndex++;
+			}
+			if (classMatches) {
+				break;
+			}
+		}
+		return {
+			match: classMatches,
+			classIndex: parseInt(classIndex),
+			termsToSkip: arrIndex - index
+		};
 	},
 	parseDate: function(text) {
 		var textToParse = text.toLowerCase().split(" ");
@@ -83,12 +112,12 @@ MyHomeworkSpace.QuickAdd = {
 		};
 		var sentence = nlp.sentence(text);
 		var nameTrack = false;
-		var skipNext = false;
+		var termsToSkip = 0;
 
 		for (var termIndex in sentence.terms) {
 			var term = sentence.terms[termIndex];
-			if (skipNext) {
-				skipNext = false;
+			if (termsToSkip > 0) {
+				termsToSkip--;
 			} else if (MyHomeworkSpace.QuickAdd.prefixList.indexOf(term.text.toLowerCase()) > -1) {
 				response.tag = term.text;
 				nameTrack = true;
@@ -96,11 +125,12 @@ MyHomeworkSpace.QuickAdd = {
 				response.due = term.text;
 			} else if (term.pos.Conjunction || term.pos.Preposition) {
 				// peek at the next word
-				if (sentence.terms[parseInt(termIndex) + 1] && MyHomeworkSpace.QuickAdd.isClass(sentence.terms[parseInt(termIndex) + 1].text) > -1) {
+				var classResults = MyHomeworkSpace.QuickAdd.isClass(sentence.terms, parseInt(termIndex) + 1);
+				if (sentence.terms[parseInt(termIndex) + 1] && classResults.match) {
 					// if it's a class, set it and skip it
-					response.class = sentence.terms[parseInt(termIndex) + 1].text;
-					response.classId = MyHomeworkSpace.QuickAdd.classIds[MyHomeworkSpace.QuickAdd.isClass(sentence.terms[parseInt(termIndex) + 1].text)];
-					skipNext = true;
+					response.class = MyHomeworkSpace.Classes.list[classResults.classIndex].name;
+					response.classId = MyHomeworkSpace.QuickAdd.classIds[classResults.classIndex];
+					termsToSkip = classResults.termsToSkip;
 				} else if (nameTrack) {
 					response.name += term.text;
 					response.name += " ";

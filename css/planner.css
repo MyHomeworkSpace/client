@@ -55,7 +55,7 @@
 .plannerHWControls .fa {
 	cursor: pointer;
 	color: rgb(60, 60, 60);
-	transition: all 0.2;
+	transition: all 0.2s;
 }
 .plannerHWControls .fa:hover {
 	color: rgb(10, 10, 10);

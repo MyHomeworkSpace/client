@@ -160,7 +160,7 @@ html, body {
 }
 #addHWInfo {
 	background: white;
-	box-shadow: 0 3px 17px 0px rgba(50, 50, 50, 0.75);
+	box-shadow: 0 3px 17px 0 rgba(50, 50, 50, 0.75);
 	position: absolute;
 	top: 50px;
 	left: 50%;
