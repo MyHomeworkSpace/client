@@ -84,6 +84,7 @@ MyHomeworkSpace.Pages.classes = {
 							$("#classModal").attr("data-actionId", $that.parent().attr("data-classId"));
 							$("#className").val(classItem.name);
 							$("#classTeacher").val(classItem.teacher);
+							$("#classModalType").text("Edit");
 							$("#classModal").modal();
 						});
 					});

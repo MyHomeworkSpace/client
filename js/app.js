@@ -190,7 +190,11 @@ $(document).ready(function() {
 			$("#addHWClass").text((info.class ? info.class : "unknown"));
 			$("#addHWDue").text((info.due ? info.due : "unknown"));
 			if (e.keyCode == 13) {
-				$("#homeworkName").val(info.tag + " " + info.name);
+				if (info.tag || info.name) {
+					$("#homeworkName").val(info.tag + " " + info.name);
+				} else {
+					$("#homeworkName").val("");					
+				}
 				$("#homeworkClass").val((info.classId ? info.classId : -1));
 				$("#homeworkDue").val(MyHomeworkSpace.QuickAdd.parseDate(info.due));
 				$("#homeworkComplete").prop("checked", false);
