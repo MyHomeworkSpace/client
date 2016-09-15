@@ -3,7 +3,9 @@
 	text-align: center;
 	z-index: 999;
 
-	background: white;
+	background-image: url("../img/bg.jpeg");
+	background-size: cover;
+
 	top: 0;
 	left: 0;
 
