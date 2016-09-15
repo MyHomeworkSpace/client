@@ -44,7 +44,6 @@ MyHomeworkSpace.Pages.login = {
 				MyHomeworkSpace.Page.show("homework");
 			}
 			$("#login").effect("drop", { direction: "up" });
-			$("#warnModal").modal();
 		});
 	}
 };
