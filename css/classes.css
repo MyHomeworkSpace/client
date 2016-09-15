@@ -35,6 +35,10 @@
 	transition: all 0.2s;
 	opacity: 0;
 }
+.classItem .fa-arrows-v {
+	top: 8px;
+	right: 25px;
+}
 .classItem:hover i {
 	opacity: 1;
 }
@@ -54,4 +58,22 @@
 }
 #className {
 	font-size: 18px;
+}
+
+#classSwapOptions {
+	list-style-type: none;
+	padding: 0;
+}
+.classSwapItem {
+	border: solid 1px black;
+	cursor: pointer;
+	width: 300px;
+	height: 40px;
+	margin-left: 0;
+	margin-bottom: 10px;
+	padding: 10px;
+	transition: all 0.2s;
+}
+.classSwapItem:hover {
+	background: rgb(200, 200, 200);
 }
