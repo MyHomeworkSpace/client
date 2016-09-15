@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="css/app.css" />
 		<link rel="stylesheet" href="css/prefixes.css" />
 
+		<link rel="stylesheet" href="css/feedback.css" />
+
 		<link rel="stylesheet" href="css/login.css" />
 		<link rel="stylesheet" href="css/homework.css" />
 		<link rel="stylesheet" href="css/classes.css" />
@@ -28,6 +30,8 @@
 
 		<script src="js/app.js"></script>
 		<script src="js/utils.js"></script>
+
+		<script src="js/feedback.js"></script>
 		<script src="js/quickAdd.js"></script>
 
 		<script src="js/login.js"></script>
@@ -102,6 +106,24 @@
 				</div>
 			</div>
 		</div>
+		<div id="feedbackModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Send a<span id="feedbackModalType"></span></h4>
+					</div>
+					<div class="modal-body">
+						<div id="feedbackModalDesc"></div>
+						<textarea id="feedbackModalText" placeholder="Type your message here..." class="form-control"></textarea>
+						<p>In addition to your message, your name is sent with all feedback.</p>
+					</div>
+					<div class="modal-footer">
+						<button id="submitFeedbackModal" type="button" class="btn btn-primary">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="addHWInfo" style="display: none;">
 			<div id="addHWName">
 				<span id="addHWTag"></span>
@@ -122,6 +144,11 @@
 				</div>
 			</span>
 			<span id="user">
+				<span id="feedbackButtons">
+					<i id="feedbackSmile" class="feedbackBtn fa fa-smile-o" data-toggle="tooltip" data-placement="bottom" title="Send a smile" data-type="smile"></i>
+					<i id="feedbackFrown" class="feedbackBtn fa fa-frown-o" data-toggle="tooltip" data-placement="bottom" title="Send a frown" data-type="frown"></i>
+					<i id="feedbackIdea" class="feedbackBtn fa fa-lightbulb-o" data-toggle="tooltip" data-placement="bottom" title="Send an idea" data-type="idea"></i>
+				</span>
 				<span id="topName"></span>
 				<span id="logout"><i class="fa fa-sign-out"></i></span>
 			</span>

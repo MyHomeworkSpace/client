@@ -218,6 +218,8 @@ $(document).ready(function() {
 			});
 		});
 
+		MyHomeworkSpace.Feedback.init();
+
 		for (var pageIndex in MyHomeworkSpace.Pages) {
 			if (MyHomeworkSpace.Pages[pageIndex].init) {
 				MyHomeworkSpace.Pages[pageIndex].init();
