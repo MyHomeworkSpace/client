@@ -49,6 +49,11 @@ MyHomeworkSpace.Pages.homework = {
 				});
 			}
 		});
+		$("#homeworkName").highlightTextarea({
+			words: MyHomeworkSpace.Prefixes.list,
+			firstWord: true,
+			caseSensitive: false
+		});
 	},
 	edit: function(id) {
 		$("#loadingModal").modal({
@@ -70,6 +75,7 @@ MyHomeworkSpace.Pages.homework = {
 			$("#deleteHomeworkModal").show();
 
 			$("#loadingModal").modal('hide');
+			$("#homeworkName").trigger("input"); // trigger tag system
 			$("#homeworkModal").modal();
 		});
 	},

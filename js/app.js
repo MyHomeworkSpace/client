@@ -202,6 +202,7 @@ $(document).ready(function() {
 				$("#deleteHomeworkModal").hide();
 				$("#homeworkModalType").text("Add");
 				$("#homeworkModal").attr("data-actionType", "add");
+				$("#homeworkName").trigger("input"); // trigger tag system
 				$("#homeworkModal").modal();
 				$("#addHWClose").click();
 			}

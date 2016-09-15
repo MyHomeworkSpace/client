@@ -56,3 +56,17 @@
 .hwItem:hover .hwOptions {
 	opacity: 1;
 }
+
+.highlightTextarea-container {
+	height: 30px !important;
+}
+
+.highlightTextarea-container:not(.highlightTextarea-containerTop) {
+	z-index: 0;
+}
+
+.highlightTextarea mark.fade {
+	position: relative;
+	top: -2px;
+	transition: none;
+}

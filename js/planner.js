@@ -22,7 +22,7 @@ MyHomeworkSpace.Pages.planner = {
 			}, {
 				showButtonPanel: true
 			});
-		})
+		});
 	},
 	changeWeek: function(direction) {
 		MyHomeworkSpace.Pages.planner.currentWeek.add(7 * direction, "days");
