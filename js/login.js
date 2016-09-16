@@ -46,7 +46,7 @@ MyHomeworkSpace.Pages.login = {
 			$("#login").effect("drop", { direction: "up" });
 			if (MyHomeworkSpace.Me.showMigrateMessage) {
 				MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {
-
+					$("#migrationWelcome").modal();
 				});
 			}
 		});
