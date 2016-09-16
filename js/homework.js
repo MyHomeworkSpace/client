@@ -100,6 +100,16 @@ MyHomeworkSpace.Pages.homework = {
 		var classes = MyHomeworkSpace.Classes.list;
 		MyHomeworkSpace.API.get("homework/get", {}, function(xhr) {
 			var hw = xhr.responseJSON.homework;
+			var showMonday = (moment().day() == 5 || moment.day() == 6);
+			var tomorrowDaysToThreshold = 2;
+			if (showMonday) {
+				$("#homeworkTomorrowTitle").text("Monday");
+				if (moment().day() == 5) {
+					tomorrowDaysToThreshold = 4;
+				} else {
+					tomorrowDaysToThreshold = 3;
+				}
+			}
 			for (var hwIndex in hw) {
 				var hwItem = hw[hwIndex];
 
@@ -156,7 +166,7 @@ MyHomeworkSpace.Pages.homework = {
 						$item.addClass("hwLate");
 					}
 
-				if (daysTo < 2) {
+				if (daysTo < tomorrowDaysToThreshold) {
 					$("#homeworkTomorrow .hwList ul").append($item);
 				} else if (daysTo < 5) {
 					$("#homeworkSoon .hwList ul").append($item);
