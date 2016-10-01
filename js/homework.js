@@ -16,6 +16,14 @@ MyHomeworkSpace.Pages.homework = {
 			}
 		});
 		$("#submitHomeworkModal").click(function() {
+			if ($("#homeworkName").val() == "") {
+				alert("You must enter a name.");
+				return;
+			}
+			if ($("#homeworkDue").val() == "") {
+				alert("You must enter a due date.");
+				return;
+			}
 			if ($("#homeworkClass").val() == -1) {
 				alert("You must select a class.");
 				return;
@@ -100,7 +108,7 @@ MyHomeworkSpace.Pages.homework = {
 		var classes = MyHomeworkSpace.Classes.list;
 		MyHomeworkSpace.API.get("homework/get", {}, function(xhr) {
 			var hw = xhr.responseJSON.homework;
-			var showMonday = (moment().day() == 5 || moment.day() == 6);
+			var showMonday = (moment().day() == 5 || moment().day() == 6);
 			var tomorrowDaysToThreshold = 2;
 			if (showMonday) {
 				$("#homeworkTomorrowTitle").text("Monday");
