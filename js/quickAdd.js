@@ -8,6 +8,16 @@ MyHomeworkSpace.QuickAdd = {
 		nlp.lexicon()["day"] = undefined;
 		nlp.lexicon()["week"] = undefined;
 
+		// these things cause nlp_compromise to get very confused
+		// "hw pa" doesn't mean a highway in philadelphia
+		nlp.lexicon()["hwy"] = undefined;
+		nlp.lexicon()["pa"] = undefined;
+
+		// this is a bit of a hack to get nlp_compromise to like the "hw" prefix
+		// i know that "hw" isn't a verb
+		// nlp_compromise doesn't
+		nlp.lexicon()["hw"] = "Infinitive";
+
 		MyHomeworkSpace.QuickAdd.classes = [];
 		MyHomeworkSpace.QuickAdd.classIds = [];
 		MyHomeworkSpace.QuickAdd.prefixList = [];
