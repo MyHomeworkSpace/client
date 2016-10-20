@@ -3,7 +3,7 @@ MyHomeworkSpace.Pages.settings = {
 		$(".settings_checkbox").each(function() {
 			var $that = $(this);
 			MyHomeworkSpace.API.get("prefs/get/" + $(this).attr("data-pref"), {}, function(xhr) {
-				if (xhr.responseJSON.status != "not_found") {
+				if (xhr.responseJSON.status != "error") {
 					var newVal = (xhr.responseJSON.pref.value == "true");
 					MyHomeworkSpace.Pages.settings.cache[xhr.responseJSON.pref.key] = newVal;
 					if ($that.attr("data-pref-inverted") && $that.attr("data-pref-inverted") == "true") {
