@@ -5,7 +5,8 @@
 #plannerTable {
 	border: solid 1px black;
 	table-layout: fixed;
-	width: 1120px;
+	min-width: 1120px;
+	width: 100%;
 }
 #plannerTable th {
 	border: solid 1px black;
@@ -14,8 +15,9 @@
 }
 #plannerTableBody td {
 	border: solid 1px black;
-	width: 140px;
+	min-width: 140px;
 	height: 100px;
+	width: 100%;
 }
 #plannerTableBody td ul {
 	list-style-type: none;
