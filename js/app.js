@@ -169,11 +169,25 @@ $(document).ready(function() {
 			MyHomeworkSpace.Page.show($(this).attr("data-page"));
 		});
 		$("#addHWBtn").click(function() {
-			$("#addHWBtn").fadeOut(100, function() {
-				$("#addHWBtn").addClass("hidden");
-			});
-			$("#addHWText").fadeIn(100).removeClass("hidden");
-			$("#addHWInput").val("").focus().keyup();
+			if (MyHomeworkSpace.Pages.settings.cache.disableQuickAdd) {
+				// just show the modal then
+				$("#homeworkName").val("");
+				$("#homeworkClass").val("");
+				$("#homeworkDue").val("");
+				$("#homeworkComplete").prop("checked", false);
+				$("#homeworkDesc").val("");
+				$("#deleteHomeworkModal").hide();
+				$("#homeworkModalType").text("Add");
+				$("#homeworkModal").attr("data-actionType", "add");
+				$("#homeworkName").trigger("input"); // trigger tag system
+				$("#homeworkModal").modal();
+			} else {
+				$("#addHWBtn").fadeOut(100, function () {
+					$("#addHWBtn").addClass("hidden");
+				});
+				$("#addHWText").fadeIn(100).removeClass("hidden");
+				$("#addHWInput").val("").focus().keyup();
+			}
 		});
 		$("#addHWClose").click(function() {
 			$("#addHWText").fadeOut(100, function() {

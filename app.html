@@ -37,9 +37,11 @@
 		<script src="js/quickAdd.js"></script>
 
 		<script src="js/login.js"></script>
+
 		<script src="js/homework.js"></script>
 		<script src="js/classes.js"></script>
 		<script src="js/planner.js"></script>
+		<script src="js/settings.js"></script>
 	</head>
 	<body>
 		<div id="loadingModal" class="modal fade" tabindex="-1" role="dialog">
@@ -269,7 +271,41 @@
 		</div>
 		<div id="settings" class="page hidden">
 			<h2>Settings</h2>
-			<p>There's nothing here yet.</p>
+			<div>
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#settings_account" aria-controls="home" role="tab" data-toggle="tab">Account</a></li>
+					<li role="presentation"><a href="#settings_quickAdd" aria-controls="settings_quickAdd" role="tab" data-toggle="tab">Quick Add</a></li>
+					<li role="presentation"><a href="#settings_homework" aria-controls="settings_homework" role="tab" data-toggle="tab">Homework</a></li>
+					<li role="presentation"><a href="#settings_classes" aria-controls="settings_classes" role="tab" data-toggle="tab">Classes</a></li>
+					<li role="presentation"><a href="#settings_planner" aria-controls="settings_planner" role="tab" data-toggle="tab">Planner</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="settings_account">
+						<p>Account</p>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="settings_quickAdd">
+						<p>Quick Add lets you add homework to your planner by typing in information about it. Examples:</p>
+						<ul>
+							<li>read chapter 3 for English tomorrow</li>
+							<li>take test on unit 4 in Science next Tuesday</li>
+							<li>next Friday, I have to write an essay about the revolution for History</li>
+						</ul>
+						<p>You can access Quick Add from the "<i class="fa fa-plus-square"></i> Add Homework" button above.</p>
+						<input type="checkbox" id="settings_disableQuickAdd" class="settings_checkbox" data-pref="disableQuickAdd" data-pref-inverted="true" checked />
+						<label for="settings_disableQuickAdd">Enable Quick Add</label>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="settings_homework">
+						<p>Homework</p>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="settings_classes">
+						<p>Classes</p>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="settings_planner">
+						<p>Planner</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
