@@ -164,7 +164,11 @@ MyHomeworkSpace.Pages.homework = {
 						}
 					$item.append($name);
 					var $subtext = $('<div class="hwSubText"></div>');
-						$subtext.text("due " + dueText);
+						var keyword = "due";
+						if (prefix.toLowerCase() == "test" || prefix.toLowerCase() == "exam" || prefix.toLowerCase() == "midterm" || prefix.toLowerCase() == "quiz" || prefix.toLowerCase() == "ica" || prefix.toLowerCase() == "lab") {
+							keyword = "on";
+						}
+						$subtext.text(keyword + " " + dueText);
 						for (var classIndex in classes) {
 							if (classes[classIndex].id == hwItem.classId) {
 								$subtext.append(" in " + classes[classIndex].name)
