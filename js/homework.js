@@ -156,7 +156,9 @@ MyHomeworkSpace.Pages.homework = {
 					$item.append($options);
 					var $name = $('<div class="hwName"></div>');
 						$name.append($("<span></span>").text(prefix).addClass(MyHomeworkSpace.Prefixes.matchClass(prefix)));
-						$name.append($("<span></span>").text(hwItem.name.substr(hwItem.name.indexOf(" "))));
+						if (hwItem.name.indexOf(" ") != -1) {
+							$name.append($("<span></span>").text(hwItem.name.substr(hwItem.name.indexOf(" "))));
+						}
 						if (daysTo < 1) {
 							$name.append(" (late)");
 						}
