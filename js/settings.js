@@ -28,7 +28,8 @@ MyHomeworkSpace.Pages.settings = {
 		});
 	},
 	open: function() {
-
+		$("#settings_account_name").text(MyHomeworkSpace.Me.name);
+		$("#settings_account_email").text(MyHomeworkSpace.Me.email);
 	},
 	cache: {}
 };
