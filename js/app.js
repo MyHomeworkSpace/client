@@ -168,11 +168,19 @@ $(document).ready(function() {
 			}
 			MyHomeworkSpace.Page.show($(this).attr("data-page"));
 		});
+		Mousetrap.bind('ctrl+space', function(e) {
+			if ($("#addHWText").hasClass("hidden")) {
+				$("#addHWBtn").click();
+			} else {
+				$("#addHWClose").click();
+			}
+			return false;
+		});
 		$("#addHWBtn").click(function() {
 			if (MyHomeworkSpace.Pages.settings.cache.disableQuickAdd) {
 				// just show the modal then
 				$("#homeworkName").val("");
-				$("#homeworkClass").val("");
+				$("#homeworkClass").val(-1);
 				$("#homeworkDue").val("");
 				$("#homeworkComplete").prop("checked", false);
 				$("#homeworkDesc").val("");
