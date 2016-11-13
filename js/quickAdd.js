@@ -66,6 +66,9 @@ MyHomeworkSpace.QuickAdd = {
 		};
 	},
 	parseDate: function(text) {
+		if (!isNaN(moment(text).day())) {
+			return moment(text).format("YYYY-MM-DD");
+		}
 		var textToParse = text.toLowerCase().split(" ");
 		var result = {
 			last: false,
