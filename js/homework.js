@@ -106,7 +106,7 @@ MyHomeworkSpace.Pages.homework = {
 		$("#homeworkSoon .hwList").html('<ul></ul>');
 		$("#homeworkLongterm .hwList").html('<ul></ul>');
 		var classes = MyHomeworkSpace.Classes.list;
-		MyHomeworkSpace.API.get("homework/get", {}, function(xhr) {
+		MyHomeworkSpace.API.get("homework/getHWView", {}, function(xhr) {
 			var hw = xhr.responseJSON.homework;
 			var showMonday = (moment().day() == 5 || moment().day() == 6);
 			var tomorrowDaysToThreshold = 2;
