@@ -1,5 +1,8 @@
 MyHomeworkSpace.Pages.settings = {
 	init: function() {
+
+	},
+	onLogin: function() {
 		MyHomeworkSpace.API.get("prefs/get/background", {}, function(xhr) {
 			if (xhr.responseJSON.status != "error") {
 				var bgVal = xhr.responseJSON.pref.value;
@@ -11,7 +14,7 @@ MyHomeworkSpace.Pages.settings = {
 				}
 			}
 		});
-		
+
 		$(".settings_checkbox").each(function() {
 			var $that = $(this);
 			MyHomeworkSpace.API.get("prefs/get/" + $(this).attr("data-pref"), {}, function(xhr) {

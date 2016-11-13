@@ -186,7 +186,7 @@ html, body {
 }
 #addHWName {
 	font-size: 20px;
-	height: 28px;
+	min-height: 28px;
 }
 .addHWInfoPage {
 	position: absolute;
