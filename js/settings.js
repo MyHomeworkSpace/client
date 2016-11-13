@@ -1,5 +1,17 @@
 MyHomeworkSpace.Pages.settings = {
 	init: function() {
+		MyHomeworkSpace.API.get("prefs/get/background", {}, function(xhr) {
+			if (xhr.responseJSON.status != "error") {
+				var bgVal = xhr.responseJSON.pref.value;
+				MyHomeworkSpace.Pages.settings.cache["background"] = bgVal;
+				var bgType = bgVal.split(":")[0];
+				var bgVal = bgVal.split(":")[1];
+				if (bgType == "img") {
+					$("body").css("background-image", "url(img/backgrounds/bg" + bgVal + ".jpg)");
+				}
+			}
+		});
+		
 		$(".settings_checkbox").each(function() {
 			var $that = $(this);
 			MyHomeworkSpace.API.get("prefs/get/" + $(this).attr("data-pref"), {}, function(xhr) {
@@ -42,17 +54,6 @@ MyHomeworkSpace.Pages.settings = {
 	open: function() {
 		$("#settings_account_name").text(MyHomeworkSpace.Me.name);
 		$("#settings_account_email").text(MyHomeworkSpace.Me.email);
-		MyHomeworkSpace.API.get("prefs/get/background", {}, function(xhr) {
-			if (xhr.responseJSON.status != "error") {
-				var bgVal = xhr.responseJSON.pref.value;
-				MyHomeworkSpace.Pages.settings.cache["background"] = bgVal;
-				var bgType = bgVal.split(":")[0];
-				var bgVal = bgVal.split(":")[1];
-				if (bgType == "img") {
-					$("body").css("background-image", "url(img/backgrounds/bg" + bgVal + ".jpg)");
-				}
-			}
-		});
 	},
 	cache: {}
 };
