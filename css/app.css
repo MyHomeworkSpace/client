@@ -87,6 +87,17 @@ html, body {
 	font-size: 48px;
 }
 
+.sidebarItem.tinyItem {
+	font-size: 14px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.sidebarItem.tinyItem .fa {
+	display: inline;
+	font-size: 18px;
+	margin-right: 1px;
+}
+
 .page {
 	width: calc(100% - 110px);
 	height: calc(100% - 50px);
@@ -184,4 +195,9 @@ html, body {
 #homeworkModal .modal-body #homeworkDesc {
 	min-width: 400px;
 	min-height: 150px;
+}
+
+#helpView {
+	height: calc(100% - 70px);
+	overflow: scroll;
 }
