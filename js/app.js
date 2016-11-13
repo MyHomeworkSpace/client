@@ -204,6 +204,13 @@ $(document).ready(function() {
 			$("#addHWBtn").fadeIn(100).removeClass("hidden");
 		});
 		$("#addHWInput").keyup(function(e) {
+			if ($(this).val().trim() == "") {
+				$("#addHWInfoNoText").css("opacity", "1");
+				$("#addHWInfoText").css("opacity", "0");
+			} else {
+				$("#addHWInfoNoText").css("opacity", "0");
+				$("#addHWInfoText").css("opacity", "1");
+			}
 			var info = MyHomeworkSpace.QuickAdd.parseText($(this).val());
 			$("#addHWTag").text(info.tag);
 			$("#addHWTag").attr("class", "");
@@ -215,7 +222,7 @@ $(document).ready(function() {
 				if (info.tag || info.name) {
 					$("#homeworkName").val(info.tag + " " + info.name);
 				} else {
-					$("#homeworkName").val("");					
+					$("#homeworkName").val("");
 				}
 				$("#homeworkClass").val((info.classId ? info.classId : -1));
 				$("#homeworkDue").val(MyHomeworkSpace.QuickAdd.parseDate(info.due));
