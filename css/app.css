@@ -211,3 +211,7 @@ html, body {
 	margin-right: 10px;
 	margin-bottom: 10px;
 }
+
+.toggleable-check {
+	width: 13px;
+}
