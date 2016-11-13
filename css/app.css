@@ -113,6 +113,8 @@ html, body {
 
 	opacity: 1;
 	transition: all 0.1s;
+
+	overflow-y: auto;
 }
 .page.hidden {
 	display: block !important;
