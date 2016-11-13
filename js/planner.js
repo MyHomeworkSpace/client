@@ -74,7 +74,7 @@ MyHomeworkSpace.Pages.planner = {
 						$item.addClass("plannerItem");
 						$item.attr("data-hwId", hwItem.id);
 						$item.append($('<span></span>').text(hwItem.name.split(" ")[0]).addClass(MyHomeworkSpace.Prefixes.matchClass(hwItem.name.split(" ")[0])));
-						$item.append(" " + hwItem.name.substr(hwItem.name.indexOf(" ")));
+						$item.append($('<span></span').text(" " + hwItem.name.substr(hwItem.name.indexOf(" "))));
 						if (hwItem.complete == "1") {
 							$item.addClass("done");
 						}
