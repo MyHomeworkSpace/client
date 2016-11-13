@@ -147,6 +147,33 @@
 				</div>
 			</div>
 		</div>
+		<div id="changeBackgroundModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Change background</h4>
+					</div>
+					<div class="modal-body">
+						<div id="backgroundGallery">
+							<img class="backgroundOption" src="img/backgrounds/bg1.jpg" data-bgIndex="1">
+							<img class="backgroundOption" src="img/backgrounds/bg2.jpg" data-bgIndex="2">
+							<img class="backgroundOption" src="img/backgrounds/bg3.jpg" data-bgIndex="3">
+							<img class="backgroundOption" src="img/backgrounds/bg4.jpg" data-bgIndex="4">
+							<img class="backgroundOption" src="img/backgrounds/bg5.jpg" data-bgIndex="5">
+							<img class="backgroundOption" src="img/backgrounds/bg6.jpg" data-bgIndex="6">
+							<img class="backgroundOption" src="img/backgrounds/bg7.jpg" data-bgIndex="7">
+							<img class="backgroundOption" src="img/backgrounds/bg8.jpg" data-bgIndex="8">
+							<img class="backgroundOption" src="img/backgrounds/bg9.jpg" data-bgIndex="9">
+							<img class="backgroundOption" src="img/backgrounds/bg10.jpg" data-bgIndex="10">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="addHWInfo" style="display: none;">
 			<div id="addHWName">
 				<span id="addHWTag"></span>
@@ -296,6 +323,12 @@
 						<h4>Password</h4>
 						<p>You are signed in with your Dalton account. For assistance with Dalton accounts, please contact <a href="mailto:help@dalton.org">help@dalton.org</a>.</p>
 						<a href="https://password.dalton.org" class="btn btn-primary">Change password</a>
+
+						<br />
+						<br />
+
+						<h4>Background</h4>
+						<button id="settings_change_background" class="btn btn-primary">Change background</button>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_quickAdd">
 						<p>Quick Add lets you add homework to your planner by typing in information about it. Examples:</p>
