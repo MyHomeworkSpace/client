@@ -102,6 +102,7 @@ MyHomeworkSpace.Pages.planner = {
 		for (var classIndex in MyHomeworkSpace.Classes.list) {
 			var classItem = MyHomeworkSpace.Classes.list[classIndex];
 			var $classRow = $('<tr></tr>');
+				$classRow.addClass("classRow");
 				$classRow.attr("data-classId", classItem.id);
 				$classRow.append($('<td></td>').text(classItem.name).addClass("subjectCell"));
 				$classRow.append($('<td><ul></ul></td>').attr("data-dow", "0"));
@@ -113,6 +114,30 @@ MyHomeworkSpace.Pages.planner = {
 				$classRow.append($('<td><ul></ul></td>').attr("data-dow", "6"));
 			$("#plannerTableBody").append($classRow);
 		}
+		var $addButton = $("<button>Add</button>");
+			$addButton.addClass("plannerAddButton");
+			$addButton.addClass("btn");
+			$addButton.addClass("btn-default");
+			$addButton.addClass("btn-xs");
+			$addButton.click(function() {
+				var dueDate = moment(MyHomeworkSpace.Pages.planner.currentWeek);
+				// this is kinda hacky but it works so TOO BAD
+				for (var i = 0; i < parseInt($(this).parent().attr("data-dow")); i++) {
+					dueDate.add(1, "day");
+				}
+				$("#homeworkName").val("");
+				$("#homeworkClass").val($(this).parent().parent().attr("data-classId"));
+				$("#homeworkDue").val(dueDate.format("YYYY-MM-DD"));
+				$("#homeworkComplete").prop("checked", false);
+				$("#homeworkDesc").val("");
+				$("#deleteHomeworkModal").hide();
+				$("#homeworkModalType").text("Add");
+				$("#homeworkModal").attr("data-actionType", "add");
+				$("#homeworkName").trigger("input"); // trigger tag system
+				$("#homeworkModal").modal();
+				$("#addHWClose").click();
+			});
+		$(".classRow td:not(.subjectCell)").append($addButton);
 		if (!MyHomeworkSpace.Pages.planner.currentWeek) {
 			MyHomeworkSpace.Pages.planner.currentWeek = MyHomeworkSpace.Utils.findMonday();
 		}

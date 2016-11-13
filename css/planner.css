@@ -18,6 +18,20 @@
 	min-width: 140px;
 	height: 100px;
 	width: 100%;
+	position: relative;
+}
+#plannerTableBody td:hover .plannerAddButton {
+	display: block;
+}
+.plannerAddButton {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	border-right: none;
+	border-bottom: none;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	display: none;
 }
 #plannerTableBody td ul {
 	list-style-type: none;
