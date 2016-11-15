@@ -19,6 +19,7 @@
 .hwItem {
 	cursor: default;
 	padding: 5px;
+	padding-right: 30px;
 	position: relative;
 	transition: all 0.2s;
 }
