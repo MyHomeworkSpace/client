@@ -3,7 +3,9 @@ MyHomeworkSpace.Pages.homework = {
 		$(document).keyup(function(e) {
 			if (e.keyCode == 13) {
 				if ($("#homeworkModal").hasClass("in")) { // if hw modal is open
-					$("#submitHomeworkModal").click();
+					if ($("#homeworkDesc:focus").length == 0) { // if you aren't editing the description
+						$("#submitHomeworkModal").click();
+					}
 				}
 			}
 		});
