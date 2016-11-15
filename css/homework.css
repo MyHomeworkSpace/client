@@ -71,3 +71,9 @@
 	top: -2px;
 	transition: none;
 }
+
+@media (max-width: 992px) {
+	#homework .col-md-3 {
+		margin-bottom: 60px;
+	}
+}
