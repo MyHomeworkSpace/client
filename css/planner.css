@@ -44,6 +44,9 @@
 	padding-right: 10px;
 	text-align: right;
 }
+.plannerHWBox {
+	transition: all 0.2s;
+}
 .plannerItem {
 	cursor: default;
 	transition: all 0.2s;
@@ -53,7 +56,7 @@
 .plannerItem:hover {
 	background: rgb(220, 220, 220);
 }
-.plannerItem.done {
+.plannerItem.done, .plannerHWBox.done {
 	background: rgb(200, 200, 200);
 	text-decoration: line-through;
 }
