@@ -1,5 +1,12 @@
 MyHomeworkSpace.Pages.homework = {
 	init: function() {
+		$(document).keyup(function(e) {
+			if (e.keyCode == 13) {
+				if ($("#homeworkModal").hasClass("in")) { // if hw modal is open
+					$("#submitHomeworkModal").click();
+				}
+			}
+		});
 		$("#deleteHomeworkModal").click(function() {
 			if (confirm("Are you sure you want to delete this?")) {
 				$("#homeworkModal").modal('hide');
