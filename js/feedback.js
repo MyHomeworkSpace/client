@@ -29,7 +29,7 @@ MyHomeworkSpace.Feedback = {
 				text: $("#feedbackModalText").val()
 			}, function(response) {
 				$("#loadingModal").modal("hide");
-				alert("Thanks for the feedback!");
+				$("#feedbackDoneModal").modal();
 			});
 		});
 	}
