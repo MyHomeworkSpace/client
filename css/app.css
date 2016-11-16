@@ -27,6 +27,11 @@ html, body {
 	top: 0;
 	left: 0;
 	z-index: 99;
+	transition: color 0.2s;
+}
+
+#topBar.inverted {
+	color: black;
 }
 
 #user {
@@ -69,6 +74,11 @@ html, body {
 	-moz-user-select: none;
 	user-select: none;
 	overflow: auto;
+	transition: color 0.2s;
+}
+
+#sidebar.inverted {
+	color: black;
 }
 
 .sidebarItem {
