@@ -10,6 +10,11 @@ html, body {
 	overflow: hidden;
 }
 
+.tooltip {
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 0.5em;
+}
+
 #topBar {
 	color: white;
 	font-size: 24px;
