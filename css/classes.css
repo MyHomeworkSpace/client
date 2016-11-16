@@ -77,3 +77,19 @@
 .classSwapItem:hover {
 	background: rgb(200, 200, 200);
 }
+
+#classPane {
+	border: solid 1px black;
+	padding: 0;
+}
+#classPaneHeader {
+	border-bottom: solid 1px black;
+	padding: 10px;
+}
+#classPaneName, #classPaneTeacher {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+#classPaneHomework {
+	padding: 10px;
+}

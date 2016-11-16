@@ -154,6 +154,8 @@ MyHomeworkSpace.QuickAdd = {
 					response.class = MyHomeworkSpace.Classes.list[classResults.classIndex].name;
 					response.classId = MyHomeworkSpace.QuickAdd.classIds[classResults.classIndex];
 					termsToSkip = classResults.termsToSkip;
+				} else if (parseInt(termIndex) != sentence.terms.length && sentence.terms[parseInt(termIndex) + 1].tag == "Date") {
+					// the next word is a due date, so skip this word
 				} else if (nameTrack) {
 					response.name += term.text;
 					response.name += " ";
