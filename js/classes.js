@@ -63,6 +63,7 @@ MyHomeworkSpace.Pages.classes = {
 		});
 	},
 	open: function() {
+		$("#classPane").hide();
 		$(".classList").html('<ul></ul>');
 		for (var classIndex in MyHomeworkSpace.Classes.list) {
 			var classItem = MyHomeworkSpace.Classes.list[classIndex];

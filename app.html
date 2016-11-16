@@ -132,6 +132,22 @@
 				</div>
 			</div>
 		</div>
+		<div id="feedbackDoneModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Success!</h4>
+					</div>
+					<div class="modal-body">
+						<p>Your feedback has been sent. We'll try to respond to you as soon as possible.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="migrationWelcome" class="modal fade" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -147,13 +163,50 @@
 				</div>
 			</div>
 		</div>
-		<div id="addHWInfo" style="display: none;">
-			<div id="addHWName">
-				<span id="addHWTag"></span>
-				<span id="addHWRemain"> </span>
+		<div id="changeBackgroundModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">Change background</h4>
+					</div>
+					<div class="modal-body">
+						<h3>Image</h3>
+						<div id="backgroundGallery">
+							<img class="backgroundOption" src="img/backgrounds/bg1.jpg" data-bgIndex="1">
+							<img class="backgroundOption" src="img/backgrounds/bg2.jpg" data-bgIndex="2">
+							<img class="backgroundOption" src="img/backgrounds/bg3.jpg" data-bgIndex="3">
+							<img class="backgroundOption" src="img/backgrounds/bg4.jpg" data-bgIndex="4">
+							<img class="backgroundOption" src="img/backgrounds/bg5.jpg" data-bgIndex="5">
+							<img class="backgroundOption" src="img/backgrounds/bg6.jpg" data-bgIndex="6">
+							<img class="backgroundOption" src="img/backgrounds/bg7.jpg" data-bgIndex="7">
+							<img class="backgroundOption" src="img/backgrounds/bg8.jpg" data-bgIndex="8">
+							<img class="backgroundOption" src="img/backgrounds/bg9.jpg" data-bgIndex="9">
+							<img class="backgroundOption" src="img/backgrounds/bg10.jpg" data-bgIndex="10">
+						</div>
+
+						<h3>Color</h3>
+						<p>You can also choose to have a solid background.</p>
+						<input type="color" id="backgroundColor" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 			</div>
-			<span>Class:</span> <strong id="addHWClass">unknown</strong><br/>
-			<span>Due:</span> <strong id="addHWDue">unknown</strong>
+		</div>
+		<div id="addHWInfo" style="display: none;">
+			<div id="addHWInfoNoText" class="addHWInfoPage">
+				<p>Type your homework in the textbox above.</p>
+			</div>
+			<div id="addHWInfoText" class="addHWInfoPage">
+				<div id="addHWName">
+					<span id="addHWTag"></span>
+					<span id="addHWRemain"> </span>
+				</div>
+				<span>Class:</span> <strong id="addHWClass">unknown</strong><br/>
+				<span>Due:</span> <strong id="addHWDue">unknown</strong>
+			</div>
 		</div>
 		<div id="topBar">
 			MyHomeworkSpace
@@ -189,9 +242,13 @@
 				<i class="fa fa-book" aria-hidden="true"></i>
 				Planner
 			</div>
-			<div class="sidebarItem" data-page="settings">
+			<div class="sidebarItem tinyItem" data-page="settings">
 				<i class="fa fa-cogs" aria-hidden="true"></i>
 				Settings
+			</div>
+			<div class="sidebarItem tinyItem" data-page="help">
+				<i class="fa fa-question-circle" aria-hidden="true"></i>
+				Help
 			</div>
 		</div>
 		<div id="loadingStart" class="page">
@@ -211,6 +268,10 @@
 		</div>
 		<div id="homework" class="page hidden">
 			<div class="row">
+				<div id="homeworkOverdue" class="col-md-3">
+					<h2 id="homeworkOverdueTitle">Overdue</h2>
+					<div class="hwList"></div>
+				</div>
 				<div id="homeworkTomorrow" class="col-md-3">
 					<h2 id="homeworkTomorrowTitle">Tomorrow</h2>
 					<div class="hwList"></div>
@@ -232,7 +293,14 @@
 					<div class="classList"></div>
 				</div>
 				<div id="classPane" class="col-md-6">
-					<!-- Class info here -->
+					<div id="classPaneHeader">
+						<h3 id="classPaneName">Math</h3>
+						<h4 id="classPaneTeacher">Teacher</h4>
+					</div>
+					<div id="classPaneHomework">
+						<h4>Upcoming homework</h4>
+
+					</div>
 				</div>
 			</div>
 		</div>
@@ -292,6 +360,12 @@
 						<h4>Password</h4>
 						<p>You are signed in with your Dalton account. For assistance with Dalton accounts, please contact <a href="mailto:help@dalton.org">help@dalton.org</a>.</p>
 						<a href="https://password.dalton.org" class="btn btn-primary">Change password</a>
+
+						<br />
+						<br />
+
+						<h4>Background</h4>
+						<button id="settings_change_background" class="btn btn-primary">Change background</button>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_quickAdd">
 						<p>Quick Add lets you add homework to your planner by typing in information about it. Examples:</p>
@@ -305,13 +379,14 @@
 						<label for="settings_disableQuickAdd">Enable Quick Add</label>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_homework">
-						<p>Homework</p>
+						<p>Currently, there are no options available for Homework.</p>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_classes">
-						<p>Classes</p>
+						<p>Currently, there are no options available for Classes.</p>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_planner">
-						<p>Planner</p>
+						<input type="checkbox" id="settings_darkenDoneBoxes" class="settings_checkbox" data-pref="darkenDoneBoxes" data-pref-inverted="false" />
+						<label for="settings_darkenDoneBoxes">Darken boxes with all work completed</label>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_more">
 						<h3>CoursesPlus</h3>
@@ -335,6 +410,26 @@
 						<a href="https://coursesplus.github.io" class="btn btn-primary" target="_blank">Download</a>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div id="help" class="page hidden">
+			<h2>Help</h2>
+
+			<div id="helpView">
+				<h3>Adding homework</h3>
+				<p>You can add homework with the Add Homework button above. If you have Quick Add enabled, just type what you'd like to add. These are all examples of valid inputs:</p>
+				<ul>
+					<li>read poem for English for tomorrow</li>
+					<li>take test on molecules in Science on next Tuesday</li>
+					<li>for next Friday, write an essay about the revolution in History class</li>
+				</ul>
+				<p>Quick Add can be disabled from the "Quick Add" tab on the Settings page.</p>
+
+				<h3>Changing a class</h3>
+				<p>To add, modify, or move a class, select the Classes tab on the left. Then, select the "Add" button, the pencil button next to a class, or the arrows next to a class respectively.</p>
+
+				<h3>Further questions? Have an idea?</h3>
+				<p>Feel free to contact us with any questions, comments, or ideas you have&mdash;just use the feedback buttons at the top-right, next to your name.</p>
 			</div>
 		</div>
 	</body>

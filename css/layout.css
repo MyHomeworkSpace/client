@@ -7,11 +7,16 @@ body {
 .jumbotron {
 	background: transparent;
 }
+.white-bg {
+	background: rgba(255, 255, 255, 0.8);
+	border-radius: 6px;
+	padding-bottom: 10px;
+}
 .features {
 	background: rgba(255, 255, 255, 0.8);
 	border-radius: 6px;
 	margin-top: -10px;
-	padding-top: 10px;
+	padding-top: 20px;
 }
 .features .col-md-4 {
 	text-align: center;

@@ -18,6 +18,20 @@
 	min-width: 140px;
 	height: 100px;
 	width: 100%;
+	position: relative;
+}
+#plannerTableBody td:hover .plannerAddButton {
+	display: block;
+}
+.plannerAddButton {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	border-right: none;
+	border-bottom: none;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	display: none;
 }
 #plannerTableBody td ul {
 	list-style-type: none;
@@ -30,6 +44,9 @@
 	padding-right: 10px;
 	text-align: right;
 }
+.plannerHWBox {
+	transition: all 0.2s;
+}
 .plannerItem {
 	cursor: default;
 	transition: all 0.2s;
@@ -39,7 +56,7 @@
 .plannerItem:hover {
 	background: rgb(220, 220, 220);
 }
-.plannerItem.done {
+.plannerItem.done, .plannerHWBox.done {
 	background: rgb(200, 200, 200);
 	text-decoration: line-through;
 }
@@ -66,7 +83,9 @@
 	height: 21px;
 }
 #plannerWeek {
-	cursor: default;
+	color: #6666ff;
+	cursor: pointer;
+	border-bottom: dashed 1px #6666ff;
 }
 #plannerControls {
 	text-align: center;

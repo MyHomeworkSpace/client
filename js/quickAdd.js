@@ -2,6 +2,12 @@ MyHomeworkSpace.QuickAdd = {
 	classes: [],
 	classIds: [],
 	prefixList: [],
+	classSynonyms: [
+		["science", "sci", "bio", "biology", "chem", "chemistry", "physics"],
+		["math", "algebra", "calculus", "calc", "pre-calculus", "precalculus", "precalc", "geometry", "geo"],
+		["computer science", "compsci"],
+		["language", "french", "latin", "spanish", "mandarin"]
+	],
 	init: function() {
 		var nlp = window.nlp_compromise;
 		// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
@@ -52,6 +58,13 @@ MyHomeworkSpace.QuickAdd = {
 					classMatches = true;
 				} else {
 					classMatches = false;
+					for (var synonymsIndex in MyHomeworkSpace.QuickAdd.classSynonyms) {
+						if (MyHomeworkSpace.QuickAdd.classSynonyms[synonymsIndex].indexOf(classWords[i].toLowerCase()) > -1) {
+							if (MyHomeworkSpace.QuickAdd.classSynonyms[synonymsIndex].indexOf(array[arrIndex].text.toLowerCase()) > -1) {
+								classMatches = true;
+							}
+						}
+					}
 				}
 				arrIndex++;
 			}
@@ -66,6 +79,9 @@ MyHomeworkSpace.QuickAdd = {
 		};
 	},
 	parseDate: function(text) {
+		if (!isNaN(moment(text).day())) {
+			return moment(text).format("YYYY-MM-DD");
+		}
 		var textToParse = text.toLowerCase().split(" ");
 		var result = {
 			last: false,
@@ -151,6 +167,8 @@ MyHomeworkSpace.QuickAdd = {
 					response.class = MyHomeworkSpace.Classes.list[classResults.classIndex].name;
 					response.classId = MyHomeworkSpace.QuickAdd.classIds[classResults.classIndex];
 					termsToSkip = classResults.termsToSkip;
+				} else if ((parseInt(termIndex) + 1) != sentence.terms.length && sentence.terms[parseInt(termIndex) + 1].tag == "Date") {
+					// the next word is a due date, so skip this word
 				} else if (nameTrack) {
 					response.name += term.text;
 					response.name += " ";

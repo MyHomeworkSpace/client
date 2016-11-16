@@ -1,5 +1,14 @@
 MyHomeworkSpace.Pages.homework = {
 	init: function() {
+		$(document).keyup(function(e) {
+			if (e.keyCode == 13) {
+				if ($("#homeworkModal").hasClass("in")) { // if hw modal is open
+					if ($("#homeworkDesc:focus").length == 0) { // if you aren't editing the description
+						$("#submitHomeworkModal").click();
+					}
+				}
+			}
+		});
 		$("#deleteHomeworkModal").click(function() {
 			if (confirm("Are you sure you want to delete this?")) {
 				$("#homeworkModal").modal('hide');
@@ -102,14 +111,17 @@ MyHomeworkSpace.Pages.homework = {
 		});
 	},
 	open: function() {
-		$("#homeworkTomorrow .hwList").html('<ul></ul');
+		$("#homeworkOverdue").hide();
+		$("#homeworkOverdue .hwList").html('<ul></ul>');
+		$("#homeworkTomorrow .hwList").html('<ul></ul>');
 		$("#homeworkSoon .hwList").html('<ul></ul>');
 		$("#homeworkLongterm .hwList").html('<ul></ul>');
 		var classes = MyHomeworkSpace.Classes.list;
-		MyHomeworkSpace.API.get("homework/get", {}, function(xhr) {
+		MyHomeworkSpace.API.get("homework/getHWView", {}, function(xhr) {
 			var hw = xhr.responseJSON.homework;
 			var showMonday = (moment().day() == 5 || moment().day() == 6);
 			var tomorrowDaysToThreshold = 2;
+			var showOverdue = false;
 			if (showMonday) {
 				$("#homeworkTomorrowTitle").text("Monday");
 				if (moment().day() == 5) {
@@ -141,9 +153,20 @@ MyHomeworkSpace.Pages.homework = {
 						$item.addClass("done");
 					}
 					var $options = $('<div class="hwOptions"></div>');
-						var $done = $('<i class="fa fa-check-square-o"></i>');
+						var $done = $('<i class="fa fa-square-o toggleable-check"></i>');
+							if (hwItem.complete == "1") {
+								$done.removeClass("fa-square-o");
+								$done.addClass("fa-check-square-o");
+							}
 							$done.click(function() {
 								$(this).parent().parent().toggleClass("done");
+								if ($(this).hasClass("fa-check-square-o")) {
+									$(this).removeClass("fa-check-square-o");
+									$(this).addClass("fa-square-o");
+								} else {
+									$(this).removeClass("fa-square-o");
+									$(this).addClass("fa-check-square-o");
+								}
 								MyHomeworkSpace.Pages.homework.markComplete($(this).parent().parent().attr("data-hwId"), ($(this).parent().parent().hasClass("done") ? "1" : "0"));
 							});
 						$options.append($done);
@@ -183,13 +206,19 @@ MyHomeworkSpace.Pages.homework = {
 						$item.addClass("hwLate");
 					}
 
-				if (daysTo < tomorrowDaysToThreshold) {
+				if (daysTo < 1) {
+					showOverdue = true;
+					$("#homeworkOverdue .hwList ul").append($item);
+				} else if (daysTo < tomorrowDaysToThreshold) {
 					$("#homeworkTomorrow .hwList ul").append($item);
 				} else if (daysTo < 5) {
 					$("#homeworkSoon .hwList ul").append($item);
 				} else {
 					$("#homeworkLongterm .hwList ul").append($item);
 				}
+			}
+			if (showOverdue) {
+				$("#homeworkOverdue").show();
 			}
 		});
 	}

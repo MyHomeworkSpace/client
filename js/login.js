@@ -4,6 +4,11 @@ MyHomeworkSpace.Pages.login = {
 			$("#loginError").text(errorMessage).fadeOut(100).fadeIn(100);
 			$("#loginForm").effect("shake");
 		};
+		$("#loginUsername, #loginPassword").keyup(function(e) {
+			if (e.keyCode == 13) {
+				$("#loginSubmit").click();
+			}
+		});
 		$("#loginSubmit").click(function() {
 			$("#loginUsername").prop("disabled", true);
 			$("#loginPassword").prop("disabled", true);
@@ -35,6 +40,8 @@ MyHomeworkSpace.Pages.login = {
 	handleLoginComplete: function(info) {
 		MyHomeworkSpace.Classes.load(function() {
 			MyHomeworkSpace.QuickAdd.init();
+
+			MyHomeworkSpace.Pages.settings.onLogin();
 
 			MyHomeworkSpace.Me = info;
 			$("#topName").text(info.name);

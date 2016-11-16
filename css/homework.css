@@ -19,6 +19,7 @@
 .hwItem {
 	cursor: default;
 	padding: 5px;
+	padding-right: 30px;
 	position: relative;
 	transition: all 0.2s;
 }
@@ -69,4 +70,14 @@
 	position: relative;
 	top: -2px;
 	transition: none;
+}
+
+#homeworkOverdueTitle {
+	color: red;
+}
+
+@media (max-width: 992px) {
+	#homework .col-md-3 {
+		margin-bottom: 60px;
+	}
 }
