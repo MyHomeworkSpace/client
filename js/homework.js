@@ -111,7 +111,9 @@ MyHomeworkSpace.Pages.homework = {
 		});
 	},
 	open: function() {
-		$("#homeworkTomorrow .hwList").html('<ul></ul');
+		$("#homeworkOverdue").hide();
+		$("#homeworkOverdue .hwList").html('<ul></ul>');
+		$("#homeworkTomorrow .hwList").html('<ul></ul>');
 		$("#homeworkSoon .hwList").html('<ul></ul>');
 		$("#homeworkLongterm .hwList").html('<ul></ul>');
 		var classes = MyHomeworkSpace.Classes.list;
@@ -119,6 +121,7 @@ MyHomeworkSpace.Pages.homework = {
 			var hw = xhr.responseJSON.homework;
 			var showMonday = (moment().day() == 5 || moment().day() == 6);
 			var tomorrowDaysToThreshold = 2;
+			var showOverdue = false;
 			if (showMonday) {
 				$("#homeworkTomorrowTitle").text("Monday");
 				if (moment().day() == 5) {
@@ -203,13 +206,19 @@ MyHomeworkSpace.Pages.homework = {
 						$item.addClass("hwLate");
 					}
 
-				if (daysTo < tomorrowDaysToThreshold) {
+				if (daysTo < 1) {
+					showOverdue = true;
+					$("#homeworkOverdue .hwList ul").append($item);
+				} else if (daysTo < tomorrowDaysToThreshold) {
 					$("#homeworkTomorrow .hwList ul").append($item);
 				} else if (daysTo < 5) {
 					$("#homeworkSoon .hwList ul").append($item);
 				} else {
 					$("#homeworkLongterm .hwList ul").append($item);
 				}
+			}
+			if (showOverdue) {
+				$("#homeworkOverdue").show();
 			}
 		});
 	}
