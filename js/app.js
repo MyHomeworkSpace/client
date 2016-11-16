@@ -11,10 +11,12 @@ MyHomeworkSpace.API = {
 	},
 	init: function(callback) {
 		MyHomeworkSpace.API.rawRequest("auth/csrf", "GET", {}, function(xhr) {
-			MyHomeworkSpace.API.rawRequest("auth/csrf", "GET", {}, function(xhr) {
-				MyHomeworkSpace.API.token = xhr.responseJSON.token;
-				callback();
-			});
+			setTimeout(function() {
+				MyHomeworkSpace.API.rawRequest("auth/csrf", "GET", {}, function(xhr) {
+					MyHomeworkSpace.API.token = xhr.responseJSON.token;
+					callback();
+				});
+			}, 50); // safari is a garbage browser by a garbage company and requires this timeout for some reason
 		});
 	},
 	rawRequest: function(path, method, data, callback) {
