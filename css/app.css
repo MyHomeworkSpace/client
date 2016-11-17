@@ -249,3 +249,9 @@ html, body {
 .toggleable-check {
 	width: 13px;
 }
+
+.no-link {
+    color:inherit;
+    text-decoration:none;
+    pointer-events:none;
+}
