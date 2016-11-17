@@ -10,6 +10,22 @@ html, body {
 	overflow: hidden;
 }
 
+#workingOverlay {
+	background: black;
+	color: white;
+	font-size: 1.5em;
+	opacity: 0;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	text-align: center;
+	padding-top: 10px;
+	transition: opacity 0.2s;
+}
+
 .tooltip {
 	font-family: 'Titillium Web', sans-serif;
 	font-size: 0.5em;
