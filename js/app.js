@@ -3,6 +3,7 @@ var MyHomeworkSpace = {};
 MyHomeworkSpace.API = {
 	baseURL: window.location.protocol + "//api-v2." + window.location.hostname + "/",
 	token: "",
+	workingTimeout: undefined,
 	get: function(path, data, callback) {
 		return MyHomeworkSpace.API.request(path, "GET", data, callback);
 	},
@@ -20,6 +21,14 @@ MyHomeworkSpace.API = {
 		});
 	},
 	rawRequest: function(path, method, data, callback) {
+		$("#workingOverlay").css("opacity", 0);
+		$("#workingOverlay").hide();
+		if (MyHomeworkSpace.API.workingTimeout === undefined) {
+			MyHomeworkSpace.API.workingTimeout = setTimeout(function() {
+				$("#workingOverlay").show();
+				$("#workingOverlay").css("opacity", 0.5);
+			}, 2000);
+		}
 		$.ajax({
 			crossDomain: true,
 			data: data,
@@ -29,6 +38,10 @@ MyHomeworkSpace.API = {
 				withCredentials: true
 			},
 			complete: function(jqXHR) {
+				$("#workingOverlay").css("opacity", 0);
+				$("#workingOverlay").hide();
+				clearTimeout(MyHomeworkSpace.API.workingTimeout);
+				MyHomeworkSpace.API.workingTimeout = undefined;
 				callback(jqXHR);
 			}
 		});
