@@ -174,9 +174,6 @@ MyHomeworkSpace.Prefixes.matchClass = function(prefix) {
 };
 
 $(document).ready(function() {
-	particlesJS.load('particles-js', 'js/particles.json', function() {
-		console.log('callback - particles.js config loaded');
-	});
 	MyHomeworkSpace.API.init(function() {
 		$(".sidebarItem").click(function() {
 			if ($(".page:not(.hidden)").attr("id") == $(this).attr("data-page")) {
