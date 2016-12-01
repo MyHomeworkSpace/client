@@ -201,6 +201,14 @@ MyHomeworkSpace.Pages.homework = {
 							}
 						}
 					$item.append($subtext);
+					if (hwItem.desc.trim() != "") {
+						var $descIcon = $('<i class="hwDescIcon fa fa-align-left"></i>');
+							$descIcon.tooltip({
+								title: "This homework has a description.",
+								placement: "bottom"
+							});
+						$item.append($descIcon);
+					}
 
 					if (daysTo < 1) {
 						$item.addClass("hwLate");
