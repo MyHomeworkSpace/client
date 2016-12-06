@@ -21,7 +21,7 @@
 	position: relative;
 }
 #plannerTableBody td:hover .plannerAddButton {
-	display: block;
+	opacity: 1;
 }
 .plannerAddButton {
 	position: absolute;
@@ -31,7 +31,8 @@
 	border-bottom: none;
 	border-bottom-right-radius: 0;
 	border-top-right-radius: 0;
-	display: none;
+	transition: opacity .2s;
+	opacity 0;
 }
 #plannerTableBody td ul {
 	list-style-type: none;
