@@ -86,6 +86,11 @@ MyHomeworkSpace.Pages.planner = {
 					var $item = $('<li></li>');
 						$item.addClass("plannerItem");
 						$item.attr("data-hwId", hwItem.id);
+						if(hwItem.desc != "") {
+							$item.tooltip({
+								title: hwItem.desc	
+							});
+						}
 						$item.append($('<span></span>').text(hwItem.name.split(" ")[0]).addClass(MyHomeworkSpace.Prefixes.matchClass(hwItem.name.split(" ")[0])));
 						if (hwItem.name.indexOf(" ") != -1) {
 							$item.append($('<span></span').text(" " + hwItem.name.substr(hwItem.name.indexOf(" "))));
