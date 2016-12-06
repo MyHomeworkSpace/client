@@ -32,7 +32,7 @@
 	border-bottom-right-radius: 0;
 	border-top-right-radius: 0;
 	transition: opacity .2s;
-	opacity 0;
+	opacity: 0;
 }
 #plannerTableBody td ul {
 	list-style-type: none;
