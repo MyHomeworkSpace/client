@@ -108,6 +108,8 @@ MyHomeworkSpace.QuickAdd = {
 				result.dow = 5;
 			} else if (word.substr(0, 3) == "sat") {
 				result.dow = 6;
+			} else if (word.substr(0, 3) == "ton") { // tonight
+				result.dow = moment().day();
 			} else if (word.substr(0, 3) == "tom") { // tomorrow
 				result.dow = moment().day() + 1;
 				if (result.dow == 7) {
