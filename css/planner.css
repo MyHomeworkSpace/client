@@ -60,6 +60,7 @@
 .plannerItem.done, .plannerHWBox.done {
 	background: rgb(200, 200, 200);
 	text-decoration: line-through;
+	background-clip: padding-box;
 }
 .plannerHWControls {
 	color: rgb(30, 30, 30);
