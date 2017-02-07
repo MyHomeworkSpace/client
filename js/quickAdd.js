@@ -19,10 +19,16 @@ MyHomeworkSpace.QuickAdd = {
 		nlp.lexicon()["hwy"] = undefined;
 		nlp.lexicon()["pa"] = undefined;
 
-		// this is a bit of a hack to get nlp_compromise to like the "hw" prefix
-		// i know that "hw" isn't a verb
+		// this is a bit of a hack to get nlp_compromise to like prefixes
+		// i know that "hw" and "essay" aren't verbs
 		// nlp_compromise doesn't
-		nlp.lexicon()["hw"] = "Infinitive";
+		for (var prefixIndex in MyHomeworkSpace.Prefixes.list) {
+			var prefix = MyHomeworkSpace.Prefixes.list[prefixIndex];
+			for (var wordIndex in prefix.words) {
+				var word = prefix.words[wordIndex];
+				nlp.lexicon()[word.toLowerCase()] = "Infinitive";
+			}
+		}
 
 		MyHomeworkSpace.QuickAdd.classes = [];
 		MyHomeworkSpace.QuickAdd.classIds = [];
