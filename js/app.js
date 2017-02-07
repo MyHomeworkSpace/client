@@ -197,6 +197,8 @@ $(document).ready(function() {
 				$("#homeworkName").val("");
 				$("#homeworkClass").val(-1);
 				$("#homeworkDue").val("");
+				$("#homeworkDue").next(".form-control").children("button").text(moment().format("dddd, MMMM Do, YYYY"));
+				$("#homeworkDue").next(".form-control").children("div").datepicker("setDate", moment().toDate());
 				$("#homeworkComplete").prop("checked", false);
 				$("#homeworkDesc").val("");
 				$("#deleteHomeworkModal").hide();
@@ -240,7 +242,10 @@ $(document).ready(function() {
 					$("#homeworkName").val("");
 				}
 				$("#homeworkClass").val((info.classId ? info.classId : -1));
-				$("#homeworkDue").val(MyHomeworkSpace.QuickAdd.parseDate(info.due));
+				var dueDate = MyHomeworkSpace.QuickAdd.parseDate(info.due) || undefined;
+				$("#homeworkDue").val(dueDate);
+				$("#homeworkDue").next(".form-control").children("button").text(moment(dueDate).format("dddd, MMMM Do, YYYY"));
+				$("#homeworkDue").next(".form-control").children("div").datepicker("setDate", moment(dueDate).toDate());
 				$("#homeworkComplete").prop("checked", false);
 				$("#homeworkDesc").val("");
 				$("#deleteHomeworkModal").hide();

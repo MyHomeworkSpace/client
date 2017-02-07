@@ -85,6 +85,8 @@ MyHomeworkSpace.Pages.homework = {
 			$("#homeworkModalType").text("Edit");
 			$("#homeworkName").val(hw.name);
 			$("#homeworkDue").val(hw.due);
+			$("#homeworkDue").next(".form-control").children("button").text(moment(hw.due).format("dddd, MMMM Do, YYYY"));
+			$("#homeworkDue").next(".form-control").children("div").datepicker("setDate", moment(hw.due).toDate());
 			$("#homeworkDesc").val(hw.desc);
 			$("#homeworkComplete").prop("checked", (hw.complete == "1"));
 			$("#homeworkClass").val(hw.classId);
