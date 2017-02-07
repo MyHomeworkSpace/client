@@ -193,7 +193,7 @@ MyHomeworkSpace.Pages.homework = {
 						if (prefix.toLowerCase() == "test" || prefix.toLowerCase() == "exam" || prefix.toLowerCase() == "midterm" || prefix.toLowerCase() == "quiz" || prefix.toLowerCase() == "ica" || prefix.toLowerCase() == "lab") {
 							keyword = "on ";
 						}
-						if (keyword == "on " && dueText.toLowerCase() == "tomorrow") {
+						if (keyword == "on " && (dueText.toLowerCase() == "tomorrow" || dueText.substr(0, 4) == "last" || dueText.substr(0, 4) == "next")) {
 							keyword = "";
 						}
 						$subtext.text(keyword + dueText);
