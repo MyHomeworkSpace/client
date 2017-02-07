@@ -2,6 +2,7 @@ body {
 	font-family: "Titillium Web", sans-serif;
 }
 .navbar {
+	border-radius: 0;
 	margin-bottom: 0;
 }
 .jumbotron {
