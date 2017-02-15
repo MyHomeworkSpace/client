@@ -1,0 +1,93 @@
+#planner {
+	padding: 10px;
+	overflow: scroll;
+}
+#plannerTable {
+	border: solid 1px black;
+	table-layout: fixed;
+	min-width: 1120px;
+	width: 100%;
+}
+#plannerTable th {
+	border: solid 1px black;
+	text-align: center;
+	width: 140px;
+}
+#plannerTableBody td {
+	border: solid 1px black;
+	min-width: 140px;
+	height: 100px;
+	width: 100%;
+	position: relative;
+}
+#plannerTableBody td:hover .plannerAddButton {
+	opacity: 1;
+}
+.plannerAddButton {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	border-right: none;
+	border-bottom: none;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	transition: opacity .2s;
+	opacity: 0;
+}
+#plannerTableBody td ul {
+	list-style-type: none;
+	padding: 0;
+}
+#plannerTableBody td:not(.subjectCell) {
+	vertical-align: top;
+}
+#plannerTableBody td.subjectCell {
+	padding-right: 10px;
+	text-align: right;
+}
+.plannerHWBox {
+	transition: all 0.2s;
+}
+.plannerItem {
+	cursor: default;
+	transition: all 0.2s;
+	padding-right: 34px;
+	position: relative;
+}
+.plannerItem:hover {
+	background: rgb(220, 220, 220);
+}
+.plannerItem.done, .plannerHWBox.done {
+	background: rgb(200, 200, 200);
+	text-decoration: line-through;
+}
+.plannerHWControls {
+	color: rgb(30, 30, 30);
+	position: absolute;
+	top: 1px;
+	right: 7px;
+	opacity: 0;
+	transition: all 0.2s;
+}
+.plannerItem:hover .plannerHWControls {
+	opacity: 1;
+}
+.plannerHWControls .fa {
+	cursor: pointer;
+	color: rgb(60, 60, 60);
+	transition: all 0.2s;
+}
+.plannerHWControls .fa:hover {
+	color: rgb(10, 10, 10);
+}
+#plannerAnnouncementRow th {
+	height: 21px;
+}
+#plannerWeek {
+	color: #6666ff;
+	cursor: pointer;
+	border-bottom: dashed 1px #6666ff;
+}
+#plannerControls {
+	text-align: center;
+}

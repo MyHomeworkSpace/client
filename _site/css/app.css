@@ -1,0 +1,273 @@
+@import 'https://fonts.googleapis.com/css?family=Titillium+Web:300,300i,400,400i,700,700i';
+
+html, body {
+	background-image: url("../img/backgrounds/bg1.jpg");
+	background-size: cover;
+	transition: background-image ease-in-out 0.3s;
+	font-family: 'Titillium Web', sans-serif;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#workingOverlay {
+	background: black;
+	color: white;
+	font-size: 1.5em;
+	opacity: 0;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	text-align: center;
+	padding-top: 10px;
+	transition: opacity 0.2s;
+}
+
+.tooltip {
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 0.9em;
+}
+
+#topBar {
+	color: white;
+	font-size: 24px;
+	font-weight: 300;
+	line-height: 40px;
+	padding-left: 10px;
+	width: 100%;
+	height: 40px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	transition: color 0.2s;
+}
+
+#topBar.inverted {
+	color: black;
+}
+
+#user {
+	float: right;
+	height: 100%;
+	position: relative;
+	top: -85px;
+}
+
+#topName {
+	font-size: 14px;
+	text-align: right;
+	vertical-align: middle;
+	height: 100%;
+}
+
+#logout {
+	text-align: right;
+	padding-left: 5px;
+	padding-right: 2px;
+	vertical-align: middle;
+	height: 100%;
+	transition: all 0.2s;
+}
+
+#logout:hover {
+	background-color: rgba(220, 220, 220, 0.5);
+	cursor: pointer;
+}
+
+#sidebar {
+	color: white;
+	width: 100px;
+	height: calc(100% - 45px);
+	position: absolute;
+	top: 45px;
+	left: 0;
+	z-index: 98;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	overflow: auto;
+	transition: color 0.2s;
+}
+
+#sidebar.inverted {
+	color: black;
+}
+
+.sidebarItem {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+
+.sidebarItem:hover {
+	background-color: rgba(220, 220, 220, 0.5);
+}
+
+.sidebarItem.selected {
+	background-color: rgba(255, 255, 255, 0.9);
+	color: rgb(70, 70, 70);
+}
+
+.sidebarItem .fa {
+	display: block;
+	font-size: 48px;
+}
+
+.sidebarItem.tinyItem {
+	font-size: 14px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.sidebarItem.tinyItem .fa {
+	display: inline;
+	font-size: 18px;
+	margin-right: 1px;
+}
+
+.page {
+	width: calc(100% - 110px);
+	height: calc(100% - 50px);
+	background: rgba(255, 255, 255, 0.9);
+	position: absolute;
+	top: 45px;
+	left: 100px;
+
+	padding-left: 10px;
+	/*padding-bottom: 45px;*/
+	padding-right: 110px;
+
+	opacity: 1;
+	transition: all 0.1s;
+
+	overflow-y: auto;
+}
+.page.hidden {
+	display: block !important;
+	opacity: 0;
+	z-index: -1;
+}
+
+#addHomeworkContainer {
+	position: absolute;
+	color: white;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 45px;
+}
+
+#addHomework {
+	position: relative;
+	top: -40px;
+	display: block;
+	font-size: 16px;
+	line-height: 42px;
+	margin: 0 auto;
+	text-align: center;
+	width: 300px;
+	height: 45px;
+	z-index: 100;
+}
+
+#addHomework div {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#addHWBtn {
+	cursor: pointer;
+	transition: all .2s;
+	z-index: 99;
+}
+#addHWBtn:hover {
+	transform: scale(1.1);
+}
+
+#addHWInput {
+	background: transparent;
+	border: none;
+	width: 250px;
+	height: 30px;
+}
+#addHWClose {
+	cursor: pointer;
+	font-size: 18px;
+	position: relative;
+	left: 275px;
+	width: 20px !important;
+}
+#addHWInfo {
+	background: white;
+	box-shadow: 0 3px 17px 0 rgba(50, 50, 50, 0.75);
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	margin-left: -200px;
+	width: 400px;
+	height: 200px;
+	z-index: 100;
+	font-size: 16px;
+}
+#addHWName {
+	font-size: 20px;
+	min-height: 28px;
+}
+.addHWInfoPage {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity ease-in-out 0.1s;
+}
+#addHWInfoNoText {
+	font-size: 18px;
+	padding: 70px 70px 60px 70px;
+	text-align: center;
+}
+#addHWInfoText {
+	padding: 50px;
+}
+
+#homeworkModal .modal-body input:not([type=checkbox]), #homeworkModal .modal-body select, #homeworkModal .modal-body .form-control {
+	width: 300px;
+}
+#homeworkName {
+	font-size: 18px;
+}
+#homeworkModal .modal-body #homeworkDesc {
+	min-width: 400px;
+	min-height: 150px;
+}
+
+#helpView {
+	height: calc(100% - 70px);
+	overflow: scroll;
+}
+
+.backgroundOption {
+	border: solid 1px black;
+	cursor: pointer;
+	width: 250px;
+	height: 150px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.toggleable-check {
+	width: 13px;
+}
+
+.no-link {
+    color:inherit;
+    text-decoration:none;
+    pointer-events:none;
+}

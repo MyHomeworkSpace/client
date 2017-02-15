@@ -1,0 +1,57 @@
+.cal_hw {
+	background-color:#4c6c9b !important;
+	color: #FFF;
+}
+.cal_quiz {
+	background-color:#ffa500 !important;
+	color: #FFF;
+}
+.cal_project {
+	background-color:#9ACD32 !important;
+	color: #FFF;
+}
+.cal_test {
+	background-color:#DC143C !important;
+	color: #FFF;
+}
+.cal_paper {
+	background-color:#FFD700 !important;
+	color: #FFF;
+}
+.cal_ica {
+	background-color:#2ac0f1 !important;
+	color: #FFF;
+}
+.cal_lab {
+	background-color:#2af15e !important;
+	color: #FFF;
+}
+.cal_dismissal {
+	background-color:#FF0 !important;
+	color: #FFF;
+}
+.cal_docid {
+	background-color:#003DAD !important;
+	color: #FFF;
+}
+.cal_hex {
+	background-color:#000000 !important;
+	color: #00FF00;
+}
+.cal_subjectName {
+	background-color:#009900 !important;
+	color: #FFF;
+}
+.cal_prez {
+	background-color:#000099 !important;
+	color: #FFF;
+}
+.cal_no_prefix {
+	background-color: #FFD3BD;
+	color: black !important;
+}
+
+.cal_optional_hw {
+	background-color: #5000BC !important;
+	color: white !important;
+}
