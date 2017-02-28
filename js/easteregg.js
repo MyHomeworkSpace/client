@@ -35,8 +35,5 @@ function loadclippy() {
             agent.play("GetTechy");
             agent.speak("Have an idea for a feature? Use this form to tell us what you want to see next.");
         });
-        document.getElementsByClassName("sidebarItem").addEventListener("click", function () {
-            agent.animate();
-        });
     })
 }
