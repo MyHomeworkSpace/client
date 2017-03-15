@@ -109,5 +109,5 @@ MyHomeworkSpace.Pages.settings = {
 };
 
 function lulz() {
-	document.getElementById("body").style.fontFamily = "Comic Sans MS";
+	document.getElementsByTagName("body").style.fontFamily = "Comic Sans MS";
 }
