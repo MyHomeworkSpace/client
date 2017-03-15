@@ -107,3 +107,7 @@ MyHomeworkSpace.Pages.settings = {
 		}
 	}
 };
+
+function lulz() {
+	document.getElementById("body").style.fontFamily = "Comic Sans MS";
+}
