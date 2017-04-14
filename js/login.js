@@ -1,5 +1,5 @@
 MyHomeworkSpace.Pages.login = {
-	init: function() {
+	init: function(isSecretlyApplicationAuth, applicationAuthCallback) {
 		var loginError = function(errorMessage) {
 			$("#loginError").text(errorMessage).fadeOut(100).fadeIn(100);
 			$("#loginForm").effect("shake");
@@ -29,7 +29,11 @@ MyHomeworkSpace.Pages.login = {
 				$("#loginSubmit").text("Log in");
 				MyHomeworkSpace.API.get("auth/me", {}, function(xhr) {
 					if (xhr.responseJSON.status == "ok") {
-						MyHomeworkSpace.Pages.login.handleLoginComplete(xhr.responseJSON);
+						if (isSecretlyApplicationAuth) {
+							applicationAuthCallback(xhr.responseJSON);
+						} else {
+							MyHomeworkSpace.Pages.login.handleLoginComplete(xhr.responseJSON);
+						}
 					} else {
 						loginError("Something weird happened, try again?");
 					}

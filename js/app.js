@@ -174,6 +174,11 @@ MyHomeworkSpace.Prefixes.matchClass = function(prefix) {
 };
 
 $(document).ready(function() {
+	if (window.location.href.indexOf("applicationAuth") > -1) {
+		// we're actually on the application auth page, so don't run this code
+		// we're just here for the api object
+		return;
+	}
 	MyHomeworkSpace.API.init(function() {
 		$(".sidebarItem").click(function() {
 			if ($(".page:not(.hidden)").attr("id") == $(this).attr("data-page")) {

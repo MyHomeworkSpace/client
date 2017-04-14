@@ -1,0 +1,49 @@
+<div class="applicationAuthLoadingOverlay">
+	<i class="fa fa-spin fa-refresh"></i> Loading...
+</div>
+
+<div class="applicationAuthLoginInfo hidden">
+	Logged in as <span class="applicationAuthUser"></span>
+	<button id="applicationAuthLogout" class="btn btn-primary btn-sm">Log out</button>
+</div>
+<div class="applicationAuthContainer">
+	<div class="applicationAuthLogin hidden">
+		<div id="loginContainer">
+			<h3 id="loginSubtitle">Log in with your Dalton account to continue.</h3>
+			<h4 id="loginError"></h4>
+			<div id="loginForm">
+				<input type="text" id="loginUsername" placeholder="Username" class="form-control" />
+				<input type="password" id="loginPassword" placeholder="Password" class="form-control" />
+				<button id="loginSubmit" class="btn btn-primary">Log in</button>
+			</div>
+		</div>
+	</div>
+	<div class="applicationAuthRequest hidden">
+		<h1>Allow access to account</h1>
+		<div class="applicationAuthInfo">
+			<h3 class="applicationAuthName"></h3>
+			<h4>by <span class="applicationAuthAuthor"></span></h4>
+		</div>
+		<div class="applicationAuthText">
+			<p>The application <strong class="applicationAuthName"></strong> would like to access your account's data. You can manage what applications can access your account at any time from the Settings tab.</p>
+		</div>
+
+		<div class="applicationAuthClear"></div>
+
+		<div class="applicationAuthButtons">
+			<button id="applicationAuthDeny" class="btn btn-danger btn-lg">Deny</button>
+			<button id="applicationAuthAllow" class="btn btn-primary btn-lg">Allow access</button>
+		</div>
+	</div>
+	<div class="applicationAuthError hidden">
+		<h1>An error occurred</h1>
+		<h4 class="applicationAuthErrorMessage"></h4>
+	</div>
+</div>
+
+<link rel="stylesheet" href="css/login.css" />
+<link rel="stylesheet" href="css/applicationAuth.css" />
+
+<script src="js/app.js"></script>
+<script src="js/login.js"></script>
+<script src="js/applicationAuth.js"></script>
