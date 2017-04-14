@@ -73,6 +73,45 @@ MyHomeworkSpace.Pages.settings = {
 				});
 			}, 300);
 		});
+
+		// applications
+		$("a[href=\\#settings_applications]").on("show.bs.tab", function() {
+			$("#settingsApplicationsList").html('<i class="fa fa-refresh fa-spin"></i> Loading, please wait...');
+			MyHomeworkSpace.API.get("application/getAuthorizations", {}, function(xhr) {
+				$("#settingsApplicationsList").text("");
+				var authorizations = xhr.responseJSON.authorizations;
+				if (authorizations.length == 0) {
+					$("#settingsApplicationsList").text("You have not given any applications permission to access your account.");
+				}
+				for (var authorizationIndex in authorizations) {
+					var authorization = authorizations[authorizationIndex];
+					var $authorization = $('<div class="settingsApplication"></div>');
+						var $authorizationInfo = $('<div class="settingsApplicationInfo"></div>');
+							var $authorizationName = $('<div class="settingsApplicationName"></div>');
+								$authorizationName.text(authorization.name);
+							$authorizationInfo.append($authorizationName);
+							var $authorizationAuthor = $('<div class="settingsApplicationAuthor"></div>');
+								$authorizationAuthor.text("by " + authorization.authorName);
+							$authorizationInfo.append($authorizationAuthor);
+						$authorization.append($authorizationInfo);
+
+						var $authorizationControls = $('<div class="settingsApplicationControls"></div>');
+							var $authorizationRevoke = $('<button class="btn btn-danger">Revoke access</button>');
+								$authorizationRevoke.data("id", authorization.id);
+								$authorizationRevoke.click(function() {
+									MyHomeworkSpace.API.post("application/revokeAuth", {
+										id: $(this).data("id")
+									}, function(xhr) {
+										$("a[href=\\#settings_applications]").trigger("show.bs.tab");
+									});
+								});
+							$authorizationControls.append($authorizationRevoke);
+						$authorization.append($authorizationControls);
+						$authorization.append('<div class="settingsApplicationClear"></div>');
+					$("#settingsApplicationsList").append($authorization);
+				}
+			});
+		});
 	},
 	open: function() {
 		$("#settings_account_name").text(MyHomeworkSpace.Me.name);

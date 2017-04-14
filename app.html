@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="css/homework.css" />
 		<link rel="stylesheet" href="css/classes.css" />
 		<link rel="stylesheet" href="css/planner.css" />
+		<link rel="stylesheet" href="css/settings.css" />
 
 		<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
@@ -352,6 +353,7 @@
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#settings_account" aria-controls="home" role="tab" data-toggle="tab">Account</a></li>
 					<li role="presentation"><a href="#settings_quickAdd" aria-controls="settings_quickAdd" role="tab" data-toggle="tab">Quick Add</a></li>
+					<li role="presentation"><a href="#settings_applications" aria-controls="settings_applications" role="tab" data-toggle="tab">Applications</a></li>
 					<li role="presentation"><a href="#settings_homework" aria-controls="settings_homework" role="tab" data-toggle="tab">Homework</a></li>
 					<li role="presentation"><a href="#settings_classes" aria-controls="settings_classes" role="tab" data-toggle="tab">Classes</a></li>
 					<li role="presentation"><a href="#settings_planner" aria-controls="settings_planner" role="tab" data-toggle="tab">Planner</a></li>
@@ -379,6 +381,12 @@
 
 						<button id="clipify" class="btn btn-primary btn-sm" onclick="loadclippy();">Clipify MyHomework Space</button>
 						<button id="timeTravel" class="btn btn-primary btn-sm" onclick="lulz();">Party like it's the 90s</button>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="settings_applications">
+						<p>Manage other applications you've given access to your account.</p>
+						<div id="settingsApplicationsList">
+
+						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_quickAdd">
 						<p>Quick Add lets you add homework to your planner by typing in information about it. Examples:</p>

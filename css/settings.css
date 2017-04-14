@@ -1,0 +1,32 @@
+#settingsApplicationsList {
+	border: solid 1px black;
+	width: 100%;
+	overflow-y: scroll;
+}
+
+.settingsApplication {
+	box-sizing: content-box;
+	padding: 10px;
+}
+
+.settingsApplication:hover {
+	background: #ccc;
+}
+
+.settingsApplicationInfo {
+	float: left;
+}
+.settingsApplicationName {
+	font-size: 18px;
+}
+.settingsApplicationAuthor {
+	font-size: 16px;
+}
+.settingsApplicationControls {
+	float: right;
+	line-height: 45px;
+}
+
+.settingsApplicationClear {
+	clear: both;
+}
