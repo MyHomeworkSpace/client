@@ -271,3 +271,7 @@ html, body {
     text-decoration:none;
     pointer-events:none;
 }
+
+#settingsHidingSpacer {
+	height: 500px;
+}

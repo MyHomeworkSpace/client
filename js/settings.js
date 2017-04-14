@@ -109,5 +109,6 @@ MyHomeworkSpace.Pages.settings = {
 };
 
 function lulz() {
-	document.getElementsByTagName("body").style.fontFamily = "Comic Sans MS";
+	document.getElementsByTagName("body")[0].style.fontFamily = "Comic Sans MS";
+	$("#timeTravel").remove();
 }
