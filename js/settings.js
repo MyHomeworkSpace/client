@@ -146,8 +146,3 @@ MyHomeworkSpace.Pages.settings = {
 		}
 	}
 };
-
-function lulz() {
-	document.getElementsByTagName("body")[0].style.fontFamily = "Comic Sans MS";
-	$("#timeTravel").remove();
-}

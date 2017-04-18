@@ -30,3 +30,8 @@
 .settingsApplicationClear {
 	clear: both;
 }
+
+.partyLikeItsThe90s {
+	background: #000 url('../img/rainbow.gif') top left;
+	font-family: "Comic Sans MS", cursive, sans-serif !important;
+}

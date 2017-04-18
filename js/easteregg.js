@@ -1,4 +1,4 @@
-function loadclippy() {
+function partyLike90s() {
     document.getElementById("clipify").style.display = 'none';
     clippy.load('Clippy', function (agent) {
         agent.play('Greeting');
@@ -36,4 +36,6 @@ function loadclippy() {
             agent.speak("Have an idea for a feature? Use this form to tell us what you want to see next.");
         });
     })
+    document.getElementsByTagName("body")[0].style.fontFamily = "Comic Sans MS";
+	$("#timeTravel").remove();
 }
