@@ -160,6 +160,11 @@ MyHomeworkSpace.Prefixes.list = [{
 									color: "cal_prez",
 									words: ["Presentation", "Prez"],
 									tabSystem: true
+								},
+								{
+									color: "cal_build",
+									words: ["BuildSession", "Build"],
+									tabSystem: true
 								}];
 MyHomeworkSpace.Prefixes.matchClass = function(prefix) {
 	var chkPrefix = prefix.toLowerCase();

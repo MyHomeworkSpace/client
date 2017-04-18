@@ -46,6 +46,10 @@
 	background-color:#000099 !important;
 	color: #FFF;
 }
+.cal_build {
+	background-color:#123456 !important;
+	color: #FFF;
+}
 .cal_no_prefix {
 	background-color: #FFD3BD;
 	color: black !important;
