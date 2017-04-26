@@ -12,3 +12,26 @@
 
 	resize: none;
 }
+
+.feedbackTexttest {
+	font-size: 13px;
+	margin-right: 600px;
+
+}
+
+.dropdown {
+		position: relative;
+		display: inline-block;
+}
+.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #919191;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		padding: 10px 10px;
+		z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+		display: block;
+}

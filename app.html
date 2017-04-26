@@ -229,9 +229,16 @@
 			</span>
 			<span id="user">
 				<span id="feedbackButtons">
-					<i id="feedbackSmile" class="feedbackBtn fa fa-smile-o" data-toggle="tooltip" data-placement="bottom" title="Send a smile" data-type="smile"></i>
-					<i id="feedbackFrown" class="feedbackBtn fa fa-frown-o" data-toggle="tooltip" data-placement="bottom" title="Send a frown" data-type="frown"></i>
-					<i id="feedbackIdea" class="feedbackBtn fa fa-lightbulb-o" data-toggle="tooltip" data-placement="bottom" title="Send an idea" data-type="idea"></i>
+					<div class="dropdown">
+					  <span><i class="feedbackBtn fa fa-lightbulb-o"  data-placement="bottom" title="Send an idea" ></i> </span>
+					  <div class="dropdown-content">
+					    <i id="feedbackSmile" class="feedbackBtn fa fa-smile-o" data-toggle="tooltip" data-placement="bottom" title="Send a smile" data-type="smile"></i> <h2 class="feedbackTexttest"> Send a Smile </h2>
+							<br>
+							<i id="feedbackFrown" class="feedbackBtn fa fa-frown-o" data-toggle="tooltip" data-placement="bottom" title="Send a frown" data-type="frown"></i> <h2 class="feedbackTexttest"> Send a Frown </h2>
+							<br>
+							<i id="feedbackIdea" class="feedbackBtn fa fa-lightbulb-o" data-toggle="tooltip" data-placement="bottom" title="Send an idea" data-type="idea"></i> <h2 class="feedbackTexttest"> Send an Idea </h2>
+					  </div>
+					</div>
 				</span>
 				<span id="topName"></span>
 				<span id="logout"><i class="fa fa-sign-out"></i></span>
