@@ -82,8 +82,8 @@ class ClassModal extends Component {
 
 		return <Modal title={(state.isNew ? "Add class" : "Edit class")} openModal={props.openModal} class="classModal">
 			<div class="modal-body">
-				<input type="text" placeholder="Name" class="className form-control" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} value={this.state.name} />
-				<input type="text" placeholder="Teacher" class="classTeacher form-control" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "teacher")} value={this.state.teacher} />
+				<input type="text" placeholder="Name" class="classModalName form-control" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} value={this.state.name} />
+				<input type="text" placeholder="Teacher" class="classModalTeacher form-control" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "teacher")} value={this.state.teacher} />
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}

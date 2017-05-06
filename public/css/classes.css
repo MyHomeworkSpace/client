@@ -53,13 +53,6 @@
 	font-size: 12px;
 }
 
-#classModal .modal-body .form-control {
-	width: 300px;
-}
-#className {
-	font-size: 18px;
-}
-
 #classSwapOptions {
 	list-style-type: none;
 	padding: 0;

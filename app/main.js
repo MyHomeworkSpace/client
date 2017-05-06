@@ -18,7 +18,14 @@ var refreshClasses = function(callback) {
 };
 
 var renderModalManager = function() {
-	render(h(ModalManager, { modalName: modalName, modalState: modalState, openModal: openModal, refreshClasses: refreshClasses }), null, document.querySelector("#modalManager > div"));
+	render(h(ModalManager, {
+		modalName: modalName,
+		modalState: modalState,
+		openModal: openModal,
+
+		classes: MyHomeworkSpace.Classes.list,
+		refreshClasses: refreshClasses
+	}), null, document.querySelector("#modalManager > div"));
 };
 
 var openModal = function(name, state) {
