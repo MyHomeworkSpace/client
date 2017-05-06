@@ -40,11 +40,29 @@ class ClassModal extends Component {
 	}
 
 	delete() {
-		this.setState({
-			loading: true
-		}, function() {
-
-		});
+		var that = this;
+		if (confirm("Are you sure you want to delete this?")) {
+			this.setState({
+				loading: true
+			}, function() {
+				api.get("classes/hwInfo/" + that.props.modalState.id, {}, function(xhr) {
+					var hwItems = xhr.responseJSON.hwItems;
+					if (hwItems > 0) {
+						if (!confirm("This will ALSO delete the " + hwItems + " homework item(s) associated with this class. Are you *sure*?")) {
+							that.props.openModal("");
+							return;
+						}
+					}
+					api.post("classes/delete", {
+						id: that.props.modalState.id
+					}, function() {
+						that.props.refreshClasses(function() {
+							that.props.openModal("");
+						});
+					});
+				});
+			});
+		}
 	}
 
 	keyup(e) {

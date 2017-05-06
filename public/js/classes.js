@@ -1,58 +1,7 @@
 MyHomeworkSpace.Pages.classes = {
 	init: function() {
 		$("#addClass").click(function() {
-			$("#deleteClassModal").hide();
-			$("#className").val("");
-			$("#classTeacher").val("");
-			$("#classModal").attr("data-actionType", "add");
-			$("#classModalType").text("Add");
-			$("#classModal").modal();
-		});
-		$("#submitClassModal").click(function() {
-			var type = $("#classModal").attr("data-actionType");
-			var id = $("#classModal").attr("data-actionId");
-			$("#classModal").modal("hide");
-			$("#loadingModal").modal({
-				backdrop: "static",
-				keyboard: false
-			});
-			var classItem = {
-				name: $("#className").val(),
-				teacher: $("#classTeacher").val()
-			};
-			var classPostDone = function(xhr) {
-				MyHomeworkSpace.Pages.classes.handleNew();
-			};
-
-			if (type == "add") {
-				MyHomeworkSpace.API.post("classes/add", classItem, classPostDone);
-			} else {
-				classItem.id = id;
-				MyHomeworkSpace.API.post("classes/edit", classItem, classPostDone);
-			}
-		});
-		$("#deleteClassModal").click(function() {
-			if (confirm("Are you sure you want to delete this?")) {
-				$("#classModal").modal('hide');
-				$("#loadingModal").modal({
-					backdrop: "static",
-					keyboard: false
-				});
-				MyHomeworkSpace.API.get("classes/hwInfo/" + $("#classModal").attr("data-actionId"), {}, function(xhr) {
-					var hwItems = xhr.responseJSON.hwItems;
-					if (hwItems > 0) {
-						if (!confirm("This will ALSO delete the " + hwItems + " homework item(s) associated with this class. Are you *sure*?")) {
-							$("#loadingModal").modal("hide");
-							return;
-						}
-					}
-					MyHomeworkSpace.API.post("classes/delete", {
-						id: $("#classModal").attr("data-actionId")
-					}, function() {
-						MyHomeworkSpace.Pages.classes.handleNew();
-					});
-				});
-			}
+			MHSBridge.default.openModal("class", {});
 		});
 	},
 	handleNew: function() {
@@ -117,14 +66,7 @@ MyHomeworkSpace.Pages.classes = {
 				$edit.click(function() {
 					var $that = $(this);
 					MyHomeworkSpace.API.get("classes/get/" + $(this).parent().attr("data-classId"), {}, function(xhr) {
-						var classItem = xhr.responseJSON.class;
-						$("#deleteClassModal").show();
-						$("#classModal").attr("data-actionType", "edit");
-						$("#classModal").attr("data-actionId", $that.parent().attr("data-classId"));
-						$("#className").val(classItem.name);
-						$("#classTeacher").val(classItem.teacher);
-						$("#classModalType").text("Edit");
-						$("#classModal").modal();
+						MHSBridge.default.openModal("class", xhr.responseJSON.class);
 					});
 				});
 			$item.append($edit);
