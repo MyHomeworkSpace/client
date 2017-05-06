@@ -12,7 +12,7 @@ class CalendarEvents extends Component {
 
 		var events = {};
 
-		[0, 1, 2, 3, 4].map(function(dayNumber) {
+		[1, 2, 3, 4, 5].map(function(dayNumber) {
 			var scheduleEvents = props.schedule[dayNumber].map(function(item) {
 				return <CalendarEvent type="schedule" item={item} />
 			});
@@ -48,11 +48,11 @@ class CalendarEvents extends Component {
 				<div class="calendarEventsGutterHour">11p</div>
 			</div>
 			<CalendarNowLine />
-			<div class="calendarEventsDay">{events[0]}</div>
 			<div class="calendarEventsDay">{events[1]}</div>
 			<div class="calendarEventsDay">{events[2]}</div>
 			<div class="calendarEventsDay">{events[3]}</div>
 			<div class="calendarEventsDay">{events[4]}</div>
+			<div class="calendarEventsDay">{events[5]}</div>
 		</div>;
 	}
 }

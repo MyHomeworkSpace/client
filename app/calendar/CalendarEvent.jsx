@@ -5,9 +5,9 @@ import linkState from "linkstate";
 
 class CalendarEvent extends Component {
 	render(props, state) {
-		var dayStart = moment("00:00:00", "HH:mm:ss");
-		var start = moment(props.item.start, "HH:mm:ss");
-		var end = moment(props.item.end, "HH:mm:ss");
+		var dayStart = moment.unix(0);
+		var start = moment.unix(props.item.start);
+		var end = moment.unix(props.item.end);
 
 		var offset = start.diff(dayStart, "minutes");
 		var durationInMinutes = end.diff(start, "minutes");

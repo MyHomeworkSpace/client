@@ -19,11 +19,33 @@ class CalendarPage extends Component {
 	}
 
 	componentWillMount() {
-		// TODO: query server for schedule state when api is implemented
+		var that = this;
+		api.get("calendar/getStatus", {}, function(xhr) {
+			if (xhr.responseJSON.status == 1) {
+				that.setState({
+					loading: false,
+					enabled: true,
+					askingPassword: false
+				});
+			} else {
+				that.loadSchedule.bind(that)();
+			}
+		});
+	}
+
+	loadSchedule() {
+		var that = this;
 		this.setState({
-			loading: false,
-			enabled: false,
-			askingPassword: false
+			loading: true
+		}, function() {
+			api.get("calendar/getSchedule", {}, function(xhr) {
+				that.setState({
+					loading: false,
+					enabled: true,
+					terms: xhr.responseJSON.terms,
+					items: xhr.responseJSON.items
+				});
+			});
 		});
 	}
 
@@ -46,7 +68,7 @@ class CalendarPage extends Component {
 				password: that.state.password
 			}, function(xhr) {
 				if (xhr.responseJSON.status == "ok") {
-
+					that.loadSchedule.bind(that)();
 				} else {
 					that.setState({
 						askingPasswordLoading: false,
@@ -90,8 +112,32 @@ class CalendarPage extends Component {
 			}
 		}
 
+		/*[
+			[],
+			[ { name: "Some class", instructor: "Some teacher", start: "09:00:00", end: "09:45:00", term: "Semester 1", period: "D" } ],
+			[ { name: "Some class", instructor: "Some teacher", start: "13:05:00", end: "13:50:00", term: "Semester 1", period: "D" } ],
+			[ { name: "Some class", instructor: "Some teacher", start: "10:10:00", end: "10:55:00", term: "Semester 1", period: "D" }, { name: "Some class", instructor: "Some teacher", start: "11:00:00", end: "11:45:00", term: "Semester 1", period: "C" } ],
+			[],
+			[ { name: "Some class", instructor: "Some teacher", start: "09:00:00", end: "09:45:00", term: "Semester 1", period: "D" } ],
+			[],
+			[]
+		]*/
+
+		var currentTermId = state.terms[0].termId;
+		var schedule = {};
+		state.items.filter(function(item) {
+			return item.termId == currentTermId;
+		}).forEach(function(item) {
+			if (!schedule[item.dayNumber]) {
+				schedule[item.dayNumber] = [];
+			}
+			schedule[item.dayNumber].push(item);
+		});
+
+		console.log(schedule);
+
 		return <div style="height: 100%">
-			<CalendarWeek schedule={state.schedule} />
+			<CalendarWeek schedule={schedule} />
 		</div>;
 	}
 }
