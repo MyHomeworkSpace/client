@@ -2,6 +2,8 @@ import { h, render } from "preact";
 
 import api from "api.js";
 
+import CalendarPage from "calendar/CalendarPage.jsx";
+
 import ApplicationList from "settings/ApplicationList.jsx";
 
 import ModalManager from "ui/ModalManager.jsx";
@@ -49,6 +51,9 @@ export default {
 	openModal: openModal,
 
 	pages: {
+		calendar: {
+			CalendarPage: CalendarPage
+		},
 		settings: {
 			ApplicationList: ApplicationList
 		}
