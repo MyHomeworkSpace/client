@@ -4,6 +4,7 @@ import { h, Component } from "preact";
 import linkState from "linkstate";
 
 import CalendarEvent from "calendar/CalendarEvent.jsx";
+import CalendarNowLine from "calendar/CalendarNowLine.jsx";
 
 class CalendarEvents extends Component {
 	render(props, state) {
@@ -46,6 +47,7 @@ class CalendarEvents extends Component {
 				<div class="calendarEventsGutterHour">10p</div>
 				<div class="calendarEventsGutterHour">11p</div>
 			</div>
+			<CalendarNowLine />
 			<div class="calendarEventsDay">{events[0]}</div>
 			<div class="calendarEventsDay">{events[1]}</div>
 			<div class="calendarEventsDay">{events[2]}</div>
