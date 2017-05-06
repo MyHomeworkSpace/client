@@ -1,6 +1,7 @@
 import { h, render } from "preact";
 
 import api from "api.js";
+import errors from "errors.js";
 
 import CalendarPage from "calendar/CalendarPage.jsx";
 
@@ -43,6 +44,7 @@ var openModal = function(name, state) {
 
 export default {
 	api: api,
+	errors: errors,
 
 	init: function() {
 		renderModalManager();

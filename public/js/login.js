@@ -21,7 +21,7 @@ MyHomeworkSpace.Pages.login = {
 					$("#loginUsername").prop("disabled", false);
 					$("#loginPassword").prop("disabled", false);
 					$("#loginSubmit").text("Log in");
-					loginError(response.responseJSON.error);
+					loginError(MHSBridge.default.errors.getFriendlyString(response.responseJSON.error));
 					return;
 				}
 				$("#loginUsername").prop("disabled", false);
