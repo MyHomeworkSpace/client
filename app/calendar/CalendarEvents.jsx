@@ -53,6 +53,8 @@ class CalendarEvents extends Component {
 			<div class="calendarEventsDay">{events[3]}</div>
 			<div class="calendarEventsDay">{events[4]}</div>
 			<div class="calendarEventsDay">{events[5]}</div>
+			<div class="calendarEventsDay"></div>
+			<div class="calendarEventsDay"></div>
 		</div>;
 	}
 }

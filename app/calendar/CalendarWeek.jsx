@@ -15,6 +15,8 @@ class CalendarWeek extends Component {
 				<CalendarWeekDay name="Wednesday" />
 				<CalendarWeekDay name="Thursday" />
 				<CalendarWeekDay name="Friday" />
+				<CalendarWeekDay name="Saturday" />
+				<CalendarWeekDay name="Sunday" />
 			</div>
 
 			<div class="calendarWeekEventsContainer">

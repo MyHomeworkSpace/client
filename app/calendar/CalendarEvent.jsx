@@ -12,8 +12,8 @@ class CalendarEvent extends Component {
 		var offset = start.diff(dayStart, "minutes");
 		var durationInMinutes = end.diff(start, "minutes");
 
-		var startDisplay = start.format("h:MM a");
-		var endDisplay = end.format("h:MM a");
+		var startDisplay = start.format("h:mm a");
+		var endDisplay = end.format("h:mm a");
 
 		var isScheduleItem = (props.type == "schedule");
 
