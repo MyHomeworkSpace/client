@@ -12,7 +12,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /.js$/,
+				test: /.(js|jsx)$/,
 				loaders: 'buble-loader',
 				include: path.join(__dirname, 'app'),
 				query: {

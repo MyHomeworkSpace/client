@@ -1,0 +1,53 @@
+var baseURL = window.location.protocol + "//api-v2." + window.location.hostname + "/";
+var token = "";
+var workingTimeout;
+
+var rawRequest = function(path, method, data, callback) {
+	$("#workingOverlay").css("opacity", 0);
+	$("#workingOverlay").hide();
+	if (workingTimeout === undefined) {
+		workingTimeout = setTimeout(function() {
+			$("#workingOverlay").show();
+			$("#workingOverlay").css("opacity", 0.5);
+		}, 2000);
+	}
+	$.ajax({
+		crossDomain: true,
+		data: data,
+		method: method,
+		url: baseURL + path,
+		xhrFields: {
+			withCredentials: true
+		},
+		complete: function(jqXHR) {
+			$("#workingOverlay").css("opacity", 0);
+			$("#workingOverlay").hide();
+			clearTimeout(workingTimeout);
+			workingTimeout = undefined;
+			callback(jqXHR);
+		}
+	});
+};
+
+var request = function(path, method, data, callback) {
+	return rawRequest(path + "?csrfToken=" + encodeURIComponent(token), method, data, callback);
+};
+
+export default {
+	get: function(path, data, callback) {
+		return request(path, "GET", data, callback);
+	},
+	post: function(path, data, callback) {
+		return request(path, "POST", data, callback);
+	},
+	init: function(callback) {
+		rawRequest("auth/csrf", "GET", {}, function(xhr) {
+			setTimeout(function() {
+				rawRequest("auth/csrf", "GET", {}, function(xhr) {
+					token = xhr.responseJSON.token;
+					callback();
+				});
+			}, 50); // safari is a garbage browser by a garbage company and requires this timeout for some reason
+		});
+	}
+};
