@@ -2,7 +2,7 @@ import "calendar/CalendarNowLine.styl";
 
 import { h, Component } from "preact";
 
-class CalendarWeek extends Component {
+class CalendarNowLine extends Component {
 	constructor(props) {
 		super(props);
 		this.timer = null;
@@ -28,4 +28,4 @@ class CalendarWeek extends Component {
 	}
 }
 
-export default CalendarWeek;
+export default CalendarNowLine;
