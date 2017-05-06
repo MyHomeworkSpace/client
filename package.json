@@ -13,10 +13,11 @@
 		"webpack": "^2.2.1"
 	},
 	"scripts": {
-		"dev": "webpack --progress --colors --watch",
-		"dist": "webpack -p"
+		"dev": "cross-env NODE_ENV=development webpack --progress --colors --watch",
+		"dist": "cross-env NODE_ENV=production webpack -p"
 	},
 	"dependencies": {
+		"cross-env": "^4.0.0",
 		"linkstate": "^1.0.1",
 		"preact": "^8.1.0",
 		"preact-router": "^2.5.1"

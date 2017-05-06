@@ -5,8 +5,7 @@ module.exports = {
 
 	output: {
 		filename: 'bundle.js',
-		path: path.resolve(__dirname, 'dist'),
-		publicPath: "/dist/",
+		path: (process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'www', 'js') : path.resolve(__dirname, 'public', 'js')),
 		library: "MHSBridge"
 	},
 
