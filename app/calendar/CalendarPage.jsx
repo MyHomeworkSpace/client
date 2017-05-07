@@ -45,8 +45,10 @@ class CalendarPage extends Component {
 					mondayDate.subtract(1, "day");
 				}
 				that.setState({
-					loading: true,
+					loading: false,
 					enabled: true,
+					announcements: [],
+					monday: mondayDate,
 					terms: xhr.responseJSON.terms,
 					items: xhr.responseJSON.items
 				}, function() {
@@ -59,12 +61,13 @@ class CalendarPage extends Component {
 	loadWeek(monday) {
 		var that = this;
 		this.setState({
-			loading: true,
+			loadingWeek: true,
+			announcements: [],
 			monday: monday
 		}, function() {
 			api.get("planner/getWeekInfo/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
 				that.setState({
-					loading: false,
+					loadingWeek: false,
 					announcements: xhr.responseJSON.announcements,
 					friday: xhr.responseJSON.friday.index == -1 ? null : xhr.responseJSON.friday
 				});
@@ -145,6 +148,7 @@ class CalendarPage extends Component {
 			}
 		}
 
+		var emptySchedule = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [] };
 		var schedule = {};
 		state.items.filter(function(item) {
 			return item.termId == currentTermId;
@@ -156,8 +160,8 @@ class CalendarPage extends Component {
 		});
 
 		return <div style="height: 100%">
-			<CalendarHeader monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} />
-			<CalendarWeek monday={state.monday} friday={state.friday} schedule={schedule} />
+			<CalendarHeader announcements={state.announcements} monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
+			<CalendarWeek announcements={state.announcements} monday={state.monday} friday={state.friday} schedule={state.loadingWeek ? emptySchedule : schedule} />
 		</div>;
 	}
 }
