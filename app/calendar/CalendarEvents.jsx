@@ -53,7 +53,7 @@ class CalendarEvents extends Component {
 			<div class="calendarEventsDay">{events[2]}</div>
 			<div class="calendarEventsDay">{events[3]}</div>
 			<div class="calendarEventsDay">{events[4]}</div>
-			<div class="calendarEventsDay">{events[5]}</div>
+			<div class="calendarEventsDay">{props.friday && events[5 + (props.friday.index - 1)]}</div>
 			<div class="calendarEventsDay">{events[9]}</div>
 			<div class="calendarEventsDay">{events[10]}</div>
 		</div>;

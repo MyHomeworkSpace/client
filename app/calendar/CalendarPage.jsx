@@ -45,11 +45,28 @@ class CalendarPage extends Component {
 					mondayDate.subtract(1, "day");
 				}
 				that.setState({
-					loading: false,
+					loading: true,
 					enabled: true,
 					terms: xhr.responseJSON.terms,
-					items: xhr.responseJSON.items,
-					monday: mondayDate
+					items: xhr.responseJSON.items
+				}, function() {
+					that.loadWeek.bind(that, mondayDate)();
+				});
+			});
+		});
+	}
+
+	loadWeek(monday) {
+		var that = this;
+		this.setState({
+			loading: true,
+			monday: monday
+		}, function() {
+			api.get("planner/getWeekInfo/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
+				that.setState({
+					loading: false,
+					announcements: xhr.responseJSON.announcements,
+					friday: xhr.responseJSON.friday.index == -1 ? null : xhr.responseJSON.friday
 				});
 			});
 		});
@@ -119,6 +136,15 @@ class CalendarPage extends Component {
 		}
 
 		var currentTermId = state.terms[0].termId;
+
+		if (state.terms.length > 1) {
+			// TODO: this is a crappy way of doing this, but it works
+			var examReliefDay = moment("2016-01-20", "YYYY-MM-DD");
+			if (state.monday.isAfter(examReliefDay)) {
+				currentTermId = state.terms[1].termId;
+			}
+		}
+
 		var schedule = {};
 		state.items.filter(function(item) {
 			return item.termId == currentTermId;
@@ -130,8 +156,8 @@ class CalendarPage extends Component {
 		});
 
 		return <div style="height: 100%">
-			<CalendarHeader monday={state.monday} />
-			<CalendarWeek monday={state.monday} schedule={schedule} />
+			<CalendarHeader monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} />
+			<CalendarWeek monday={state.monday} friday={state.friday} schedule={schedule} />
 		</div>;
 	}
 }
