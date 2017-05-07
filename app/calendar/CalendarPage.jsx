@@ -15,21 +15,23 @@ class CalendarPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loading: true
+			loading: true,
+			announcements: [],
+			terms: []
 		};
 	}
 
 	componentWillMount() {
 		var that = this;
 		api.get("calendar/getStatus", {}, function(xhr) {
-			if (xhr.responseJSON.status == 1) {
+			if (xhr.responseJSON.statusNum == 1) {
+				that.loadSchedule.bind(that)();
+			} else {
 				that.setState({
 					loading: false,
-					enabled: true,
+					enabled: false,
 					askingPassword: false
 				});
-			} else {
-				that.loadSchedule.bind(that)();
 			}
 		});
 	}
