@@ -10,14 +10,15 @@ class CalendarEvents extends Component {
 	render(props, state) {
 		var that = this;
 
-		var events = {};
+		var events = [
+			[], [], [], [], [], [], [], [], [], []
+		];
 
-		[1, 2, 3, 4, 5].map(function(dayNumber) {
+		[1, 2, 3, 4, 5, 6, 7, 8].map(function(dayNumber) {
 			var scheduleEvents = props.schedule[dayNumber].map(function(item) {
 				return <CalendarEvent type="schedule" item={item} />
 			});
-			var hwEvents = [];
-			events[dayNumber] = scheduleEvents.concat(hwEvents);
+			events[dayNumber] = scheduleEvents.concat(events[dayNumber]);
 		});
 
 		return <div class="calendarEvents">
@@ -53,8 +54,8 @@ class CalendarEvents extends Component {
 			<div class="calendarEventsDay">{events[3]}</div>
 			<div class="calendarEventsDay">{events[4]}</div>
 			<div class="calendarEventsDay">{events[5]}</div>
-			<div class="calendarEventsDay"></div>
-			<div class="calendarEventsDay"></div>
+			<div class="calendarEventsDay">{events[9]}</div>
+			<div class="calendarEventsDay">{events[10]}</div>
 		</div>;
 	}
 }

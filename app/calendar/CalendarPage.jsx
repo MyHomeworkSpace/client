@@ -6,6 +6,7 @@ import linkState from "linkstate";
 import api from "api.js";
 import errors from "errors.js";
 
+import CalendarHeader from "calendar/CalendarHeader.jsx";
 import CalendarWeek from "calendar/CalendarWeek.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
@@ -39,11 +40,16 @@ class CalendarPage extends Component {
 			loading: true
 		}, function() {
 			api.get("calendar/getSchedule", {}, function(xhr) {
+				var mondayDate = moment();
+				while (mondayDate.day() != 1) {
+					mondayDate.subtract(1, "day");
+				}
 				that.setState({
 					loading: false,
 					enabled: true,
 					terms: xhr.responseJSON.terms,
-					items: xhr.responseJSON.items
+					items: xhr.responseJSON.items,
+					monday: mondayDate
 				});
 			});
 		});
@@ -112,17 +118,6 @@ class CalendarPage extends Component {
 			}
 		}
 
-		/*[
-			[],
-			[ { name: "Some class", instructor: "Some teacher", start: "09:00:00", end: "09:45:00", term: "Semester 1", period: "D" } ],
-			[ { name: "Some class", instructor: "Some teacher", start: "13:05:00", end: "13:50:00", term: "Semester 1", period: "D" } ],
-			[ { name: "Some class", instructor: "Some teacher", start: "10:10:00", end: "10:55:00", term: "Semester 1", period: "D" }, { name: "Some class", instructor: "Some teacher", start: "11:00:00", end: "11:45:00", term: "Semester 1", period: "C" } ],
-			[],
-			[ { name: "Some class", instructor: "Some teacher", start: "09:00:00", end: "09:45:00", term: "Semester 1", period: "D" } ],
-			[],
-			[]
-		]*/
-
 		var currentTermId = state.terms[0].termId;
 		var schedule = {};
 		state.items.filter(function(item) {
@@ -134,10 +129,9 @@ class CalendarPage extends Component {
 			schedule[item.dayNumber].push(item);
 		});
 
-		console.log(schedule);
-
 		return <div style="height: 100%">
-			<CalendarWeek schedule={schedule} />
+			<CalendarHeader monday={state.monday} />
+			<CalendarWeek monday={state.monday} schedule={schedule} />
 		</div>;
 	}
 }
