@@ -8,11 +8,22 @@ class CalendarHeader extends Component {
 		this.props.loadWeek(moment(this.props.monday).add(weekAmount, "week"));
 	}
 
+	jumpToday() {
+		var mondayDate = moment();
+		while (mondayDate.day() != 1) {
+			mondayDate.subtract(1, "day");
+		}
+		this.props.loadWeek(mondayDate);
+	}
+
 	render(props, state) {
 		return <div class="calendarHeader">
-			Week of {props.monday.format("MMMM D, YYYY")}
-			<button class="btn btn-default" onClick={this.jumpWeek.bind(this, -1)}>Back</button>
-			<button class="btn btn-default" onClick={this.jumpWeek.bind(this, 1)}>Next</button>
+			<span class="calendarHeaderWeek">Week of {props.monday.format("MMMM D, YYYY")}</span>
+			<div class="calendarHeaderControls">
+				<button class="btn btn-default" onClick={this.jumpWeek.bind(this, -1)}><i class="fa fa-chevron-left"></i></button>
+				<button class="btn btn-default" onClick={this.jumpToday.bind(this)}>Today</button>
+				<button class="btn btn-default" onClick={this.jumpWeek.bind(this, 1)}><i class="fa fa-chevron-right"></i></button>
+			</div>
 		</div>;
 	}
 }

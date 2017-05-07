@@ -7,7 +7,8 @@ class CalendarWeekDay extends Component {
 	render(props, state) {
 		return <div class="calendarWeekDay">
 			<div class="calendarWeekDayName">
-				{props.name} {props.day.format("M/D")}
+				<span class="calendarWeekDayNameDow">{props.name}</span>
+				<span class="calendarWeekDayNameDate">{props.day.format("M/D")}</span>
 			</div>
 		</div>;
 	}
