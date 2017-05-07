@@ -144,85 +144,8 @@ $(document).ready(function() {
 			}
 			MyHomeworkSpace.Page.show($(this).attr("data-page"));
 		});
-		Mousetrap.bind('ctrl+space', function(e) {
-			if ($("#addHWText").hasClass("hidden")) {
-				$("#addHWBtn").click();
-			} else {
-				$("#addHWClose").click();
-			}
-			return false;
-		});
-		$("#addHWBtn").click(function() {
-			if (MyHomeworkSpace.Pages.settings.cache.disableQuickAdd) {
-				// just show the modal then
-				$("#homeworkName").val("");
-				$("#homeworkClass").val(-1);
-				$("#homeworkDue").val("");
-				$("#homeworkDue").next(".form-control").children("button").text(moment().format("dddd, MMMM Do, YYYY"));
-				$("#homeworkDue").next(".form-control").children("div").datepicker("setDate", moment().toDate());
-				$("#homeworkComplete").prop("checked", false);
-				$("#homeworkDesc").val("");
-				$("#deleteHomeworkModal").hide();
-				$("#homeworkModalType").text("Add");
-				$("#homeworkModal").attr("data-actionType", "add");
-				$("#homeworkName").trigger("input"); // trigger tag system
-				$("#homeworkModal").modal();
-			} else {
-				$("#addHWBtn").fadeOut(100, function () {
-					$("#addHWBtn").addClass("hidden");
-				});
-				$("#addHWText").fadeIn(100).removeClass("hidden");
-				$("#addHWInput").val("").focus().keyup();
-			}
-		});
-		$("#addHWClose").click(function() {
-			$("#addHWText").fadeOut(100, function() {
-				$("#addHWText").addClass("hidden");
-			});
-			$("#addHWBtn").fadeIn(100).removeClass("hidden");
-		});
-		$("#addHWInput").keyup(function(e) {
-			if ($(this).val().trim() == "") {
-				$("#addHWInfoNoText").css("opacity", "1");
-				$("#addHWInfoText").css("opacity", "0");
-			} else {
-				$("#addHWInfoNoText").css("opacity", "0");
-				$("#addHWInfoText").css("opacity", "1");
-			}
-			var info = MyHomeworkSpace.QuickAdd.parseText($(this).val());
-			$("#addHWTag").text(info.tag);
-			$("#addHWTag").attr("class", "");
-			$("#addHWTag").addClass(MyHomeworkSpace.Prefixes.matchClass(info.tag));
-			$("#addHWRemain").text((info.name ? " " + info.name : ""));
-			$("#addHWClass").text((info.class ? info.class : "unknown"));
-			$("#addHWDue").text((info.due ? info.due : "unknown"));
-			if (e.keyCode == 13) {
-				if (info.tag || info.name) {
-					$("#homeworkName").val(info.tag + " " + info.name);
-				} else {
-					$("#homeworkName").val("");
-				}
-				$("#homeworkClass").val((info.classId ? info.classId : -1));
-				var dueDate = MyHomeworkSpace.QuickAdd.parseDate(info.due) || undefined;
-				$("#homeworkDue").val(dueDate);
-				$("#homeworkDue").next(".form-control").children("button").text(moment(dueDate).format("dddd, MMMM Do, YYYY"));
-				$("#homeworkDue").next(".form-control").children("div").datepicker("setDate", moment(dueDate).toDate());
-				$("#homeworkComplete").prop("checked", false);
-				$("#homeworkDesc").val("");
-				$("#deleteHomeworkModal").hide();
-				$("#homeworkModalType").text("Add");
-				$("#homeworkModal").attr("data-actionType", "add");
-				$("#homeworkName").trigger("input"); // trigger tag system
-				$("#homeworkModal").modal();
-				$("#addHWClose").click();
-			}
-		});
-		$("#addHWInput").focus(function() {
-			$("#addHWInfo").fadeIn(100);
-		});
-		$("#addHWInput").blur(function() {
-			$("#addHWInfo").fadeOut(100);
-		});
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.AddAction, {}), $("#addAction")[0]);
+		
 		$("#logout").click(function() {
 			MyHomeworkSpace.API.get("auth/logout", {}, function(xhr) {
 				window.location.reload();
