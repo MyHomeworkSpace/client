@@ -4,9 +4,27 @@ import { h, Component } from "preact";
 import linkState from "linkstate";
 
 import CalendarEvent from "calendar/CalendarEvent.jsx";
+import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
 import CalendarNowLine from "calendar/CalendarNowLine.jsx";
 
 class CalendarEvents extends Component {
+	openPopover(top, left, type, item) {
+		if (this.state.popover && this.state.popover.top == (top - 10) && this.state.popover.left == left) {
+			this.setState({
+				popover: null
+			});
+			return;
+		}
+		this.setState({
+			popover: {
+				top: top - 10,
+				left: left,
+				type: type,
+				item: item
+			}
+		});
+	}
+
 	render(props, state) {
 		var that = this;
 
@@ -16,7 +34,7 @@ class CalendarEvents extends Component {
 
 		[1, 2, 3, 4, 5, 6, 7, 8].map(function(dayNumber) {
 			var scheduleEvents = props.schedule[dayNumber].map(function(item) {
-				return <CalendarEvent type="schedule" item={item} />
+				return <CalendarEvent type="schedule" item={item} openPopover={that.openPopover.bind(that)} />
 			});
 			events[dayNumber] = scheduleEvents.concat(events[dayNumber]);
 		});
@@ -56,6 +74,7 @@ class CalendarEvents extends Component {
 			<div class="calendarEventsDay">{props.friday && events[5 + (props.friday.index - 1)]}</div>
 			<div class="calendarEventsDay">{events[9]}</div>
 			<div class="calendarEventsDay">{events[10]}</div>
+			{state.popover && <CalendarEventPopover item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} />}
 		</div>;
 	}
 }
