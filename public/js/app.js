@@ -144,7 +144,7 @@ $(document).ready(function() {
 			}
 			MyHomeworkSpace.Page.show($(this).attr("data-page"));
 		});
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.AddAction, {}), $("#addAction")[0]);
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.AddAction, {}), null, $(".addAction")[0]);
 		
 		$("#logout").click(function() {
 			MyHomeworkSpace.API.get("auth/logout", {}, function(xhr) {
