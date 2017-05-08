@@ -33,6 +33,9 @@ MyHomeworkSpace.Page = {
 	show: function(name) {
 		$(".page:not(.hidden)").addClass("hidden");
 		$(".sidebarItem.selected").removeClass("selected");
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.AddAction, {
+			page: name
+		}), null, $(".addAction")[0]);
 		if (name) {
 			$("#" + name).removeClass("hidden");
 			$(".sidebarItem[data-page=" + name + "]").addClass("selected");
@@ -144,7 +147,6 @@ $(document).ready(function() {
 			}
 			MyHomeworkSpace.Page.show($(this).attr("data-page"));
 		});
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.AddAction, {}), null, $(".addAction")[0]);
 		
 		$("#logout").click(function() {
 			MyHomeworkSpace.API.get("auth/logout", {}, function(xhr) {
