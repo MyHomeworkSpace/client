@@ -24,7 +24,7 @@ class EventModal extends Component {
 			endDate: (isNew ? moment().second(0) : moment.unix(props.modalState.end)),
 			endTime: (isNew ? moment().second(0) : moment.unix(props.modalState.end)),
 
-			description: (isNew ? "" : props.modalState.description)
+			description: (isNew ? "" : props.modalState.desc)
 		};
 	}
 
@@ -53,7 +53,7 @@ class EventModal extends Component {
 				name: this.state.name,
 				start: start.unix(),
 				end: end.unix(),
-				description: this.state.description
+				desc: this.state.description
 			};
 			if (!that.state.isNew) {
 				eventInfo.id = this.props.modalState.id;
@@ -133,7 +133,7 @@ class EventModal extends Component {
 				<DatePicker value={state.endDate} change={this.pickerChange.bind(this, "endDate")} />
 				<TimePicker value={state.endTime} change={this.pickerChange.bind(this, "endTime")} />
 
-				<textarea class="form-control" placeholder="Description" onChange={linkState(this, "description")} />
+				<textarea class="form-control" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}
