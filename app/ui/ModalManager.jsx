@@ -4,6 +4,7 @@ import { h, Component } from "preact";
 
 import api from "api.js";
 
+import EventModal from "calendar/EventModal.jsx";
 import ClassModal from "classes/ClassModal.jsx";
 
 class ModalManager extends Component {
@@ -14,7 +15,9 @@ class ModalManager extends Component {
 	render(props, state) {
 		var modal;
 
-		if (props.modalName == "class") {
+		if (props.modalName == "calendarEvent") {
+			modal = <EventModal modalState={props.modalState} openModal={props.openModal} />;
+		} else if (props.modalName == "class") {
 			modal = <ClassModal modalState={props.modalState} openModal={props.openModal} refreshClasses={props.refreshClasses} />;
 		}
 

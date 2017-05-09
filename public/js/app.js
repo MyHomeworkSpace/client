@@ -34,7 +34,8 @@ MyHomeworkSpace.Page = {
 		$(".page:not(.hidden)").addClass("hidden");
 		$(".sidebarItem.selected").removeClass("selected");
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.AddAction, {
-			page: name
+			page: name,
+			openModal: MHSBridge.default.openModal
 		}), null, $(".addAction")[0]);
 		if (name) {
 			$("#" + name).removeClass("hidden");
