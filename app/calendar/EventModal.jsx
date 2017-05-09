@@ -83,6 +83,8 @@ class EventModal extends Component {
 					id: that.props.modalState.id
 				}, function() {
 					that.props.openModal("");
+					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
+					document.querySelector(".calendarHeaderControlsRefresh").click();
 				});
 			});
 		}
