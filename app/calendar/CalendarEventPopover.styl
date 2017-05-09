@@ -1,10 +1,20 @@
+@keyframes calendarEventPopover-appear
+	0%
+		opacity: 0
+		transform: scale(0.8)
+	100%
+		opacity: 1
+		transform: scale(1)
+
 .calendarEventPopover
+	animation: calendarEventPopover-appear .3s ease 1
 	position: absolute
 	background: white
 	border: solid 1px black
 	box-shadow: black 0 0 4px 0
 	width: 300px
 	padding: 10px
+	transform-origin: 0 10px 0
 	z-index: 2
 	
 	.calendarEventPopoverName

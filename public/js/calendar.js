@@ -3,6 +3,8 @@ MyHomeworkSpace.Pages.calendar = {
 
 	},
 	open: function() {
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.calendar.CalendarPage, {}), null, document.querySelector("#calendar > div"));
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.calendar.CalendarPage, {
+			openModal: MHSBridge.default.openModal
+		}), null, document.querySelector("#calendar > div"));
 	}
 };

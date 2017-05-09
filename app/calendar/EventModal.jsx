@@ -19,10 +19,10 @@ class EventModal extends Component {
 			isNew: isNew,
 			name: (isNew ? "" : props.modalState.name),
 
-			startDate: (isNew ? moment().second(0) : props.modalState.startDate),
-			startTime: (isNew ? moment().second(0) : props.modalState.startTime),
-			endDate: (isNew ? moment().second(0) : props.modalState.endDate),
-			endTime: (isNew ? moment().second(0) : props.modalState.endTime),
+			startDate: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
+			startTime: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
+			endDate: (isNew ? moment().second(0) : moment.unix(props.modalState.end)),
+			endTime: (isNew ? moment().second(0) : moment.unix(props.modalState.end)),
 
 			description: (isNew ? "" : props.modalState.description)
 		};
@@ -61,6 +61,8 @@ class EventModal extends Component {
 			api.post((that.state.isNew ? "calendar/events/add" : "calendar/events/edit"), eventInfo, function(xhr) {
 				if (xhr.responseJSON.status == "ok") {
 					that.props.openModal("");
+					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
+					document.querySelector(".calendarHeaderControlsRefresh").click();
 				} else {
 					that.setState({
 						loading: false,

@@ -83,7 +83,7 @@ class CalendarEvents extends Component {
 			<div class="calendarEventsDay">{props.friday && events[5 + (props.friday.index - 1)]}</div>
 			<div class="calendarEventsDay">{events[9]}</div>
 			<div class="calendarEventsDay">{events[10]}</div>
-			{state.popover && <CalendarEventPopover item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} />}
+			{state.popover && <CalendarEventPopover item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} openModal={props.openModal} />}
 		</div>;
 	}
 }

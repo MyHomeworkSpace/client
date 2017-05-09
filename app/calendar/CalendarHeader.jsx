@@ -25,6 +25,7 @@ class CalendarHeader extends Component {
 				{props.loadingWeek && <span><LoadingIndicator type="inline" /> Loading...</span>}
 			</span>
 			<div class="calendarHeaderControls">
+				<button class="btn btn-default calendarHeaderControlsRefresh" onClick={this.jumpWeek.bind(this, 0)}><i class="fa fa-refresh"></i></button>
 				<button class="btn btn-default" onClick={this.jumpWeek.bind(this, -1)}><i class="fa fa-chevron-left"></i></button>
 				<button class="btn btn-default" onClick={this.jumpToday.bind(this)}>Today</button>
 				<button class="btn btn-default" onClick={this.jumpWeek.bind(this, 1)}><i class="fa fa-chevron-right"></i></button>

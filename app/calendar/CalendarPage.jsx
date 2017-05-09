@@ -168,8 +168,8 @@ class CalendarPage extends Component {
 		});
 
 		return <div style="height: 100%">
-			<CalendarHeader announcements={state.announcements} events={state.events} monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
-			<CalendarWeek announcements={state.announcements} events={state.events} monday={state.monday} friday={state.friday} schedule={state.loadingWeek ? emptySchedule : schedule} />
+			<CalendarHeader openModal={props.openModal} announcements={state.announcements} events={state.events} monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
+			<CalendarWeek openModal={props.openModal} announcements={state.announcements} events={state.events} monday={state.monday} friday={state.friday} schedule={state.loadingWeek ? emptySchedule : schedule} />
 		</div>;
 	}
 }

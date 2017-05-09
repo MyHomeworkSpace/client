@@ -5,9 +5,14 @@ import linkState from "linkstate";
 
 class CalendarEvent extends Component {
 	click(e) {
-		var rect = e.target.parentElement.getBoundingClientRect();
+		var calendarEvent = e.target;
+		if (e.target.className != "calendarEvent") {
+			calendarEvent = e.target.parentElement;
+		}
+
+		var rect = calendarEvent.getBoundingClientRect();
 		
-		var scrollContainer = e.target.parentElement.parentElement.parentElement.parentElement.parentElement;
+		var scrollContainer = calendarEvent.parentElement.parentElement.parentElement.parentElement;
 		var scrollContainerRect = scrollContainer.getBoundingClientRect();
 		var scrollOffset = scrollContainer.scrollTop;
 
@@ -23,8 +28,6 @@ class CalendarEvent extends Component {
 		var dayStart = moment.unix(props.item.start).startOf("day");
 		if (isScheduleItem) {
 			dayStart = moment.unix(0).utc();
-		} else {
-			console.log(dayStart);
 		}
 
 		var start = moment.unix(props.item.start);
