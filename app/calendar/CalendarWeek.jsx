@@ -20,7 +20,7 @@ class CalendarWeek extends Component {
 			</div>
 
 			<div class="calendarWeekEventsContainer">
-				<CalendarEvents schedule={props.schedule} friday={props.friday} />
+				<CalendarEvents schedule={props.schedule} events={props.events} friday={props.friday} />
 			</div>
 		</div>;
 	}

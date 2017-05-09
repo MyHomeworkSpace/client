@@ -18,17 +18,27 @@ class CalendarEvent extends Component {
 	}
 
 	render(props, state) {
-		var dayStart = moment.unix(0).utc();
-		var start = moment.unix(props.item.start).utc();
-		var end = moment.unix(props.item.end).utc();
+		var isScheduleItem = (props.type == "schedule");
+
+		var dayStart = moment.unix(props.item.start).startOf("day");
+		if (isScheduleItem) {
+			dayStart = moment.unix(0).utc();
+		} else {
+			console.log(dayStart);
+		}
+
+		var start = moment.unix(props.item.start);
+		var end = moment.unix(props.item.end);
+		if (isScheduleItem) {
+			start = start.utc();
+			end = end.utc();
+		}
 
 		var offset = start.diff(dayStart, "minutes");
 		var durationInMinutes = end.diff(start, "minutes");
 
 		var startDisplay = start.format("h:mm a");
 		var endDisplay = end.format("h:mm a");
-
-		var isScheduleItem = (props.type == "schedule");
 
 		var displayName = props.item.name;
 

@@ -34,9 +34,18 @@ class CalendarEvents extends Component {
 
 		[1, 2, 3, 4, 5, 6, 7, 8].map(function(dayNumber) {
 			var scheduleEvents = props.schedule[dayNumber].map(function(item) {
-				return <CalendarEvent type="schedule" item={item} openPopover={that.openPopover.bind(that)} />
+				return <CalendarEvent type="schedule" item={item} openPopover={that.openPopover.bind(that)} />;
 			});
 			events[dayNumber] = scheduleEvents.concat(events[dayNumber]);
+		});
+
+		props.events.forEach(function(calendarEvent) {
+			var start = moment.unix(calendarEvent.start);
+			var end = moment.unix(calendarEvent.end);
+			var dow = start.day();
+			if (dow == 6) { dow = 9; }
+			if (dow == 0) { dow = 10; }
+			events[dow].push(<CalendarEvent type="event" item={calendarEvent} openPopover={that.openPopover.bind(that)} />);
 		});
 
 		return <div class="calendarEvents">
