@@ -11,13 +11,37 @@
 	.datePickerCalendarControls
 		font-size: 18px
 		height: 35px
+		position: relative
 		
-		.datePickerCalendarControl, .datePickerCalendarControl .btn
+		.datePickerCalendarControl
 			display: inline-block
 			text-align: center
-			width: 20px
+			position: absolute
+			top: 0
+			width: 26px
+			
+			.btn
+				display: inline-block
+				text-align: center
+				width: 20px
+			
+				.fa
+					position: relative
+					left: -3px
+			
+		.datePickerCalendarControl:first-child
+			left: 0
+		
+		.datePickerCalendarControl:nth-child(3)
+			right: 0
 			
 		.datePickerCalendarMonth
 			display: inline-block
-			width: 203px
+			line-height: 35px
+			position: absolute
+			top: 0
 			text-align: center
+			width: 100%
+	
+	.datePickerCalendarToday
+		float: right

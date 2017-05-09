@@ -19,6 +19,10 @@ class DatePickerCalendar extends Component {
 		});
 	}
 
+	today() {
+		this.props.selectDate(moment());
+	}
+
 	render(props, state) {
 		return <div class="datePickerCalendar">
 			<div class="datePickerCalendarControls">
@@ -31,6 +35,7 @@ class DatePickerCalendar extends Component {
 				</div>
 			</div>
 			<DatePickerCalendarGrid date={state.viewDate} currentDate={props.date} selectDate={props.selectDate} />
+			<button class="btn btn-default btn-sm datePickerCalendarToday" onClick={this.today.bind(this)}>Today</button>
 		</div>;
 	}
 }
