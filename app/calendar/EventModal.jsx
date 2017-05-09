@@ -123,15 +123,23 @@ class EventModal extends Component {
 			<div class="modal-body">
 				{state.error && <div class="alert alert-danger">{state.error}</div>}
 
-				<input type="text" class="form-control" placeholder="Name" value={state.name} onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} />
+				<input type="text" class="form-control eventModalName" placeholder="Name" value={state.name} onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} />
 
-				<div>Start</div>
-				<DatePicker value={state.startDate} change={this.pickerChange.bind(this, "startDate")} />
-				<TimePicker value={state.startTime} change={this.pickerChange.bind(this, "startTime")} />
+				<div class="row">
+					<div class="col-md-1 eventModalLabel">Start</div>
+					<div class="col-md-9 eventModalData">
+						<DatePicker value={state.startDate} change={this.pickerChange.bind(this, "startDate")} />
+						<TimePicker value={state.startTime} change={this.pickerChange.bind(this, "startTime")} />
+					</div>
+				</div>
 
-				<div>End</div>
-				<DatePicker value={state.endDate} change={this.pickerChange.bind(this, "endDate")} />
-				<TimePicker value={state.endTime} change={this.pickerChange.bind(this, "endTime")} />
+				<div class="row">
+					<div class="col-md-1 eventModalLabel">End</div>
+					<div class="col-md-9 eventModalData">
+						<DatePicker value={state.endDate} change={this.pickerChange.bind(this, "endDate")} />
+						<TimePicker value={state.endTime} change={this.pickerChange.bind(this, "endTime")} />
+					</div>
+				</div>
 
 				<textarea class="form-control" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />
 			</div>
