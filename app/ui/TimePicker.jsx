@@ -11,13 +11,26 @@ class TimePicker extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			open: false
+			open: false,
+			bodyClick: this.onBodyClick.bind(this)
 		};
+	}
+
+	onBodyClick(e) {
+		if ($(e.target).closest(".timePickerPopup").length == 0) {
+			this.toggle();
+		}
 	}
 
 	toggle() {
 		this.setState({
 			open: !this.state.open
+		}, function() {
+			if (this.state.open) {
+				$("body").bind("click", this.state.bodyClick);
+			} else {
+				$("body").unbind("click", this.state.bodyClick);
+			}
 		});
 	}
 
@@ -27,7 +40,7 @@ class TimePicker extends Component {
 
 	render(props, state) {
 		return <div class="timePickerContainer">
-			<div class="timePicker" onClick={this.toggle.bind(this)}>
+			<div class="timePicker" onClick={!state.open && this.toggle.bind(this)}>
 				<div class="timePickerOutput">{props.value.format("h:mm a")}</div>
 				<div class="timePickerAction"><i class={state.open ? "fa fa-chevron-up" : "fa fa-chevron-down"} /></div>
 				<div class="timePickerClear"></div>
