@@ -8,6 +8,7 @@ import errors from "errors.js";
 
 import DatePicker from "ui/DatePicker.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
+import HomeworkPicker from "ui/HomeworkPicker.jsx";
 import Modal from "ui/Modal.jsx";
 import TimePicker from "ui/TimePicker.jsx";
 
@@ -17,14 +18,15 @@ class EventModal extends Component {
 		var isNew = (props.modalState.id ? false : true);
 		this.state = {
 			isNew: isNew,
+			type: props.modalState.type || "event",
+
 			name: (isNew ? "" : props.modalState.name),
+			description: (isNew ? "" : props.modalState.desc),
 
 			startDate: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
 			startTime: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
 			endDate: (isNew ? moment().second(0) : moment.unix(props.modalState.end)),
-			endTime: (isNew ? moment().second(0) : moment.unix(props.modalState.end)),
-
-			description: (isNew ? "" : props.modalState.desc)
+			endTime: (isNew ? moment().second(0) : moment.unix(props.modalState.end))
 		};
 	}
 
@@ -125,7 +127,9 @@ class EventModal extends Component {
 			<div class="modal-body">
 				{state.error && <div class="alert alert-danger">{state.error}</div>}
 
-				<input type="text" class="form-control eventModalName" placeholder="Name" value={state.name} onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} />
+				{state.type == "event" && <input type="text" class="form-control eventModalName" placeholder="Name" value={state.name} onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} />}
+
+				{state.type == "homework" && <HomeworkPicker value={state.homework} change={this.pickerChange.bind(this, "homework")} />}
 
 				<div class="row">
 					<div class="col-md-1 eventModalLabel">Start</div>
@@ -143,7 +147,7 @@ class EventModal extends Component {
 					</div>
 				</div>
 
-				<textarea class="form-control" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />
+				{state.type == "event" && <textarea class="form-control" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />}
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}

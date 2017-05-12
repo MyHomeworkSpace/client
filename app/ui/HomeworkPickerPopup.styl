@@ -1,0 +1,27 @@
+.homeworkPickerPopup
+	background: white
+	border: 1px solid #ccc
+	border-radius: 4px
+	position: absolute
+	top: 39px
+	width: 301px
+	height: auto
+	z-index: 1000
+	padding: 10px
+	
+	.homeworkPickerPopupResults
+		border: 1px solid #ccc
+		margin-top: 5px
+		max-height: 135px
+		overflow-y: scroll
+		
+		.homeworkPickerPopupResult
+			cursor: pointer
+			font-size: 16px
+			padding: 5px
+		
+		.homeworkPickerPopupResult:hover
+			background: #ddd
+	
+	.homeworkPickerPopupResults.noResults
+		padding: 5px

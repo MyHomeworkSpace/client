@@ -8,11 +8,16 @@ import HomeworkName from "ui/HomeworkName.jsx";
 
 class AddActionCalendarInfo extends Component {
 	addFromHomework() {
+		this.props.openModal("calendarEvent", {
+			type: "homework"
+		});
 		this.props.close();
 	}
 
 	createNew() {
-		this.props.openModal("calendarEvent", {});
+		this.props.openModal("calendarEvent", {
+			type: "event"
+		});
 		this.props.close();
 	}
 

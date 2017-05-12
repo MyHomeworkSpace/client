@@ -3,6 +3,7 @@ import "ui/TimePicker.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import $ from "jquery";
 import moment from "moment";
 
 import TimePickerPopup from "ui/TimePickerPopup.jsx";
