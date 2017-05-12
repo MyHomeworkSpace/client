@@ -34,24 +34,25 @@ class CalendarEvents extends Component {
 	render(props, state) {
 		var that = this;
 
-		var events = [
+		var scheduleEvents = [
 			[], [], [], [], [], [], [], [], [], []
+		];
+		var dayEvents = [
+			[], [], [], [], [], [], []
 		];
 
 		[1, 2, 3, 4, 5, 6, 7, 8].map(function(dayNumber) {
-			var scheduleEvents = props.schedule[dayNumber].map(function(item) {
+			var scheduleEventsForDay = props.schedule[dayNumber].map(function(item) {
 				return <CalendarEvent type="schedule" item={item} openPopover={that.openPopover.bind(that)} />;
 			});
-			events[dayNumber] = scheduleEvents.concat(events[dayNumber]);
+			scheduleEvents[dayNumber] = scheduleEventsForDay.concat(scheduleEvents[dayNumber]);
 		});
 
 		props.events.forEach(function(calendarEvent) {
 			var start = moment.unix(calendarEvent.start);
 			var end = moment.unix(calendarEvent.end);
 			var dow = start.day();
-			if (dow == 6) { dow = 9; }
-			if (dow == 0) { dow = 10; }
-			events[dow].push(<CalendarEvent type="event" item={calendarEvent} openPopover={that.openPopover.bind(that)} />);
+			dayEvents[dow].push(<CalendarEvent type="event" item={calendarEvent} openPopover={that.openPopover.bind(that)} />);
 		});
 
 		return <div class="calendarEvents">
@@ -82,13 +83,13 @@ class CalendarEvents extends Component {
 				<div class="calendarEventsGutterHour">11p</div>
 			</div>
 			<CalendarNowLine />
-			<div class="calendarEventsDay">{events[1]}</div>
-			<div class="calendarEventsDay">{events[2]}</div>
-			<div class="calendarEventsDay">{events[3]}</div>
-			<div class="calendarEventsDay">{events[4]}</div>
-			<div class="calendarEventsDay">{props.friday && events[5 + (props.friday.index - 1)]}</div>
-			<div class="calendarEventsDay">{events[9]}</div>
-			<div class="calendarEventsDay">{events[10]}</div>
+			<div class="calendarEventsDay">{dayEvents[1]}{scheduleEvents[1]}</div>
+			<div class="calendarEventsDay">{dayEvents[2]}{scheduleEvents[2]}</div>
+			<div class="calendarEventsDay">{dayEvents[3]}{scheduleEvents[3]}</div>
+			<div class="calendarEventsDay">{dayEvents[4]}{scheduleEvents[4]}</div>
+			<div class="calendarEventsDay">{dayEvents[5]}{props.friday && scheduleEvents[5 + (props.friday.index - 1)]}</div>
+			<div class="calendarEventsDay">{dayEvents[6]}{scheduleEvents[9]}</div>
+			<div class="calendarEventsDay">{dayEvents[0]}{scheduleEvents[10]}</div>
 			{state.popover && <CalendarEventPopover item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} openModal={props.openModal} />}
 		</div>;
 	}
