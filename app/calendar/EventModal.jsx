@@ -23,6 +23,8 @@ class EventModal extends Component {
 			name: (isNew ? "" : props.modalState.name),
 			description: (isNew ? "" : props.modalState.desc),
 
+			homework: props.modalState.homework,
+
 			startDate: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
 			startTime: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
 			endDate: (isNew ? moment().second(0) : moment.unix(props.modalState.end)),
@@ -44,6 +46,16 @@ class EventModal extends Component {
 
 	save() {
 		var that = this;
+
+		if (this.state.type == "homework") {
+			if (!this.state.homework.id) {
+				this.setState({
+					error: "You must select a homework item.",
+				});
+				return;
+			}
+		}
+
 		this.setState({
 			error: "",
 			loading: true
@@ -60,7 +72,13 @@ class EventModal extends Component {
 			if (!that.state.isNew) {
 				eventInfo.id = this.props.modalState.id;
 			}
-			api.post((that.state.isNew ? "calendar/events/add" : "calendar/events/edit"), eventInfo, function(xhr) {
+			if (this.state.type == "homework") {
+				eventInfo["homeworkId"] = this.state.homework.id;
+			}
+
+			var endpointType = (this.state.type == "homework" ? "hwEvents" : "events");
+
+			api.post((that.state.isNew ? `calendar/${endpointType}/add` : `calendar/${endpointType}/edit`), eventInfo, function(xhr) {
 				if (xhr.responseJSON.status == "ok") {
 					that.props.openModal("");
 					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
@@ -81,7 +99,8 @@ class EventModal extends Component {
 			this.setState({
 				loading: true
 			}, function() {
-				api.post("calendar/events/delete", {
+				var endpointType = (this.state.type == "homework" ? "hwEvents" : "events");
+				api.post(`calendar/${endpointType}/delete`, {
 					id: that.props.modalState.id
 				}, function() {
 					that.props.openModal("");

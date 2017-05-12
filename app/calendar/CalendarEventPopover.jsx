@@ -3,9 +3,13 @@ import "calendar/CalendarEventPopover.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import HomeworkName from "ui/HomeworkName.jsx";
+
 class CalendarEventPopover extends Component {
 	edit() {
-		this.props.openModal("calendarEvent", this.props.item);
+		var item = this.props.item;
+		item.type = this.props.type;
+		this.props.openModal("calendarEvent", item);
 	}
 
 	render(props, state) {
@@ -28,7 +32,7 @@ class CalendarEventPopover extends Component {
 			info = <div class="calendarEventPopoverInfo">
 				{props.item.ownerName}
 			</div>;
-		} else if (props.type == "event") {
+		} else if (props.type == "event" || props.type == "homework") {
 			actions = <div class="calendarEventPopoverActions">
 				<button class="btn btn-default btn-sm" onClick={this.edit.bind(this)}><i class="fa fa-pencil" /> Edit</button>
 			</div>;
@@ -36,7 +40,7 @@ class CalendarEventPopover extends Component {
 
 
 		return <div class="calendarEventPopover" style={`top: ${props.top}px; left: ${props.left + 5}px`}>
-			<div class="calendarEventPopoverName">{props.item.name}</div>
+			<div class="calendarEventPopoverName">{props.type == "homework" ? <HomeworkName name={props.item.homework.name} /> : props.item.name}</div>
 			{info}
 			<div class="calendarEventPopoverTime">{startDisplay} to {endDisplay}</div>
 			{actions}

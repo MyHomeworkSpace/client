@@ -20,7 +20,7 @@ class CalendarWeek extends Component {
 			</div>
 
 			<div class="calendarWeekEventsContainer">
-				<CalendarEvents openModal={props.openModal} schedule={props.schedule} events={props.events} friday={props.friday} />
+				<CalendarEvents openModal={props.openModal} schedule={props.schedule} events={props.events} hwEvents={props.hwEvents} friday={props.friday} />
 			</div>
 		</div>;
 	}

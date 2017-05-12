@@ -18,6 +18,7 @@ class CalendarPage extends Component {
 			loading: true,
 			announcements: [],
 			events: [],
+			hwEvents: [],
 			terms: []
 		};
 	}
@@ -67,6 +68,7 @@ class CalendarPage extends Component {
 			loadingWeek: true,
 			announcements: [],
 			events: [],
+			hwEvents: [],
 			monday: monday
 		}, function() {
 			api.get("planner/getWeekInfo/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
@@ -76,6 +78,7 @@ class CalendarPage extends Component {
 						loadingWeek: false,
 						announcements: weekInfo.announcements,
 						events: xhr.responseJSON.events,
+						hwEvents: xhr.responseJSON.hwEvents,
 						friday: weekInfo.friday.index == -1 ? null : weekInfo.friday
 					});
 				});
@@ -168,8 +171,8 @@ class CalendarPage extends Component {
 		});
 
 		return <div style="height: 100%">
-			<CalendarHeader openModal={props.openModal} announcements={state.announcements} events={state.events} monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
-			<CalendarWeek openModal={props.openModal} announcements={state.announcements} events={state.events} monday={state.monday} friday={state.friday} schedule={state.loadingWeek ? emptySchedule : schedule} />
+			<CalendarHeader openModal={props.openModal} announcements={state.announcements} events={state.events} hwEvents={state.hwEvents} monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
+			<CalendarWeek openModal={props.openModal} announcements={state.announcements} events={state.events} hwEvents={state.hwEvents} monday={state.monday} friday={state.friday} schedule={state.loadingWeek ? emptySchedule : schedule} />
 		</div>;
 	}
 }

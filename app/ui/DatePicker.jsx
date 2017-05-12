@@ -39,6 +39,7 @@ class DatePicker extends Component {
 		this.setState({
 			open: false
 		}, function() {
+			$("body").unbind("click", this.state.bodyClick);
 			this.props.change(date);
 		});
 	}

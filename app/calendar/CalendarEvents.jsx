@@ -50,9 +50,14 @@ class CalendarEvents extends Component {
 
 		props.events.forEach(function(calendarEvent) {
 			var start = moment.unix(calendarEvent.start);
-			var end = moment.unix(calendarEvent.end);
 			var dow = start.day();
 			dayEvents[dow].push(<CalendarEvent type="event" item={calendarEvent} openPopover={that.openPopover.bind(that)} />);
+		});
+
+		props.hwEvents.forEach(function(calendarEvent) {
+			var start = moment.unix(calendarEvent.start);
+			var dow = start.day();
+			dayEvents[dow].push(<CalendarEvent type="homework" item={calendarEvent} openPopover={that.openPopover.bind(that)} />);
 		});
 
 		return <div class="calendarEvents">

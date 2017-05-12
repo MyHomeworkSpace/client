@@ -3,6 +3,8 @@ import "calendar/CalendarEvent.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import HomeworkName from "ui/HomeworkName.jsx";
+
 class CalendarEvent extends Component {
 	click(e) {
 		var calendarEvent = e.target;
@@ -43,7 +45,7 @@ class CalendarEvent extends Component {
 		var startDisplay = start.format("h:mm a");
 		var endDisplay = end.format("h:mm a");
 
-		var displayName = props.item.name;
+		var displayName = (props.type == "homework" ? props.item.homework.name : props.item.name);
 
 		if (isScheduleItem) {
 			displayName = displayName.split("-")[0].trim().split(":")[0].trim();
@@ -51,7 +53,7 @@ class CalendarEvent extends Component {
 
 		return <div class="calendarEventContainer">
 			<div class="calendarEvent" style={`top: ${offset}px; height: ${durationInMinutes}px`} onClick={this.click.bind(this)}>
-				<div class="calendarEventName">{displayName}</div>
+				<div class="calendarEventName">{props.type == "homework" ? <HomeworkName name={displayName} /> : displayName}</div>
 				{isScheduleItem && <div class="calendarEventTeacher">{props.item.ownerName}</div>}
 				<div class="calendarEventTime">{startDisplay} to {endDisplay}</div>
 			</div>
