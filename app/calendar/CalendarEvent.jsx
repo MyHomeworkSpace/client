@@ -47,7 +47,8 @@ class CalendarEvent extends Component {
 		var displayName = (props.type == "homework" ? props.item.homework.name : props.item.name);
 
 		if (isScheduleItem) {
-			displayName = displayName.split("-")[0].trim().split(":")[0].trim();
+			var displayNameSectionless = displayName.replace(/ -(.*)\(.*\)/g, "");
+			displayName = displayNameSectionless.trim().split(":")[0].trim();
 		}
 
 		return <div class="calendarEventContainer">
