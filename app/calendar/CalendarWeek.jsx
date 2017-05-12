@@ -7,6 +7,15 @@ import CalendarEvents from "calendar/CalendarEvents.jsx";
 import CalendarWeekDay from "calendar/CalendarWeekDay.jsx";
 
 class CalendarWeek extends Component {
+	componentDidMount() {
+		var time = Math.floor((moment().unix() - moment("00:00:00", "HH:mm:ss").unix()) / 60);
+		var scrollPos = time - 150;
+		if (scrollPos < 0) {
+			scrollPos = 0;
+		}
+		document.querySelector(".calendarWeekEventsContainer").scrollTop = scrollPos;
+	}
+
 	render(props, state) {
 		return <div class="calendarWeek">
 			<div class="calendarWeekHeader">
