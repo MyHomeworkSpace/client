@@ -3,14 +3,13 @@ import "calendar/CalendarEvent.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import $ from "jquery";
+
 import HomeworkName from "ui/HomeworkName.jsx";
 
 class CalendarEvent extends Component {
 	click(e) {
-		var calendarEvent = e.target;
-		if (e.target.className != "calendarEvent") {
-			calendarEvent = e.target.parentElement;
-		}
+		var calendarEvent = $(e.target).closest(".calendarEvent")[0];
 
 		var rect = calendarEvent.getBoundingClientRect();
 		
