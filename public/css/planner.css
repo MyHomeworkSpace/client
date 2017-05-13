@@ -11,14 +11,16 @@
 	border-top: none;
 	border-left: none;
 	border-right: none;
+	font-size: 12px;
 	font-weight: normal;
+	padding-top: 4px;
+	padding-bottom: 4px;
 }
 #plannerTable #plannerTableDowRow th:first-child {
 	width: 120px;
 }
 #plannerTable #plannerTableDowRow th .dowDay {
-	font-size: 1.15em;
-	font-weight: bold;
+	font-size: 14px;
 }
 #plannerTable th {
 	border: solid 1px black;
