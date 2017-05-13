@@ -53,9 +53,9 @@ class FeedbackPopup extends Component {
 
 		var feelingIndicator = <div class="feedbackPopupFeeling">
 			<div class="feedbackPopupHeading">How do you feel?</div>
-			<div class={`feedbackPopupFeelingOption ${state.type == "smile" ? "selected" : ""}`} onClick={this.selectFeeling.bind(this, "smile")}><i class="fa fa-smile-o" /> I'm happy</div>
-			<div class={`feedbackPopupFeelingOption ${state.type == "frown" ? "selected" : ""}`} onClick={this.selectFeeling.bind(this, "frown")}><i class="fa fa-frown-o" /> I'm sad</div>
-			<div class={`feedbackPopupFeelingOption ${state.type == "idea" ? "selected" : ""}`} onClick={this.selectFeeling.bind(this, "idea")}><i class="fa fa-lightbulb-o" /> I have an idea</div>
+			<div class={`feedbackPopupFeelingOption ${state.type == "smile" ? "selected" : ""}`} onClick={this.selectFeeling.bind(this, "smile")}><i class="fa fa-fw fa-smile-o" /> I'm happy</div>
+			<div class={`feedbackPopupFeelingOption ${state.type == "frown" ? "selected" : ""}`} onClick={this.selectFeeling.bind(this, "frown")}><i class="fa fa-fw fa-frown-o" /> I'm sad</div>
+			<div class={`feedbackPopupFeelingOption ${state.type == "idea" ? "selected" : ""}`} onClick={this.selectFeeling.bind(this, "idea")}><i class="fa fa-fw fa-lightbulb-o" /> I have an idea</div>
 		</div>;
 
 		if (state.type == "") {
@@ -69,7 +69,7 @@ class FeedbackPopup extends Component {
 						{feelingIndicator}
 					</div>
 					<div class="feedbackPopupCol col-md-7 feedbackPopupMessageContainer">
-						<div class="feedbackPopupHeading">Tell us more</div>
+						<div class="feedbackPopupHeading">Tell us more...</div>
 						<textarea class="feedbackPopupMessage form-control" disabled={state.loading} value={state.message} onInput={linkState(this, "message")}></textarea>
 						<div class="feedbackPopupMessageAction">
 							<div>

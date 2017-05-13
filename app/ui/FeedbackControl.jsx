@@ -9,13 +9,26 @@ class FeedbackControl extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			open: false
+			open: false,
+			bodyClick: this.onBodyClick.bind(this)
 		};
+	}
+
+	onBodyClick(e) {
+		if ($(e.target).closest(".feedbackControlContainer").length == 0) {
+			this.toggle();
+		}
 	}
 
 	toggle() {
 		this.setState({
 			open: !this.state.open
+		}, function() {
+			if (this.state.open) {
+				$("body").bind("click", this.state.bodyClick);
+			} else {
+				$("body").unbind("click", this.state.bodyClick);
+			}
 		});
 	}
 

@@ -15,7 +15,7 @@
 	right: 4px
 	vertical-align: top
 	width: 150px
-	height: 200px
+	height: 125px
 	overflow: hidden
 	transition: all 0.2s ease-in-out
 	z-index: 2
@@ -26,18 +26,33 @@
 	.feedbackPopupFeeling
 		width: 135px
 		
+		.feedbackPopupHeading
+			margin-bottom: 5px
+		
 		.feedbackPopupFeelingOption
-			border: solid 1px black
+			border: solid 1px #555
+			border-bottom: none
 			cursor: pointer
-			margin-top: 5px
-			padding: 5px
+			padding-top: 7px
+			padding-bottom: 7px
+			padding-left: 5px
+			padding-right: 5px
 			width: 135px
+		
+		.feedbackPopupFeelingOption:nth-child(2)
+			border-top-left-radius: 4px
+			border-top-right-radius: 4px
+		
+		.feedbackPopupFeelingOption:nth-child(4)
+			border-bottom: solid 1px #555
+			border-bottom-left-radius: 4px
+			border-bottom-right-radius: 4px
 			
 		.feedbackPopupFeelingOption:hover
-			background: #ccc
+			background: #ddd
 			
 		.feedbackPopupFeelingOption.selected
-			background: #bbb
+			background: #c3c3c3
 	
 	.feedbackPopupMessageContainer
 		padding-left: 25px
@@ -67,6 +82,7 @@
 
 .feedbackPopup.feedbackPopupExtended
 	width: 375px
+	height: 200px
 
 .feedbackPopup.feedbackPopupSuccess
 	.feedbackPopupHeading
