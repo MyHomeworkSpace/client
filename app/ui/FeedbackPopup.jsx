@@ -13,6 +13,7 @@ class FeedbackPopup extends Component {
 		this.state = {
 			type: "",
 			message: "",
+			error: false,
 			loading: false,
 			sent: false
 		};
@@ -28,8 +29,17 @@ class FeedbackPopup extends Component {
 
 	submit() {
 		var that = this;
+		if (this.state.message.trim() == "") {
+			this.setState({
+				error: true
+			}, function() {
+				document.querySelector(".feedbackPopupMessage").focus();
+			});
+			return;
+		}
 		this.setState({
-			loading: true
+			loading: true,
+			error: false
 		}, function() {
 			api.post("feedback/add", {
 				type: that.state.type,
@@ -41,6 +51,14 @@ class FeedbackPopup extends Component {
 				});
 			});
 		});
+	}
+
+	keyup() {
+		if (this.state.error) {
+			this.setState({
+				error: false
+			});
+		}
 	}
 
 	render(props, state) {
@@ -63,14 +81,14 @@ class FeedbackPopup extends Component {
 				{feelingIndicator}
 			</span>;
 		} else {
-			return <span class="feedbackPopup feedbackPopupExtended">
+			return <span class={`feedbackPopup feedbackPopupExtended ${state.error ? "has-error" : ""}`}>
 				<div class="row">
 					<div class="feedbackPopupCol col-md-5 feedbackPopupFeeling">
 						{feelingIndicator}
 					</div>
 					<div class="feedbackPopupCol col-md-7 feedbackPopupMessageContainer">
 						<div class="feedbackPopupHeading">Tell us more...</div>
-						<textarea class="feedbackPopupMessage form-control" disabled={state.loading} value={state.message} onInput={linkState(this, "message")}></textarea>
+						<textarea class="feedbackPopupMessage form-control" disabled={state.loading} value={state.message} onInput={linkState(this, "message")} onKeyup={this.keyup.bind(this)}></textarea>
 						<div class="feedbackPopupMessageAction">
 							<div>
 								{!state.loading && <button class="btn btn-default btn-sm" onClick={this.submit.bind(this)}>Submit</button>}
