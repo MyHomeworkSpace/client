@@ -144,6 +144,10 @@ MyHomeworkSpace.Pages.homework = {
 					continue;
 				}
 
+				if (prefix.toLowerCase() == "none" || prefix.toLowerCase() == "nohw") {
+					continue;
+				}
+
 				if (dueText.indexOf(' ') > -1) {
 					dueText = dueText[0].toLowerCase() + dueText.substr(1);
 				}
