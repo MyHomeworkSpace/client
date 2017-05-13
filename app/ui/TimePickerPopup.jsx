@@ -30,6 +30,33 @@ class TimePickerPopup extends Component {
 		this.props.selectTime(moment());
 	}
 
+	change(type, e) {
+		var formatString = (type == "hour" ? "h" : "mm");
+		var newThing = parseInt(e.target.value);
+		var changedSomething = false;
+		var time = moment(this.props.time);
+		if (
+			!(isNaN(newThing)) &&
+			!(newThing < 1) &&
+			!(newThing > 12 && type == "hour") &&
+			!(newThing > 60 && type == "minute")
+		) {
+			if (type == "hour") {
+				time.hour((time.hour() > 12 ? newThing + 12 : newThing));
+				changedSomething = true;
+			} else {
+				time.minute(newThing);
+				changedSomething = true;
+			}
+		}
+		if (changedSomething) {
+			this.props.selectTime(time);
+		} else {
+			// reset the textbox
+			e.target.value = this.props.time.format(formatString);
+		}
+	}
+
 	render(props, state) {
 		return <div class="timePickerPopup">
 			<div class="row">
@@ -44,10 +71,10 @@ class TimePickerPopup extends Component {
 
 			<div class="row timePickerPopupNumberRow">
 				<div class="col-md-4">
-					{props.time.format("h")}
+					<input type="text" class="form-control timePickerPopupNumberInput" value={props.time.format("h")} onChange={this.change.bind(this, "hour")} />
 				</div>
 				<div class="col-md-4">
-					{props.time.format("mm")}
+					<input type="text" class="form-control timePickerPopupNumberInput" value={props.time.format("mm")} onChange={this.change.bind(this, "minute")} />
 				</div>
 				<div class="col-md-4">
 					<button class="btn btn-sm btn-default" onClick={this.toggleAMPM.bind(this)}>{props.time.format("a")}</button>
