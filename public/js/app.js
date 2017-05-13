@@ -173,7 +173,6 @@ $(document).ready(function() {
 			});
 		});
 
-		MyHomeworkSpace.Feedback.init();
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.FeedbackControl, {
 			
 		}), null, $(".feedbackControlContainer")[0]);
