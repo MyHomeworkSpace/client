@@ -10,7 +10,7 @@ class Modal extends Component {
 	}
 
 	render(props, state) {
-		return <div class={`modal ${!props.noClose && "noClose"} ${props.class ? props.class : ""}`} style="display: block; padding-left: 0px">
+		return <div class={`modal modal-preact ${!props.noClose && "noClose"} ${props.class ? props.class : ""}`} style="display: block; padding-left: 0px">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content modal-animation">
 					<div class="modal-header">
