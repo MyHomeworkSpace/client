@@ -55,6 +55,7 @@ html, body {
 	height: 100%;
 	position: relative;
 	top: -85px;
+	right: 8px;
 }
 
 #topName {

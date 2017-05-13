@@ -8,6 +8,7 @@ import CalendarPage from "calendar/CalendarPage.jsx";
 import ApplicationList from "settings/ApplicationList.jsx";
 
 import AddAction from "ui/AddAction.jsx";
+import FeedbackControl from "ui/FeedbackControl.jsx";
 import ModalManager from "ui/ModalManager.jsx";
 
 var modalName = "";
@@ -63,7 +64,8 @@ export default {
 	},
 
 	ui: {
-		AddAction: AddAction
+		AddAction: AddAction,
+		FeedbackControl: FeedbackControl
 	},
 
 	// functions from preact
