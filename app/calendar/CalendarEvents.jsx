@@ -88,7 +88,9 @@ class CalendarEvents extends Component {
 				}
 				eventItem.groupInfo.offset = eventItem.groupInfo.start.diff(eventItem.groupInfo.dayStart, "minutes");
 				eventItem.groupInfo.durationInMinutes = eventItem.groupInfo.end.diff(eventItem.groupInfo.start, "minutes");
+				eventItem.groupInfo.height = (eventItem.groupInfo.durationInMinutes < 10 ? 10: eventItem.groupInfo.durationInMinutes);
 				eventItem.groupInfo.endOffset = eventItem.groupInfo.offset + eventItem.groupInfo.durationInMinutes;
+				eventItem.groupInfo.endOffsetHeight = eventItem.groupInfo.offset + eventItem.groupInfo.height;
 				return eventItem;
 			});
 		});
@@ -103,8 +105,8 @@ class CalendarEvents extends Component {
 						var groupEventToTest = groupToTest[eventIndex];
 
 						if (
-							(eventItem.groupInfo.offset <= groupEventToTest.groupInfo.endOffset) &&
-							(groupEventToTest.groupInfo.offset <= eventItem.groupInfo.endOffset)
+							(eventItem.groupInfo.offset <= groupEventToTest.groupInfo.endOffsetHeight) &&
+							(groupEventToTest.groupInfo.offset <= eventItem.groupInfo.endOffsetHeight)
 						) {
 							foundGroupIndex = groupIndex;
 							break;
