@@ -8,10 +8,22 @@ import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
 import CalendarNowLine from "calendar/CalendarNowLine.jsx";
 
 class CalendarEvents extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			bodyClick: this.onBodyClick.bind(this)
+		};
+	}
+
 	openPopover(top, left, type, item) {
-		if (this.state.popover && this.state.popover.top == (top - 10) && this.state.popover.left == left) {
+		if (
+			top == null ||
+			(this.state.popover && this.state.popover.top == (top - 10) && this.state.popover.left == left)
+		) {
 			this.setState({
 				popover: null
+			}, function() {
+				this.handleSettingClickHandler();
 			});
 			return;
 		}
@@ -22,7 +34,23 @@ class CalendarEvents extends Component {
 				type: type,
 				item: item
 			}
+		}, function() {
+			this.handleSettingClickHandler();
 		});
+	}
+
+	onBodyClick(e) {
+		if ($(e.target).closest(".calendarEventPopover").length == 0) {
+			this.openPopover(null);
+		}
+	}
+
+	handleSettingClickHandler() {
+		if (this.state.popover) {
+			$("body").bind("click", this.state.bodyClick);
+		} else {
+			$("body").unbind("click", this.state.bodyClick);
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
