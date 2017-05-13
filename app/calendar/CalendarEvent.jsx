@@ -54,7 +54,6 @@ class CalendarEvent extends Component {
 		return <div class="calendarEventContainer">
 			<div class="calendarEvent" style={`top: ${offset}px; height: ${durationInMinutes}px`} onClick={this.click.bind(this)}>
 				<div class="calendarEventName">{props.type == "homework" ? <HomeworkName name={displayName} /> : displayName}</div>
-				{isScheduleItem && <div class="calendarEventTeacher">{props.item.ownerName}</div>}
 				<div class="calendarEventTime">{startDisplay} to {endDisplay}</div>
 			</div>
 		</div>;
