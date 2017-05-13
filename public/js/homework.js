@@ -184,7 +184,11 @@ MyHomeworkSpace.Pages.homework = {
 						$options.append($edit);
 					$item.append($options);
 					var $name = $('<div class="hwName"></div>');
-						$name.append($("<span></span>").text(prefix).addClass(MyHomeworkSpace.Prefixes.matchClass(prefix)));
+						var color = MyHomeworkSpace.Prefixes.matchPrefix(prefix);
+						$name.append($("<span></span>").text(prefix).css({
+							backgroundColor: color.background,
+							color: color.color
+						}));
 						if (hwItem.name.indexOf(" ") != -1) {
 							$name.append($("<span></span>").text(hwItem.name.substr(hwItem.name.indexOf(" "))));
 						}

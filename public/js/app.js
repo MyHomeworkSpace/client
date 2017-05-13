@@ -51,86 +51,104 @@ MyHomeworkSpace.Page = {
 MyHomeworkSpace.Pages = {};
 
 MyHomeworkSpace.Prefixes = {};
+MyHomeworkSpace.Prefixes.fallback = {
+	background: "#FFD3BD",
+	color: "#000000"
+};
 MyHomeworkSpace.Prefixes.list = [{
-									color: "cal_hw",
+									background: "#4c6c9b",
+									color: "#FFFFFF",
 									words: ["HW", "Read", "Reading"],
 									tabSystem: true
 								},
 								{
-									color: "cal_project",
+									background: "#9ACD32",
+									color: "#FFFFFF",
 									words: ["Project"],
 									tabSystem: true
 								},
 								{
-									color: "cal_paper",
+									background: "#FFD700",
+									color: "#FFFFFF",
 									words: ["Report", "Essay", "Paper"],
 									tabSystem: true
 								},
 								{
-									color: "cal_quiz",
+									background: "#ffa500",
+									color: "#FFFFFF",
 									words: ["Quiz"],
 									tabSystem: true
 								},
 								{
-									color: "cal_quiz",
+									background: "#ffa500",
+									color: "#FFFFFF",
 									words: ["PopQuiz"],
 									tabSystem: false
 								},
 								{
-									color: "cal_test",
+									background: "#DC143C",
+									color: "#FFFFFF",
 									words: ["Test", "Final", "Exam", "Midterm"],
 									tabSystem: true
 								},
 								{
-									color: "cal_ica",
+									background: "#2ac0f1",
+									color: "#FFFFFF",
 									words: ["ICA"],
 									tabSystem: true
 								},
 								{
-									color: "cal_lab",
+									background: "#2af15e",
+									color: "#FFFFFF",
 									words: ["Lab", "Study", "Memorize"],
 									tabSystem: true
 								},
 								{
-									color: "cal_docid",
+									background: "#003DAD",
+									color: "#FFFFFF",
 									words: ["DocID"],
 									tabSystem: true
 								},
 								{
-									color: "cal_hex",
+									background: "#000000",
+									color: "#00FF00",
 									words: ["Trojun", "Hex"],
 									tabSystem: false
 								},
 								{
-									color: "cal_no_hw",
+									background: "#fcf8e3",
+									color: "#000000",
 									words: ["NoHW", "None"],
 									tabSystem: true
 								},
 								{
-									color: "cal_optional_hw",
+									background: "#5000BC",
+									color: "#FFFFFF",
 									words: ["OptionalHW", "Challenge"],
 									tabSystem: true
 								},
 								{
-									color: "cal_prez",
+									background: "#000099",
+									color: "#FFFFFF",
 									words: ["Presentation", "Prez"],
 									tabSystem: true
 								},
 								{
-									color: "cal_build",
+									background: "#123456",
+									color: "#FFFFFF",
 									words: ["BuildSession", "Build"],
 									tabSystem: true
 								}];
-MyHomeworkSpace.Prefixes.matchClass = function(prefix) {
+MyHomeworkSpace.Prefixes.matchPrefix = function(prefix) {
 	var chkPrefix = prefix.toLowerCase();
 	for (var prefixIndex in MyHomeworkSpace.Prefixes.list) {
 		for (var wordIndex in MyHomeworkSpace.Prefixes.list[prefixIndex].words) {
 			if (MyHomeworkSpace.Prefixes.list[prefixIndex].words[wordIndex].toLowerCase() == chkPrefix) {
-				return MyHomeworkSpace.Prefixes.list[prefixIndex].color;
+				return MyHomeworkSpace.Prefixes.list[prefixIndex];
 			}
 		}
 	}
-	return "cal_no_prefix";
+	return MyHomeworkSpace.Prefixes.fallback;
 };
 
 $(document).ready(function() {

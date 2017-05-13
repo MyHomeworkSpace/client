@@ -76,9 +76,11 @@
         $.each(lines, function(i, line) {
             var finalLine = line;
             $.each(that.settings.words, function(color, words) {
+                var textColor = color.split("-")[0];
+                var backgroundColor = color.split("-")[1];
                 finalLine = finalLine.replace(
                     new RegExp(that.spacer+'^('+ words.join('|') +')(?=(\\s|$))'+that.spacer, that.regParam),
-                    '<mark class="'+ color +'">$1</mark>'
+                    '<mark style="background-color:' + backgroundColor + ';color:' + textColor + ';">$1</mark>'
                 );
             });
             var replaced = (line != finalLine);
@@ -504,26 +506,27 @@
 
         for (var i=0, l=words.length; i<l; i++) {
             var group = words[i];
+            var colorKey = group.color + "-" + group.background;
 
             if ($.isPlainObject(group)) {
 
-                if (!out[group.color]) {
-                    out[group.color] = [];
+                if (!out[colorKey]) {
+                    out[colorKey] = [];
                 }
                 if (!$.isArray(group.words)) {
                     group.words = [group.words];
                 }
 
                 for (var j=0, m=group.words.length; j<m; j++) {
-                    out[group.color].push(Utilities.htmlEntities(group.words[j]));
+                    out[colorKey].push(Utilities.htmlEntities(group.words[j]));
                 }
             }
             else {
-                if (!out[color]) {
-                    out[color] = [];
+                if (!out[colorKey]) {
+                    out[colorKey] = [];
                 }
 
-                out[color].push(Utilities.htmlEntities(group));
+                out[colorKey].push(Utilities.htmlEntities(group));
             }
         }
 
