@@ -40,7 +40,7 @@ class CalendarEvents extends Component {
 	}
 
 	onBodyClick(e) {
-		if ($(e.target).closest(".calendarEventPopover").length == 0) {
+		if ($(e.target).closest(".calendarEventPopover, .calendarEvent").length == 0) {
 			this.openPopover(null);
 		}
 	}
