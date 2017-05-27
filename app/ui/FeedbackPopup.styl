@@ -15,10 +15,15 @@
 	right: -1px
 	vertical-align: top
 	width: 150px
-	height: 125px
+	height: 200px
 	overflow: hidden
 	transition: all 0.2s ease-in-out
 	z-index: 2
+	
+	.row
+		width: 375px
+		.feedbackPopupCol
+			float: left
 
 	.feedbackPopupHeading
 		font-size: 16px
@@ -57,6 +62,7 @@
 	.feedbackPopupMessageContainer
 		padding-left: 25px
 		padding-right: 0
+		width: 230px
 
 		.feedbackPopupMessage
 			height: 125px
@@ -82,7 +88,6 @@
 
 .feedbackPopup.feedbackPopupExtended
 	width: 375px
-	height: 200px
 
 .feedbackPopup.feedbackPopupSuccess
 	.feedbackPopupHeading
