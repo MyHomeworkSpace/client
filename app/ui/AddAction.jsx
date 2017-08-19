@@ -43,7 +43,10 @@ class AddAction extends Component {
 		}
 	}
 
-	close() {
+	close(e) {
+		if (e) {
+			e.stopPropagation();
+		}
 		this.setState({
 			open: false
 		});

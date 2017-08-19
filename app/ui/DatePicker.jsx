@@ -23,7 +23,10 @@ class DatePicker extends Component {
 		}
 	}
 
-	toggle() {
+	toggle(e) {
+		if (e) {
+			e.stopPropagation();
+		}
 		this.setState({
 			open: !this.state.open
 		}, function() {
