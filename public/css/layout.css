@@ -5,38 +5,6 @@ body {
 	border-radius: 0;
 	margin-bottom: 0;
 }
-.jumbotron {
-	background: transparent;
-}
-.white-bg {
-	background: rgba(255, 255, 255, 0.8);
-	border-radius: 6px;
-	padding-bottom: 10px;
-}
-.features {
-	background: rgba(255, 255, 255, 0.8);
-	border-radius: 6px;
-	margin-top: -10px;
-	padding-top: 20px;
-}
-.features .col-md-4 {
-	text-align: center;
-}
-.features .col-md-4 i {
-	font-size: 3em;
-}
-.features .col-md-4 p {
-	font-size: 1.1em;
-}
-.feature-name {
-	display: inline-block;
-	font-size: 1.8em;
-	height: 42px;
-	line-height: 42px;
-	margin-left: 4px;
-	position: relative;
-	top: -6px;
-}
 .navbar-brand img {
 	display: inline;
 	position: relative;
