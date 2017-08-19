@@ -33,10 +33,17 @@ MyHomeworkSpace.Page = {
 	show: function(name) {
 		$(".page:not(.hidden)").addClass("hidden");
 		$(".sidebarItem.selected").removeClass("selected");
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.AddAction, {
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.Sidebar, {
+			me: MyHomeworkSpace.Me,
+			page: name,
+			openModal: MHSBridge.default.openModal,
+			openPage: MyHomeworkSpace.Page.show
+		}), null, $(".sidebar")[0]);
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.TopBar, {
+			me: MyHomeworkSpace.Me,
 			page: name,
 			openModal: MHSBridge.default.openModal
-		}), null, $(".addAction")[0]);
+		}), null, $(".topBar")[0]);
 		if (name) {
 			$("#" + name).removeClass("hidden");
 			$(".sidebarItem[data-page=" + name + "]").addClass("selected");
@@ -167,16 +174,6 @@ $(document).ready(function() {
 			MyHomeworkSpace.Page.show($(this).attr("data-page"));
 		});
 		
-		$("#logout").click(function() {
-			MyHomeworkSpace.API.get("auth/logout", {}, function(xhr) {
-				window.location.reload();
-			});
-		});
-
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.FeedbackControl, {
-			
-		}), null, $(".feedbackControlContainer")[0]);
-
 		for (var pageIndex in MyHomeworkSpace.Pages) {
 			if (MyHomeworkSpace.Pages[pageIndex].init) {
 				MyHomeworkSpace.Pages[pageIndex].init();

@@ -11,6 +11,9 @@ import AddAction from "ui/AddAction.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
 import ModalManager from "ui/ModalManager.jsx";
 
+import Sidebar from "ui/nav/Sidebar.jsx";
+import TopBar from "ui/nav/TopBar.jsx";
+
 var modalName = "";
 var modalState = {};
 
@@ -65,7 +68,9 @@ export default {
 
 	ui: {
 		AddAction: AddAction,
-		FeedbackControl: FeedbackControl
+		FeedbackControl: FeedbackControl,
+		Sidebar: Sidebar,
+		TopBar: TopBar
 	},
 
 	// functions from preact

@@ -84,7 +84,7 @@ class AddAction extends Component {
 
 	render(props, state) {
 		var thingToAdd = (props.page == "calendar" ? "event" : "homework");
-		return <span class="addAction">
+		return <div class="addAction">
 			{!state.open && <div class="addActionButton" onClick={this.click.bind(this)}>
 				<i class="fa fa-plus-square"></i> Add {thingToAdd}
 			</div>}
@@ -97,7 +97,7 @@ class AddAction extends Component {
 				<i class="fa fa-times"></i> Close
 			</div>}
 			{thingToAdd == "event" && state.open && <AddActionCalendarInfo text={state.input} close={this.close.bind(this)} openModal={props.openModal} />}
-		</span>;
+		</div>;
 	}
 }
 

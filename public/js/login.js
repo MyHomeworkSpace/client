@@ -48,7 +48,6 @@ MyHomeworkSpace.Pages.login = {
 			MyHomeworkSpace.Pages.settings.onLogin();
 
 			MyHomeworkSpace.Me = info;
-			$("#topName").text(info.name);
 			if ($("#" + window.location.hash.substr(2)).length > 0 && window.location.hash.substr(2) != "login") {
 				MyHomeworkSpace.Page.show(window.location.hash.substr(2));
 			} else {
