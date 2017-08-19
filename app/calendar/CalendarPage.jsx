@@ -149,7 +149,7 @@ class CalendarPage extends Component {
 			}
 		}
 
-		var currentTermId = state.terms[0].termId;
+		var currentTermId = (state.terms[0] ? state.terms[0].termId : -1);
 
 		if (state.terms.length > 1) {
 			// TODO: this is a crappy way of doing this, but it works
