@@ -26,6 +26,36 @@ MyHomeworkSpace.Classes = {
 
 MyHomeworkSpace.Me = {}; // will store the current user when logged in
 
+MyHomeworkSpace.Nav = {
+	showSidebar: true,
+	rerenderNav: function() {
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.Sidebar, {
+			me: MyHomeworkSpace.Me,
+			page: MyHomeworkSpace.Page.current(),
+			openModal: MHSBridge.default.openModal,
+			openPage: MyHomeworkSpace.Page.show,
+			visible: MyHomeworkSpace.Nav.showSidebar
+		}), null, $(".sidebar")[0]);
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.TopBar, {
+			me: MyHomeworkSpace.Me,
+			page: MyHomeworkSpace.Page.current(),
+			openModal: MHSBridge.default.openModal,
+			openPage: MyHomeworkSpace.Page.show,
+			toggleSidebar: function() {
+				MyHomeworkSpace.Nav.showSidebar = !MyHomeworkSpace.Nav.showSidebar;
+				MyHomeworkSpace.Nav.rerenderNav();
+			}
+		}), null, $(".topBar")[0]);
+		if (MyHomeworkSpace.Nav.showSidebar) {
+			$(".page").removeClass("sidebarHiding");
+			$(".page").addClass("sidebarVisible");
+		} else {
+			$(".page").removeClass("sidebarVisible");
+			$(".page").addClass("sidebarHiding");
+		}
+	}
+};
+
 MyHomeworkSpace.Page = {
 	current: function() {
 		return $(".page:not(.hidden)").attr("id");
@@ -33,17 +63,6 @@ MyHomeworkSpace.Page = {
 	show: function(name) {
 		$(".page:not(.hidden)").addClass("hidden");
 		$(".sidebarItem.selected").removeClass("selected");
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.Sidebar, {
-			me: MyHomeworkSpace.Me,
-			page: name,
-			openModal: MHSBridge.default.openModal,
-			openPage: MyHomeworkSpace.Page.show
-		}), null, $(".sidebar")[0]);
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.TopBar, {
-			me: MyHomeworkSpace.Me,
-			page: name,
-			openModal: MHSBridge.default.openModal
-		}), null, $(".topBar")[0]);
 		if (name) {
 			$("#" + name).removeClass("hidden");
 			$(".sidebarItem[data-page=" + name + "]").addClass("selected");
@@ -52,6 +71,7 @@ MyHomeworkSpace.Page = {
 				MyHomeworkSpace.Pages[name].open();
 			}
 		}
+		MyHomeworkSpace.Nav.rerenderNav();
 	}
 };
 

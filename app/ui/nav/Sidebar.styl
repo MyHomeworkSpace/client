@@ -10,7 +10,13 @@
 	-moz-user-select: none
 	user-select: none
 	overflow: auto
-	transition: color 0.2s
+	transition: color 0.2s, opacity 0.2s
 
 .sidebar.inverted
 	color: black
+
+.sidebar.visible
+	opacity: 1
+
+.sidebar.hiding
+	opacity: 0

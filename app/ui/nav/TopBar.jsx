@@ -20,7 +20,7 @@ class TopBar extends Component {
 	render(props, state) {
 		return <div class="topBar">
 			<div>
-				<SidebarToggleButton />
+				<SidebarToggleButton toggleSidebar={props.toggleSidebar} />
 				<NavLogo />
 			</div>
 			<AddAction page={props.page} openModal={props.openModal} />

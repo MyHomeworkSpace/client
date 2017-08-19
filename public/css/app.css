@@ -44,7 +44,7 @@ html, body {
 	padding-right: 10px;
 
 	opacity: 1;
-	transition: all 0.1s;
+	transition: opacity 0.1s, left 0.1s, width 0.1s;
 
 	overflow-y: auto;
 }
@@ -52,6 +52,11 @@ html, body {
 	display: block !important;
 	opacity: 0;
 	z-index: -1;
+}
+.page.sidebarHiding {
+	transition-delay: 0.1s;
+	left: 0;
+	width: calc(100% - 10px);
 }
 
 #homeworkModal .modal-body input:not([type=checkbox]), #homeworkModal .modal-body select, #homeworkModal .modal-body .form-control {
