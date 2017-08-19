@@ -32,8 +32,8 @@ html, body {
 }
 
 .page {
-	width: calc(100% - 110px);
-	height: calc(100% - 55px);
+	width: calc(100% - 100px);
+	height: calc(100% - 50px);
 	background: rgba(255, 255, 255, 0.9);
 	position: absolute;
 	top: 50px;
@@ -56,7 +56,7 @@ html, body {
 .page.sidebarHiding {
 	transition-delay: 0.1s;
 	left: 0;
-	width: calc(100% - 10px);
+	width: 100%;
 }
 
 #homeworkModal .modal-body input:not([type=checkbox]), #homeworkModal .modal-body select, #homeworkModal .modal-body .form-control {
