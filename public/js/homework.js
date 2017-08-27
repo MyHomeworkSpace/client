@@ -159,19 +159,19 @@ MyHomeworkSpace.Pages.homework = {
 						$item.addClass("done");
 					}
 					var $options = $('<div class="hwOptions"></div>');
-						var $done = $('<i class="fa fa-minus-square-o toggleable-check"></i>');
+						var $done = $('<i class="fa fa-circle-o toggleable-check"></i>');
 							if (hwItem.complete == "1") {
-								$done.removeClass("fa-minus-square-o");
-								$done.addClass("fa-check-square-o");
+								$done.removeClass("fa-circle-o");
+								$done.addClass("fa-check-circle-o");
 							}
 							$done.click(function() {
 								$(this).parent().parent().toggleClass("done");
-								if ($(this).hasClass("fa-check-square-o")) {
-									$(this).removeClass("fa-check-square-o");
-									$(this).addClass("fa-minus-square-o");
+								if ($(this).hasClass("fa-check-circle-o")) {
+									$(this).removeClass("fa-check-circle-o");
+									$(this).addClass("fa-circle-o");
 								} else {
-									$(this).removeClass("fa-minus-square-o");
-									$(this).addClass("fa-check-square-o");
+									$(this).removeClass("fa-circle-o");
+									$(this).addClass("fa-check-circle-o");
 								}
 								MyHomeworkSpace.Pages.homework.markComplete($(this).parent().parent().attr("data-hwId"), ($(this).parent().parent().hasClass("done") ? "1" : "0"));
 							});
