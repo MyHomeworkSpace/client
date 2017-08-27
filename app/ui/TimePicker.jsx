@@ -46,7 +46,7 @@ class TimePicker extends Component {
 		return <div class="timePickerContainer">
 			<div class="timePicker" onClick={!state.open && this.toggle.bind(this)}>
 				<div class="timePickerOutput">{props.value.format("h:mm a")}</div>
-				<div class="timePickerAction"><i class={state.open ? "fa fa-chevron-up" : "fa fa-chevron-down"} /></div>
+				<div class="timePickerAction"><i class={state.open ? "fa fa-chevron-circle-up" : "fa fa-chevron-circle-down"} /></div>
 				<div class="timePickerClear"></div>
 			</div>
 			{state.open && <TimePickerPopup time={props.value} selectTime={this.selectTime.bind(this)} />}

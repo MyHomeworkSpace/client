@@ -51,7 +51,7 @@ class DatePicker extends Component {
 		return <div class="datePickerContainer">
 			<div class="datePicker" onClick={!state.open && this.toggle.bind(this)}>
 				<div class="datePickerOutput">{props.value.format("ddd, MMMM Do, YYYY")}</div>
-				<div class="datePickerAction"><i class={state.open ? "fa fa-chevron-up" : "fa fa-chevron-down"} /></div>
+				<div class="datePickerAction"><i class={state.open ? "fa fa-chevron-circle-down" : "fa fa-chevron-circle-up"} /></div>
 				<div class="datePickerClear"></div>
 			</div>
 			{state.open && <DatePickerCalendar date={props.value} selectDate={this.selectDate.bind(this)} />}

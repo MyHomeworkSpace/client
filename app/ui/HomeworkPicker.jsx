@@ -51,7 +51,6 @@ class HomeworkPicker extends Component {
 					{!props.value && <span class="homeworkPickerOutputNoSelect">Select homework...</span>}
 					{props.value && <HomeworkName name={props.value.name} />}
 				</div>
-				<div class="homeworkPickerAction"><i class={state.open ? "fa fa-chevron-up" : "fa fa-chevron-down"} /></div>
 				<div class="homeworkPickerClear"></div>
 			</div>
 			{state.open && <HomeworkPickerPopup hw={props.value} selectHW={this.selectHW.bind(this)} />}

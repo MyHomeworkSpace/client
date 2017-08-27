@@ -61,10 +61,10 @@ class TimePickerPopup extends Component {
 		return <div class="timePickerPopup">
 			<div class="row">
 				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", 1)}><i class="fa fa-chevron-up" /></button>
+					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", 1)}><i class="fa fa-chevron-circle-up" /></button>
 				</div>
 				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", 1)}><i class="fa fa-chevron-up" /></button>
+					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", 1)}><i class="fa fa-chevron-circle-up" /></button>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -83,10 +83,10 @@ class TimePickerPopup extends Component {
 
 			<div class="row">
 				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", -1)}><i class="fa fa-chevron-down" /></button>
+					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", -1)}><i class="fa fa-chevron-circle-down" /></button>
 				</div>
 				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", -1)}><i class="fa fa-chevron-down" /></button>
+					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", -1)}><i class="fa fa-chevron-circle-down" /></button>
 				</div>
 				<div class="col-md-4">
 					<button class="btn btn-sm btn-default" onClick={this.now.bind(this)}><i class="fa fa-clock-o" /></button>
