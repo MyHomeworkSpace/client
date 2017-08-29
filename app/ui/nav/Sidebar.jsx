@@ -10,6 +10,7 @@ class Sidebar extends Component {
 			<SidebarLink page="homework" icon="file-o" label="Homework" currentPage={props.page} openPage={props.openPage} />
 			<SidebarLink page="planner" icon="book" label="Planner" currentPage={props.page} openPage={props.openPage} />
 			<SidebarLink page="calendar" icon="calendar" label="Calendar" currentPage={props.page} openPage={props.openPage} />
+			{props.user.level > 0 && <SidebarLink page="admin" icon="server" label="Admin" currentPage={props.page} openPage={props.openPage} />}
 		
 			<SidebarLink tiny page="classes" icon="graduation-cap" label="Classes" currentPage={props.page} openPage={props.openPage} />
 			<SidebarLink tiny page="settings" icon="cogs" label="Settings" currentPage={props.page} openPage={props.openPage} />
