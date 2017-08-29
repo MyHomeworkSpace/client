@@ -45,6 +45,7 @@ MyHomeworkSpace.Pages.login = {
 		MyHomeworkSpace.Classes.load(function() {
 			MyHomeworkSpace.QuickAdd.init();
 
+			MyHomeworkSpace.Nav.init();
 			MyHomeworkSpace.Pages.settings.onLogin();
 
 			MyHomeworkSpace.Me = info;

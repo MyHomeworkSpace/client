@@ -18,7 +18,7 @@ class TopBar extends Component {
 	}
 
 	render(props, state) {
-		return <div class="topBar">
+		return <div class={`topBar ${props.inverted ? "inverted": ""}`}>
 			<div>
 				<SidebarToggleButton toggleSidebar={props.toggleSidebar} />
 				<NavLogo />

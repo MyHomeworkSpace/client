@@ -27,6 +27,7 @@ MyHomeworkSpace.Classes = {
 MyHomeworkSpace.Me = {}; // will store the current user when logged in
 
 MyHomeworkSpace.Nav = {
+	inverted: false,
 	showSidebar: true,
 	rerenderNav: function() {
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.Sidebar, {
@@ -34,6 +35,7 @@ MyHomeworkSpace.Nav = {
 			page: MyHomeworkSpace.Page.current(),
 			openModal: MHSBridge.default.openModal,
 			openPage: MyHomeworkSpace.Page.show,
+			inverted: MyHomeworkSpace.Nav.inverted,
 			visible: MyHomeworkSpace.Nav.showSidebar
 		}), null, $(".sidebar")[0]);
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.TopBar, {
@@ -41,6 +43,7 @@ MyHomeworkSpace.Nav = {
 			page: MyHomeworkSpace.Page.current(),
 			openModal: MHSBridge.default.openModal,
 			openPage: MyHomeworkSpace.Page.show,
+			inverted: MyHomeworkSpace.Nav.inverted,
 			toggleSidebar: function() {
 				MyHomeworkSpace.Nav.showSidebar = !MyHomeworkSpace.Nav.showSidebar;
 				MyHomeworkSpace.Nav.rerenderNav();
@@ -53,6 +56,14 @@ MyHomeworkSpace.Nav = {
 			$(".page").removeClass("sidebarVisible");
 			$(".page").addClass("sidebarHiding");
 		}
+	},
+	init: function() {
+		MyHomeworkSpace.API.get("prefs/get/background", {}, function(xhr) {
+			if (xhr.responseJSON.status != "error") {
+				var bgVal = xhr.responseJSON.pref.value;
+				MHSBridge.default.background.setBackground(bgVal);
+			}
+		});
 	}
 };
 
