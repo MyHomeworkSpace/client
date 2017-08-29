@@ -154,75 +154,16 @@ MyHomeworkSpace.Pages.homework = {
 
 				var $item = $('<div class="hwItem"></div>');
 
-					$item.attr("data-hwId", hwItem.id);
-					if (hwItem.complete == "1") {
-						$item.addClass("done");
-					}
-					var $options = $('<div class="hwOptions"></div>');
-						var $done = $('<i class="fa fa-circle-o toggleable-check"></i>');
-							if (hwItem.complete == "1") {
-								$done.removeClass("fa-circle-o");
-								$done.addClass("fa-check-circle-o");
-							}
-							$done.click(function() {
-								$(this).parent().parent().toggleClass("done");
-								if ($(this).hasClass("fa-check-circle-o")) {
-									$(this).removeClass("fa-check-circle-o");
-									$(this).addClass("fa-circle-o");
-								} else {
-									$(this).removeClass("fa-circle-o");
-									$(this).addClass("fa-check-circle-o");
-								}
-								MyHomeworkSpace.Pages.homework.markComplete($(this).parent().parent().attr("data-hwId"), ($(this).parent().parent().hasClass("done") ? "1" : "0"));
-							});
-						$options.append($done);
-						$options.append(" ");
-						var $edit = $('<i class="fa fa-edit"></i>');
-							$edit.click(function() {
-								MyHomeworkSpace.Pages.homework.edit($(this).parent().parent().attr("data-hwId"));
-							});
-						$options.append($edit);
-					$item.append($options);
-					var $name = $('<div class="hwName"></div>');
-						var color = MyHomeworkSpace.Prefixes.matchPrefix(prefix);
-						$name.append($("<span></span>").text(prefix).css({
-							backgroundColor: color.background,
-							color: color.color
-						}));
-						if (hwItem.name.indexOf(" ") != -1) {
-							$name.append($("<span></span>").text(hwItem.name.substr(hwItem.name.indexOf(" "))));
+					MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.homework.HomeworkItem, {
+						classes: MyHomeworkSpace.Classes.list,
+						homework: hwItem,
+						edit: function(id) {
+							MyHomeworkSpace.Pages.homework.edit(id);
+						},
+						setComplete: function(id, complete) {
+							MyHomeworkSpace.Pages.homework.markComplete(id, (complete ? "1" : "0"));
 						}
-						if (daysTo < 1) {
-							$name.append(" (late)");
-						}
-					$item.append($name);
-					var $subtext = $('<div class="hwSubText"></div>');
-						var keyword = "due ";
-						if (prefix.toLowerCase() == "test" || prefix.toLowerCase() == "exam" || prefix.toLowerCase() == "midterm" || prefix.toLowerCase() == "quiz" || prefix.toLowerCase() == "ica" || prefix.toLowerCase() == "lab") {
-							keyword = "on ";
-						}
-						if (keyword == "on " && (dueText.toLowerCase() == "tomorrow" || dueText.substr(0, 4) == "last" || dueText.substr(0, 4) == "next")) {
-							keyword = "";
-						}
-						$subtext.text(keyword + dueText);
-						for (var classIndex in classes) {
-							if (classes[classIndex].id == hwItem.classId) {
-								$subtext.append(" in " + classes[classIndex].name)
-							}
-						}
-					$item.append($subtext);
-					if (hwItem.desc.trim() != "") {
-						var $descIcon = $('<i class="hwDescIcon fa fa-align-left"></i>');
-							$descIcon.tooltip({
-								title: "This homework has a description.",
-								placement: "bottom"
-							});
-						$item.append($descIcon);
-					}
-
-					if (daysTo < 1) {
-						$item.addClass("hwLate");
-					}
+					}), null, $item[0]);
 
 				if (daysTo < 1) {
 					showOverdue = true;

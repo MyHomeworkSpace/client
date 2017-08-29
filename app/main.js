@@ -5,6 +5,8 @@ import errors from "errors.js";
 
 import CalendarPage from "calendar/CalendarPage.jsx";
 
+import HomeworkItem from "homework/HomeworkItem.jsx";
+
 import ApplicationList from "settings/ApplicationList.jsx";
 
 import AddAction from "ui/AddAction.jsx";
@@ -60,6 +62,9 @@ export default {
 	pages: {
 		calendar: {
 			CalendarPage: CalendarPage
+		},
+		homework: {
+			HomeworkItem: HomeworkItem
 		},
 		settings: {
 			ApplicationList: ApplicationList
