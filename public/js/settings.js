@@ -39,6 +39,11 @@ MyHomeworkSpace.Pages.settings = {
 		$("a[href=\\#settings_applications]").on("show.bs.tab", function() {
 			MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.settings.ApplicationList, {}), null, $("#settingsApplicationsList > div")[0]);
 		});
+
+		// calendar
+		$("a[href=\\#settings_calendar]").on("show.bs.tab", function() {
+			MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.settings.CalendarSettings, {}), null, $("#settingsCalendarContainer > div")[0]);
+		});
 	},
 	open: function() {
 		$("#settings_account_name").text(MyHomeworkSpace.Me.name);

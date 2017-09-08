@@ -222,8 +222,8 @@
 					<li role="presentation"><a href="#settings_quickAdd" aria-controls="settings_quickAdd" role="tab" data-toggle="tab">Quick Add</a></li>
 					<li role="presentation"><a href="#settings_applications" aria-controls="settings_applications" role="tab" data-toggle="tab">Applications</a></li>
 					<li role="presentation"><a href="#settings_homework" aria-controls="settings_homework" role="tab" data-toggle="tab">Homework</a></li>
-					<li role="presentation"><a href="#settings_classes" aria-controls="settings_classes" role="tab" data-toggle="tab">Classes</a></li>
 					<li role="presentation"><a href="#settings_planner" aria-controls="settings_planner" role="tab" data-toggle="tab">Planner</a></li>
+					<li role="presentation"><a href="#settings_calendar" aria-controls="settings_calendar" role="tab" data-toggle="tab">Calendar</a></li>
 					<li role="presentation"><a href="#settings_more" aria-controls="settings_more" role="tab" data-toggle="tab">More Projects</a></li>
 				</ul>
 
@@ -268,12 +268,14 @@
 					<div role="tabpanel" class="tab-pane" id="settings_homework">
 						<p>Currently, there are no options available for Homework.</p>
 					</div>
-					<div role="tabpanel" class="tab-pane" id="settings_classes">
-						<p>Currently, there are no options available for Classes.</p>
-					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_planner">
 						<input type="checkbox" id="settings_darkenDoneBoxes" class="settings_checkbox" data-pref="darkenDoneBoxes" data-pref-inverted="false" />
 						<label for="settings_darkenDoneBoxes">Darken boxes with all work completed</label>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="settings_calendar">
+						<div id="settingsCalendarContainer">
+							<div></div>
+						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_more">
 						<h3>DaltonTab</h3>
@@ -331,5 +333,6 @@
 					</div>
 				</div>
 			</div>
+		</div>
 	</body>
 </html>
