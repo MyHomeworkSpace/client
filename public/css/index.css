@@ -39,3 +39,15 @@
 .more-section p {
 	font-size: 18px;
 }
+.social {
+	background-color: darkslategrey;
+	color: white;
+}
+.social-left {
+	float: left;
+	text-align: center;
+}
+.social-right {
+	float: right;
+	text-align: center;
+}
