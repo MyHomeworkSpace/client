@@ -170,6 +170,12 @@ class CalendarPage extends Component {
 			schedule[item.dayNumber].push(item);
 		});
 
+		// TODO: do this on the server
+		var startOfSchool = moment("2017-09-11", "YYYY-MM-DD");
+		if (state.monday.isBefore(startOfSchool)) {
+			schedule = emptySchedule;
+		}
+
 		return <div style="height: 100%">
 			<CalendarHeader openModal={props.openModal} announcements={state.announcements} events={state.events} hwEvents={state.hwEvents} monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
 			<CalendarWeek openModal={props.openModal} announcements={state.announcements} events={state.events} hwEvents={state.hwEvents} monday={state.monday} friday={state.friday} schedule={state.loadingWeek ? emptySchedule : schedule} />
