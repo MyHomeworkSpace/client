@@ -17,6 +17,7 @@ class CalendarPage extends Component {
 		this.state = {
 			loading: true,
 			announcements: [],
+			currentTerm: null,
 			events: [],
 			hwEvents: [],
 			terms: []
@@ -67,6 +68,7 @@ class CalendarPage extends Component {
 		this.setState({
 			loadingWeek: true,
 			announcements: [],
+			currentTerm: null,
 			events: [],
 			hwEvents: [],
 			monday: monday
@@ -75,6 +77,7 @@ class CalendarPage extends Component {
 				that.setState({
 					loadingWeek: false,
 					announcements: xhr.responseJSON.announcements,
+					currentTerm: xhr.responseJSON.currentTerm,
 					events: xhr.responseJSON.events,
 					hwEvents: xhr.responseJSON.hwEvents,
 					friday: xhr.responseJSON.friday.index == -1 ? null : xhr.responseJSON.friday
@@ -146,30 +149,23 @@ class CalendarPage extends Component {
 			}
 		}
 
-		var currentTermId = (state.terms[0] ? state.terms[0].termId : -1);
-
-		if (state.terms.length > 1) {
-			// TODO: this is a crappy way of doing this, but it works
-			var examReliefDay = moment("2018-01-24", "YYYY-MM-DD");
-			if (state.monday.isAfter(examReliefDay)) {
-				currentTermId = state.terms[1].termId;
-			}
-		}
-
 		var emptySchedule = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [] };
-		var schedule = {};
-		state.items.filter(function(item) {
-			return item.termId == currentTermId;
-		}).forEach(function(item) {
-			if (!schedule[item.dayNumber]) {
-				schedule[item.dayNumber] = [];
-			}
-			schedule[item.dayNumber].push(item);
-		});
+		var schedule = Object.assign({}, emptySchedule);
 
-		// TODO: do this on the server
-		var startOfSchool = moment("2017-09-11", "YYYY-MM-DD");
-		if (state.monday.isBefore(startOfSchool)) {
+		var schoolInSession = (state.currentTerm != null);
+
+		if (schoolInSession) {
+			var currentTermId = (state.currentTerm.termId);
+
+			state.items.filter(function(item) {
+				return item.termId == currentTermId;
+			}).forEach(function(item) {
+				if (!schedule[item.dayNumber]) {
+					schedule[item.dayNumber] = [];
+				}
+				schedule[item.dayNumber].push(item);
+			});
+		} else {
 			schedule = emptySchedule;
 		}
 
