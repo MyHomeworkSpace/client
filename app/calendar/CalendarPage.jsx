@@ -71,16 +71,13 @@ class CalendarPage extends Component {
 			hwEvents: [],
 			monday: monday
 		}, function() {
-			api.get("planner/getWeekInfo/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
-				var weekInfo = xhr.responseJSON;
-				api.get("calendar/events/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
-					that.setState({
-						loadingWeek: false,
-						announcements: weekInfo.announcements,
-						events: xhr.responseJSON.events,
-						hwEvents: xhr.responseJSON.hwEvents,
-						friday: weekInfo.friday.index == -1 ? null : weekInfo.friday
-					});
+			api.get("calendar/events/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
+				that.setState({
+					loadingWeek: false,
+					announcements: xhr.responseJSON.announcements,
+					events: xhr.responseJSON.events,
+					hwEvents: xhr.responseJSON.hwEvents,
+					friday: xhr.responseJSON.friday.index == -1 ? null : xhr.responseJSON.friday
 				});
 			});
 		});
