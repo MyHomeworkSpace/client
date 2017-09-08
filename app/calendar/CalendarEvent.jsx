@@ -48,7 +48,7 @@ class CalendarEvent extends Component {
 
 		if (isScheduleItem) {
 			var displayNameSectionless = displayName.replace(/ -(.*)\(.*\)/g, "");
-			displayName = displayNameSectionless.trim().split(":")[0].trim();
+			displayName = displayNameSectionless.trim();
 		}
 
 		var groupWidth = 100 / props.groupLength;
