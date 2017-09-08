@@ -153,7 +153,7 @@ class CalendarPage extends Component {
 
 		if (state.terms.length > 1) {
 			// TODO: this is a crappy way of doing this, but it works
-			var examReliefDay = moment("2016-01-20", "YYYY-MM-DD");
+			var examReliefDay = moment("2018-01-24", "YYYY-MM-DD");
 			if (state.monday.isAfter(examReliefDay)) {
 				currentTermId = state.terms[1].termId;
 			}
