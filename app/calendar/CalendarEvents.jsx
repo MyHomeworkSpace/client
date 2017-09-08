@@ -69,21 +69,23 @@ class CalendarEvents extends Component {
 			[], [], [], [], [], [], []
 		];
 
+		var days =	[1, 2, 3, 4];
 		if (props.friday) {
 			var fridayIndex = (props.friday ? (5 + (props.friday.index - 1)) : 5);
-			[1, 2, 3, 4, fridayIndex].map(function(dayNumber) {
-				var dayNum = dayNumber;
-				if (dayNum == fridayIndex) {
-					dayNum = 5;
-				}
-
-				props.schedule[dayNumber].forEach(function(scheduleItem) {
-					var item = scheduleItem;
-					item.type = "schedule";
-					events[dayNum].push(item);
-				});
-			});
+			days.push(fridayIndex);
 		}
+		days.forEach(function(dayNumber) {
+			var dayNum = dayNumber;
+			if (dayNum == fridayIndex) {
+				dayNum = 5;
+			}
+
+			props.schedule[dayNumber].forEach(function(scheduleItem) {
+				var item = scheduleItem;
+				item.type = "schedule";
+				events[dayNum].push(item);
+			});
+		});
 
 		props.events.map(function(e){
 			var newEvent = e;
