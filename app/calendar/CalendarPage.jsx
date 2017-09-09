@@ -45,21 +45,16 @@ class CalendarPage extends Component {
 		this.setState({
 			loading: true
 		}, function() {
-			api.get("calendar/getSchedule", {}, function(xhr) {
-				var mondayDate = moment();
-				while (mondayDate.day() != 1) {
-					mondayDate.subtract(1, "day");
-				}
-				that.setState({
-					loading: false,
-					enabled: true,
-					announcements: [],
-					monday: mondayDate,
-					terms: xhr.responseJSON.terms,
-					items: xhr.responseJSON.items
-				}, function() {
-					that.loadWeek.bind(that, mondayDate)();
-				});
+			var mondayDate = moment();
+			while (mondayDate.day() != 1) {
+				mondayDate.subtract(1, "day");
+			}
+			that.setState({
+				loading: false,
+				enabled: true,
+				monday: mondayDate
+			}, function() {
+				that.loadWeek.bind(that, mondayDate)();
 			});
 		});
 	}
