@@ -20,6 +20,7 @@ class CalendarPage extends Component {
 			currentTerm: null,
 			events: [],
 			hwEvents: [],
+			scheduleEvents: null,
 			terms: []
 		};
 	}
@@ -71,6 +72,7 @@ class CalendarPage extends Component {
 			currentTerm: null,
 			events: [],
 			hwEvents: [],
+			scheduleEvents: null,
 			monday: monday
 		}, function() {
 			api.get("calendar/events/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
@@ -80,6 +82,7 @@ class CalendarPage extends Component {
 					currentTerm: xhr.responseJSON.currentTerm,
 					events: xhr.responseJSON.events,
 					hwEvents: xhr.responseJSON.hwEvents,
+					scheduleEvents: xhr.responseJSON.scheduleEvents,
 					friday: xhr.responseJSON.friday.index == -1 ? null : xhr.responseJSON.friday
 				});
 			});
@@ -149,24 +152,13 @@ class CalendarPage extends Component {
 			}
 		}
 
-		var emptySchedule = { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [] };
-		var schedule = Object.assign({}, emptySchedule);
+		var emptySchedule =  [[], [], [], [], []];
+		var schedule = [[], [], [], [], []];
 
 		var schoolInSession = (state.currentTerm != null);
 
-		if (schoolInSession) {
-			var currentTermId = (state.currentTerm.termId);
-
-			state.items.filter(function(item) {
-				return item.termId == currentTermId;
-			}).forEach(function(item) {
-				if (!schedule[item.dayNumber]) {
-					schedule[item.dayNumber] = [];
-				}
-				schedule[item.dayNumber].push(item);
-			});
-		} else {
-			schedule = emptySchedule;
+		if (schoolInSession && state.scheduleEvents) {
+			schedule = state.scheduleEvents;
 		}
 
 		return <div style="height: 100%">
