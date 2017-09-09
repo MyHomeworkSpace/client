@@ -5,6 +5,15 @@
 #homework .col-md-3 {
 	height: 100%;
 }
+#homeworkOverdueDone {
+	display: inline-block;
+	color: #555;
+	cursor: pointer;
+	font-size: 14px;
+}
+#homeworkOverdueDone:hover {
+	color: #222;
+}
 
 .hwList {
 	border: solid 1px black;

@@ -9,6 +9,11 @@ MyHomeworkSpace.Pages.homework = {
 				}
 			}
 		});
+		$("#homeworkOverdueDone").click(function() {
+			MyHomeworkSpace.API.post("homework/markOverdueDone", {}, function(xhr) {
+				MyHomeworkSpace.Pages.homework.open();
+			});
+		});
 		$("#deleteHomeworkModal").click(function() {
 			if (confirm("Are you sure you want to delete this?")) {
 				$("#homeworkModal").modal('hide');
