@@ -72,6 +72,7 @@ class CalendarEvents extends Component {
 		[1, 2, 3, 4, 5].forEach(function(dayNumber) {
 			(props.schedule[dayNumber - 1] || []).forEach(function(item) {
 				item.type = "schedule";
+				item.dow = dayNumber;
 				events[dayNumber].push(item);
 			});
 		});
@@ -87,6 +88,7 @@ class CalendarEvents extends Component {
 		})).forEach(function(calendarEvent) {
 			var start = moment.unix(calendarEvent.start);
 			var dow = start.day();
+			calendarEvent.dow = dow;
 			events[dow].push(calendarEvent);
 		});
 
@@ -184,7 +186,7 @@ class CalendarEvents extends Component {
 			<div class="calendarEventsDay">{eventElements[5]}</div>
 			<div class="calendarEventsDay">{eventElements[6]}</div>
 			<div class="calendarEventsDay">{eventElements[0]}</div>
-			{state.popover && <CalendarEventPopover item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} openModal={props.openModal} />}
+			{state.popover && <CalendarEventPopover alternate={state.popover.item.dow == 0 || state.popover.item.dow == 6} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} openModal={props.openModal} />}
 		</div>;
 	}
 }

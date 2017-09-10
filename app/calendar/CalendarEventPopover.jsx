@@ -38,8 +38,14 @@ class CalendarEventPopover extends Component {
 			</div>;
 		}
 
+		var left = props.left + 5;
+		
+		if (props.alternate) {
+			left = left - document.querySelector(".calendarEventsDay").clientWidth;
+			left = left - 10;
+		}
 
-		return <div class="calendarEventPopover" style={`top: ${props.top}px; left: ${props.left + 5}px`}>
+		return <div class={`calendarEventPopover ${props.alternate ? "calendarEventPopoverAlternate" : ""}`} style={`top: ${props.top}px; left: ${left}px`}>
 			<div class="calendarEventPopoverName">{props.type == "homework" ? <HomeworkName name={props.item.homework.name} /> : props.item.name}</div>
 			{info}
 			<div class="calendarEventPopoverTime">{startDisplay} to {endDisplay}</div>
