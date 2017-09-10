@@ -14,9 +14,19 @@ class HomeworkPickerPopup extends Component {
 		this.state = {
 			query: "",
 			lastQuery: "",
-			loading: false,
+			loading: true,
 			results: []
 		};
+	}
+
+	componentDidMount() {
+		var that = this;
+		api.get("homework/getPickerSuggestions", {}, function(xhr) {
+			that.setState({
+				suggestions: xhr.responseJSON.homework,
+				loading: false
+			});
+		});
 	}
 
 	keyup(e) {
@@ -50,7 +60,11 @@ class HomeworkPickerPopup extends Component {
 		if (state.loading) {
 			results = <p><LoadingIndicator type="inline" /> Loading, please wait...</p>;
 		} else if (state.lastQuery == "") {
-			results = <p>Enter a search term above to look for homework.</p>;
+			results = state.suggestions.map(function(result) {
+				return <div class="homeworkPickerPopupResult" onClick={that.resultClick.bind(that, result)}>
+					<HomeworkName name={result.name} />
+				</div>;
+			});
 		} else if (state.results.length == 0) {
 			results = <p>No results found.</p>;
 		} else {
@@ -65,6 +79,7 @@ class HomeworkPickerPopup extends Component {
 		return <div class="homeworkPickerPopup">
 			<input type="text" class="form-control" placeholder="Search for homework..." value={state.query} onInput={linkState(this, "query")} onKeyup={this.keyup.bind(this)} disabled={state.loading} />
 			<div class={`homeworkPickerPopupResults ${noResults}`}>
+				{state.lastQuery == "" && <div class="homeworkPickerSuggestionTitle">Suggestions</div>}
 				{results}
 			</div>
 		</div>;

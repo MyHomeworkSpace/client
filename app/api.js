@@ -2,6 +2,10 @@ var baseURL = window.location.protocol + "//api-v2." + window.location.hostname 
 var token = "";
 var workingTimeout;
 
+if (window.location.hostname.indexOf("localtest.me") > -1) {
+	baseURL = "http://mhs-api.localtest.me/";
+}
+
 var rawRequest = function(path, method, data, callback) {
 	$("#workingOverlay").css("opacity", 0);
 	$("#workingOverlay").hide();

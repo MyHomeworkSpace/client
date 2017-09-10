@@ -15,7 +15,8 @@ class FeedbackControl extends Component {
 	}
 
 	onBodyClick(e) {
-		if ($(e.target).closest(".feedbackControlContainer").length == 0) {
+		var $target = $(e.target);
+		if (!$target.hasClass("feedbackPopupFeelingOption") && $target.closest(".feedbackControlContainer").length == 0) {
 			this.toggle();
 		}
 	}

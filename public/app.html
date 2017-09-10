@@ -108,14 +108,17 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-body">
-						<div id="migrationBigText">Welcome Back!</div>
-						<p class="lead"></p>
-						<p class="lead">We've updatated many MyHomeworkSpace features for the new school year</p>
-						<h2><i class="fa fa-calendar"></i>Calendar</h2>
-						<p>The new calendar tab automagically downloads your schedule, so you don't have to waste time entering it. You can add events to the calendar based on homework to help you plan you day</p>
-						<h2><i class="fa fa-ellipsis-v"></i> Overall Design Improvements</h2>
-						<p>We have changed icons and other apperence settigns to give MyHomeworkSpace more of a modern feeling.</p>
+						<div id="migrationBigText">Welcome back!</div>
+						<p class="lead">We've changed some things since the last time you were here.</p>
+						
+						<h2><i class="fa fa-fw fa-calendar"></i> Calendar</h2>
+						<p>The new Calendar tab lets you easily plan out your day. It already knows when your classes are, so you don't have to waste time entering your schedule.</p>
+						
+						<h2><i class="fa fa-fw fa-comments-o"></i> Feedback</h2>
+						<p>With the redesign of the feedback buttons, we've made submitting feedback easier than ever.</p>
 
+						<h2><i class="fa fa-fw fa-ellipsis-v"></i> Overall design improvements</h2>
+						<p>We've changed icons, colors, and many other things to give MyHomeworkSpace more of a modern feeling.</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -146,7 +149,7 @@
 		<div id="homework" class="page hidden">
 			<div class="row">
 				<div id="homeworkOverdue" class="col-md-3">
-					<h2 id="homeworkOverdueTitle">Overdue</h2>
+					<h2 id="homeworkOverdueTitle">Overdue <div id="homeworkOverdueDone"><i class="fa fa-check-circle-o"></i> mark all as done</div></h2>
 					<div class="hwList"></div>
 				</div>
 				<div id="homeworkTomorrow" class="col-md-3">
@@ -251,7 +254,7 @@
 						<div id="settingsHidingSpacer"></div>
 
 						<button id="clipify" class="btn btn-primary btn-sm partyLikeItsThe90s" onclick="partyLike90s();">Party Like it's the 90s</button>
-						</div>
+					</div>
 					<div role="tabpanel" class="tab-pane" id="settings_applications">
 						<p>Manage other applications you've given access to your account.</p>
 						<div id="settingsApplicationsList">
