@@ -27,8 +27,11 @@
 			</div>
 		</div>-->
 	</div>
+	<div class="whatsnew-alert alert alert-info" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<a onclick='$("#whatsNew").modal()'>See what's new this year in MyHomeworkSpace <i class="fa fa-chevron-right"></i></a>
+	</div>
 </div>
-
 <div class="more-section">
 	<div class="container">
 		<div class="row">
@@ -82,18 +85,42 @@
 	</div>
 </div>
 <div class="social">
-		<div class="container">
-			<div class="row">
-		  		<div class="social-col col-md-6">
-					<h1><i class="fa fa-twitter"></i> Twitter</h1>
-					<div class="twitter-feed">
-							<a class="twitter-timeline" data-width="340" data-height="500" href="https://twitter.com/myhwspace">Tweets by myhwspace</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-					</div>
-		  		</div>
-		  		<div class="social-col col-md-6">
-						<h1><i class="fa fa-facebook"></i> Facebook</h1>
-						<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmyhomeworkspace%2F&tabs=timeline%2C%20messages&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-		  		</div>
+	<h1><i class="fa fa-link"></i> Connect with us!</h1>
+	<div class="container">
+		<div class="row">
+			<div class="social-col col-md-6">
+				<h1><i class="fa fa-twitter"></i> Twitter</h1>
+				<a class="twitter-timeline" data-width="340" data-height="500" href="https://twitter.com/myhwspace">Tweets by myhwspace</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+			</div>
+			<div class="social-col col-md-6">
+				<h1><i class="fa fa-facebook"></i> Facebook</h1>
+				<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmyhomeworkspace%2F&tabs=timeline%2C%20messages&width=340&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			</div>
 		</div>
+	</div>
+</div>
+<div class="modal fade" id="whatsNew" tabindex="-1" role="dialog" aria-labelledby="whatsNewLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="whatsNewLabel">What's new</h4>
+			</div>
+			<div class="modal-body">
+				<h2><i class="fa fa-fw fa-calendar"></i> Calendar</h2>
+				<p>The new Calendar tab lets you easily plan out your day. It already knows when your classes are, so you don't have to waste time entering your schedule.</p>
+				
+				<h2><i class="fa fa-fw fa-comments-o"></i> Feedback</h2>
+				<p>With the redesign of the feedback buttons, we've made submitting feedback easier than ever.</p>
+				
+				<h2><i class="fa fa-fw fa-ellipsis-v"></i> Overall design improvements</h2>
+				<p>We've changed icons, colors, and many other things to give MyHomeworkSpace more of a modern feeling.</p>
+			</div>
+			<div class="modal-footer">
+				<p><strong>Don't worry!</strong> All your data is still here.</p>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
 </div>
 <link href="css/index.css" rel="stylesheet" />

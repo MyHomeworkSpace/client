@@ -42,14 +42,25 @@
 }
 .social {
 	margin-top: 40px;
+	padding-top: 20px;
 	background-color: darkslategrey;
 	color: white;
+	text-align: center;
 }
 .social-col {
 	text-align: center;
 }
 
-.twitter-feed {
-	width: 340;
-	height: 500;
+.whatsnew-alert {
+	border-radius: 0;
+	border: none;
+	background-color: lightseagreen;
+	color: white;
+	font-size: 1.2em;
+	text-align: center;
+	cursor: pointer;
+}
+
+.whatsnew-alert a {
+	color: white;
 }
