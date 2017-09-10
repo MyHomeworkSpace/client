@@ -24,6 +24,7 @@
 	position: relative;
 	top: -6px;
 }
+
 .more-section .col-md-1 {
 	margin-top: 8px;
 }
@@ -40,14 +41,15 @@
 	font-size: 18px;
 }
 .social {
+	margin-top: 40px;
 	background-color: darkslategrey;
 	color: white;
 }
-.social-left {
-	float: left;
+.social-col {
 	text-align: center;
 }
-.social-right {
-	float: right;
-	text-align: center;
+
+.twitter-feed {
+	width: 340;
+	height: 500;
 }
