@@ -61,7 +61,7 @@ class CalendarEvent extends Component {
 			<div class="calendarEvent" style={`top: ${offset}px; left:${groupWidth*props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
 				<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
 				<div class="calendarEventName">{props.type == "homework" ? <HomeworkName name={displayName} /> : displayName}</div>
-				<div class="calendarEventTime">{startDisplay} to {endDisplay}</div>
+				<div class="calendarEventTime">{startDisplay} to {endDisplay}{props.type == "schedule" ? ` in ${props.item.roomNumber}` : ""}</div>
 			</div>
 		</div>;
 	}
