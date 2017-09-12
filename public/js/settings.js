@@ -48,5 +48,10 @@ MyHomeworkSpace.Pages.settings = {
 	open: function() {
 		$("#settings_account_name").text(MyHomeworkSpace.Me.name);
 		$("#settings_account_email").text(MyHomeworkSpace.Me.email);
+		var displayGrade = MyHomeworkSpace.Me.grade + "th grade";
+		if (MyHomeworkSpace.Me.grade > 12) {
+			displayGrade = "Faculty member";
+		}
+		$("#settings_account_grade").text(displayGrade);
 	}
 };
