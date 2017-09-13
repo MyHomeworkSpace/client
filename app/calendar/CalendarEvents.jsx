@@ -106,6 +106,13 @@ class CalendarEvents extends Component {
 				if (isScheduleItem) {
 					eventItem.groupInfo.start = eventItem.groupInfo.start.utc();
 					eventItem.groupInfo.end = eventItem.groupInfo.end.utc();
+				} else {
+					eventItem.groupInfo.start.month(0);
+					eventItem.groupInfo.start.day(0);
+					eventItem.groupInfo.start.year(0);
+					eventItem.groupInfo.end.month(0);
+					eventItem.groupInfo.end.day(0);
+					eventItem.groupInfo.end.year(0);
 				}
 				eventItem.groupInfo.offset = eventItem.groupInfo.start.diff(eventItem.groupInfo.dayStart, "minutes");
 				eventItem.groupInfo.durationInMinutes = eventItem.groupInfo.end.diff(eventItem.groupInfo.start, "minutes");
