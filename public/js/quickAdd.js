@@ -86,7 +86,15 @@ MyHomeworkSpace.QuickAdd = {
 	},
 	parseDate: function(text) {
 		if (!isNaN(moment(text).day())) {
-			return moment(text).format("YYYY-MM-DD");
+			var foundDate = moment(text);
+			if (moment().month() > foundDate.month()) {
+				// today's month is after the entered month, meaning it's probably due next year
+				foundDate.year(moment().year() + 1);
+			} else {
+				// it's this year
+				foundDate.year(moment().year());
+			}
+			return foundDate.format("YYYY-MM-DD");
 		}
 		var textToParse = text.toLowerCase().split(" ");
 		var result = {
