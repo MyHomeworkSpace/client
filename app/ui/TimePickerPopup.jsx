@@ -37,9 +37,8 @@ class TimePickerPopup extends Component {
 		var time = moment(this.props.time);
 		if (
 			!(isNaN(newThing)) &&
-			!(newThing < 1) &&
-			!(newThing > 12 && type == "hour") &&
-			!(newThing > 60 && type == "minute")
+			!(newThing < 1 && newThing > 12 && type == "hour") &&
+			!(newThing < 0 && newThing > 59 && type == "minute")
 		) {
 			if (type == "hour") {
 				time.hour((time.hour() > 12 ? newThing + 12 : newThing));
@@ -61,10 +60,10 @@ class TimePickerPopup extends Component {
 		return <div class="timePickerPopup">
 			<div class="row">
 				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", 1)}><i class="fa fa-chevron-circle-up" /></button>
+					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", 1)}><i class="fa fa-chevron-up" /></button>
 				</div>
 				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", 1)}><i class="fa fa-chevron-circle-up" /></button>
+					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", 1)}><i class="fa fa-chevron-up" /></button>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
@@ -83,10 +82,10 @@ class TimePickerPopup extends Component {
 
 			<div class="row">
 				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", -1)}><i class="fa fa-chevron-circle-down" /></button>
+					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", -1)}><i class="fa fa-chevron-down" /></button>
 				</div>
 				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", -1)}><i class="fa fa-chevron-circle-down" /></button>
+					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", -1)}><i class="fa fa-chevron-down" /></button>
 				</div>
 				<div class="col-md-4">
 					<button class="btn btn-sm btn-default" onClick={this.now.bind(this)}><i class="fa fa-clock-o" /></button>
