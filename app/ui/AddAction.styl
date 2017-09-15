@@ -20,9 +20,19 @@
 	
 	.addActionInput
 		background: transparent
-		border: none
+		border: solid 1px white
+		padding: 6px
 		width: 250px
 		height: 30px
+	
+	.addActionInput::-webkit-input-placeholder
+		color: rgb(225, 225, 225)
+	.addActionInput::-moz-placeholder
+		color: rgb(225, 225, 225)
+	.addActionInput:-moz-placeholder
+		color: rgb(225, 225, 225)
+	.addActionInput:-ms-input-placeholder
+		color: rgb(225, 225, 225)
 
 	.addActionInput:focus
 		outline: none
