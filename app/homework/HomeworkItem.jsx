@@ -1,3 +1,5 @@
+import "homework/HomeworkItem.styl";
+
 import { h, Component } from "preact";
 
 import HomeworkName from "ui/HomeworkName.jsx";

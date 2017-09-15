@@ -1,0 +1,45 @@
+.hwItem
+	cursor: default
+	padding: 5px
+	padding-right: 30px
+	position: relative
+	transition: all 0.2s
+
+.hwItem.done, .hwItem.done:hover
+	background-color: rgb(180, 180, 180)
+
+.hwItem:hover
+	background-color: rgb(200, 200, 200)
+
+.hwItem.done .hwName, .hwItem.done .hwSubText
+	text-decoration: line-through
+
+.hwItem .hwName
+	font-size: 16px
+	font-weight: 500
+
+.hwLate
+	color: red
+
+.hwOptions
+	color: rgb(60, 60, 60)
+	font-size: 16px
+	opacity: 0
+	position: absolute
+	right: 10px
+	transition: all 0.2s
+
+.hwOptions i
+	margin-left: 4px
+
+.hwOptions i:hover
+	cursor: pointer
+	color: rgb(10, 10, 10)
+
+.hwItem:hover .hwOptions
+	opacity: 1
+
+.hwDescIcon
+	position: absolute
+	right: 10px
+	bottom: 8px
