@@ -93,8 +93,8 @@ MyHomeworkSpace.Pages.planner = {
 						}
 						var color = MyHomeworkSpace.Prefixes.matchPrefix(hwItem.name.split(" ")[0]);
 						$item.append($('<span></span>').text(hwItem.name.split(" ")[0]).css({
-							backgroundColor: color.background,
-							color: color.color
+							backgroundColor: "#" + color.background,
+							color: "#" + color.color
 						}));
 						if (hwItem.name.indexOf(" ") != -1) {
 							$item.append($('<span></span').text(" " + hwItem.name.substr(hwItem.name.indexOf(" "))));

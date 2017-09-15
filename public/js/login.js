@@ -43,25 +43,29 @@ MyHomeworkSpace.Pages.login = {
 	},
 	handleLoginComplete: function(info) {
 		MyHomeworkSpace.Classes.load(function() {
-			MyHomeworkSpace.QuickAdd.init();
+			MyHomeworkSpace.Prefixes.init(function() {
+				MyHomeworkSpace.QuickAdd.init();
 
-			MyHomeworkSpace.Nav.init();
-			MyHomeworkSpace.Pages.settings.onLogin();
+				MyHomeworkSpace.Nav.init();
+				
+				MyHomeworkSpace.Pages.homework.onLogin();
+				MyHomeworkSpace.Pages.settings.onLogin();
 
-			MyHomeworkSpace.Me = info.user;
-			MyHomeworkSpace.Me.grade = info.grade;
-			
-			if ($("#" + window.location.hash.substr(2)).length > 0 && window.location.hash.substr(2) != "login") {
-				MyHomeworkSpace.Page.show(window.location.hash.substr(2));
-			} else {
-				MyHomeworkSpace.Page.show("homework");
-			}
-			$("#login").effect("drop", { direction: "up" });
-			if (MyHomeworkSpace.Me.showMigrateMessage) {
-				MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {
-					$("#migrationWelcome").modal();
-				});
-			}
+				MyHomeworkSpace.Me = info.user;
+				MyHomeworkSpace.Me.grade = info.grade;
+				
+				if ($("#" + window.location.hash.substr(2)).length > 0 && window.location.hash.substr(2) != "login") {
+					MyHomeworkSpace.Page.show(window.location.hash.substr(2));
+				} else {
+					MyHomeworkSpace.Page.show("homework");
+				}
+				$("#login").effect("drop", { direction: "up" });
+				if (MyHomeworkSpace.Me.showMigrateMessage) {
+					MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {
+						$("#migrationWelcome").modal();
+					});
+				}
+			});
 		});
 	}
 };

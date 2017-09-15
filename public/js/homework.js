@@ -71,8 +71,17 @@ MyHomeworkSpace.Pages.homework = {
 				});
 			}
 		});
+	},
+	onLogin: function() {
+		var filteredWords = [];
+		for (var index in MyHomeworkSpace.Prefixes.list) {
+			var item = MyHomeworkSpace.Prefixes.list[index];
+			item.background = "#" + item.background;
+			item.color = "#" + item.color;
+			filteredWords.push(item);
+		}
 		$("#homeworkName").highlightTextarea({
-			words: MyHomeworkSpace.Prefixes.list,
+			words: filteredWords,
 			firstWord: true,
 			caseSensitive: false
 		});
