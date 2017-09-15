@@ -76,9 +76,13 @@ MyHomeworkSpace.Pages.homework = {
 		var filteredWords = [];
 		for (var index in MyHomeworkSpace.Prefixes.list) {
 			var item = MyHomeworkSpace.Prefixes.list[index];
-			item.background = "#" + item.background;
-			item.color = "#" + item.color;
-			filteredWords.push(item);
+			var newItem = {};
+			for (var key in item) {
+				newItem[key] = item[key];
+			}
+			newItem.background = "#" + item.background;
+			newItem.color = "#" + item.color;
+			filteredWords.push(newItem);
 		}
 		$("#homeworkName").highlightTextarea({
 			words: filteredWords,

@@ -14,6 +14,7 @@ import CalendarSettings from "settings/CalendarSettings.jsx";
 import AddAction from "ui/AddAction.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
 import ModalManager from "ui/ModalManager.jsx";
+import PrefixList from "ui/PrefixList.jsx";
 
 import Sidebar from "ui/nav/Sidebar.jsx";
 import TopBar from "ui/nav/TopBar.jsx";
@@ -116,6 +117,7 @@ export default {
 	ui: {
 		AddAction: AddAction,
 		FeedbackControl: FeedbackControl,
+		PrefixList: PrefixList,
 		Sidebar: Sidebar,
 		TopBar: TopBar
 	},
