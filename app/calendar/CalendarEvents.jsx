@@ -114,10 +114,6 @@ class CalendarEvents extends Component {
 		events.forEach(function(eventList, dow) {
 			var groupsForDay = eventGroups[dow];
 			eventList.forEach(function(eventItem, eventItemIndex) {
-				if (dow == 5) {
-					console.log(eventItem, eventItem.groupInfo);
-					console.log(eventItem.groupInfo.dayStart, eventItem.groupInfo.start);
-				}
 				// find which group this event belongs to
 				var foundGroupIndex = -1;
 				for (var groupIndex in groupsForDay) {
