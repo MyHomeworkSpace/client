@@ -119,9 +119,24 @@ class EventModal extends Component {
 
 	pickerChange(type, date) {
 		var newState = {};
-		var mergedState = this.state;
+		var mergedState = {};
 		newState[type] = date;
+
+		for (var key in this.state) {
+			mergedState[key] = this.state[key];
+		}
+		
 		mergedState[type] = date;
+
+		// have we changed the start time?
+		if (type == "startTime") {
+			var oldStart = this.combinedMoment("start", this.state);
+			var oldEnd = this.combinedMoment("end", this.state);
+			var differenceToOld = oldEnd.diff(oldStart, "minutes");
+			var newEnd = moment(date).add(differenceToOld, "minutes");
+			newState["endTime"] = newEnd;
+			mergedState["endTime"] = newEnd;
+		}
 
 		// check if we've tried to set an end date before the start date
 		if (this.combinedMoment("end", mergedState).isBefore(this.combinedMoment("start", mergedState))) {
