@@ -97,23 +97,12 @@ class CalendarEvents extends Component {
 		];
 		events.forEach(function(eventList, dow) {
 			events[dow] = events[dow].map(function(eventItem) {
-				var isScheduleItem = (props.type == "schedule"); 
+				var isScheduleItem = (eventItem.type == "schedule"); 
 				eventItem.groupInfo = {
-					dayStart: (isScheduleItem ? moment.unix(0).utc() : moment.unix(eventItem.start).startOf("day")),
-					start: moment.unix(eventItem.start),
-					end: moment.unix(eventItem.end),
+					dayStart: (isScheduleItem ? moment.unix(0).utc() : moment.unix(eventItem.start).startOf("day").utc()),
+					start: moment.unix(eventItem.start).utc(),
+					end: moment.unix(eventItem.end).utc(),
 				};
-				if (isScheduleItem) {
-					eventItem.groupInfo.start = eventItem.groupInfo.start.utc();
-					eventItem.groupInfo.end = eventItem.groupInfo.end.utc();
-				} else {
-					eventItem.groupInfo.start.month(0);
-					eventItem.groupInfo.start.day(0);
-					eventItem.groupInfo.start.year(0);
-					eventItem.groupInfo.end.month(0);
-					eventItem.groupInfo.end.day(0);
-					eventItem.groupInfo.end.year(0);
-				}
 				eventItem.groupInfo.offset = eventItem.groupInfo.start.diff(eventItem.groupInfo.dayStart, "minutes");
 				eventItem.groupInfo.durationInMinutes = eventItem.groupInfo.end.diff(eventItem.groupInfo.start, "minutes");
 				eventItem.groupInfo.height = (eventItem.groupInfo.durationInMinutes < 10 ? 10: eventItem.groupInfo.durationInMinutes);
@@ -125,6 +114,10 @@ class CalendarEvents extends Component {
 		events.forEach(function(eventList, dow) {
 			var groupsForDay = eventGroups[dow];
 			eventList.forEach(function(eventItem, eventItemIndex) {
+				if (dow == 5) {
+					console.log(eventItem, eventItem.groupInfo);
+					console.log(eventItem.groupInfo.dayStart, eventItem.groupInfo.start);
+				}
 				// find which group this event belongs to
 				var foundGroupIndex = -1;
 				for (var groupIndex in groupsForDay) {
