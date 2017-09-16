@@ -27,8 +27,8 @@ class EventModal extends Component {
 
 			startDate: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
 			startTime: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
-			endDate: (isNew ? moment().second(0) : moment.unix(props.modalState.end)),
-			endTime: (isNew ? moment().second(0) : moment.unix(props.modalState.end))
+			endDate: (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end)),
+			endTime: (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end))
 		};
 	}
 
@@ -51,6 +51,13 @@ class EventModal extends Component {
 			if (!this.state.homework.id) {
 				this.setState({
 					error: "You must select a homework item.",
+				});
+				return;
+			}
+		} else if (this.state.type == "event") {
+			if (this.state.name == "") {
+				this.setState({
+					error: "You must give the event a name.",
 				});
 				return;
 			}
@@ -181,7 +188,7 @@ class EventModal extends Component {
 					</div>
 				</div>
 
-				{state.type == "event" && <textarea class="form-control" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />}
+				{state.type == "event" && <textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />}
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}
