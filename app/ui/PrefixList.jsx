@@ -1,3 +1,5 @@
+import "ui/PrefixList.styl";
+
 import { h, Component } from "preact";
 
 import HomeworkName from "ui/HomeworkName.jsx";
@@ -14,11 +16,11 @@ class PrefixList extends Component {
 			var words = group.words.map(function(word) {
 				return <HomeworkName name={word} />;
 			});
-			return <div>
+			return <div class="prefixListGroup">
 				{words}
 			</div>;
 		});
-		return <div>
+		return <div class="prefixList">
 			{groups}
 		</div>;
 	}
