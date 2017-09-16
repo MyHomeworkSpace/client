@@ -3,6 +3,6 @@ MyHomeworkSpace.Pages.help = {
 
 	},
 	open: function() {
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.PrefixList, {}), null, document.querySelector("#prefixList > div"));
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.help.HelpPage, {}), null, document.querySelector("#help > div"));
 	}
 };

@@ -6,6 +6,8 @@ import prefixes from "prefixes.js";
 
 import CalendarPage from "calendar/CalendarPage.jsx";
 
+import HelpPage from "help/HelpPage.jsx";
+
 import HomeworkItem from "homework/HomeworkItem.jsx";
 
 import ApplicationList from "settings/ApplicationList.jsx";
@@ -14,7 +16,6 @@ import CalendarSettings from "settings/CalendarSettings.jsx";
 import AddAction from "ui/AddAction.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
 import ModalManager from "ui/ModalManager.jsx";
-import PrefixList from "ui/PrefixList.jsx";
 
 import Sidebar from "ui/nav/Sidebar.jsx";
 import TopBar from "ui/nav/TopBar.jsx";
@@ -105,6 +106,9 @@ export default {
 		calendar: {
 			CalendarPage: CalendarPage
 		},
+		help: {
+			HelpPage: HelpPage
+		},
 		homework: {
 			HomeworkItem: HomeworkItem
 		},
@@ -117,7 +121,6 @@ export default {
 	ui: {
 		AddAction: AddAction,
 		FeedbackControl: FeedbackControl,
-		PrefixList: PrefixList,
 		Sidebar: Sidebar,
 		TopBar: TopBar
 	},
