@@ -91,14 +91,11 @@ MyHomeworkSpace.Pages.planner = {
 								title: hwItem.desc	
 							});
 						}
-						var color = MyHomeworkSpace.Prefixes.matchPrefix(hwItem.name.split(" ")[0]);
-						$item.append($('<span></span>').text(hwItem.name.split(" ")[0]).css({
-							backgroundColor: "#" + color.background,
-							color: "#" + color.color
-						}));
-						if (hwItem.name.indexOf(" ") != -1) {
-							$item.append($('<span></span').text(" " + hwItem.name.substr(hwItem.name.indexOf(" "))));
-						}
+						var $name = $('<span></span>');
+						MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.HomeworkName, {
+							name: hwItem.name
+						}), $name[0]);
+						$item.append($name);
 						if (hwItem.complete == "1") {
 							$item.addClass("done");
 						}

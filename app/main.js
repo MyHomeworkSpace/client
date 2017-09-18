@@ -15,6 +15,7 @@ import CalendarSettings from "settings/CalendarSettings.jsx";
 
 import AddAction from "ui/AddAction.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
+import HomeworkName from "ui/HomeworkName.jsx";
 import ModalManager from "ui/ModalManager.jsx";
 
 import Sidebar from "ui/nav/Sidebar.jsx";
@@ -121,6 +122,7 @@ export default {
 	ui: {
 		AddAction: AddAction,
 		FeedbackControl: FeedbackControl,
+		HomeworkName: HomeworkName,
 		Sidebar: Sidebar,
 		TopBar: TopBar
 	},
