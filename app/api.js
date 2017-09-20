@@ -46,12 +46,8 @@ export default {
 	},
 	init: function(callback) {
 		rawRequest("auth/csrf", "GET", {}, function(xhr) {
-			setTimeout(function() {
-				rawRequest("auth/csrf", "GET", {}, function(xhr) {
-					token = xhr.responseJSON.token;
-					callback();
-				});
-			}, 50); // safari is a garbage browser by a garbage company and requires this timeout for some reason
+			token = xhr.responseJSON.token;
+			callback();
 		});
 	}
 };
