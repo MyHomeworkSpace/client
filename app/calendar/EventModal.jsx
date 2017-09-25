@@ -89,7 +89,7 @@ class EventModal extends Component {
 				if (xhr.responseJSON.status == "ok") {
 					that.props.openModal("");
 					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
-					document.querySelector(".calendarHeaderControlsRefresh").click();
+					document.querySelector("#calendar .weekHeaderControlsRefresh").click();
 				} else {
 					that.setState({
 						loading: false,

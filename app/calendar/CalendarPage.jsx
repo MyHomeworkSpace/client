@@ -6,10 +6,10 @@ import linkState from "linkstate";
 import api from "api.js";
 import errors from "errors.js";
 
-import CalendarHeader from "calendar/CalendarHeader.jsx";
 import CalendarWeek from "calendar/CalendarWeek.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
+import WeekHeader from "ui/WeekHeader.jsx";
 
 class CalendarPage extends Component {
 	constructor(props) {
@@ -157,7 +157,7 @@ class CalendarPage extends Component {
 		}
 
 		return <div style="height: 100%">
-			<CalendarHeader openModal={props.openModal} announcements={state.announcements} events={state.events} hwEvents={state.hwEvents} monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
+			<WeekHeader openModal={props.openModal} announcements={state.announcements} events={state.events} hwEvents={state.hwEvents} monday={state.monday} friday={state.friday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
 			<CalendarWeek openModal={props.openModal} announcements={state.announcements} events={state.events} hwEvents={state.hwEvents} monday={state.monday} friday={state.friday} schedule={state.loadingWeek ? emptySchedule : schedule} />
 		</div>;
 	}
