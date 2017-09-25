@@ -101,11 +101,3 @@
 #plannerAnnouncementRow th {
 	height: 21px;
 }
-#plannerWeek {
-	color: #6666ff;
-	cursor: pointer;
-	border-bottom: dashed 1px #6666ff;
-}
-#plannerControls {
-	text-align: center;
-}
