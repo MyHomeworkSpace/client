@@ -207,6 +207,7 @@ MyHomeworkSpace.QuickAdd = {
 		}
 
 		response.name = response.name.trim();
+		response.due = sentence.match("#Date").out().trim();
 
 		return response;
 	}
