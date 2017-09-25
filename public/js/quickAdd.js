@@ -2,6 +2,7 @@ MyHomeworkSpace.QuickAdd = {
 	classes: [],
 	classIds: [],
 	prefixList: [],
+	casePrefixList: [],
 	classSynonyms: [
 		["science", "sci", "bio", "biology", "chem", "chemistry", "physics"],
 		["math", "algebra", "calculus", "calc", "pre-calculus", "precalculus", "precalc", "geometry", "geo"],
@@ -33,9 +34,11 @@ MyHomeworkSpace.QuickAdd = {
 		MyHomeworkSpace.QuickAdd.classes = [];
 		MyHomeworkSpace.QuickAdd.classIds = [];
 		MyHomeworkSpace.QuickAdd.prefixList = [];
+		MyHomeworkSpace.QuickAdd.casePrefixList = [];
 		for (var prefixIndex in MyHomeworkSpace.Prefixes.list) {
 			var prefix = MyHomeworkSpace.Prefixes.list[prefixIndex];
 			for (var wordIndex in prefix.words) {
+				MyHomeworkSpace.QuickAdd.casePrefixList.push(prefix.words[wordIndex]);
 				MyHomeworkSpace.QuickAdd.prefixList.push(prefix.words[wordIndex].toLowerCase());
 			}
 		}
@@ -171,7 +174,8 @@ MyHomeworkSpace.QuickAdd = {
 			if (termsToSkip > 0) {
 				termsToSkip--;
 			} else if (MyHomeworkSpace.QuickAdd.prefixList.indexOf(term.text.toLowerCase()) > -1) {
-				response.tag = term.text;
+				var prefixIndex = MyHomeworkSpace.QuickAdd.prefixList.indexOf(term.text.toLowerCase());
+				response.tag = MyHomeworkSpace.QuickAdd.casePrefixList[prefixIndex];
 				nameTrack = true;
 			} else if (term.tag == "Date") {
 				response.due = term.text;
