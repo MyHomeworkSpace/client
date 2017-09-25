@@ -9,16 +9,18 @@ MyHomeworkSpace.QuickAdd = {
 		["computer science", "compsci"],
 		["language", "french", "latin", "spanish", "mandarin"]
 	],
+	lexicon: {},
 	init: function() {
-		var nlp = window.nlp_compromise;
-		// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
-		nlp.lexicon()["day"] = undefined;
-		nlp.lexicon()["week"] = undefined;
+		var lexicon = {
+			// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
+			"day": undefined,
+			"week": undefined,
 
-		// these things cause nlp_compromise to get very confused
-		// "hw pa" doesn't mean a highway in philadelphia
-		nlp.lexicon()["hwy"] = undefined;
-		nlp.lexicon()["pa"] = undefined;
+			// these things cause nlp_compromise to get very confused
+			// "hw pa" doesn't mean a highway in philadelphia
+			"hw": undefined,
+			"pa": undefined,
+		};
 
 		// this is a bit of a hack to get nlp_compromise to like prefixes
 		// i know that "hw" and "essay" aren't verbs
@@ -27,9 +29,11 @@ MyHomeworkSpace.QuickAdd = {
 			var prefix = MyHomeworkSpace.Prefixes.list[prefixIndex];
 			for (var wordIndex in prefix.words) {
 				var word = prefix.words[wordIndex];
-				nlp.lexicon()[word.toLowerCase()] = "Infinitive";
+				lexicon[word.toLowerCase()] = "Infinitive";
 			}
 		}
+
+		MyHomeworkSpace.QuickAdd.lexicon = lexicon;
 
 		MyHomeworkSpace.QuickAdd.classes = [];
 		MyHomeworkSpace.QuickAdd.classIds = [];
@@ -157,7 +161,6 @@ MyHomeworkSpace.QuickAdd = {
 		// take [test on molecules] [in Science] on [next Tuesday]
 		// [next Friday] write an [essay about the revolution] [in History] class
 
-		var nlp = window.nlp_compromise;
 		var response = {
 			tag: "",
 			name: "",
@@ -165,29 +168,31 @@ MyHomeworkSpace.QuickAdd = {
 			classId: 0,
 			due: ""
 		};
-		var sentence = nlp.sentence(text);
+		var sentence = nlp(text, MyHomeworkSpace.QuickAdd.lexicon);
 		var nameTrack = false;
 		var termsToSkip = 0;
 
-		for (var termIndex in sentence.terms) {
-			var term = sentence.terms[termIndex];
+		var terms = sentence.list[0].terms;
+
+		for (var termIndex in terms) {
+			var term = terms[termIndex];
 			if (termsToSkip > 0) {
 				termsToSkip--;
 			} else if (MyHomeworkSpace.QuickAdd.prefixList.indexOf(term.text.toLowerCase()) > -1) {
 				var prefixIndex = MyHomeworkSpace.QuickAdd.prefixList.indexOf(term.text.toLowerCase());
 				response.tag = MyHomeworkSpace.QuickAdd.casePrefixList[prefixIndex];
 				nameTrack = true;
-			} else if (term.tag == "Date") {
+			} else if (term.tags.Date) {
 				response.due = term.text;
-			} else if (term.pos.Conjunction || term.pos.Preposition) {
+			} else if (term.tags.Conjunction || term.tags.Preposition) {
 				// peek at the next word
-				var classResults = MyHomeworkSpace.QuickAdd.isClass(sentence.terms, parseInt(termIndex) + 1);
-				if (sentence.terms[parseInt(termIndex) + 1] && classResults.match) {
+				var classResults = MyHomeworkSpace.QuickAdd.isClass(terms, parseInt(termIndex) + 1);
+				if (terms[parseInt(termIndex) + 1] && classResults.match) {
 					// if it's a class, set it and skip it
 					response.class = MyHomeworkSpace.Classes.list[classResults.classIndex].name;
 					response.classId = MyHomeworkSpace.QuickAdd.classIds[classResults.classIndex];
 					termsToSkip = classResults.termsToSkip;
-				} else if ((parseInt(termIndex) + 1) != sentence.terms.length && sentence.terms[parseInt(termIndex) + 1].tag == "Date") {
+				} else if ((parseInt(termIndex) + 1) != terms.length && terms[parseInt(termIndex) + 1].tags.Date) {
 					// the next word is a due date, so skip this word
 				} else if (nameTrack) {
 					response.name += term.text;
