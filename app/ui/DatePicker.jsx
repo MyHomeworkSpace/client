@@ -48,9 +48,10 @@ class DatePicker extends Component {
 	}
 
 	render(props, state) {
+		var format = props.format || "ddd, MMMM Do, YYYY";
 		return <div class="datePickerContainer">
 			<div class="datePicker" onClick={!state.open && this.toggle.bind(this)}>
-				<div class="datePickerOutput">{props.value.format("ddd, MMMM Do, YYYY")}</div>
+				<div class="datePickerOutput">{props.value.format(format)}</div>
 				<div class="datePickerAction"><i class={state.open ? "fa fa-chevron-circle-up" : "fa fa-chevron-circle-down"} /></div>
 				<div class="datePickerClear"></div>
 			</div>

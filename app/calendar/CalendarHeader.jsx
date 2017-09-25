@@ -3,6 +3,7 @@ import "calendar/CalendarHeader.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import DatePicker from "ui/DatePicker.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
 class CalendarHeader extends Component {
@@ -10,18 +11,27 @@ class CalendarHeader extends Component {
 		this.props.loadWeek(moment(this.props.monday).add(weekAmount, "week"));
 	}
 
-	jumpToday() {
-		var mondayDate = moment();
+	jumpToDate(date) {
+		var mondayDate = moment(date);
 		while (mondayDate.day() != 1) {
 			mondayDate.subtract(1, "day");
 		}
 		this.props.loadWeek(mondayDate);
 	}
 
+	jumpToday() {
+		this.jumpToDate(moment());
+	}
+
+	change(date) {
+		this.jumpToDate(date);
+	}
+
 	render(props, state) {
 		return <div class="calendarHeader">
 			<span class="calendarHeaderWeek">
-				Week of {props.monday.format("MMMM D, YYYY")}
+				<span class="calendarHeaderWeekOf">Week of</span>
+				<DatePicker format="MMMM D, YYYY" change={this.change.bind(this)} value={props.monday} />
 				{props.loadingWeek && <span><LoadingIndicator type="inline" /> Loading...</span>}
 			</span>
 			<div class="calendarHeaderControls">
