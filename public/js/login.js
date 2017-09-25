@@ -44,7 +44,7 @@ MyHomeworkSpace.Pages.login = {
 	handleLoginComplete: function(info) {
 		MyHomeworkSpace.Classes.load(function() {
 			MyHomeworkSpace.Prefixes.init(function() {
-				MyHomeworkSpace.QuickAdd.init();
+				MHSBridge.default.quickAdd.init();
 
 				MyHomeworkSpace.Nav.init();
 				

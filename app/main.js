@@ -3,6 +3,7 @@ import { h, render } from "preact";
 import api from "api.js";
 import errors from "errors.js";
 import prefixes from "prefixes.js";
+import quickAdd from "quickAdd.js";
 
 import CalendarPage from "calendar/CalendarPage.jsx";
 
@@ -92,6 +93,7 @@ export default {
 	api: api,
 	errors: errors,
 	prefixes: prefixes,
+	quickAdd: quickAdd,
 
 	init: function() {
 		renderModalManager();

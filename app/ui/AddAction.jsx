@@ -3,6 +3,8 @@ import "ui/AddAction.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import quickAdd from "quickAdd.js";
+
 import AddActionCalendarInfo from "ui/AddActionCalendarInfo.jsx";
 import AddActionHomeworkInfo from "ui/AddActionHomeworkInfo.jsx";
 
@@ -63,14 +65,14 @@ class AddAction extends Component {
 	keyup(e) {
 		if (e.keyCode == 13) {
 			// TODO: convert homework modal to preact, and then remove this icky DOM manipulation
-			var info = MyHomeworkSpace.QuickAdd.parseText(this.state.input);
+			var info = quickAdd.parseText(this.state.input);
 			if (info.tag || info.name) {
 				$("#homeworkName").val(info.tag + " " + info.name);
 			} else {
 				$("#homeworkName").val("");
 			}
 			$("#homeworkClass").val((info.classId ? info.classId : -1));
-			var dueDate = MyHomeworkSpace.QuickAdd.parseDate(info.due) || undefined;
+			var dueDate = quickAdd.parseDate(info.due) || undefined;
 			$("#homeworkDue").val(dueDate);
 			$("#homeworkDue").next(".form-control").children("button").text(moment(dueDate).format("dddd, MMMM Do, YYYY"));
 			$("#homeworkDue").next(".form-control").children("div").datepicker("setDate", moment(dueDate).toDate());

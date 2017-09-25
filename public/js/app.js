@@ -20,7 +20,7 @@ MyHomeworkSpace.Classes = {
 		});
 	},
 	reload: function() {
-		MyHomeworkSpace.QuickAdd.init();
+		MHSBridge.default.quickAdd.init();
 	}
 };
 
