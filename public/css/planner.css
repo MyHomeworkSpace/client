@@ -1,6 +1,8 @@
 #planner {
-	padding: 10px;
 	overflow: scroll;
+}
+#planner .weekHeader {
+	margin-bottom: 11px;
 }
 #plannerTable {
 	table-layout: fixed;

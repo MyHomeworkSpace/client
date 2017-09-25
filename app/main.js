@@ -17,6 +17,7 @@ import AddAction from "ui/AddAction.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 import ModalManager from "ui/ModalManager.jsx";
+import WeekHeader from "ui/WeekHeader.jsx";
 
 import Sidebar from "ui/nav/Sidebar.jsx";
 import TopBar from "ui/nav/TopBar.jsx";
@@ -124,7 +125,8 @@ export default {
 		FeedbackControl: FeedbackControl,
 		HomeworkName: HomeworkName,
 		Sidebar: Sidebar,
-		TopBar: TopBar
+		TopBar: TopBar,
+		WeekHeader: WeekHeader
 	},
 
 	// functions from preact

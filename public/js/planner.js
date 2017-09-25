@@ -41,8 +41,16 @@ MyHomeworkSpace.Pages.planner = {
 			});
 		}
 	},
+	renderHeader: function(loading) {
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.WeekHeader, {
+			monday: MyHomeworkSpace.Pages.planner.currentWeek,
+			loadWeek: MyHomeworkSpace.Pages.planner.loadWeek,
+			loadingWeek: loading
+		}), null, document.querySelector("#planner .weekHeader"));
+	},
 	loadWeek: function(monday) {
 		MyHomeworkSpace.Pages.planner.currentWeek = monday;
+		MyHomeworkSpace.Pages.planner.renderHeader(true);
 		$("#plannerWeek").text(monday.format("M/D"));
 		$("#plannerTableBody tr td ul").text("");
 		$(".announcementDay").text("");
@@ -129,6 +137,7 @@ MyHomeworkSpace.Pages.planner = {
 					$("#plannerTableBody tr[data-classId=" + hwItem.classId + "] td[data-dow=" + plannerDow + "] ul").append($item);
 				}
 				MyHomeworkSpace.Pages.planner.handleDoneBoxes();
+				MyHomeworkSpace.Pages.planner.renderHeader(false);
 			});
 		});
 	},
