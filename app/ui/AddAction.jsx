@@ -93,7 +93,7 @@ class AddAction extends Component {
 			</div>}
 			{thingToAdd == "homework" && state.open && <div class="addActionText">
 				<div class="addActionClose" onClick={this.close.bind(this)}><i class="fa fa-times"></i></div>
-				<input type="text" class="addActionInput" placeholder="just start typing..." onKeyup={this.keyup.bind(this)} onInput={linkState(this, "input")} value={state.input} />
+				<input type="text" autocomplete="off" class="addActionInput" placeholder="just start typing..." onKeyup={this.keyup.bind(this)} onInput={linkState(this, "input")} value={state.input} />
 			</div>}
 			{thingToAdd == "homework" && state.open && <AddActionHomeworkInfo text={state.input} close={this.close.bind(this)} openModal={props.openModal} />}
 			{thingToAdd == "event" && state.open && <div class="addActionButton" onClick={this.close.bind(this)}>
