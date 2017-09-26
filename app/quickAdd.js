@@ -168,31 +168,33 @@ export default {
 			due: ""
 		};
 		var sentence = nlp(text, lexicon);
-		var nameTrack = false;
-		var termsToSkip = 0;
 
+		response.tag = sentence.match("#MHSPrefix").terms(0).out().trim();
 		response.due = sentence.match("#Date").out().trim();
 
-		var className = sentence.match("(#Conjunction|#Preposition) (#MHSClass|#MHSClassSynonym)").terms(1).out().trim();
+		var className = sentence.match("(#MHSClass|#MHSClassSynonym)").terms(0).out().trim();
 		response.class = findClass(className);
 
-		var termsToScan = sentence.replace("(#Conjunction|#Preposition) (#MHSClass|#MHSClassSynonym)", "").replace("(#Conjunction|#Preposition)? #Date", "").list[0].terms;
+		var nameSentence = sentence;
 
-		for (var termIndex in termsToScan) {
-			var term = termsToScan[termIndex];
-			if (termsToSkip > 0) {
-				termsToSkip--;
-			} else if (prefixList.indexOf(term.text.toLowerCase()) > -1) {
-				var prefixIndex = prefixList.indexOf(term.text.toLowerCase());
-				response.tag = casePrefixList[prefixIndex];
-				nameTrack = true;
-			} else if (nameTrack) {
-				response.name += term.text;
-				response.name += " ";
-			}
+		// class name
+		nameSentence.replace("(#Conjunction|#Preposition)? (#MHSClass|#MHSClassSynonym) class?", "");
+		// due date info
+		nameSentence.replace("(#Conjunction|#Preposition)? #Date", "");
+		// prefix info
+		nameSentence.replace("*+ #MHSPrefix", "");
+		nameSentence.replace("#MHSPrefix", "");
+
+		response.name = nameSentence.out().trim();
+
+		if (!response.tag.trim() && response.name) {
+			var nameParts = response.name.split(" ");
+			var assignedPrefix = nameParts[0];
+			nameParts.shift()
+
+			response.tag = assignedPrefix;
+			response.name = nameParts.join(" ");
 		}
-
-		response.name = response.name.trim();
 
 		return response;
 	}
