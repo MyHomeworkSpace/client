@@ -2,8 +2,6 @@ import prefixes from "prefixes.js";
 
 var classes = [];
 var classIds = [];
-var prefixList = [];
-var casePrefixList = [];
 var classSynonyms = [
 	["science", "sci", "bio", "biology", "chem", "chemistry", "physics"],
 	["math", "algebra", "calculus", "calc", "pre-calculus", "precalculus", "precalc", "geometry", "geo"],
@@ -47,8 +45,6 @@ export default {
 		// (required because init can be called multiple times on a page load if the class list changes)
 		classes = [];
 		classIds = [];
-		prefixList = [];
-		casePrefixList = [];
 		lexicon = {
 			// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
 			"day": undefined,
@@ -62,10 +58,6 @@ export default {
 				// tell nlp_compromise
 				var word = prefix.words[wordIndex];
 				lexicon[word.toLowerCase()] = "MHSPrefix";
-
-				// store the prefix word for case matching
-				casePrefixList.push(word);
-				prefixList.push(word.toLowerCase());
 			}
 		}
 
@@ -85,11 +77,9 @@ export default {
 			// tell nlp_compromise
 			lexicon[classItem.name.toLowerCase()] = "MHSClass";
 
-			classes.push(classItem.name.toLowerCase());
+			classes.push(classItem.name);
 			classIds.push(classItem.id);
 		}
-
-		window._z = lexicon;
 	},
 	parseDate: function(text) {
 		if (!isNaN(moment(text).day())) {
@@ -190,10 +180,21 @@ export default {
 		if (!response.tag.trim() && response.name) {
 			var nameParts = response.name.split(" ");
 			var assignedPrefix = nameParts[0];
-			nameParts.shift()
+			nameParts.shift();
 
 			response.tag = assignedPrefix;
 			response.name = nameParts.join(" ");
+		} else {
+			// correct capitalization of the prefix
+			for (var prefixIndex in prefixes.list) {
+				var prefix = prefixes.list[prefixIndex];
+				for (var wordIndex in prefix.words) {
+					var word = prefix.words[wordIndex];
+					if (word.toLowerCase() == response.tag.toLowerCase()) {
+						response.tag = word;
+					}
+				}
+			}
 		}
 
 		return response;
