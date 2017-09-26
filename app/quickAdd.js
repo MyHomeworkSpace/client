@@ -1,3 +1,5 @@
+import prefixes from "prefixes.js";
+
 var classes = [];
 var classIds = [];
 var prefixList = [];
@@ -10,88 +12,84 @@ var classSynonyms = [
 ];
 var lexicon = {};
 
-var isClass = function(array, index) {
-	var classMatches = false;
-	var termsToSkip = 0;
-	var arrIndex = index;
+var findClass = function(name) {
 	for (var classIndex in classes) {
 		var classItem = classes[classIndex];
-		var classWords = classItem.split(" ");
-		arrIndex = index;
-		for (var i = 0; i < classWords.length; i++) {
-			if (array.length <= arrIndex) {
-				if (classMatches) {
-					break;
-				} else {
-					continue;
-				}
-			}
-			if (classWords[i].toLowerCase() == array[arrIndex].text.toLowerCase()) {
-				classMatches = true;
-			} else {
-				classMatches = false;
-				for (var synonymsIndex in classSynonyms) {
-					if (classSynonyms[synonymsIndex].indexOf(classWords[i].toLowerCase()) > -1) {
-						if (classSynonyms[synonymsIndex].indexOf(array[arrIndex].text.toLowerCase()) > -1) {
-							classMatches = true;
-						}
-					}
-				}
-			}
-			arrIndex++;
+		var classId = classIds[classIndex];
+
+		// check for exact match
+		if (classItem.toLowerCase() == name.toLowerCase()) {
+			// found it
+			return {
+				id: classId,
+				name: classItem
+			};
 		}
-		if (classMatches) {
-			break;
+
+		// check all synonyms
+		for (var listIndex in classSynonyms) {
+			var synonymList = classSynonyms[listIndex];
+			if (synonymList.indexOf(classItem.toLowerCase()) > -1 && synonymList.indexOf(name.toLowerCase()) > -1) {
+				// this class and the target name are synonyms
+				return {
+					id: classId,
+					name: classItem
+				};
+			}
 		}
 	}
-	return {
-		match: classMatches,
-		classIndex: parseInt(classIndex),
-		termsToSkip: arrIndex - index
-	};
+	return null;
 };
 
 export default {
 	init: function() {
-		var lexicon = {
-			// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
-			"day": undefined,
-			"week": undefined,
-
-			// these things cause nlp_compromise to get very confused
-			// "hw pa" doesn't mean a highway in philadelphia
-			"hw": undefined,
-			"pa": undefined,
-		};
-
-		// this is a bit of a hack to get nlp_compromise to like prefixes
-		// i know that "hw" and "essay" aren't verbs
-		// nlp_compromise doesn't
-		for (var prefixIndex in MyHomeworkSpace.Prefixes.list) {
-			var prefix = MyHomeworkSpace.Prefixes.list[prefixIndex];
-			for (var wordIndex in prefix.words) {
-				var word = prefix.words[wordIndex];
-				lexicon[word.toLowerCase()] = "Infinitive";
-			}
-		}
-
-		lexicon = lexicon;
-
+		// reset state
+		// (required because init can be called multiple times on a page load if the class list changes)
 		classes = [];
 		classIds = [];
 		prefixList = [];
 		casePrefixList = [];
-		for (var prefixIndex in MyHomeworkSpace.Prefixes.list) {
-			var prefix = MyHomeworkSpace.Prefixes.list[prefixIndex];
+		lexicon = {
+			// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
+			"day": undefined,
+			"week": undefined
+		};
+
+		// handle prefix list
+		for (var prefixIndex in prefixes.list) {
+			var prefix = prefixes.list[prefixIndex];
 			for (var wordIndex in prefix.words) {
-				casePrefixList.push(prefix.words[wordIndex]);
-				prefixList.push(prefix.words[wordIndex].toLowerCase());
+				// tell nlp_compromise
+				var word = prefix.words[wordIndex];
+				lexicon[word.toLowerCase()] = "MHSPrefix";
+
+				// store the prefix word for case matching
+				casePrefixList.push(word);
+				prefixList.push(word.toLowerCase());
 			}
 		}
-		for (var classIndex in MyHomeworkSpace.Classes.list) {
-			classes.push(MyHomeworkSpace.Classes.list[classIndex].name.toLowerCase());
-			classIds.push(MyHomeworkSpace.Classes.list[classIndex].id);
+
+		// add synonyms first so that the real classes can overwrite them
+		for (var listIndex in classSynonyms) {
+			var synonymList = classSynonyms[listIndex];
+			for (var synonymIndex in synonymList) {
+				var synonym = synonymList[synonymIndex];
+				lexicon[synonym.toLowerCase()] = "MHSClassSynonym";
+			}
 		}
+
+		// handle class list
+		for (var classIndex in MyHomeworkSpace.Classes.list) {
+			var classItem = MyHomeworkSpace.Classes.list[classIndex];
+
+			// tell nlp_compromise
+			lexicon[classItem.name.toLowerCase()] = "MHSClass";
+
+			classes.push(classItem.name.toLowerCase());
+			classIds.push(classItem.id);
+		}
+
+		window._z = lexicon;
 	},
 	parseDate: function(text) {
 		if (!isNaN(moment(text).day())) {
@@ -166,40 +164,28 @@ export default {
 		var response = {
 			tag: "",
 			name: "",
-			class: "",
-			classId: 0,
+			class: null,
 			due: ""
 		};
 		var sentence = nlp(text, lexicon);
 		var nameTrack = false;
 		var termsToSkip = 0;
 
-		var terms = sentence.list[0].terms;
+		response.due = sentence.match("#Date").out().trim();
 
-		for (var termIndex in terms) {
-			var term = terms[termIndex];
+		var className = sentence.match("(#Conjunction|#Preposition) (#MHSClass|#MHSClassSynonym)").terms(1).out().trim();
+		response.class = findClass(className);
+
+		var termsToScan = sentence.replace("(#Conjunction|#Preposition) (#MHSClass|#MHSClassSynonym)", "").replace("#Date", "").list[0].terms;
+
+		for (var termIndex in termsToScan) {
+			var term = termsToScan[termIndex];
 			if (termsToSkip > 0) {
 				termsToSkip--;
 			} else if (prefixList.indexOf(term.text.toLowerCase()) > -1) {
 				var prefixIndex = prefixList.indexOf(term.text.toLowerCase());
 				response.tag = casePrefixList[prefixIndex];
 				nameTrack = true;
-			} else if (term.tags.Date) {
-				response.due = term.text;
-			} else if (term.tags.Conjunction || term.tags.Preposition) {
-				// peek at the next word
-				var classResults = isClass(terms, parseInt(termIndex) + 1);
-				if (terms[parseInt(termIndex) + 1] && classResults.match) {
-					// if it's a class, set it and skip it
-					response.class = MyHomeworkSpace.Classes.list[classResults.classIndex].name;
-					response.classId = classIds[classResults.classIndex];
-					termsToSkip = classResults.termsToSkip;
-				} else if ((parseInt(termIndex) + 1) != terms.length && terms[parseInt(termIndex) + 1].tags.Date) {
-					// the next word is a due date, so skip this word
-				} else if (nameTrack) {
-					response.name += term.text;
-					response.name += " ";
-				}
 			} else if (term.text.toLowerCase() == "due" || term.text.toLowerCase() == "class") {
 				// skip it
 			} else if (nameTrack) {
@@ -209,7 +195,6 @@ export default {
 		}
 
 		response.name = response.name.trim();
-		response.due = sentence.match("#Date").out().trim();
 
 		return response;
 	}

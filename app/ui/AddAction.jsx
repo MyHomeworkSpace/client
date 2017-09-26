@@ -71,7 +71,7 @@ class AddAction extends Component {
 			} else {
 				$("#homeworkName").val("");
 			}
-			$("#homeworkClass").val((info.classId ? info.classId : -1));
+			$("#homeworkClass").val((info.class ? info.class.id : -1));
 			var dueDate = quickAdd.parseDate(info.due) || undefined;
 			$("#homeworkDue").val(dueDate);
 			$("#homeworkDue").next(".form-control").children("button").text(moment(dueDate).format("dddd, MMMM Do, YYYY"));

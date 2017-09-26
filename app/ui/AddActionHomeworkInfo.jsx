@@ -18,7 +18,7 @@ class AddActionHomeworkInfo extends Component {
 		var info = quickAdd.parseText(props.text);
 		return <AddActionInfo class="addActionHomeworkInfo">
 			<div class="addActionHomeworkInfoName"><HomeworkName name={info.tag + " " + info.name} /></div>
-			<div>Class: <strong>{info.class || "unknown"}</strong></div>
+			<div>Class: <strong>{info.class ? info.class.name : "unknown"}</strong></div>
 			<div>Due: <strong>{info.due || "unknown"}</strong></div>
 		</AddActionInfo>;
 	}
