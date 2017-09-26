@@ -176,7 +176,7 @@ export default {
 		var className = sentence.match("(#Conjunction|#Preposition) (#MHSClass|#MHSClassSynonym)").terms(1).out().trim();
 		response.class = findClass(className);
 
-		var termsToScan = sentence.replace("(#Conjunction|#Preposition) (#MHSClass|#MHSClassSynonym)", "").replace("#Date", "").list[0].terms;
+		var termsToScan = sentence.replace("(#Conjunction|#Preposition) (#MHSClass|#MHSClassSynonym)", "").replace("(#Conjunction|#Preposition)? #Date", "").list[0].terms;
 
 		for (var termIndex in termsToScan) {
 			var term = termsToScan[termIndex];
@@ -186,8 +186,6 @@ export default {
 				var prefixIndex = prefixList.indexOf(term.text.toLowerCase());
 				response.tag = casePrefixList[prefixIndex];
 				nameTrack = true;
-			} else if (term.text.toLowerCase() == "due" || term.text.toLowerCase() == "class") {
-				// skip it
 			} else if (nameTrack) {
 				response.name += term.text;
 				response.name += " ";
