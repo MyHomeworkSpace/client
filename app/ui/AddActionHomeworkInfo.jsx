@@ -11,8 +11,16 @@ import HomeworkName from "ui/HomeworkName.jsx";
 class AddActionHomeworkInfo extends Component {
 	render(props, state) {
 		if (props.text.trim() == "") {
-			return <AddActionInfo>
+			return <AddActionInfo class="addActionHomeworkInfoBlank">
 				<p>Type your homework in the textbox above.</p>
+				<div class="addActionHomeworkInfoExamples">
+					<span>for example</span>
+					<ul>
+						<li>read poem for English for tomorrow</li>
+						<li>take test on molecules in Science on next Tuesday</li>
+						<li>for next Friday, write an essay about the revolution in History class</li>
+					</ul>
+				</div>
 			</AddActionInfo>;
 		}
 		var info = quickAdd.parseText(props.text);
