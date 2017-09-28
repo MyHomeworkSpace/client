@@ -10,9 +10,25 @@ import CalendarNowLine from "calendar/CalendarNowLine.jsx";
 class CalendarEvents extends Component {
 	constructor(props) {
 		super(props);
+		this.timer = null;
 		this.state = {
-			bodyClick: this.onBodyClick.bind(this)
+			bodyClick: this.onBodyClick.bind(this),
+			time: moment().unix()
 		};
+	}
+	
+	componentDidMount() {
+		var that = this;
+		this.timer = setInterval(function() {
+			that.setState({
+				time: moment().unix()
+			});
+		}, 1000);
+	}
+	
+	componentWillUnmount() {
+		clearTimeout(this.timer);
+		this.timer = null;
 	}
 
 	openPopover(top, left, type, item) {
@@ -147,7 +163,7 @@ class CalendarEvents extends Component {
 			});
 		});
 
-		var today = moment();
+		var today = moment.unix(state.time);
 
 		return <div class="calendarEvents">
 			<div class="calendarEventsGutter">
@@ -176,7 +192,7 @@ class CalendarEvents extends Component {
 				<div class="calendarEventsGutterHour">10p</div>
 				<div class="calendarEventsGutterHour">11p</div>
 			</div>
-			<CalendarNowLine />
+			<CalendarNowLine time={state.time} />
 			<div class={`calendarEventsDay ${props.monday.isSame(today, "day") ? "calendarEventsDayToday" : ""}`}>{eventElements[1]}</div>
 			<div class={`calendarEventsDay ${moment(props.monday).add(1, "day").isSame(today, "day") ? "calendarEventsDayToday" : ""}`}>{eventElements[2]}</div>
 			<div class={`calendarEventsDay ${moment(props.monday).add(2, "day").isSame(today, "day") ? "calendarEventsDayToday" : ""}`}>{eventElements[3]}</div>
