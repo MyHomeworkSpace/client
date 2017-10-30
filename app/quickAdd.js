@@ -160,7 +160,7 @@ export default {
 		var sentence = nlp(text, lexicon);
 
 		response.tag = sentence.match("#MHSPrefix").terms(0).out().trim();
-		response.due = sentence.match("#Date").out().trim();
+		response.due = sentence.replace("Test", "").replace("test", "").match("#Date").out().trim();
 
 		var className = sentence.match("(#MHSClass|#MHSClassSynonym)").terms(0).out().trim();
 		response.class = findClass(className);
@@ -170,7 +170,7 @@ export default {
 		// class name
 		nameSentence.replace("(#Conjunction|#Preposition)? (#MHSClass|#MHSClassSynonym) class?", "");
 		// due date info
-		nameSentence.replace("(#Conjunction|#Preposition)? #Date", "");
+		nameSentence.replace("(#Conjunction|#Preposition|due)? #Date", "");
 		// prefix info
 		nameSentence.replace("*+ #MHSPrefix", "");
 		nameSentence.replace("#MHSPrefix", "");
