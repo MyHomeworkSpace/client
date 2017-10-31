@@ -8,7 +8,7 @@ class HomeworkName extends Component {
 		var tag = nameParts[0];
 		var remain = nameParts.slice(1).join(" ");
 		var color = prefixes.matchPrefix(tag);
-		return <span><span style={`background-color:#${color.background};color:#${color.color};padding-left:2px;padding-right:2px;`}>{tag}</span> {remain}</span>;
+		return <span><span style={`background-color:#${color.background};color:#${color.color};padding:2px;`}>{tag}</span> {remain}</span>;
 	}
 }
 

@@ -1,20 +1,22 @@
 .classColorPickerContainer
 	display: inline-block
+	float: left
+	margin-bottom: -5px
 	position: relative
 
 .classColorPicker
 	border: 1px solid #ccc
 	border-radius: 4px
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+	display: inline-block
 	cursor: pointer
 	font-size: 18px
 	padding: 6px 12px
 	user-select: none
-	width: 300px
+	width: 65px
 	
 	.classColorPickerOutput
 		float: left
-		width: 250px
 		height: 25px
 		overflow: hidden
 		text-overflow: ellipsis
@@ -25,8 +27,10 @@
 			font-style: italic
 
 		.classColorPickerColor
-			width: 25px
-			height: 25px
+			border-radius: 100%
+			margin-top: 5px
+			width: 16px
+			height: 16px
 
 	.classColorPickerAction
 		color: #ccc
