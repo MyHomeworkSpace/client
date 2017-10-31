@@ -72,10 +72,9 @@ class HomeworkItem extends Component {
 			</div>
 			<div class="hwName">
 				<HomeworkName name={props.homework.name} />
-				{late && " (late)"}
 			</div>
 			<div class="hwDetails">
-				<div><i class="fa fa-calendar-o" /> {dueText}</div>
+				{dueText != "Tomorrow" && <div><i class="fa fa-calendar-o" /> {dueText} {late && " (late)"}</div>}
 				<div><ClassName classObject={classObject} /></div>
 			</div>
 			{props.homework.desc.trim() != "" && <i class="hwDescIcon fa fa-align-left" title="This homework has a description"></i>}
