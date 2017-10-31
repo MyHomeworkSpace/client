@@ -2,6 +2,7 @@ import "homework/HomeworkItem.styl";
 
 import { h, Component } from "preact";
 
+import ClassName from "ui/ClassName.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
 class HomeworkItem extends Component {
@@ -73,8 +74,9 @@ class HomeworkItem extends Component {
 				<HomeworkName name={props.homework.name} />
 				{late && " (late)"}
 			</div>
-			<div class="hwSubText">
-				{keyword}{dueText} in {classObject.name}
+			<div class="hwDetails">
+				<div><i class="fa fa-calendar-o" /> {dueText}</div>
+				<div><ClassName classObject={classObject} /></div>
 			</div>
 			{props.homework.desc.trim() != "" && <i class="hwDescIcon fa fa-align-left" title="This homework has a description"></i>}
 		</div>;
