@@ -19,6 +19,7 @@
 
 .classItem {
 	cursor: default;
+	padding-left: 8px;
 	padding: 5px;
 	transition: all 0.2s;
 	position: relative;
@@ -46,6 +47,13 @@
 	color: rgb(10, 10, 10);
 }
 
+.classColorBar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3px;
+	height: 100%
+}
 .className {
 	font-size: 16px;
 }

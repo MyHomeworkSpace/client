@@ -5,6 +5,8 @@ import linkState from "linkstate";
 
 import api from "api.js";
 
+import ClassColorPicker from "classes/ClassColorPicker.jsx";
+
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
 
@@ -15,7 +17,8 @@ class ClassModal extends Component {
 		this.state = {
 			isNew: isNew,
 			name: (isNew ? "" : props.modalState.name),
-			teacher: (isNew ? "" : props.modalState.teacher)
+			teacher: (isNew ? "" : props.modalState.teacher),
+			color: (isNew ? "" : props.modalState.color)
 		};
 	}
 
@@ -27,6 +30,7 @@ class ClassModal extends Component {
 			var classInfo = {
 				name: this.state.name,
 				teacher: this.state.teacher,
+				color: this.state.color
 			};
 			if (!that.state.isNew) {
 				classInfo.id = this.props.modalState.id;
@@ -71,6 +75,12 @@ class ClassModal extends Component {
 		}
 	}
 
+	changeColor(color) {
+		this.setState({
+			color: color
+		});
+	}
+
 	render(props, state) {
 		if (state.loading) {
 			return <Modal title={(state.isNew ? "Add class" : "Edit class")} openModal={props.openModal} noClose class="classModal">
@@ -84,6 +94,7 @@ class ClassModal extends Component {
 			<div class="modal-body">
 				<input type="text" placeholder="Name" class="classModalName form-control" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} value={this.state.name} />
 				<input type="text" placeholder="Teacher" class="classModalTeacher form-control" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "teacher")} value={this.state.teacher} />
+				<ClassColorPicker onChange={this.changeColor.bind(this)} value={this.state.color} />
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}
