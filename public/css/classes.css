@@ -47,13 +47,6 @@
 	color: rgb(10, 10, 10);
 }
 
-.classColorBar {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 3px;
-	height: 100%
-}
 .className {
 	font-size: 16px;
 }

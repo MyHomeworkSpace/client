@@ -4,6 +4,7 @@ import { h, Component } from "preact";
 import linkState from "linkstate";
 
 import api from "api.js";
+import consts from "consts.js";
 
 import ClassColorPicker from "classes/ClassColorPicker.jsx";
 
@@ -18,7 +19,7 @@ class ClassModal extends Component {
 			isNew: isNew,
 			name: (isNew ? "" : props.modalState.name),
 			teacher: (isNew ? "" : props.modalState.teacher),
-			color: (isNew ? "" : props.modalState.color)
+			color: (isNew ? consts.classColors[Math.floor(Math.random() * consts.classColors.length)] : props.modalState.color)
 		};
 	}
 

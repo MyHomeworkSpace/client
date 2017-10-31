@@ -18,11 +18,10 @@ MyHomeworkSpace.Pages.classes = {
 			var classItem = MyHomeworkSpace.Classes.list[classIndex];
 			var $item = $('<li class="classItem"></li>');
 				$item.attr("data-classId", classItem.id);
-				var $colorBar = $('<div class="classColorBar"></div>');
-					$colorBar.css("background-color", "#" + classItem.color);
-				$item.append($colorBar);
-				var $name = $('<div class="className"></div>');
-					$name.text(classItem.name);
+				var $name = $('<span></span>');
+					MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.ClassName, {
+						classObject: classItem
+					}), null, $name[0]);
 				$item.append($name);
 				var $teacher = $('<div class="classTeacher"></div>');
 					$teacher.text(classItem.teacher);

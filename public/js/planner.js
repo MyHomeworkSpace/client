@@ -123,7 +123,11 @@ MyHomeworkSpace.Pages.planner = {
 			var $classRow = $('<tr></tr>');
 				$classRow.addClass("classRow");
 				$classRow.attr("data-classId", classItem.id);
-				$classRow.append($('<td></td>').text(classItem.name).addClass("subjectCell"));
+				var $name = $('<span></span>');
+					MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.ClassName, {
+						classObject: classItem
+					}), null, $name[0]);
+				$classRow.append($('<td></td>').append($name).addClass("subjectCell"));
 				$classRow.append($('<td><ul></ul></td>').addClass("plannerHWBox").attr("data-dow", "0"));
 				$classRow.append($('<td><ul></ul></td>').addClass("plannerHWBox").attr("data-dow", "1"));
 				$classRow.append($('<td><ul></ul></td>').addClass("plannerHWBox").attr("data-dow", "2"));
