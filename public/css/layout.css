@@ -10,3 +10,15 @@ body {
 	position: relative;
 	top: -3px;
 }
+
+.license-no {
+	color: #C6403D;
+}
+
+.license-yes {
+	color: #3DC637;
+}
+
+.license-condition{
+	color: #0099D6;
+}
