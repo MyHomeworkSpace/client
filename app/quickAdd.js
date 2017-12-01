@@ -11,12 +11,14 @@ var classSynonyms = [
 var lexicon = {};
 
 var findClass = function(name) {
+	var normalizedName = name.replace(/ /g, "").toLowerCase();
 	for (var classIndex in classes) {
 		var classItem = classes[classIndex];
+		var classNormalized = classItem.replace(/ /g, "").toLowerCase();
 		var classId = classIds[classIndex];
 
 		// check for exact match
-		if (classItem.toLowerCase() == name.toLowerCase()) {
+		if (classNormalized == normalizedName) {
 			// found it
 			return {
 				id: classId,
@@ -27,7 +29,7 @@ var findClass = function(name) {
 		// check all synonyms
 		for (var listIndex in classSynonyms) {
 			var synonymList = classSynonyms[listIndex];
-			if (synonymList.indexOf(classItem.toLowerCase()) > -1 && synonymList.indexOf(name.toLowerCase()) > -1) {
+			if (synonymList.indexOf(classNormalized) > -1 && synonymList.indexOf(normalizedName) > -1) {
 				// this class and the target name are synonyms
 				return {
 					id: classId,
@@ -74,8 +76,10 @@ export default {
 		for (var classIndex in MyHomeworkSpace.Classes.list) {
 			var classItem = MyHomeworkSpace.Classes.list[classIndex];
 
+			var normalizedName = classItem.name.replace(/ /g, "").toLowerCase();
+
 			// tell nlp_compromise
-			lexicon[classItem.name.toLowerCase()] = "MHSClass";
+			lexicon[normalizedName] = "MHSClass";
 
 			classes.push(classItem.name);
 			classIds.push(classItem.id);
@@ -158,11 +162,21 @@ export default {
 			due: ""
 		};
 		var sentence = nlp(text, lexicon);
+		
+		for (var classIndex in MyHomeworkSpace.Classes.list) {
+			var classItem = MyHomeworkSpace.Classes.list[classIndex];
+			var hasSpace = classItem.name.indexOf(" ") > -1;
+
+			if (hasSpace) {
+				// special case: make it one word
+				sentence.replace(classItem.name, classItem.name.replace(/ /g, ""));
+			}
+		}
 
 		response.tag = sentence.match("#MHSPrefix").terms(0).out().trim();
 		response.due = sentence.replace("Test", "").replace("test", "").match("#Date").out().trim();
 
-		var className = sentence.match("(#MHSClass|#MHSClassSynonym)").terms(0).out().trim();
+		var className = sentence.match("(#MHSClass|#MHSClassSynonym)").terms(0).out().replace(/ /g, "").toLowerCase().trim();
 		response.class = findClass(className);
 
 		var nameSentence = sentence;
