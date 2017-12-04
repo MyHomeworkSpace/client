@@ -7,6 +7,11 @@ import CalendarEvents from "calendar/CalendarEvents.jsx";
 import CalendarWeekDay from "calendar/CalendarWeekDay.jsx";
 
 class CalendarWeek extends Component {
+	constructor() {
+		super();
+		this._resizeHandler = this.onResize.bind(this);
+	}
+
 	componentDidMount() {
 		var time = Math.floor((moment().unix() - moment("00:00:00", "HH:mm:ss").unix()) / 60);
 		var scrollPos = time - 150;
@@ -14,11 +19,30 @@ class CalendarWeek extends Component {
 			scrollPos = 0;
 		}
 		document.querySelector(".calendarWeekEventsContainer").scrollTop = scrollPos;
+
+		// calculate offset for platforms with scrollbars
+		// see https://github.com/MyHomeworkSpace/client/issues/69
+		if (!this.state.foundOffset) {
+			this.onResize();
+		}
+
+		window.addEventListener("resize", this._resizeHandler);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("resize", this._resizeHandler);
+	}
+
+	onResize() {
+		this.setState({
+			foundOffset: true,
+			rightOffset: document.querySelector(".calendarWeekEventsContainer").offsetWidth - document.querySelector(".calendarWeekEventsContainer").clientWidth
+		});
 	}
 
 	render(props, state) {
 		return <div class="calendarWeek">
-			<div class="calendarWeekHeader">
+			<div class="calendarWeekHeader" style={`padding-right:${state.rightOffset || 0}px`}>
 				<CalendarWeekDay announcements={props.announcements} name="Monday" day={props.monday} />
 				<CalendarWeekDay announcements={props.announcements} name="Tuesday" day={moment(props.monday).add(1, "day")} />
 				<CalendarWeekDay announcements={props.announcements} name="Wednesday" day={moment(props.monday).add(2, "days")} />
