@@ -21,6 +21,9 @@ var afterLogin = function(info) {
 			currentApplication = xhr.responseJSON.application;
 			$(".applicationAuthName").text(currentApplication.name);
 			$(".applicationAuthAuthor").text(currentApplication.authorName);
+			if (currentApplication.authorName.trim() == "") {
+				$(".applicationAuthAuthorLabel").text("");
+			}
 		} else {
 			$(".applicationAuthErrorMessage").text("Could not get application for authentication request. Try again later.");
 			$(".applicationAuthError").removeClass("hidden");
