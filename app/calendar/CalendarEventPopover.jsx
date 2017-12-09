@@ -49,8 +49,8 @@ class CalendarEventPopover extends Component {
 			<div class="calendarEventPopoverName">{props.type == "homework" ? <HomeworkName name={props.item.homework.name} /> : props.item.name}</div>
 			{info}
 			<div class="calendarEventPopoverTime">{startDisplay} to {endDisplay}</div>
-			{props.type == "schedule" && <div class="calendarEventPopoverLocation">{props.item.buildingName} Room {props.item.roomNumber}</div>}
-			{props.type == "schedule" && <div class="calendarEventPopoverPeriod">{props.item.block} Period</div>}
+			{props.type == "schedule" && (props.item.buildingName || props.item.roomNumber) && <div class="calendarEventPopoverLocation">{props.item.buildingName} Room {props.item.roomNumber}</div>}
+			{props.type == "schedule" && props.item.block && <div class="calendarEventPopoverPeriod">{props.item.block} Period</div>}
 			{actions}
 			{isScheduleItem && <div class="calendarEventPopoverOrigin"><i class="fa fa-clock-o" /> from your schedule</div>}
 		</div>;
