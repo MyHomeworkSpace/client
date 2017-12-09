@@ -175,6 +175,7 @@ MyHomeworkSpace.Pages.homework = {
 					MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.homework.HomeworkItem, {
 						classes: MyHomeworkSpace.Classes.list,
 						homework: hwItem,
+						isMondayColumn: (showMonday && daysTo < tomorrowDaysToThreshold),
 						edit: function(id) {
 							MyHomeworkSpace.Pages.homework.edit(id);
 						},
