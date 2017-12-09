@@ -25,6 +25,7 @@ MyHomeworkSpace.Classes = {
 };
 
 MyHomeworkSpace.Me = {}; // will store the current user when logged in
+MyHomeworkSpace.Tabs = null; // will store the current user's tabs when logged in
 
 MyHomeworkSpace.Nav = {
 	inverted: false,
@@ -32,6 +33,7 @@ MyHomeworkSpace.Nav = {
 	rerenderNav: function() {
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.Sidebar, {
 			me: MyHomeworkSpace.Me,
+			tabs: MyHomeworkSpace.Tabs,
 			page: MyHomeworkSpace.Page.current(),
 			openModal: MHSBridge.default.openModal,
 			openPage: MyHomeworkSpace.Page.show,
@@ -40,6 +42,7 @@ MyHomeworkSpace.Nav = {
 		}), null, $(".sidebar")[0]);
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.TopBar, {
 			me: MyHomeworkSpace.Me,
+			tabs: MyHomeworkSpace.Tabs,
 			page: MyHomeworkSpace.Page.current(),
 			openModal: MHSBridge.default.openModal,
 			openPage: MyHomeworkSpace.Page.show,

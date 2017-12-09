@@ -53,6 +53,27 @@ MyHomeworkSpace.Pages.login = {
 
 				MyHomeworkSpace.Me = info.user;
 				MyHomeworkSpace.Me.grade = info.grade;
+				MyHomeworkSpace.Tabs = info.tabs;
+
+				// add the server-side tabs
+				$(".serverTab").remove();
+				for (var tabIndex in MyHomeworkSpace.Tabs) {
+					var tab = MyHomeworkSpace.Tabs[tabIndex];
+					var $tab = $('<div class="page serverTab hidden">');
+						$tab.attr("id", tab.slug);
+						$tab.css({
+							padding: "0"
+						});
+						var $frame = $('<iframe seamless></iframe>');
+							$frame.css({
+								border: "none",
+								width: "100%",
+								height: "100%"
+							});
+							$frame.attr("src", tab.target);
+						$tab.append($frame);
+					$("body").append($tab);
+				}
 				
 				if ($("#" + window.location.hash.substr(2)).length > 0 && window.location.hash.substr(2) != "login") {
 					MyHomeworkSpace.Page.show(window.location.hash.substr(2));

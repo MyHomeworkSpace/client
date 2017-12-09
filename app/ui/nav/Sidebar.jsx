@@ -13,6 +13,9 @@ class Sidebar extends Component {
 			{false && props.me.level > 0 && <SidebarLink page="admin" icon="server" label="Admin" currentPage={props.page} openPage={props.openPage} />}
 		
 			<SidebarLink tiny page="classes" icon="graduation-cap" label="Classes" currentPage={props.page} openPage={props.openPage} />
+			{props.tabs && props.tabs.map(function(tab) {
+				return <SidebarLink tiny page={tab.slug} icon={tab.icon} label={tab.label} currentPage={props.page} openPage={props.openPage} />;
+			})}
 			<SidebarLink tiny page="settings" icon="cogs" label="Settings" currentPage={props.page} openPage={props.openPage} />
 			<SidebarLink tiny page="help" icon="question-circle" label="Help" currentPage={props.page} openPage={props.openPage} />
 		</div>;
