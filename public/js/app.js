@@ -74,15 +74,30 @@ MyHomeworkSpace.Page = {
 	current: function() {
 		return $(".page:not(.hidden)").attr("id");
 	},
-	show: function(name) {
+	show: function(path) {
 		$(".page:not(.hidden)").addClass("hidden");
 		$(".sidebarItem.selected").removeClass("selected");
-		if (name) {
-			$("#" + name).removeClass("hidden");
+		if (path) {
+			var parts = path.split(":");
+			var name = parts[0];
+			var param = parts[1];
+			var $page = $("#" + name);
+			$page.removeClass("hidden");
 			$(".sidebarItem[data-page=" + name + "]").addClass("selected");
-			window.location.hash = "!" + name;
+			window.location.hash = "!" + name + (param ? ":" + param : "");
 			if (MyHomeworkSpace.Pages[name] && MyHomeworkSpace.Pages[name].open) {
-				MyHomeworkSpace.Pages[name].open();
+				MyHomeworkSpace.Pages[name].open(param);
+			}
+			if ($page.hasClass("serverTab")) {
+				var tab;
+				for (var tabIndex in MyHomeworkSpace.Tabs) {
+					if (MyHomeworkSpace.Tabs[tabIndex].slug == name) {
+						tab = MyHomeworkSpace.Tabs[tabIndex];
+					}
+				}
+				var src = $page.children("iframe").attr("src");
+				src = tab.target + "#" + (param || "");
+				$page.children("iframe").attr("src", src);
 			}
 		}
 		MyHomeworkSpace.Nav.rerenderNav();
