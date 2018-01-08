@@ -75,7 +75,7 @@ MyHomeworkSpace.Pages.login = {
 					$("body").append($tab);
 				}
 				
-				if ($("#" + window.location.hash.substr(2).split(":")[0]).length > 0 && window.location.hash.substr(2) != "login") {
+				if (window.location.hash.substr(2) != "login") {
 					MyHomeworkSpace.Page.show(window.location.hash.substr(2));
 				} else {
 					MyHomeworkSpace.Page.show("homework");
