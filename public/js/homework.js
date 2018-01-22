@@ -137,19 +137,8 @@ MyHomeworkSpace.Pages.homework = {
 		$("#homeworkSoon .hwList").html('<ul></ul>');
 		$("#homeworkLongterm .hwList").html('<ul></ul>');
 		var classes = MyHomeworkSpace.Classes.list;
-		MyHomeworkSpace.API.get("homework/getHWView", {}, function(xhr) {
-			var hw = xhr.responseJSON.homework;
-			var showMonday = (moment().day() == 5 || moment().day() == 6);
-			var tomorrowDaysToThreshold = 2;
-			var showOverdue = false;
-			if (showMonday) {
-				$("#homeworkTomorrowTitle").text("Monday");
-				if (moment().day() == 5) {
-					tomorrowDaysToThreshold = 4;
-				} else {
-					tomorrowDaysToThreshold = 3;
-				}
-			}
+
+		var addHomeworkToList = function($list, hw, columnName) {
 			for (var hwIndex in hw) {
 				var hwItem = hw[hwIndex];
 
@@ -175,7 +164,7 @@ MyHomeworkSpace.Pages.homework = {
 					MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.homework.HomeworkItem, {
 						classes: MyHomeworkSpace.Classes.list,
 						homework: hwItem,
-						isMondayColumn: (showMonday && daysTo < tomorrowDaysToThreshold),
+						isMondayColumn: (columnName == "Monday"),
 						edit: function(id) {
 							MyHomeworkSpace.Pages.homework.edit(id);
 						},
@@ -184,17 +173,21 @@ MyHomeworkSpace.Pages.homework = {
 						}
 					}), null, $item[0]);
 
-				if (daysTo < 1) {
-					showOverdue = true;
-					$("#homeworkOverdue .hwList ul").append($item);
-				} else if (daysTo < tomorrowDaysToThreshold) {
-					$("#homeworkTomorrow .hwList ul").append($item);
-				} else if (daysTo < 5) {
-					$("#homeworkSoon .hwList ul").append($item);
-				} else {
-					$("#homeworkLongterm .hwList ul").append($item);
-				}
+				$list.append($item);
 			}
+		};
+
+		MyHomeworkSpace.API.get("homework/getHWViewSorted", {}, function(xhr) {
+			var hwView = xhr.responseJSON;
+			$("#homeworkTomorrowTitle").text(hwView.tomorrowName);
+			if (hwView.overdue.length > 0) {
+				addHomeworkToList($("#homeworkOverdue .hwList ul"), hwView.overdue);
+				$("#homeworkOverdue").show();
+			}
+			addHomeworkToList($("#homeworkTomorrow .hwList ul"), hwView.tomorrow, hwView.tomorrowName);
+			addHomeworkToList($("#homeworkSoon .hwList ul"), hwView.soon);
+			addHomeworkToList($("#homeworkLongterm .hwList ul"), hwView.longterm);
+			
 			if (showOverdue) {
 				$("#homeworkOverdue").show();
 			}
