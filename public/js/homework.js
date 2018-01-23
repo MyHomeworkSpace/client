@@ -187,10 +187,6 @@ MyHomeworkSpace.Pages.homework = {
 			addHomeworkToList($("#homeworkTomorrow .hwList ul"), hwView.tomorrow, hwView.tomorrowName);
 			addHomeworkToList($("#homeworkSoon .hwList ul"), hwView.soon);
 			addHomeworkToList($("#homeworkLongterm .hwList ul"), hwView.longterm);
-			
-			if (showOverdue) {
-				$("#homeworkOverdue").show();
-			}
 		});
 	}
 };

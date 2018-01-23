@@ -40,6 +40,13 @@ MyHomeworkSpace.Pages.settings = {
 			MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.settings.ApplicationList, {}), null, $("#settingsApplicationsList > div")[0]);
 		});
 
+		// homework
+		$("a[href=\\#settings_homework]").on("show.bs.tab", function() {
+			MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.settings.HomeworkSettings, {
+				classes: MyHomeworkSpace.Classes.list
+			}), null, $("#settingsHomeworkContainer > div")[0]);
+		});
+
 		// calendar
 		$("a[href=\\#settings_calendar]").on("show.bs.tab", function() {
 			MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.settings.CalendarSettings, {}), null, $("#settingsCalendarContainer > div")[0]);

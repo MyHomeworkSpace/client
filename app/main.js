@@ -13,6 +13,7 @@ import HomeworkItem from "homework/HomeworkItem.jsx";
 
 import ApplicationList from "settings/ApplicationList.jsx";
 import CalendarSettings from "settings/CalendarSettings.jsx";
+import HomeworkSettings from "settings/HomeworkSettings.jsx";
 
 import AddAction from "ui/AddAction.jsx";
 import ClassName from "ui/ClassName.jsx";
@@ -119,7 +120,8 @@ export default {
 		},
 		settings: {
 			ApplicationList: ApplicationList,
-			CalendarSettings: CalendarSettings
+			CalendarSettings: CalendarSettings,
+			HomeworkSettings: HomeworkSettings
 		}
 	},
 
