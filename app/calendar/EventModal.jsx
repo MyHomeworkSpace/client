@@ -15,7 +15,19 @@ import TimePicker from "ui/TimePicker.jsx";
 class EventModal extends Component {
 	constructor(props) {
 		super(props);
+		
 		var isNew = (props.modalState.id ? false : true);
+		var startTime = (isNew ? moment().second(0) : moment.unix(props.modalState.start));
+		var endTime = (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end));
+		
+		if (isNew) {
+			// round the time to a 15-minute interval
+			while (startTime.minute() % 15 != 0) {
+				startTime.add(1, "minute");
+			}
+			endTime = moment(startTime).add(30, "minutes");
+		}
+
 		this.state = {
 			isNew: isNew,
 			type: props.modalState.type || "event",
@@ -26,9 +38,9 @@ class EventModal extends Component {
 			homework: props.modalState.homework,
 
 			startDate: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
-			startTime: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
+			startTime: startTime,
 			endDate: (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end)),
-			endTime: (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end))
+			endTime: endTime
 		};
 	}
 
@@ -184,7 +196,7 @@ class EventModal extends Component {
 					<div class="col-md-1 eventModalLabel">End</div>
 					<div class="col-md-9 eventModalData">
 						<DatePicker value={state.endDate} change={this.pickerChange.bind(this, "endDate")} />
-						<TimePicker value={state.endTime} change={this.pickerChange.bind(this, "endTime")} />
+						<TimePicker value={state.endTime} change={this.pickerChange.bind(this, "endTime")} suggestStart={state.startTime} />
 					</div>
 				</div>
 

@@ -4,32 +4,22 @@
 	border-radius: 4px
 	position: absolute
 	top: 34px
-	width: 151px
+	width: 176px
 	height: auto
+	max-height: 150px
+	overflow-y: auto
 	z-index: 1000
 	padding: 10px
-	
-	.btn
-		width: 38px
 
-	.row
-		margin-left: 0
-		margin-right: 0
-		
-		.col-md-4
-			padding-left: 0
-			padding-right: 0
-			text-align: center
-			
-	.timePickerPopupNumberRow
-		.col-md-4
-			height: 30px
-			line-height: 30px
-	
-	.timePickerPopupNumberInput
-		width: calc(100% - 5px)
-		height: 25px
-		margin-top: 2px
-		margin-left: 3px
-		padding: 0
-		text-align: center
+	.timePickerPopupSuggestion
+		cursor: pointer
+		font-size: 14px
+		padding: 2px
+
+		.timePickerPopupSuggestionDuration
+			color: #555
+			font-size: 12px
+			margin-left: 4px
+
+	.timePickerPopupSuggestion:hover
+		background: #ddd

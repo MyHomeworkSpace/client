@@ -29,7 +29,7 @@ class TimePicker extends Component {
 
 	render(props, state) {
 		return <Picker editable display={props.value.format("h:mm a")} class="timePicker" open={state.open} setOpen={this.setOpen.bind(this)} onTextChange={this.onTextChange.bind(this)}>
-			<TimePickerPopup time={props.value} selectTime={this.selectTime.bind(this)} />
+			<TimePickerPopup time={props.value} selectTime={this.selectTime.bind(this)} setOpen={this.setOpen.bind(this)} suggestStart={props.suggestStart} />
 		</Picker>;
 	}
 }

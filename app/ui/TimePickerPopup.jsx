@@ -6,91 +6,89 @@ import linkState from "linkstate";
 import moment from "moment";
 
 class TimePickerPopup extends Component {
-	constructor(props) {
-		super(props);
-	}
+	componentDidMount() {
+		var showDuration = !!this.props.suggestStart;
 
-	action(thing, amount) {
-		var newTime = moment(this.props.time);
-		newTime.add(amount, thing);
-		this.props.selectTime(newTime);
-	}
-
-	toggleAMPM(thing, amount) {
-		var newTime = moment(this.props.time);
-		if (newTime.hour() >= 12) {
-			newTime.hour(newTime.hour() - 12);
+		if (showDuration) {
+			// we're an end time picker, so calculate 
+			var offset = this.props.time.diff(this.props.suggestStart, "minutes") / 15;
+			console.log(offset);
+			this._popup.scrollTop = Math.max(0, (offset * 24) - 45);
 		} else {
-			newTime.hour(newTime.hour() + 12);
+			// we're a start time picker, so selected time is always in the center
+			this._popup.scrollTop = Math.max(0, (this._popup.scrollHeight / 2) - 45);
 		}
-		this.props.selectTime(newTime);
 	}
 
-	now() {
-		this.props.selectTime(moment());
-	}
-
-	change(type, e) {
-		var formatString = (type == "hour" ? "h" : "mm");
-		var newThing = parseInt(e.target.value);
-		var changedSomething = false;
-		var time = moment(this.props.time);
-		if (
-			!(isNaN(newThing)) &&
-			!(newThing < 1 && newThing > 12 && type == "hour") &&
-			!(newThing < 0 && newThing > 59 && type == "minute")
-		) {
-			if (type == "hour") {
-				time.hour((time.hour() > 12 ? newThing + 12 : newThing));
-				changedSomething = true;
-			} else {
-				time.minute(newThing);
-				changedSomething = true;
-			}
-		}
-		if (changedSomething) {
-			this.props.selectTime(time);
+	getSuggestionBase() {
+		var suggestionBase;
+		if (this.props.suggestStart) {
+			suggestionBase = this.props.suggestStart;
 		} else {
-			// reset the textbox
-			e.target.value = this.props.time.format(formatString);
+			suggestionBase = this.props.time;
 		}
+		return suggestionBase;
+	}
+
+	clickSuggestion(offset) {
+		var selectedTime = moment(this.getSuggestionBase()).add(offset, "minutes");
+		this.props.selectTime(selectedTime);
+		this.props.setOpen(false);
 	}
 
 	render(props, state) {
-		return <div class="timePickerPopup">
-			<div class="row">
-				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", 1)}><i class="fa fa-chevron-up" /></button>
-				</div>
-				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", 1)}><i class="fa fa-chevron-up" /></button>
-				</div>
-				<div class="col-md-4"></div>
-			</div>
+		var that = this;
 
-			<div class="row timePickerPopupNumberRow">
-				<div class="col-md-4">
-					<input type="text" class="form-control timePickerPopupNumberInput" value={props.time.format("h")} onChange={this.change.bind(this, "hour")} />
-				</div>
-				<div class="col-md-4">
-					<input type="text" class="form-control timePickerPopupNumberInput" value={props.time.format("mm")} onChange={this.change.bind(this, "minute")} />
-				</div>
-				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.toggleAMPM.bind(this)}>{props.time.format("a")}</button>
-				</div>
-			</div>
+		var suggestionBase = this.getSuggestionBase();
+		var showDuration = !!props.suggestStart;
 
-			<div class="row">
-				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "hour", -1)}><i class="fa fa-chevron-down" /></button>
-				</div>
-				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.action.bind(this, "minute", -1)}><i class="fa fa-chevron-down" /></button>
-				</div>
-				<div class="col-md-4">
-					<button class="btn btn-sm btn-default" onClick={this.now.bind(this)}><i class="fa fa-clock-o" /></button>
-				</div>
-			</div>
+		var offsets = [];
+
+		if (!showDuration) {
+			offsets = offsets.concat([
+				-120, -105, -90, -75,
+				-60, -45, -30, -15,
+				0
+			]);
+		}
+		offsets = offsets.concat([
+			15, 30, 45, 60,
+			75, 90, 105, 120
+		]);
+		if (showDuration) {
+			offsets = offsets.concat([
+				135, 150, 165, 180,
+				195, 210, 225, 240
+			]);
+		}
+
+		return <div class="timePickerPopup" ref={ (popup) => {
+			this._popup = popup;
+		}}>
+			{offsets.map(function(offset) {
+				var momentTime = moment(suggestionBase).add(offset, "minutes");
+
+				var durationDisplay = "";
+				if (showDuration) {
+					var durationMinutes = momentTime.diff(suggestionBase, "minutes");
+
+					var durationHoursDisplay = Math.floor(durationMinutes / 60);
+					var durationMinutesDisplay = durationMinutes % 60;
+
+					if (durationHoursDisplay != 0) {
+						durationDisplay = durationHoursDisplay + " hr" + (durationHoursDisplay > 1 ? "s" : "") + (durationMinutesDisplay > 0 ? " " + durationMinutesDisplay + " min" : "");
+					} else {
+						durationDisplay = durationMinutesDisplay + " min";
+					}
+				}
+
+				return <div class="timePickerPopupSuggestion" onClick={that.clickSuggestion.bind(that, offset)}>
+					{momentTime.format("h:mm a")}
+					{showDuration && <span class="timePickerPopupSuggestionDuration">
+						({durationDisplay})
+					</span>}
+				</div>;
+			})}
 		</div>;
 	}
 }
