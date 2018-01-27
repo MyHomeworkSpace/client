@@ -21,12 +21,12 @@ class Picker extends Component {
 	}
 
 	onBodyClick(e) {
-		if (this.props.open && this._pickerContents) {
+		if (this.props.open && this._pickerContainer) {
 			// loop through the parents to see if we're one
 			var targetIsChild = false;
 			var currentElement = e.target;
 			while (true) {
-				if (currentElement == this._pickerContents) {
+				if (currentElement == this._pickerContainer) {
 					// found it, so stop
 					targetIsChild = true;
 					break;
@@ -46,21 +46,37 @@ class Picker extends Component {
 		}
 	}
 
+	onFocus(e) {
+		if (this.props.editable) {
+			this.props.setOpen(true);
+		}
+	}
+
 	toggle(e) {
+		if (this.props.editable) {
+			return;
+		}
 		this.props.setOpen(!this.props.open);
+	}
+
+	onChange(e) {
+		this.props.onTextChange(e.target.value);
 	}
 
 	render(props, state) {
 		var format = props.format || "ddd, MMMM Do, YYYY";
-		return <div class="pickerContainer">
-			<div class={`picker ${props.class || ""}`} onClick={this.toggle.bind(this)}>
-				<div class="pickerOutput">{props.display}</div>
+		return <div class="pickerContainer" ref={ (pickerContainer) => {
+			this._pickerContainer = pickerContainer;
+		}}>
+			<div class={`picker ${props.editable ? "editable" : ""} ${props.open && props.editable ? "focus" : ""} ${props.class || ""}`} onClick={this.toggle.bind(this)}>
+				{props.editable && <input type="text" value={props.display} onChange={this.onChange.bind(this)} onFocus={this.onFocus.bind(this)} ref={ (pickerText) => {
+					this._pickerText = pickerText;
+				}}/>}
+				{!props.editable && <div class="pickerOutput">{props.display}</div>}
 				<div class="pickerAction"><i class={props.open ? "fa fa-chevron-circle-up" : "fa fa-chevron-circle-down"} /></div>
 				<div class="pickerClear"></div>
 			</div>
-			{props.open && <div class="pickerContents" ref={ (pickerContents) => {
-				this._pickerContents = pickerContents;	
-			}}>
+			{props.open && <div class="pickerContents">
 				{props.children}
 			</div>}
 		</div>;

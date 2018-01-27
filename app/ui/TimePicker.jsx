@@ -19,8 +19,16 @@ class TimePicker extends Component {
 		});
 	}
 
+	onTextChange(text) {
+		var newTime = moment(text, "hh:mm a");
+		if (newTime._pf.charsLeftOver == 0) {
+			// parsed correctly
+			this.selectTime(newTime);
+		}
+	}
+
 	render(props, state) {
-		return <Picker display={props.value.format("h:mm a")} class="timePicker" open={state.open} setOpen={this.setOpen.bind(this)}>
+		return <Picker editable display={props.value.format("h:mm a")} class="timePicker" open={state.open} setOpen={this.setOpen.bind(this)} onTextChange={this.onTextChange.bind(this)}>
 			<TimePickerPopup time={props.value} selectTime={this.selectTime.bind(this)} />
 		</Picker>;
 	}
