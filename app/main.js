@@ -9,7 +9,7 @@ import CalendarPage from "calendar/CalendarPage.jsx";
 
 import HelpPage from "help/HelpPage.jsx";
 
-import HomeworkItem from "homework/HomeworkItem.jsx";
+import HomeworkPage from "homework/HomeworkPage.jsx";
 
 import ApplicationList from "settings/ApplicationList.jsx";
 import CalendarSettings from "settings/CalendarSettings.jsx";
@@ -116,7 +116,7 @@ export default {
 			HelpPage: HelpPage
 		},
 		homework: {
-			HomeworkItem: HomeworkItem
+			HomeworkPage: HomeworkPage
 		},
 		settings: {
 			ApplicationList: ApplicationList,

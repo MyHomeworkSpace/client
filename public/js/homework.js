@@ -9,11 +9,6 @@ MyHomeworkSpace.Pages.homework = {
 				}
 			}
 		});
-		$("#homeworkOverdueDone").click(function() {
-			MyHomeworkSpace.API.post("homework/markOverdueDone", {}, function(xhr) {
-				MyHomeworkSpace.Pages.homework.open();
-			});
-		});
 		$("#deleteHomeworkModal").click(function() {
 			if (confirm("Are you sure you want to delete this?")) {
 				$("#homeworkModal").modal('hide');
@@ -72,6 +67,7 @@ MyHomeworkSpace.Pages.homework = {
 			}
 		});
 	},
+
 	onLogin: function() {
 		var filteredWords = [];
 		for (var index in MyHomeworkSpace.Prefixes.list) {
@@ -90,6 +86,7 @@ MyHomeworkSpace.Pages.homework = {
 			caseSensitive: false
 		});
 	},
+
 	edit: function(id) {
 		$("#loadingModal").modal({
 			backdrop: "static",
@@ -116,11 +113,13 @@ MyHomeworkSpace.Pages.homework = {
 			$("#homeworkModal").modal();
 		});
 	},
+
 	handleNew: function() {
 		if (MyHomeworkSpace.Page.current() == "homework" || MyHomeworkSpace.Page.current() == "planner") {
 			MyHomeworkSpace.Page.show(MyHomeworkSpace.Page.current());
 		}
 	},
+
 	markComplete: function(id, complete) {
 		MyHomeworkSpace.API.get("homework/get/" + id, {}, function(xhr) {
 			var hwItem = xhr.responseJSON.homework;
@@ -130,63 +129,8 @@ MyHomeworkSpace.Pages.homework = {
 			});
 		});
 	},
+
 	open: function() {
-		$("#homeworkOverdue").hide();
-		$("#homeworkOverdue .hwList").html('<ul></ul>');
-		$("#homeworkTomorrow .hwList").html('<ul></ul>');
-		$("#homeworkSoon .hwList").html('<ul></ul>');
-		$("#homeworkLongterm .hwList").html('<ul></ul>');
-		var classes = MyHomeworkSpace.Classes.list;
-
-		var addHomeworkToList = function($list, hw, columnName) {
-			for (var hwIndex in hw) {
-				var hwItem = hw[hwIndex];
-
-				var due = moment(hwItem.due);
-				var dueText = due.calendar().split(" at ")[0];
-				var daysTo = Math.ceil(due.diff(moment()) / 1000 / 60 / 60 / 24);
-				var prefix = hwItem.name.split(" ")[0];
-
-				if (daysTo < 1 && hwItem.complete == "1") {
-					continue;
-				}
-
-				if (prefix.toLowerCase() == "none" || prefix.toLowerCase() == "nohw") {
-					continue;
-				}
-
-				if (dueText.indexOf(' ') > -1) {
-					dueText = dueText[0].toLowerCase() + dueText.substr(1);
-				}
-
-				var $item = $('<div class="hwItem"></div>');
-
-					MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.homework.HomeworkItem, {
-						classes: MyHomeworkSpace.Classes.list,
-						homework: hwItem,
-						isMondayColumn: (columnName == "Monday"),
-						edit: function(id) {
-							MyHomeworkSpace.Pages.homework.edit(id);
-						},
-						setComplete: function(id, complete) {
-							MyHomeworkSpace.Pages.homework.markComplete(id, (complete ? "1" : "0"));
-						}
-					}), null, $item[0]);
-
-				$list.append($item);
-			}
-		};
-
-		MyHomeworkSpace.API.get("homework/getHWViewSorted", {}, function(xhr) {
-			var hwView = xhr.responseJSON;
-			$("#homeworkTomorrowTitle").text(hwView.tomorrowName);
-			if (hwView.overdue.length > 0) {
-				addHomeworkToList($("#homeworkOverdue .hwList ul"), hwView.overdue);
-				$("#homeworkOverdue").show();
-			}
-			addHomeworkToList($("#homeworkTomorrow .hwList ul"), hwView.tomorrow, hwView.tomorrowName);
-			addHomeworkToList($("#homeworkSoon .hwList ul"), hwView.soon);
-			addHomeworkToList($("#homeworkLongterm .hwList ul"), hwView.longterm);
-		});
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.homework.HomeworkPage, {}), null, document.querySelector("#homework > div"));
 	}
 };
