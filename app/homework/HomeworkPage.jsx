@@ -27,7 +27,9 @@ class HomeworkPage extends Component {
 			loading: true
 		}, function() {
 			var that = this;
-			api.get("homework/getHWViewSorted", {}, function(xhr) {
+			api.get("homework/getHWViewSorted", {
+				showToday: true
+			}, function(xhr) {
 				that.setState({
 					loading: false,
 					homework: xhr.responseJSON
@@ -37,8 +39,9 @@ class HomeworkPage extends Component {
 	}
 
 	markOverdueDone() {
+		var that = this;
 		api.post("homework/markOverdueDone", {}, function(xhr) {
-			this.load();
+			that.load.call(that);
 		});
 	}
 
@@ -49,8 +52,13 @@ class HomeworkPage extends Component {
 			</div>;
 		}
 
+		var haveOverdue = (state.homework.overdue.length > 0);
+
 		return <div class="homeworkPage">
-			{state.homework.overdue.length > 0 && <HomeworkColumn title="Overdue" isOverdue onMarkAll={this.markOverdueDone.bind(this)} items={state.homework.overdue} />}
+			<div class="col-md-3 todayContainer">
+				<HomeworkColumn title="Today" halfHeight noColumnClass items={state.homework.today} />
+				{haveOverdue && <HomeworkColumn title="Overdue" halfHeight noColumnClass isOverdue onMarkAll={this.markOverdueDone.bind(this)} items={state.homework.overdue} />}
+			</div>
 			<HomeworkColumn title="Tomorrow" items={state.homework.tomorrow} />
 			<HomeworkColumn title="Soon" items={state.homework.soon} />
 			<HomeworkColumn title="Long-term" items={state.homework.longterm} />

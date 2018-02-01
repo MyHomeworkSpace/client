@@ -6,7 +6,7 @@ import HomeworkItem from "homework/HomeworkItem.jsx";
 
 class HomeworkColumn extends Component {
 	render(props, state) {
-		return <div class="homeworkColumn col-md-3">
+		return <div class={`homeworkColumn ${props.noColumnClass ? "" : "col-md-3"} ${props.halfHeight ? "halfHeight" : ""}`}>
 			<h2 class={props.isOverdue ? "overdue" : ""}>
 				{props.title}
 				{props.onMarkAll && <div class="homeworkColumnMarkColumn" onClick={props.onMarkAll}><i class="fa fa-check-circle-o"></i> mark all as done</div>}

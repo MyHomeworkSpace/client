@@ -1,6 +1,4 @@
 .homeworkColumn
-	height: 100%
-
 	h2.overdue
 		color: red
 
@@ -9,6 +7,7 @@
 		color: #555
 		cursor: pointer
 		font-size: 14px
+		margin-left: 4px
 
 	.homeworkColumnMarkColumn:hover
 		color: #222
@@ -21,6 +20,12 @@
 		ul
 			padding-left: 0
 
+.homeworkColumn.halfHeight:nth-child(2)
+	margin-top: 60px
+
+.homeworkColumn.halfHeight
+	flex-grow: 1
+
 @media (max-width: 992px)
-	.homeworkColumn.col-md-3
+	.homeworkColumn
 		margin-bottom: 60px

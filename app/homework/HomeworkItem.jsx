@@ -43,7 +43,7 @@ class HomeworkItem extends Component {
 		var due = moment(props.homework.due);
 		var dueText = due.calendar().split(" at ")[0];
 		var daysTo = Math.ceil(due.diff(moment()) / 1000 / 60 / 60 / 24);
-		var late = (daysTo < 1);
+		var late = (daysTo < 0);
 
 		if (dueText.indexOf(' ') > -1) {
 			dueText = dueText[0].toLowerCase() + dueText.substr(1);
