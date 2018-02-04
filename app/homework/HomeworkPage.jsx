@@ -55,10 +55,10 @@ class HomeworkPage extends Component {
 		var haveOverdue = (state.homework.overdue.length > 0);
 
 		return <div class="homeworkPage">
-			<div class="col-md-3 todayContainer">
-				<HomeworkColumn title="Today" halfHeight noColumnClass items={state.homework.today} />
+			{(state.homework.showToday || haveOverdue) && <div class="col-md-3 todayContainer">
+				{state.homework.showToday && <HomeworkColumn title="Today" halfHeight top noColumnClass items={state.homework.today} />}
 				{haveOverdue && <HomeworkColumn title="Overdue" halfHeight noColumnClass isOverdue onMarkAll={this.markOverdueDone.bind(this)} items={state.homework.overdue} />}
-			</div>
+			</div>}
 			<HomeworkColumn title="Tomorrow" items={state.homework.tomorrow} />
 			<HomeworkColumn title="Soon" items={state.homework.soon} />
 			<HomeworkColumn title="Long-term" items={state.homework.longterm} />

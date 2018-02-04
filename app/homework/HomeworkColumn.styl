@@ -1,5 +1,17 @@
 .homeworkColumn
-	h2.overdue
+	padding-bottom: 20px
+
+	.homeworkColumnContainer
+		height: 100%
+		display: flex
+		flex-direction: column
+
+	.homeworkColumnTitle
+		font-size: 21px
+		margin-top: 20px
+		margin-bottom: 10px
+
+	.homeworkColumnTitle.overdue
 		color: red
 
 	.homeworkColumnMarkColumn
@@ -15,16 +27,18 @@
 	.homeworkList
 		border: solid 1px black
 		height: 100%
-		overflow: scroll
+		overflow-y: auto
 
 		ul
 			padding-left: 0
 
-.homeworkColumn.halfHeight:nth-child(2)
-	margin-top: 60px
-
 .homeworkColumn.halfHeight
-	flex-grow: 1
+	flex: 1 1 100%
+	overflow-x: hidden
+	overflow-y: hidden
+
+.homeworkColumn.halfHeight.top
+	padding-bottom: 0
 
 @media (max-width: 992px)
 	.homeworkColumn

@@ -43,7 +43,6 @@ class HomeworkItem extends Component {
 		var due = moment(props.homework.due);
 		var dueText = due.calendar().split(" at ")[0];
 		var daysTo = Math.ceil(due.diff(moment()) / 1000 / 60 / 60 / 24);
-		var late = (daysTo < 0);
 
 		if (dueText.indexOf(' ') > -1) {
 			dueText = dueText[0].toLowerCase() + dueText.substr(1);
@@ -65,7 +64,7 @@ class HomeworkItem extends Component {
 			}
 		}
 
-		return <div class={`hwItem ${late ? "hwLate": ""} ${state.complete == "1" ? "done": ""}`} data-hwId={props.homework.id}>
+		return <div class={`hwItem ${props.isOverdue ? "hwLate": ""} ${state.complete == "1" ? "done": ""}`} data-hwId={props.homework.id}>
 			<div class="hwOptions">
 				<i class={`fa ${state.complete ? "fa-check-circle-o" : "fa-circle-o"} toggleable-check`} onClick={this.toggleComplete.bind(this)}></i>
 				<i class="fa fa-edit" onClick={this.edit.bind(this)}></i>
@@ -74,7 +73,7 @@ class HomeworkItem extends Component {
 				<HomeworkName name={props.homework.name} />
 			</div>
 			<div class="hwDetails">
-				{(!props.isMondayColumn && dueText != "Tomorrow" || props.isMondayColumn && dueText != "Monday") && <div><i class="fa fa-calendar-o" /> {dueText} {late && " (late)"}</div>}
+				{(!props.isMondayColumn && dueText != "Tomorrow" || props.isMondayColumn && dueText != "Monday") && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
 				<div><ClassName classObject={classObject} /></div>
 			</div>
 			{props.homework.desc.trim() != "" && <i class="hwDescIcon fa fa-align-left" title="This homework has a description"></i>}
