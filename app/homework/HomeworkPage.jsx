@@ -56,7 +56,7 @@ class HomeworkPage extends Component {
 
 		return <div class="homeworkPage">
 			{(state.homework.showToday || haveOverdue) && <div class="col-md-3 todayContainer">
-				{state.homework.showToday && <HomeworkColumn title="Today" halfHeight top noColumnClass items={state.homework.today} />}
+				{state.homework.showToday && <HomeworkColumn title="Today" halfHeight top={haveOverdue} noColumnClass items={state.homework.today} />}
 				{haveOverdue && <HomeworkColumn title="Overdue" halfHeight noColumnClass isOverdue onMarkAll={this.markOverdueDone.bind(this)} items={state.homework.overdue} />}
 			</div>}
 			<HomeworkColumn title="Tomorrow" items={state.homework.tomorrow} />
