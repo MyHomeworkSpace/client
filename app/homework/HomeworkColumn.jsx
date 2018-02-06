@@ -20,8 +20,8 @@ class HomeworkColumn extends Component {
 						return <HomeworkItem
 							homework={item}
 							classes={MyHomeworkSpace.Classes.list}
-							isMondayColumn={props.title == "Monday"}
 							isOverdue={!!props.isOverdue}
+							hideDue={!!props.hideDue}
 							edit={function(id) {
 								MyHomeworkSpace.Pages.homework.edit(id);
 							}}

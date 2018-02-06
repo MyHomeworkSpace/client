@@ -73,7 +73,7 @@ class HomeworkItem extends Component {
 				<HomeworkName name={props.homework.name} />
 			</div>
 			<div class="hwDetails">
-				{(!props.isMondayColumn && dueText != "Tomorrow" || props.isMondayColumn && dueText != "Monday") && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
+				{!props.hideDue && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
 				<div><ClassName classObject={classObject} /></div>
 			</div>
 			{props.homework.desc.trim() != "" && <i class="hwDescIcon fa fa-align-left" title="This homework has a description"></i>}
