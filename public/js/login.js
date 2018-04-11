@@ -17,11 +17,11 @@ MyHomeworkSpace.Pages.login = {
 				username: $("#loginUsername").val(),
 				password: $("#loginPassword").val()
 			}, function(response) {
-				if (response.responseJSON.status != "ok") {
+				if (response.status != "ok") {
 					$("#loginUsername").prop("disabled", false);
 					$("#loginPassword").prop("disabled", false);
 					$("#loginSubmit").text("Log in");
-					loginError(MHSBridge.default.errors.getFriendlyString(response.responseJSON.error));
+					loginError(MHSBridge.default.errors.getFriendlyString(response.error));
 					return;
 				}
 				$("#loginUsername").prop("disabled", false);
