@@ -55,12 +55,28 @@ MyHomeworkSpace.Pages.homework = {
 			});
 			if (type == "add") {
 				MyHomeworkSpace.API.post("homework/add", hwItem, function(data) {
+					if (data.status == "error") {
+						$("#loadingModal").modal('hide');
+						setTimeout(function() {
+							$("#homeworkModal").modal();
+							alert(MHSBridge.default.errors.getFriendlyString(data.error));
+						}, 400);
+						return;
+					}
 					MyHomeworkSpace.Pages.homework.handleNew();
 					$("#loadingModal").modal('hide');
 				});
 			} else {
 				hwItem.id = id;
 				MyHomeworkSpace.API.post("homework/edit", hwItem, function(data) {
+					if (data.status == "error") {
+						$("#loadingModal").modal('hide');
+						setTimeout(function() {
+							$("#homeworkModal").modal();
+							alert(MHSBridge.default.errors.getFriendlyString(data.error));
+						}, 400);
+						return;
+					}
 					MyHomeworkSpace.Pages.homework.handleNew();
 					$("#loadingModal").modal('hide');
 				});
