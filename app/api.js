@@ -28,7 +28,14 @@ var rawRequest = function(path, method, data, callback) {
 			$("#workingOverlay").hide();
 			clearTimeout(workingTimeout);
 			workingTimeout = undefined;
-			callback(jqXHR.responseJSON, jqXHR);
+			if (jqXHR.status != 0) {
+				callback(jqXHR.responseJSON, jqXHR);
+			} else {
+				callback({
+					status: "error",
+					error: "disconnected"
+				}, jqXHR);
+			}
 		}
 	});
 };
