@@ -97,15 +97,15 @@ class EventModal extends Component {
 
 			var endpointType = (this.state.type == "homework" ? "hwEvents" : "events");
 
-			api.post((that.state.isNew ? `calendar/${endpointType}/add` : `calendar/${endpointType}/edit`), eventInfo, function(xhr) {
-				if (xhr.responseJSON.status == "ok") {
+			api.post((that.state.isNew ? `calendar/${endpointType}/add` : `calendar/${endpointType}/edit`), eventInfo, function(data) {
+				if (data.status == "ok") {
 					that.props.openModal("");
 					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
 					document.querySelector("#calendar .weekHeaderControlsRefresh").click();
 				} else {
 					that.setState({
 						loading: false,
-						error: errors.getFriendlyString(xhr.responseJSON.error)
+						error: errors.getFriendlyString(data.error)
 					});
 				}
 			});

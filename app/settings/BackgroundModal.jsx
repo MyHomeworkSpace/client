@@ -33,7 +33,7 @@ class BackgroundModal extends Component {
 		api.post("prefs/set", {
 			key: "background",
 			value: bg
-		}, function(xhr) {
+		}, function(data) {
 
 		});
 	}

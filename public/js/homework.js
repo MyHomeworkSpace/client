@@ -18,7 +18,7 @@ MyHomeworkSpace.Pages.homework = {
 				});
 				MyHomeworkSpace.API.post("homework/delete", {
 					id: $("#homeworkModal").attr("data-actionId")
-				}, function(xhr) {
+				}, function(data) {
 					MyHomeworkSpace.Pages.homework.handleNew();
 					$("#loadingModal").modal('hide');
 				});
@@ -54,13 +54,13 @@ MyHomeworkSpace.Pages.homework = {
 				keyboard: false
 			});
 			if (type == "add") {
-				MyHomeworkSpace.API.post("homework/add", hwItem, function(xhr) {
+				MyHomeworkSpace.API.post("homework/add", hwItem, function(data) {
 					MyHomeworkSpace.Pages.homework.handleNew();
 					$("#loadingModal").modal('hide');
 				});
 			} else {
 				hwItem.id = id;
-				MyHomeworkSpace.API.post("homework/edit", hwItem, function(xhr) {
+				MyHomeworkSpace.API.post("homework/edit", hwItem, function(data) {
 					MyHomeworkSpace.Pages.homework.handleNew();
 					$("#loadingModal").modal('hide');
 				});
@@ -92,8 +92,8 @@ MyHomeworkSpace.Pages.homework = {
 			backdrop: "static",
 			keyboard: false
 		});
-		MyHomeworkSpace.API.get("homework/get/" + id, {}, function(xhr) {
-			var hw = xhr.responseJSON.homework;
+		MyHomeworkSpace.API.get("homework/get/" + id, {}, function(data) {
+			var hw = data.homework;
 
 			$("#homeworkModal").attr("data-actionType", "edit");
 			$("#homeworkModal").attr("data-actionId", hw.id);
@@ -121,10 +121,10 @@ MyHomeworkSpace.Pages.homework = {
 	},
 
 	markComplete: function(id, complete) {
-		MyHomeworkSpace.API.get("homework/get/" + id, {}, function(xhr) {
-			var hwItem = xhr.responseJSON.homework;
+		MyHomeworkSpace.API.get("homework/get/" + id, {}, function(data) {
+			var hwItem = data.homework;
 			hwItem.complete = complete;
-			MyHomeworkSpace.API.post("homework/edit/", hwItem, function(xhr) {
+			MyHomeworkSpace.API.post("homework/edit/", hwItem, function(data) {
 				// yay
 			});
 		});

@@ -21,8 +21,8 @@ class CalendarSettings extends Component {
 		this.setState({
 			loading: true
 		}, function() {
-			api.get("calendar/getStatus", {}, function(xhr) {
-				if (xhr.responseJSON.statusNum == 1) {
+			api.get("calendar/getStatus", {}, function(data) {
+				if (data.statusNum == 1) {
 					that.setState({
 						loading: false,
 						calendarEnabled: true
@@ -43,15 +43,15 @@ class CalendarSettings extends Component {
 			this.setState({
 				loading: true
 			}, function() {
-				api.post("calendar/resetSchedule", {}, function(xhr) {
-					if (xhr.responseJSON.status == "ok") {
+				api.post("calendar/resetSchedule", {}, function(data) {
+					if (data.status == "ok") {
 						alert("Schedule data has been cleared.");
 						window.location.reload();
 					} else {
 						this.setState({
 							loading: false
 						}, function() {
-							alert(errors.getFriendlyString(xhr.responseJSON.error));
+							alert(errors.getFriendlyString(data.error));
 						});
 					}
 				});

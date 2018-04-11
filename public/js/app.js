@@ -5,8 +5,8 @@ MyHomeworkSpace.API = MHSBridge.default.api;
 MyHomeworkSpace.Classes = {
 	list: [],
 	load: function(callback) {
-		MyHomeworkSpace.API.get("classes/get", {}, function(xhr) {
-			MyHomeworkSpace.Classes.list = xhr.responseJSON.classes;
+		MyHomeworkSpace.API.get("classes/get", {}, function(data) {
+			MyHomeworkSpace.Classes.list = data.classes;
 			$("#homeworkClass").html("");
 			$("#homeworkClass").append('<option value="-1">No class</option>');
 			for (var classIndex in MyHomeworkSpace.Classes.list) {
@@ -61,9 +61,9 @@ MyHomeworkSpace.Nav = {
 		}
 	},
 	init: function() {
-		MyHomeworkSpace.API.get("prefs/get/background", {}, function(xhr) {
-			if (xhr.responseJSON.status != "error") {
-				var bgVal = xhr.responseJSON.pref.value;
+		MyHomeworkSpace.API.get("prefs/get/background", {}, function(data) {
+			if (data.status != "error") {
+				var bgVal = data.pref.value;
 				MHSBridge.default.background.setBackground(bgVal);
 			}
 		});
@@ -130,9 +130,9 @@ $(document).ready(function() {
 			}
 		}
 
-		MyHomeworkSpace.API.get("auth/me", {}, function(xhr) {
-			if (xhr.responseJSON.status == "ok") {
-				MyHomeworkSpace.Pages.login.handleLoginComplete(xhr.responseJSON);
+		MyHomeworkSpace.API.get("auth/me", {}, function(data) {
+			if (data.status == "ok") {
+				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 			} else {
 				MyHomeworkSpace.Page.show("login");
 			}

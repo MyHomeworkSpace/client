@@ -30,10 +30,10 @@ MyHomeworkSpace.Pages.classes = {
 				$swap.click(function() {
 					var $that = $(this);
 					var currentId = $(this).parent().attr("data-classId");
-					MyHomeworkSpace.API.get("classes/get/" + currentId, {}, function(xhr) {
+					MyHomeworkSpace.API.get("classes/get/" + currentId, {}, function(data) {
 						$("#classSwapOptions").text("");
 						$("#classSwapModal").attr("data-classId", currentId);
-						var classItem = xhr.responseJSON.class;
+						var classItem = data.class;
 						for (var classIndex in MyHomeworkSpace.Classes.list) {
 							var thisClassItem = MyHomeworkSpace.Classes.list[classIndex];
 							if (thisClassItem.id == currentId) {
@@ -67,8 +67,8 @@ MyHomeworkSpace.Pages.classes = {
 			var $edit = $('<i class="fa fa-edit"></i>');
 				$edit.click(function() {
 					var $that = $(this);
-					MyHomeworkSpace.API.get("classes/get/" + $(this).parent().attr("data-classId"), {}, function(xhr) {
-						MHSBridge.default.openModal("class", xhr.responseJSON.class);
+					MyHomeworkSpace.API.get("classes/get/" + $(this).parent().attr("data-classId"), {}, function(data) {
+						MHSBridge.default.openModal("class", data.class);
 					});
 				});
 			$item.append($edit);

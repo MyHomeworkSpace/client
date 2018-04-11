@@ -36,7 +36,7 @@ class ClassModal extends Component {
 			if (!that.state.isNew) {
 				classInfo.id = this.props.modalState.id;
 			}
-			api.post((that.state.isNew ? "classes/add" : "classes/edit"), classInfo, function(xhr) {
+			api.post((that.state.isNew ? "classes/add" : "classes/edit"), classInfo, function(data) {
 				that.props.refreshClasses(function() {
 					that.props.openModal("");
 				});
@@ -50,8 +50,8 @@ class ClassModal extends Component {
 			this.setState({
 				loading: true
 			}, function() {
-				api.get("classes/hwInfo/" + that.props.modalState.id, {}, function(xhr) {
-					var hwItems = xhr.responseJSON.hwItems;
+				api.get("classes/hwInfo/" + that.props.modalState.id, {}, function(data) {
+					var hwItems = data.hwItems;
 					if (hwItems > 0) {
 						if (!confirm("This will ALSO delete the " + hwItems + " homework item(s) associated with this class. Are you *sure*?")) {
 							that.props.openModal("");

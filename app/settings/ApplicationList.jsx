@@ -21,10 +21,10 @@ class ApplicationList extends Component {
 		this.setState({
 			loading: true
 		}, function() {
-			api.get("application/getAuthorizations", {}, function(xhr) {
+			api.get("application/getAuthorizations", {}, function(data) {
 				that.setState({
 					loading: false,
-					authorizations: xhr.responseJSON.authorizations
+					authorizations: data.authorizations
 				});
 			});
 		});

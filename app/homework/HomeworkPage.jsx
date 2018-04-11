@@ -29,10 +29,10 @@ class HomeworkPage extends Component {
 			var that = this;
 			api.get("homework/getHWViewSorted", {
 				showToday: true
-			}, function(xhr) {
+			}, function(data) {
 				that.setState({
 					loading: false,
-					homework: xhr.responseJSON
+					homework: data
 				});
 			});
 		});
@@ -40,7 +40,7 @@ class HomeworkPage extends Component {
 
 	markOverdueDone() {
 		var that = this;
-		api.post("homework/markOverdueDone", {}, function(xhr) {
+		api.post("homework/markOverdueDone", {}, function(data) {
 			that.load.call(that);
 		});
 	}

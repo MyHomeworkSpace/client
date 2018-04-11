@@ -21,9 +21,9 @@ class HomeworkPickerPopup extends Component {
 
 	componentDidMount() {
 		var that = this;
-		api.get("homework/getPickerSuggestions", {}, function(xhr) {
+		api.get("homework/getPickerSuggestions", {}, function(data) {
 			that.setState({
-				suggestions: xhr.responseJSON.homework,
+				suggestions: data.homework,
 				loading: false
 			});
 		});
@@ -38,9 +38,9 @@ class HomeworkPickerPopup extends Component {
 			}, function() {
 				api.get("homework/search", {
 					q: this.state.query
-				}, function(xhr) {
+				}, function(data) {
 					that.setState({
-						results: xhr.responseJSON.homework,
+						results: data.homework,
 						loading: false
 					});
 				});

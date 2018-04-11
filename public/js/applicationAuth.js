@@ -15,10 +15,10 @@ var afterLogin = function(info) {
 	$(".applicationAuthLoadingOverlay").addClass("hidden");
 	$(".applicationAuthLoginInfo").removeClass("hidden");
 	$(".applicationAuthUser").text(MyHomeworkSpace.Me.name);
-	MyHomeworkSpace.API.get("application/get/" + getApplicationID(), {}, function(xhr) {
-		if (xhr.responseJSON.status == "ok") {
+	MyHomeworkSpace.API.get("application/get/" + getApplicationID(), {}, function(data) {
+		if (data.status == "ok") {
 			$(".applicationAuthRequest").removeClass("hidden");
-			currentApplication = xhr.responseJSON.application;
+			currentApplication = data.application;
 			$(".applicationAuthName").text(currentApplication.name);
 			$(".applicationAuthAuthor").text(currentApplication.authorName);
 			if (currentApplication.authorName.trim() == "") {
@@ -34,9 +34,9 @@ var afterLogin = function(info) {
 $(document).ready(function() {
 	MyHomeworkSpace.Pages.login.init(true, afterLogin);
 	MyHomeworkSpace.API.init(function() {
-		MyHomeworkSpace.API.get("auth/me", {}, function(xhr) {
-			if (xhr.responseJSON.status == "ok") {
-				afterLogin(xhr.responseJSON);
+		MyHomeworkSpace.API.get("auth/me", {}, function(data) {
+			if (data.status == "ok") {
+				afterLogin(data);
 			} else {
 				$(".applicationAuthLogin").removeClass("hidden");
 			}
@@ -48,9 +48,9 @@ $(document).ready(function() {
 		$(".applicationAuthLoadingOverlay").removeClass("hidden");
 		MyHomeworkSpace.API.post("application/completeAuth", {
 			clientId: getApplicationID()
-		}, function(xhr) {
-			if (xhr.responseJSON.status == "ok") {
-				window.location.href = currentApplication.callbackUrl + "?token=" + escape(xhr.responseJSON.token) + "&state=" + getState();
+		}, function(data) {
+			if (data.status == "ok") {
+				window.location.href = currentApplication.callbackUrl + "?token=" + escape(data.token) + "&state=" + getState();
 			} else {
 				$(".applicationAuthLoadingOverlay").addClass("hidden");
 				$(".applicationAuthRequest").addClass("hidden");
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
 	$("#applicationAuthLogout").click(function() {
 		$(".applicationAuthLoadingOverlay").removeClass("hidden");
-		MyHomeworkSpace.API.get("auth/logout", {}, function(xhr) {
+		MyHomeworkSpace.API.get("auth/logout", {}, function(data) {
 			window.location.reload();
 		});
 	});

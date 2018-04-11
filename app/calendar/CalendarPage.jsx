@@ -27,8 +27,8 @@ class CalendarPage extends Component {
 
 	componentWillMount() {
 		var that = this;
-		api.get("calendar/getStatus", {}, function(xhr) {
-			if (xhr.responseJSON.statusNum == 1) {
+		api.get("calendar/getStatus", {}, function(data) {
+			if (data.statusNum == 1) {
 				that.loadSchedule.bind(that)();
 			} else {
 				that.setState({
@@ -70,15 +70,15 @@ class CalendarPage extends Component {
 			scheduleEvents: null,
 			monday: monday
 		}, function() {
-			api.get("calendar/events/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
+			api.get("calendar/events/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(data) {
 				that.setState({
 					loadingWeek: false,
-					announcements: xhr.responseJSON.announcements,
-					currentTerm: xhr.responseJSON.currentTerm,
-					events: xhr.responseJSON.events,
-					hwEvents: xhr.responseJSON.hwEvents,
-					scheduleEvents: xhr.responseJSON.scheduleEvents,
-					friday: xhr.responseJSON.friday.index == -1 ? null : xhr.responseJSON.friday
+					announcements: data.announcements,
+					currentTerm: data.currentTerm,
+					events: data.events,
+					hwEvents: data.hwEvents,
+					scheduleEvents: data.scheduleEvents,
+					friday: data.friday.index == -1 ? null : data.friday
 				});
 			});
 		});
@@ -101,13 +101,13 @@ class CalendarPage extends Component {
 		}, function() {
 			api.post("calendar/import", {
 				password: that.state.password
-			}, function(xhr) {
-				if (xhr.responseJSON.status == "ok") {
+			}, function(data) {
+				if (data.status == "ok") {
 					that.loadSchedule.bind(that)();
 				} else {
 					that.setState({
 						askingPasswordLoading: false,
-						error: errors.getFriendlyString(xhr.responseJSON.error)
+						error: errors.getFriendlyString(data.error)
 					});
 				}
 			}, 100);

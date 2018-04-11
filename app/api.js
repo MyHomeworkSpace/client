@@ -28,7 +28,7 @@ var rawRequest = function(path, method, data, callback) {
 			$("#workingOverlay").hide();
 			clearTimeout(workingTimeout);
 			workingTimeout = undefined;
-			callback(jqXHR);
+			callback(jqXHR.responseJSON, jqXHR);
 		}
 	});
 };
@@ -45,8 +45,8 @@ export default {
 		return request(path, "POST", data, callback);
 	},
 	init: function(callback) {
-		rawRequest("auth/csrf", "GET", {}, function(xhr) {
-			token = xhr.responseJSON.token;
+		rawRequest("auth/csrf", "GET", {}, function(data) {
+			token = data.token;
 			callback();
 		});
 	}

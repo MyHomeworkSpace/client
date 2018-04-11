@@ -7,8 +7,8 @@ export default {
 	list: null,
 
 	init: function(callback) {
-		api.get("prefixes/getList", {}, function(xhr) {
-			var data = xhr.responseJSON;
+		api.get("prefixes/getList", {}, function(data) {
+			var data = data;
 
 			prefixes = data.prefixes;
 			fallback = {

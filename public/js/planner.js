@@ -38,9 +38,9 @@ MyHomeworkSpace.Pages.planner = {
 
 		monday.subtract(7, "days"); // reset variable
 
-		MyHomeworkSpace.API.get("planner/getWeekInfo/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
-			var announcements = xhr.responseJSON.announcements;
-			var friday = xhr.responseJSON.friday;
+		MyHomeworkSpace.API.get("planner/getWeekInfo/" + monday.format("YYYY-MM-DD"), {}, function(data) {
+			var announcements = data.announcements;
+			var friday = data.friday;
 			for (var announcementIndex in announcements) {
 				var announcement = announcements[announcementIndex];
 				var announcementDay = moment(announcement.date);
@@ -54,8 +54,8 @@ MyHomeworkSpace.Pages.planner = {
 			if (friday.id != -1) {
 				$("#plannerFridayIndex").text(friday.index + " ");
 			}
-			MyHomeworkSpace.API.get("homework/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(xhr) {
-				var hw = xhr.responseJSON.homework;
+			MyHomeworkSpace.API.get("homework/getWeek/" + monday.format("YYYY-MM-DD"), {}, function(data) {
+				var hw = data.homework;
 				for (var hwIndex in hw) {
 					var hwItem = hw[hwIndex];
 					var due = moment(hwItem.due);

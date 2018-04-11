@@ -7,10 +7,10 @@ MyHomeworkSpace.Pages.settings = {
 	onLogin: function() {
 		$(".settings_checkbox").each(function() {
 			var $that = $(this);
-			MyHomeworkSpace.API.get("prefs/get/" + $(this).attr("data-pref"), {}, function(xhr) {
-				if (xhr.responseJSON.status != "error") {
-					var newVal = (xhr.responseJSON.pref.value == "true");
-					MyHomeworkSpace.Pages.settings.cache[xhr.responseJSON.pref.key] = newVal;
+			MyHomeworkSpace.API.get("prefs/get/" + $(this).attr("data-pref"), {}, function(data) {
+				if (data.status != "error") {
+					var newVal = (data.pref.value == "true");
+					MyHomeworkSpace.Pages.settings.cache[data.pref.key] = newVal;
 					if ($that.attr("data-pref-inverted") && $that.attr("data-pref-inverted") == "true") {
 						newVal = !newVal;
 					}
@@ -27,7 +27,7 @@ MyHomeworkSpace.Pages.settings = {
 			MyHomeworkSpace.API.post("prefs/set", {
 				key: $(this).attr("data-pref"),
 				value: newVal
-			}, function(xhr) {
+			}, function(data) {
 
 			});
 		});

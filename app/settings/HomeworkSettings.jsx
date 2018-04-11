@@ -27,12 +27,12 @@ class HomeworkSettings extends Component {
 			loading: true,
 			classPrompt: false
 		}, function() {
-			api.get("prefs/get/homeworkHiddenClasses", {}, function(xhr) {
-				if (xhr.responseJSON.status == "ok") {
+			api.get("prefs/get/homeworkHiddenClasses", {}, function(data) {
+				if (data.status == "ok") {
 					// found a preference, read it
 					that.setState({
 						loading: false,
-						hiddenClasses: JSON.parse(xhr.responseJSON.pref.value)
+						hiddenClasses: JSON.parse(data.pref.value)
 					});
 				} else {
 					// it's not set, so default to empty
@@ -72,7 +72,7 @@ class HomeworkSettings extends Component {
 				api.post("prefs/set", {
 					key: "homeworkHiddenClasses",
 					value: JSON.stringify(hiddenClasses)
-				}, function(xhr) {
+				}, function(data) {
 					that.refresh.call(that);
 				});
 			});
@@ -92,7 +92,7 @@ class HomeworkSettings extends Component {
 			api.post("prefs/set", {
 				key: "homeworkHiddenClasses",
 				value: JSON.stringify(hiddenClasses)
-			}, function(xhr) {
+			}, function(data) {
 				that.refresh.call(that);
 			});
 		});

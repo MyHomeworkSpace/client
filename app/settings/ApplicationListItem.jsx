@@ -7,7 +7,7 @@ class ApplicationList extends Component {
 		var that = this;
 		api.post("application/revokeAuth", {
 			id: this.props.authorization.id
-		}, function(xhr) {
+		}, function(data) {
 			that.props.refresh();
 		});
 	}

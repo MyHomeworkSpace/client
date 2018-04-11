@@ -12,7 +12,7 @@ import SidebarToggleButton from "ui/nav/SidebarToggleButton.jsx";
 
 class TopBar extends Component {
 	logout() {
-		api.get("auth/logout", {}, function(xhr) {
+		api.get("auth/logout", {}, function(data) {
 			window.location.reload();
 		});
 	}

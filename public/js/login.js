@@ -27,12 +27,12 @@ MyHomeworkSpace.Pages.login = {
 				$("#loginUsername").prop("disabled", false);
 				$("#loginPassword").prop("disabled", false);
 				$("#loginSubmit").text("Log in");
-				MyHomeworkSpace.API.get("auth/me", {}, function(xhr) {
-					if (xhr.responseJSON.status == "ok") {
+				MyHomeworkSpace.API.get("auth/me", {}, function(data) {
+					if (data.status == "ok") {
 						if (isSecretlyApplicationAuth) {
-							applicationAuthCallback(xhr.responseJSON);
+							applicationAuthCallback(data);
 						} else {
-							MyHomeworkSpace.Pages.login.handleLoginComplete(xhr.responseJSON);
+							MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 						}
 					} else {
 						loginError("Something weird happened, try again?");

@@ -44,7 +44,7 @@ class FeedbackPopup extends Component {
 			api.post("feedback/add", {
 				type: that.state.type,
 				text: that.state.message
-			}, function(xhr) {
+			}, function(data) {
 				that.setState({
 					loading: false,
 					sent: true
