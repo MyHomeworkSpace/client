@@ -12,7 +12,7 @@ class CalendarWeekDay extends Component {
 			}
 		});
 		return <div class="calendarWeekDay">
-			<div class="calendarWeekDayName">
+			<div class={`calendarWeekDayName ${props.day.isBefore(props.time, "day") ? "calendarWeekDayPast" : ""} ${props.day.isSame(props.time, "day") ? "calendarWeekDayToday" : ""}`}>
 				<span class="calendarWeekDayNameDow">{props.name}</span>
 				<span class="calendarWeekDayNameDate">{props.day.format("M/D")}</span>
 			</div>

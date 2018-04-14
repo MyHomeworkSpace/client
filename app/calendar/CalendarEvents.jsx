@@ -10,25 +10,9 @@ import CalendarEventsDay from "calendar/CalendarEventsDay.jsx";
 class CalendarEvents extends Component {
 	constructor(props) {
 		super(props);
-		this.timer = null;
 		this.state = {
-			bodyClick: this.onBodyClick.bind(this),
-			time: moment().unix()
+			bodyClick: this.onBodyClick.bind(this)
 		};
-	}
-	
-	componentDidMount() {
-		var that = this;
-		this.timer = setInterval(function() {
-			that.setState({
-				time: moment().unix()
-			});
-		}, 1000);
-	}
-	
-	componentWillUnmount() {
-		clearTimeout(this.timer);
-		this.timer = null;
 	}
 
 	openPopover(top, left, type, item) {
@@ -163,7 +147,7 @@ class CalendarEvents extends Component {
 			});
 		});
 
-		var today = moment.unix(state.time);
+		var today = moment.unix(props.time);
 
 		return <div class="calendarEvents">
 			<div class="calendarEventsGutter">
@@ -192,13 +176,13 @@ class CalendarEvents extends Component {
 				<div class="calendarEventsGutterHour">10p</div>
 				<div class="calendarEventsGutterHour">11p</div>
 			</div>
-			<CalendarEventsDay today={today} time={state.time} day={props.monday}>{eventElements[1]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={state.time} day={moment(props.monday).add(1, "day")}>{eventElements[2]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={state.time} day={moment(props.monday).add(2, "day")}>{eventElements[3]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={state.time} day={moment(props.monday).add(3, "day")}>{eventElements[4]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={state.time} day={moment(props.monday).add(4, "day")}>{eventElements[5]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={state.time} day={moment(props.monday).add(5, "day")}>{eventElements[6]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={state.time} day={moment(props.monday).add(6, "day")}>{eventElements[0]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={props.monday}>{eventElements[1]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(1, "day")}>{eventElements[2]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(2, "day")}>{eventElements[3]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(3, "day")}>{eventElements[4]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(4, "day")}>{eventElements[5]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(5, "day")}>{eventElements[6]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(6, "day")}>{eventElements[0]}</CalendarEventsDay>
 			{state.popover && <CalendarEventPopover alternate={state.popover.item.dow == 0 || state.popover.item.dow == 6} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} openModal={props.openModal} />}
 		</div>;
 	}
