@@ -1,3 +1,4 @@
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 
 module.exports = {
@@ -19,12 +20,17 @@ module.exports = {
 					jsx: "h"
 				}
 			},
-			{test: /\.(styl)$/, use: [ 'style-loader', 'css-loader', 'stylus-loader' ]},
+			{test: /\.(styl)$/, use: ExtractTextPlugin.extract({
+				fallback: 'style-loader',
+				use: [ 'css-loader', 'stylus-loader' ]
+			})},
 			{test: /\.(css)$/, use: 'css-loader'}
 		]
 	},
 
-	plugins: [],
+	plugins: [
+		new ExtractTextPlugin("../css/bundle.css")
+	],
 
 	resolve: {
 		modules: [
