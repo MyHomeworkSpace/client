@@ -53,12 +53,6 @@ class CalendarEvents extends Component {
 		}
 	}
 
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			popover: null
-		});
-	}
-
 	render(props, state) {
 		var that = this;
 
