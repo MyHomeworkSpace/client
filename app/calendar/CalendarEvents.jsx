@@ -67,21 +67,23 @@ class CalendarEvents extends Component {
 		var eventGroups = [
 			[], [], [], [], [], [], []
 		];
-		props.view.days.forEach(function(day, dow) {
-			events[dow] = day.events.map(function(eventItem) {
-				eventItem.groupInfo = {
-					dayStart: moment.unix(eventItem.start).startOf("day"),
-					start: moment.unix(eventItem.start),
-					end: moment.unix(eventItem.end),
-				};
-				eventItem.groupInfo.offset = eventItem.groupInfo.start.diff(eventItem.groupInfo.dayStart, "minutes");
-				eventItem.groupInfo.durationInMinutes = eventItem.groupInfo.end.diff(eventItem.groupInfo.start, "minutes");
-				eventItem.groupInfo.height = (eventItem.groupInfo.durationInMinutes < 10 ? 10: eventItem.groupInfo.durationInMinutes);
-				eventItem.groupInfo.endOffset = eventItem.groupInfo.offset + eventItem.groupInfo.durationInMinutes;
-				eventItem.groupInfo.endOffsetHeight = eventItem.groupInfo.offset + eventItem.groupInfo.height;
-				return eventItem;
+		if (props.view) {
+			props.view.days.forEach(function(day, dow) {
+				events[dow] = day.events.map(function(eventItem) {
+					eventItem.groupInfo = {
+						dayStart: moment.unix(eventItem.start).startOf("day"),
+						start: moment.unix(eventItem.start),
+						end: moment.unix(eventItem.end),
+					};
+					eventItem.groupInfo.offset = eventItem.groupInfo.start.diff(eventItem.groupInfo.dayStart, "minutes");
+					eventItem.groupInfo.durationInMinutes = eventItem.groupInfo.end.diff(eventItem.groupInfo.start, "minutes");
+					eventItem.groupInfo.height = (eventItem.groupInfo.durationInMinutes < 10 ? 10: eventItem.groupInfo.durationInMinutes);
+					eventItem.groupInfo.endOffset = eventItem.groupInfo.offset + eventItem.groupInfo.durationInMinutes;
+					eventItem.groupInfo.endOffsetHeight = eventItem.groupInfo.offset + eventItem.groupInfo.height;
+					return eventItem;
+				});
 			});
-		});
+		}
 		events.forEach(function(eventList, dow) {
 			var groupsForDay = eventGroups[dow];
 			eventList.forEach(function(eventItem, eventItemIndex) {
