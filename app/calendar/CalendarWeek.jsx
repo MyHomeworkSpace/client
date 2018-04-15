@@ -54,7 +54,6 @@ class CalendarWeek extends Component {
 	}
 
 	render(props, state) {
-
 		var momentTime = moment.unix(state.time);
 
 		return <div class="calendarWeek">

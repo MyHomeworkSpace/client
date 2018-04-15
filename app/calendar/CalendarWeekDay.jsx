@@ -6,7 +6,7 @@ import linkState from "linkstate";
 class CalendarWeekDay extends Component {
 	render(props, state) {
 		var thisAnnouncement;
-		if (props.announcement) {
+		if (props.announcements) {
 			props.announcements.forEach(function(announcement) {
 				if (announcement.date == props.day.format("YYYY-MM-DD")) {
 					thisAnnouncement = announcement;

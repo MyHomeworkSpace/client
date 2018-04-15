@@ -16,7 +16,6 @@ class CalendarPage extends Component {
 		super(props);
 		this.state = {
 			loading: true,
-			currentTerm: null,
 			terms: []
 		};
 	}
@@ -59,10 +58,7 @@ class CalendarPage extends Component {
 		var that = this;
 		this.setState({
 			loadingWeek: true,
-			currentTerm: null,
-			events: [],
-			hwEvents: [],
-			scheduleEvents: null,
+			view: null,
 			monday: monday
 		}, function() {
 			api.get("calendar/getView", {
@@ -71,7 +67,6 @@ class CalendarPage extends Component {
 			}, function(data) {
 				that.setState({
 					loadingWeek: false,
-					currentTerm: data.currentTerm,
 					view: data.view
 				});
 			});
@@ -141,18 +136,9 @@ class CalendarPage extends Component {
 			}
 		}
 
-		var emptySchedule =  [[], [], [], [], []];
-		var schedule = [[], [], [], [], []];
-
-		var schoolInSession = (state.currentTerm != null);
-
-		if (schoolInSession && state.scheduleEvents) {
-			schedule = state.scheduleEvents;
-		}
-
 		return <div style="height: 100%">
 			<WeekHeader monday={state.monday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
-			<CalendarWeek openModal={props.openModal} view={state.view} monday={state.monday} schedule={state.loadingWeek ? emptySchedule : schedule} />
+			<CalendarWeek openModal={props.openModal} view={state.view} monday={state.monday} />
 		</div>;
 	}
 }
