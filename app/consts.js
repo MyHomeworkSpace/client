@@ -11,5 +11,9 @@ export default {
 		"a940ff",
 		"e6ab68",
 		"4d4d4d"
-	]
+	],
+
+	EVENT_TYPE_PLAIN: 0,
+	EVENT_TYPE_HOMEWORK: 1,
+	EVENT_TYPE_SCHEDULE: 2
 };

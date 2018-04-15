@@ -54,21 +54,25 @@ class CalendarWeek extends Component {
 	}
 
 	render(props, state) {
+		if (!props.view) {
+			return <div></div>;
+		}
+
 		var momentTime = moment.unix(state.time);
 
 		return <div class="calendarWeek">
 			<div class="calendarWeekHeader" style={`padding-right:${state.rightOffset || 0}px`}>
-				<CalendarWeekDay announcements={props.announcements} time={momentTime} name="Monday" day={props.monday} />
-				<CalendarWeekDay announcements={props.announcements} time={momentTime} name="Tuesday" day={moment(props.monday).add(1, "day")} />
-				<CalendarWeekDay announcements={props.announcements} time={momentTime} name="Wednesday" day={moment(props.monday).add(2, "days")} />
-				<CalendarWeekDay announcements={props.announcements} time={momentTime} name="Thursday" day={moment(props.monday).add(3, "days")} />
-				<CalendarWeekDay announcements={props.announcements} time={momentTime} name={props.friday ? `Friday ${props.friday.index}` : "Friday"} day={moment(props.monday).add(4, "days")} />
-				<CalendarWeekDay announcements={props.announcements} time={momentTime} name="Saturday" day={moment(props.monday).add(5, "days")} />
-				<CalendarWeekDay announcements={props.announcements} time={momentTime} name="Sunday" day={moment(props.monday).add(6, "days")} />
+				<CalendarWeekDay announcements={props.view.days[0].announcements} time={momentTime} name="Monday" day={props.monday} />
+				<CalendarWeekDay announcements={props.view.days[1].announcements} time={momentTime} name="Tuesday" day={moment(props.monday).add(1, "day")} />
+				<CalendarWeekDay announcements={props.view.days[2].announcements} time={momentTime} name="Wednesday" day={moment(props.monday).add(2, "days")} />
+				<CalendarWeekDay announcements={props.view.days[3].announcements} time={momentTime} name="Thursday" day={moment(props.monday).add(3, "days")} />
+				<CalendarWeekDay announcements={props.view.days[4].announcements} time={momentTime} name={props.view.days[4].shiftingIndex != -1 ? `Friday ${props.view.days[4].shiftingIndex}` : "Friday"} day={moment(props.monday).add(4, "days")} />
+				<CalendarWeekDay announcements={props.view.days[5].announcements} time={momentTime} name="Saturday" day={moment(props.monday).add(5, "days")} />
+				<CalendarWeekDay announcements={props.view.days[6].announcements} time={momentTime} name="Sunday" day={moment(props.monday).add(6, "days")} />
 			</div>
 
 			<div class="calendarWeekEventsContainer">
-				<CalendarEvents openModal={props.openModal} time={state.time} monday={props.monday} schedule={props.schedule} events={props.events} hwEvents={props.hwEvents} friday={props.friday} />
+				<CalendarEvents openModal={props.openModal} time={state.time} monday={props.monday} view={props.view} />
 			</div>
 		</div>;
 	}

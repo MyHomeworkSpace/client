@@ -4,6 +4,7 @@ import { h, Component } from "preact";
 import linkState from "linkstate";
 
 import api from "api.js";
+import consts from "consts.js";
 import errors from "errors.js";
 
 import DatePicker from "ui/DatePicker.jsx";
@@ -30,12 +31,12 @@ class EventModal extends Component {
 
 		this.state = {
 			isNew: isNew,
-			type: props.modalState.type || "event",
+			type: props.modalState.type || consts.EVENT_TYPE_PLAIN,
 
 			name: (isNew ? "" : props.modalState.name),
-			description: (isNew ? "" : props.modalState.desc),
+			description: ((isNew || props.modalState.type != consts.EVENT_TYPE_PLAIN) ? "" : props.modalState.data.desc),
 
-			homework: props.modalState.homework,
+			homework: (props.modalState.type == consts.EVENT_TYPE_HOMEWORK && props.modalState.data ? props.modalState.data.homework : null),
 
 			startDate: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
 			startTime: startTime,
@@ -59,14 +60,14 @@ class EventModal extends Component {
 	save() {
 		var that = this;
 
-		if (this.state.type == "homework") {
+		if (this.state.type == consts.EVENT_TYPE_HOMEWORK) {
 			if (!this.state.homework.id) {
 				this.setState({
 					error: "You must select a homework item.",
 				});
 				return;
 			}
-		} else if (this.state.type == "event") {
+		} else if (this.state.type == consts.EVENT_TYPE_PLAIN) {
 			if (this.state.name == "") {
 				this.setState({
 					error: "You must give the event a name.",
@@ -91,11 +92,11 @@ class EventModal extends Component {
 			if (!that.state.isNew) {
 				eventInfo.id = this.props.modalState.id;
 			}
-			if (this.state.type == "homework") {
+			if (this.state.type == consts.EVENT_TYPE_HOMEWORK) {
 				eventInfo["homeworkId"] = this.state.homework.id;
 			}
 
-			var endpointType = (this.state.type == "homework" ? "hwEvents" : "events");
+			var endpointType = (this.state.type == consts.EVENT_TYPE_HOMEWORK ? "hwEvents" : "events");
 
 			api.post((that.state.isNew ? `calendar/${endpointType}/add` : `calendar/${endpointType}/edit`), eventInfo, function(data) {
 				if (data.status == "ok") {
@@ -118,13 +119,13 @@ class EventModal extends Component {
 			this.setState({
 				loading: true
 			}, function() {
-				var endpointType = (this.state.type == "homework" ? "hwEvents" : "events");
+				var endpointType = (this.state.type == consts.EVENT_TYPE_HOMEWORK ? "hwEvents" : "events");
 				api.post(`calendar/${endpointType}/delete`, {
 					id: that.props.modalState.id
 				}, function() {
 					that.props.openModal("");
 					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
-					document.querySelector(".calendarHeaderControlsRefresh").click();
+					document.querySelector("#calendar .weekHeaderControlsRefresh").click();
 				});
 			});
 		}
@@ -180,9 +181,9 @@ class EventModal extends Component {
 			<div class="modal-body">
 				{state.error && <div class="alert alert-danger">{state.error}</div>}
 
-				{state.type == "event" && <input type="text" class="form-control eventModalName" placeholder="Name" value={state.name} onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} />}
+				{state.type == consts.EVENT_TYPE_PLAIN && <input type="text" class="form-control eventModalName" placeholder="Name" value={state.name} onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} />}
 
-				{state.type == "homework" && <HomeworkPicker value={state.homework} change={this.pickerChange.bind(this, "homework")} />}
+				{state.type == consts.EVENT_TYPE_HOMEWORK && <HomeworkPicker value={state.homework} change={this.pickerChange.bind(this, "homework")} />}
 
 				<div class="row">
 					<div class="col-md-1 eventModalLabel">Start</div>
@@ -200,7 +201,7 @@ class EventModal extends Component {
 					</div>
 				</div>
 
-				{state.type == "event" && <textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />}
+				{state.type == consts.EVENT_TYPE_PLAIN && <textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />}
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}

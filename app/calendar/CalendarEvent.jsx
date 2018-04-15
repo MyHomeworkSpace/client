@@ -3,7 +3,7 @@ import "calendar/CalendarEvent.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
-import $ from "jquery";
+import consts from "consts.js";
 
 import HomeworkName from "ui/HomeworkName.jsx";
 
@@ -24,19 +24,10 @@ class CalendarEvent extends Component {
 	}
 
 	render(props, state) {
-		var isScheduleItem = (props.type == "schedule");
-
 		var dayStart = moment.unix(props.item.start).startOf("day");
-		if (isScheduleItem) {
-			dayStart = moment.unix(0).utc();
-		}
 
 		var start = moment.unix(props.item.start);
 		var end = moment.unix(props.item.end);
-		if (isScheduleItem) {
-			start = start.utc();
-			end = end.utc();
-		}
 
 		var offset = start.diff(dayStart, "minutes");
 		var durationInMinutes = end.diff(start, "minutes");
@@ -44,9 +35,9 @@ class CalendarEvent extends Component {
 		var startDisplay = start.format("h:mm a");
 		var endDisplay = end.format("h:mm a");
 
-		var displayName = (props.type == "homework" ? props.item.homework.name : props.item.name);
+		var displayName = (props.item.type == consts.EVENT_TYPE_HOMEWORK ? props.item.data.homework.name : props.item.name);
 
-		if (isScheduleItem) {
+		if (props.item.type == consts.EVENT_TYPE_SCHEDULE) {
 			var displayNameSectionless = displayName.replace(/ -(.*)\(.*\)/g, "");
 			displayName = displayNameSectionless.trim();
 		}
@@ -60,8 +51,8 @@ class CalendarEvent extends Component {
 		return <div class="calendarEventContainer">
 			<div class="calendarEvent" style={`top: ${offset}px; left:${groupWidth*props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
 				<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
-				<div class="calendarEventName">{props.type == "homework" ? <HomeworkName name={displayName} /> : displayName}</div>
-				<div class="calendarEventTime">{startDisplay} to {endDisplay}{(props.type == "schedule" && props.item.roomNumber) ? ` in ${props.item.roomNumber}` : ""}</div>
+				<div class="calendarEventName">{props.item.type == consts.EVENT_TYPE_HOMEWORK ? <HomeworkName name={displayName} /> : displayName}</div>
+				<div class="calendarEventTime">{startDisplay} to {endDisplay}{(props.item.type == consts.EVENT_TYPE_SCHEDULE && props.item.data.roomNumber) ? ` in ${props.item.data.roomNumber}` : ""}</div>
 			</div>
 		</div>;
 	}

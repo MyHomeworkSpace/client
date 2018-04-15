@@ -3,6 +3,7 @@ import "ui/AddAction.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import consts from "consts.js";
 import quickAdd from "quickAdd.js";
 
 import AddActionCalendarInfo from "ui/AddActionCalendarInfo.jsx";
@@ -88,20 +89,20 @@ class AddAction extends Component {
 	}
 
 	render(props, state) {
-		var thingToAdd = (props.page == "calendar" ? "event" : "homework");
+		var thingToAdd = (props.page == "calendar" ? consts.EVENT_TYPE_PLAIN : consts.EVENT_TYPE_HOMEWORK);
 		return <div class="addAction">
 			{!state.open && <div class="addActionButton" onClick={this.click.bind(this)}>
-				<i class="fa fa-plus-square"></i> Add {thingToAdd}
+				<i class="fa fa-plus-square"></i> Add {thingToAdd == consts.EVENT_TYPE_PLAIN ? "event": "homework"}
 			</div>}
-			{thingToAdd == "homework" && state.open && <div class="addActionText">
+			{thingToAdd == consts.EVENT_TYPE_HOMEWORK && state.open && <div class="addActionText">
 				<div class="addActionClose" onClick={this.close.bind(this)}><i class="fa fa-times"></i></div>
 				<input type="text" autocomplete="off" class="addActionInput" placeholder="just start typing..." onKeyup={this.keyup.bind(this)} onInput={linkState(this, "input")} value={state.input} />
 			</div>}
-			{thingToAdd == "homework" && state.open && <AddActionHomeworkInfo text={state.input} close={this.close.bind(this)} openModal={props.openModal} />}
-			{thingToAdd == "event" && state.open && <div class="addActionButton" onClick={this.close.bind(this)}>
+			{thingToAdd == consts.EVENT_TYPE_HOMEWORK && state.open && <AddActionHomeworkInfo text={state.input} close={this.close.bind(this)} openModal={props.openModal} />}
+			{thingToAdd == consts.EVENT_TYPE_PLAIN && state.open && <div class="addActionButton" onClick={this.close.bind(this)}>
 				<i class="fa fa-times"></i> Close
 			</div>}
-			{thingToAdd == "event" && state.open && <AddActionCalendarInfo text={state.input} close={this.close.bind(this)} openModal={props.openModal} />}
+			{thingToAdd == consts.EVENT_TYPE_PLAIN && state.open && <AddActionCalendarInfo text={state.input} close={this.close.bind(this)} openModal={props.openModal} />}
 		</div>;
 	}
 }
