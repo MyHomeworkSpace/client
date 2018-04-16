@@ -18,11 +18,12 @@ MyHomeworkSpace.Pages.planner = {
 		}
 	},
 	renderHeader: function(loading) {
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.WeekHeader, {
-			monday: MyHomeworkSpace.Pages.planner.currentWeek,
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.DateHeader, {
+			start: MyHomeworkSpace.Pages.planner.currentWeek,
 			loadWeek: MyHomeworkSpace.Pages.planner.loadWeek,
-			loadingWeek: loading
-		}), null, document.querySelector("#planner .weekHeader"));
+			loadingEvents: loading,
+			type: "week"
+		}), null, document.querySelector("#planner .dateHeader"));
 	},
 	loadWeek: function(monday) {
 		MyHomeworkSpace.Pages.planner.currentWeek = monday;

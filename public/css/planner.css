@@ -1,7 +1,7 @@
 #planner {
 	overflow: scroll;
 }
-#planner .weekHeader {
+#planner .dateHeader {
 	margin-bottom: 11px;
 }
 #plannerTable {

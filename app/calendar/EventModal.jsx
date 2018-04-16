@@ -102,7 +102,7 @@ class EventModal extends Component {
 				if (data.status == "ok") {
 					that.props.openModal("");
 					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
-					document.querySelector("#calendar .weekHeaderControlsRefresh").click();
+					document.querySelector("#calendar .dateHeaderControlsRefresh").click();
 				} else {
 					that.setState({
 						loading: false,
@@ -125,7 +125,7 @@ class EventModal extends Component {
 				}, function() {
 					that.props.openModal("");
 					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
-					document.querySelector("#calendar .weekHeaderControlsRefresh").click();
+					document.querySelector("#calendar .dateHeaderControlsRefresh").click();
 				});
 			});
 		}

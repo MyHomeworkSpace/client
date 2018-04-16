@@ -20,7 +20,7 @@ import ClassName from "ui/ClassName.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 import ModalManager from "ui/ModalManager.jsx";
-import WeekHeader from "ui/WeekHeader.jsx";
+import DateHeader from "ui/DateHeader.jsx";
 
 import Sidebar from "ui/nav/Sidebar.jsx";
 import TopBar from "ui/nav/TopBar.jsx";
@@ -132,7 +132,7 @@ export default {
 		HomeworkName: HomeworkName,
 		Sidebar: Sidebar,
 		TopBar: TopBar,
-		WeekHeader: WeekHeader
+		DateHeader: DateHeader
 	},
 
 	// functions from preact

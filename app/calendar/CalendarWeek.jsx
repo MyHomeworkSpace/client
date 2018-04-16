@@ -57,7 +57,7 @@ class CalendarWeek extends Component {
 		var momentTime = moment.unix(state.time);
 
 		return <div class="calendarWeek">
-			<div class="calendarWeekHeader" style={`padding-right:${state.rightOffset || 0}px`}>
+			<div class="calendarDateHeader" style={`padding-right:${state.rightOffset || 0}px`}>
 				<CalendarWeekDay announcements={props.view && props.view.days[0].announcements} time={momentTime} name="Monday" day={props.monday} />
 				<CalendarWeekDay announcements={props.view && props.view.days[1].announcements} time={momentTime} name="Tuesday" day={moment(props.monday).add(1, "day")} />
 				<CalendarWeekDay announcements={props.view && props.view.days[2].announcements} time={momentTime} name="Wednesday" day={moment(props.monday).add(2, "days")} />

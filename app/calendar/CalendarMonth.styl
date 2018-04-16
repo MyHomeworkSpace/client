@@ -1,0 +1,71 @@
+.calendarMonth
+	padding-top: 10px
+	padding-bottom: 10px
+	width: 100%
+	height: 100%
+
+	.calendarMonthGrid
+		display: flex
+		flex-direction: column
+		width: 100%
+		height: 100%
+
+		.calendarMonthHeader
+			flex-shrink: 1
+			margin-bottom: 5px
+
+			.calendarMonthGridItem
+				text-align: center
+
+		.calendarMonthRow
+			display: flex
+			width: 100%
+
+			.calendarMonthGridItem
+				flex-basis: 0
+				flex-grow: 1
+				font-size: 12px
+		
+		.calendarMonthRow:nth-child(2)
+			.calendarMonthGridSpacer:last-child
+				border-right: solid 1px #ccc
+
+		.calendarMonthRow:last-child
+			.calendarMonthGridSpacer:first-of-type
+				border-left: solid 1px #ccc
+
+		.calendarMonthRow:not(.calendarMonthHeader)
+			flex-basis: 0
+			flex-grow: 1
+
+			.calendarMonthDayFirst, .calendarMonthDay:first-child
+				border-left: solid 1px #ccc
+
+			.calendarMonthDayTopBorder
+				border-top: solid 1px #ccc
+				margin-top: -1px
+
+			.calendarMonthGridSpacer
+				border-right: solid 1px transparent
+				padding: 4px
+
+			.calendarMonthDay
+				border-right: solid 1px #ccc
+				border-bottom: solid 1px #ccc
+				display: flex
+				flex-direction: column
+				padding: 4px
+				overflow-y: scroll
+
+				.calendarMonthDayNumber
+					font-size: 16px
+					font-weight: bold
+					flex-basis: 16px
+					flex-grow: 0
+					height: 16px
+
+				.calendarMonthDayEvents
+					flex-grow: 1
+
+			.calendarMonthToday
+				background: #ffffcc

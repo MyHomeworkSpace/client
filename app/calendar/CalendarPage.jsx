@@ -6,17 +6,19 @@ import linkState from "linkstate";
 import api from "api.js";
 import errors from "errors.js";
 
+import CalendarMonth from "calendar/CalendarMonth.jsx";
 import CalendarWeek from "calendar/CalendarWeek.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
-import WeekHeader from "ui/WeekHeader.jsx";
+import DateHeader from "ui/DateHeader.jsx";
 
 class CalendarPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			loading: true,
-			terms: []
+			terms: [],
+			type: "week"
 		};
 	}
 
@@ -57,16 +59,37 @@ class CalendarPage extends Component {
 	loadWeek(monday) {
 		var that = this;
 		this.setState({
-			loadingWeek: true,
+			loadingEvents: true,
+			type: "week",
 			view: null,
-			monday: monday
+			start: monday
 		}, function() {
 			api.get("calendar/getView", {
 				start: monday.format("YYYY-MM-DD"),
 				end: moment(monday).add(7, "days").format("YYYY-MM-DD")
 			}, function(data) {
 				that.setState({
-					loadingWeek: false,
+					loadingEvents: false,
+					view: data.view
+				});
+			});
+		});
+	}
+
+	loadMonth(start) {
+		var that = this;
+		this.setState({
+			loadingEvents: true,
+			type: "month",
+			view: null,
+			start: start
+		}, function() {
+			api.get("calendar/getView", {
+				start: moment(start).subtract(7, "days").format("YYYY-MM-DD"),
+				end: moment(start).add(1, "month").add(7, "days").format("YYYY-MM-DD")
+			}, function(data) {
+				that.setState({
+					loadingEvents: false,
 					view: data.view
 				});
 			});
@@ -109,6 +132,22 @@ class CalendarPage extends Component {
 		}
 	}
 
+	switchType(type) {
+		this.setState({
+			type: type
+		}, function() {
+			if (type == "month") {
+				this.loadMonth(moment(this.state.start).date(1));
+			} else if (type == "week") {
+				var mondayOfWeek = moment(this.state.start);
+				while (mondayOfWeek.day() != 1) {
+					mondayOfWeek.subtract(1, "day");
+				}
+				this.loadWeek(this.mondayOfWeek);
+			}
+		});
+	}
+
 	render(props, state) {
 		if (state.loading) {
 			return <div><LoadingIndicator type="inline" /> Loading, please wait...</div>;
@@ -136,9 +175,10 @@ class CalendarPage extends Component {
 			}
 		}
 
-		return <div style="height: 100%">
-			<WeekHeader monday={state.monday} loadWeek={this.loadWeek.bind(this)} loadingWeek={state.loadingWeek} />
-			<CalendarWeek openModal={props.openModal} view={state.view} monday={state.monday} />
+		return <div class="calendarPage">
+			<DateHeader showTypeSwitcher={false} switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />
+			{state.type == "week" && <CalendarWeek openModal={props.openModal} view={state.view} monday={state.start} />}
+			{state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
 		</div>;
 	}
 }
