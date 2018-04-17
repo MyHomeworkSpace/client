@@ -48,13 +48,23 @@ class CalendarEvent extends Component {
 			height = 10;
 		}
 
-		return <div class="calendarEventContainer">
-			<div class="calendarEvent" style={`top: ${offset}px; left:${groupWidth*props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
-				<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
-				<div class="calendarEventName">{props.item.type == consts.EVENT_TYPE_HOMEWORK ? <HomeworkName name={displayName} /> : displayName}</div>
-				<div class="calendarEventTime">{startDisplay} to {endDisplay}{(props.item.type == consts.EVENT_TYPE_SCHEDULE && props.item.data.roomNumber) ? ` in ${props.item.data.roomNumber}` : ""}</div>
-			</div>
-		</div>;
+		if (props.tiny) {
+			return <div class="calendarEvent calendarEventTiny" onClick={this.click.bind(this)}>
+				<div class="calendarEventDurationLine"></div>
+				<div class="calendarEventInfo">
+					<span class="calendarEventTime">{startDisplay}</span>
+					<span class="calendarEventName">{props.item.type == consts.EVENT_TYPE_HOMEWORK ? <HomeworkName name={displayName} /> : displayName}</span>
+				</div>
+			</div>;
+		} else {
+			return <div class="calendarEventContainer">
+				<div class="calendarEvent" style={`top: ${offset}px; left:${groupWidth*props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
+					<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
+					<div class="calendarEventName">{props.item.type == consts.EVENT_TYPE_HOMEWORK ? <HomeworkName name={displayName} /> : displayName}</div>
+					<div class="calendarEventTime">{startDisplay} to {endDisplay}{(props.item.type == consts.EVENT_TYPE_SCHEDULE && props.item.data.roomNumber) ? ` in ${props.item.data.roomNumber}` : ""}</div>
+				</div>
+			</div>;
+		}
 	}
 }
 

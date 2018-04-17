@@ -1,34 +1,59 @@
-.calendarEventContainer
-	.calendarEvent
-		background: white
-		cursor: pointer
-		width: 100%
-		overflow: hidden
-		padding-left: 4px
-		padding-right: 2px
-		position: absolute
-		z-index: 1
-		
-		.calendarEventDurationLine
-			background: #555
-			position: absolute
-			top: 0
-			left: 0
-			width: 2px
-		
-		.calendarEventName
-			font-size: 13px
-			font-weight: bold
-			height: 17px
-			overflow: hidden
-			text-overflow: ellipsis
-			white-space: nowrap
-		
-		.calendarEventTeacher, .calendarEventTime
+.calendarEvent.calendarEventTiny
+	height: 16px
+	line-height: 16px
+	margin-bottom: 2px
+	position: relative
+
+	.calendarEventDurationLine
+		height: 100%
+
+	.calendarEventInfo
+		display: flex
+
+		.calendarEventTime
+			flex-shrink: 0
 			font-size: 12px
+			font-weight: bold
+			margin-right: 4px
+
+		.calendarEventName
+			font-size: 12px
+			font-weight: normal
+			height: initial
+
+.calendarEvent.calendarEventTiny:hover
+	height: 17px
+
+.calendarEvent
+	background: white
+	cursor: pointer
+	width: 100%
+	overflow: hidden
+	padding-left: 4px
+	padding-right: 2px
+	position: absolute
+	z-index: 1
 	
-	.calendarEvent:hover
-		border-top: solid 1px #aaa
-		border-right: solid 1px #aaa
-		border-bottom: solid 1px #aaa
-		margin-top: -1px
+	.calendarEventDurationLine
+		background: #555
+		position: absolute
+		top: 0
+		left: 0
+		width: 2px
+	
+	.calendarEventName
+		font-size: 13px
+		font-weight: bold
+		height: 17px
+		overflow: hidden
+		text-overflow: ellipsis
+		white-space: nowrap
+	
+	.calendarEventTeacher, .calendarEventTime
+		font-size: 12px
+
+.calendarEvent:hover
+	border-top: solid 1px #aaa
+	border-right: solid 1px #aaa
+	border-bottom: solid 1px #aaa
+	margin-top: -1px

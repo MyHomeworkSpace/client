@@ -22,8 +22,8 @@
 			width: 100%
 
 			.calendarMonthGridItem
-				flex-basis: 0
 				flex-grow: 1
+				flex-shrink: 1
 				font-size: 12px
 		
 		.calendarMonthRow:nth-child(2)
@@ -55,7 +55,7 @@
 				display: flex
 				flex-direction: column
 				padding: 4px
-				overflow-y: scroll
+				width: 0
 
 				.calendarMonthDayNumber
 					font-size: 16px
@@ -66,6 +66,9 @@
 
 				.calendarMonthDayEvents
 					flex-grow: 1
+					height: 0
+					padding-top: 1px
+					overflow-y: auto
 
 			.calendarMonthToday
 				background: #ffffcc

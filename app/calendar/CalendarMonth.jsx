@@ -3,13 +3,56 @@ import "calendar/CalendarMonth.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import CalendarEvent from "calendar/CalendarEvent.jsx";
+import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
+
 class CalendarMonth extends Component {
 	constructor() {
 		super();
 		this.timer = null;
 		this.state = {
-			time: moment().unix()
+			time: moment().unix(),
+			bodyClick: this.onBodyClick.bind(this)
 		};
+	}
+
+	openPopover(top, left, type, item) {
+		if (
+			top == null ||
+			(this.state.popover && this.state.popover.top == (top - 10) && this.state.popover.left == left)
+		) {
+			this.setState({
+				popover: null
+			}, function() {
+				this.handleSettingClickHandler();
+			});
+			return;
+		}
+		this.setState({
+			popover: {
+				top: top - 10,
+				left: left,
+				type: type,
+				item: item,
+				alternate: moment.unix(item.start).day() == 0 || moment.unix(item.start).day() == 6
+			}
+		}, function() {
+			this.handleSettingClickHandler();
+		});
+	}
+
+	onBodyClick(e) {
+		if ($(e.target).closest(".calendarEventPopover, .calendarEvent").length == 0) {
+			this.openPopover(null);
+		}
+	}
+
+	handleSettingClickHandler() {
+		if (this.state.popover) {
+			$("body").bind("click", this.state.bodyClick);
+		} else {
+			$("body").unbind("click", this.state.bodyClick);
+		}
 	}
 
 	componentDidMount() {
@@ -27,6 +70,8 @@ class CalendarMonth extends Component {
 	}
 
 	render(props, state) {
+		var that = this;
+
 		var firstDay = moment(props.start).startOf("month");
 		var lastDay = moment(props.start).endOf("month");
 		
@@ -48,7 +93,7 @@ class CalendarMonth extends Component {
 				<div class="calendarMonthDayNumber">{i}</div>
 				<div class="calendarMonthDayEvents">
 					{viewDay && viewDay.events.map(function(event) {
-						return <div>{event.name}</div>;
+						return <CalendarEvent tiny type={event.type} item={event} groupIndex={0} groupLength={1} openPopover={that.openPopover.bind(that)} />;
 					})}
 				</div>
 			</div>;
@@ -83,6 +128,7 @@ class CalendarMonth extends Component {
 				</div>
 				{rows}
 			</div>
+			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} openModal={props.openModal} />}
 		</div>;
 	}
 }
