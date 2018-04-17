@@ -133,19 +133,15 @@ class CalendarPage extends Component {
 	}
 
 	switchType(type) {
-		this.setState({
-			type: type
-		}, function() {
-			if (type == "month") {
-				this.loadMonth(moment(this.state.start).date(1));
-			} else if (type == "week") {
-				var mondayOfWeek = moment(this.state.start);
-				while (mondayOfWeek.day() != 1) {
-					mondayOfWeek.subtract(1, "day");
-				}
-				this.loadWeek(this.mondayOfWeek);
+		if (type == "month") {
+			this.loadMonth(moment(this.state.start).date(1));
+		} else if (type == "week") {
+			var mondayOfWeek = moment(this.state.start);
+			while (mondayOfWeek.day() != 1) {
+				mondayOfWeek.subtract(1, "day");
 			}
-		});
+			this.loadWeek(mondayOfWeek);
+		}
 	}
 
 	render(props, state) {
