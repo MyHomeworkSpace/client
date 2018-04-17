@@ -34,7 +34,7 @@ class CalendarMonth extends Component {
 				left: left,
 				type: type,
 				item: item,
-				alternate: moment.unix(item.start).day() == 0 || moment.unix(item.start).day() == 6
+				alternate: moment.unix(item.start).day() == 5 || moment.unix(item.start).day() == 6
 			}
 		}, function() {
 			this.handleSettingClickHandler();
@@ -92,7 +92,12 @@ class CalendarMonth extends Component {
 			var day = <div class={`calendarMonthGridItem calendarMonthDay ${isToday ? "calendarMonthToday" : ""} ${i == 1 ? "calendarMonthDayFirst" : ""} ${i < 8 ? "calendarMonthDayTopBorder" : ""}`}>
 				<div class="calendarMonthDayNumber">{i}</div>
 				<div class="calendarMonthDayEvents">
-					{viewDay && viewDay.events.map(function(event) {
+					{viewDay && viewDay.announcements.map(function(announcement) {
+						return <div class="calendarMonthDayAnnouncement">{announcement.text}</div>;
+					})}
+					{viewDay && viewDay.events.sort(function(a, b) {
+						return a.start - b.start;
+					}).map(function(event) {
 						return <CalendarEvent tiny type={event.type} item={event} groupIndex={0} groupLength={1} openPopover={that.openPopover.bind(that)} />;
 					})}
 				</div>

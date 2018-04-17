@@ -176,7 +176,7 @@ class CalendarPage extends Component {
 		}
 
 		return <div class="calendarPage">
-			<DateHeader showTypeSwitcher={false} switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />
+			<DateHeader showTypeSwitcher switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />
 			{state.type == "week" && <CalendarWeek openModal={props.openModal} view={state.view} monday={state.start} />}
 			{state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
 		</div>;
