@@ -22,3 +22,24 @@ body {
 .license-condition{
 	color: #0099D6;
 }
+
+.footer {
+	padding-top: 15px;
+	height: 30vh;
+	background-color: #555;
+	color: white;
+}
+
+.footer-link {
+	color: white;
+}
+
+.footer-link:hover {
+	color: white;
+}
+
+
+.border-right {
+	border-right: solid 1px white;
+	height: 10vh;
+}

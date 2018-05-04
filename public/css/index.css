@@ -1,3 +1,7 @@
+body {
+	position: relative;
+}
+
 .landing {
 	background-image: url("../img/mainbg.jpeg");
 	background-size: cover;
@@ -40,13 +44,7 @@
 .more-section p {
 	font-size: 18px;
 }
-.social {
-	margin-top: 40px;
-	padding-top: 20px;
-	background-color: darkslategrey;
-	color: white;
-	text-align: center;
-}
+
 .social-col {
 	text-align: center;
 }
@@ -63,4 +61,89 @@
 
 .whatsnew-alert a {
 	color: white;
+}
+
+.feature {
+	height: 100vh;
+	background-size: cover;
+	background-image: no-repeat center center;
+	background-attachment: fixed !important;
+	position: relative;
+}
+
+#planner {
+	background-image: url(/img/planner-sample.jpg);
+}
+
+#homework {
+	background-image: url(/img/homework-sample.jpg);
+}
+
+#calendar {
+	background-image: url(/img/calendar-sample.jpg);
+}
+
+.feature-spotlight {
+	position: absolute;
+	bottom: 5vh;
+	right: 5vw;
+	width: 20vw;
+	padding: 5px 5px 5px 5px;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+}
+
+#keep-scrolling {
+	font-size: 30px;
+	color: white;
+	background-color: #333;
+	height: 80px;
+	line-height: 80px;
+	text-align: center;
+	padding-top: 1px;
+}
+
+.bottom-more-section {
+	padding-bottom: 20px;
+}
+
+#otherfeatures, #bottom-get-started {
+	background-color: #333;
+	color: white;
+	text-align: center;
+
+}
+
+.popover-title, .popover-content {
+	color: black !important;
+}
+
+.feature-marquee {
+	width: 100vw;
+	height: 20vh;
+	padding-top: 8vh;
+	overflow: hidden;
+}
+
+.mini-feature, .fine-print {
+	opacity: 0.7;
+	transition: opacity .5s;
+}
+
+.mini-feature {
+	padding-right: 90px !important;
+}
+
+.mini-feature:hover, .fine-print:hover{
+	opacity: 1;
+}
+
+.comic-sans {
+	font-family: "Comic Sans MS";
+	opacity: .4;
+}
+
+#bottom-get-started {
+	padding-top: 20vh;
+	height: 70vh;
 }
