@@ -1,311 +1,407 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>MyHomeworkSpace</title>
-		<link rel="icon" href="https://myhomework.space/img/icon24.png">
 
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link rel="stylesheet" href="/css/line-awesome-font-awesome.min.css">
-		<link href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" rel="stylesheet" />
-		<link rel="stylesheet" href="css/jquery.highlighttextarea.css" />
-		<link rel="stylesheet" href="css/clippy.css" media="all">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118748329-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
 
-		<link rel="stylesheet" href="css/app.css" />
+		gtag('config', 'UA-118748329-1');
+	</script>
 
-		<link rel="stylesheet" href="css/login.css" />
-		<link rel="stylesheet" href="css/homework.css" />
-		<link rel="stylesheet" href="css/classes.css" />
-		<link rel="stylesheet" href="css/planner.css" />
-		<link rel="stylesheet" href="css/settings.css" />
+	<meta charset="utf-8">
+	<title>MyHomeworkSpace</title>
+	<link rel="icon" href="https://myhomework.space/img/icon24.png">
 
-		<link rel="stylesheet" href="css/bundle.css" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/line-awesome-font-awesome.min.css">
+	<link href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/jquery.highlighttextarea.css" />
+	<link rel="stylesheet" href="css/clippy.css" media="all">
 
-		<script src="js/jquery-1.12.4.min.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="css/app.css" />
 
-		<script src="js/jquery.highlighttextarea.js"></script>
-		<script src="js/compromise.min.js"></script>
-		<script src="js/modernizr.min.js"></script>
-		<script src="js/mousetrap.min.js"></script>
-		<script src="js/moment.min.js"></script>
-		<script src="js/clippy.min.js"></script>
-		<script src="js/easteregg.js"></script>
+	<link rel="stylesheet" href="css/login.css" />
+	<link rel="stylesheet" href="css/homework.css" />
+	<link rel="stylesheet" href="css/classes.css" />
+	<link rel="stylesheet" href="css/planner.css" />
+	<link rel="stylesheet" href="css/settings.css" />
 
-		<script src="js/date-polyfill.min.js"></script>
+	<link rel="stylesheet" href="css/bundle.css" />
 
-		<script src="js/bundle.js"></script>
+	<script src="js/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
 
-		<script src="js/app.js"></script>
-		<script src="js/utils.js"></script>
+	<script src="js/jquery.highlighttextarea.js"></script>
+	<script src="js/compromise.min.js"></script>
+	<script src="js/modernizr.min.js"></script>
+	<script src="js/mousetrap.min.js"></script>
+	<script src="js/moment.min.js"></script>
+	<script src="js/clippy.min.js"></script>
+	<script src="js/easteregg.js"></script>
 
-		<script src="js/login.js"></script>
+	<script src="js/date-polyfill.min.js"></script>
 
-		<script src="js/homework.js"></script>
-		<script src="js/classes.js"></script>
-		<script src="js/planner.js"></script>
-		<script src="js/calendar.js"></script>
-		<script src="js/settings.js"></script>
-		<script src="js/help.js"></script>
-	</head>
-	<body>
-		<div id="modalManager"><div></div></div>
-		<div id="workingOverlay" style="display: none;">
-			Working on it...
-		</div>
-		<div id="loadingModal" class="modal fade" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-body">
-						<i class="fa fa-refresh fa-spin"></i>
-					</div>
+	<script src="js/bundle.js"></script>
+
+	<script src="js/app.js"></script>
+	<script src="js/utils.js"></script>
+
+	<script src="js/login.js"></script>
+
+	<script src="js/homework.js"></script>
+	<script src="js/classes.js"></script>
+	<script src="js/planner.js"></script>
+	<script src="js/calendar.js"></script>
+	<script src="js/settings.js"></script>
+	<script src="js/help.js"></script>
+</head>
+
+<body>
+	<div id="modalManager">
+		<div></div>
+	</div>
+	<div id="workingOverlay" style="display: none;">
+		Working on it...
+	</div>
+	<div id="loadingModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<i class="fa fa-refresh fa-spin"></i>
 				</div>
 			</div>
 		</div>
-		<div id="classSwapModal" class="modal fade" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title">Swap '<span class="classSwapName"></span>'</h4>
-					</div>
-					<div class="modal-body">
-						<p>Select a class to swap '<span class="classSwapName"></span>' with.</p>
-						<ul id="classSwapOptions">
+	</div>
+	<div id="classSwapModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Swap '
+						<span class="classSwapName"></span>'</h4>
+				</div>
+				<div class="modal-body">
+					<p>Select a class to swap '
+						<span class="classSwapName"></span>' with.</p>
+					<ul id="classSwapOptions">
 
-						</ul>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
-		<div id="homeworkModal" class="modal fade" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title"><span id="homeworkModalType"></span> homework</h4>
-					</div>
-					<div class="modal-body">
-						<input type="text" id="homeworkName" placeholder="Name" class="form-control" autocomplete="nope" />
-						<input type="date" id="homeworkDue" placeholder="Due date" class="form-control"/>
-						<select id="homeworkClass"></select>
-						<br />
-						<input type="checkbox" id="homeworkComplete" />
-						<label for="homeworkComplete"> Done?</label><br/>
-						<textarea id="homeworkDesc" class="form-control" placeholder="Description"></textarea>
-					</div>
-					<div class="modal-footer">
-						<button id="deleteHomeworkModal" type="button" class="btn btn-danger">Delete</button>
-						<button id="submitHomeworkModal" type="button" class="btn btn-primary">Save changes</button>
-					</div>
+	</div>
+	<div id="homeworkModal" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">
+						<span id="homeworkModalType"></span> homework</h4>
+				</div>
+				<div class="modal-body">
+					<input type="text" id="homeworkName" placeholder="Name" class="form-control" autocomplete="nope" />
+					<input type="date" id="homeworkDue" placeholder="Due date" class="form-control" />
+					<select id="homeworkClass"></select>
+					<br />
+					<input type="checkbox" id="homeworkComplete" />
+					<label for="homeworkComplete"> Done?</label>
+					<br/>
+					<textarea id="homeworkDesc" class="form-control" placeholder="Description"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button id="deleteHomeworkModal" type="button" class="btn btn-danger">Delete</button>
+					<button id="submitHomeworkModal" type="button" class="btn btn-primary">Save changes</button>
 				</div>
 			</div>
 		</div>
-		<div id="migrationWelcome" class="modal fade" tabindex="-1" role="dialog">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-body">
-						<div id="migrationBigText">Welcome back!</div>
-						<p class="lead">We've changed some things since the last time you were here.</p>
-						
-						<h2><i class="fa fa-fw fa-calendar"></i> Calendar</h2>
-						<p>The new Calendar tab lets you easily plan out your day. It already knows when your classes are, so you don't have to waste time entering your schedule.</p>
-						
-						<h2><i class="fa fa-fw fa-comments-o"></i> Feedback</h2>
-						<p>With the redesign of the feedback buttons, we've made submitting feedback easier than ever.</p>
+	</div>
+	<div id="migrationWelcome" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div id="migrationBigText">Welcome back!</div>
+					<p class="lead">We've changed some things since the last time you were here.</p>
 
-						<h2><i class="fa fa-fw fa-ellipsis-v"></i> Overall design improvements</h2>
-						<p>We've changed icons, colors, and many other things to give MyHomeworkSpace more of a modern feeling.</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
+					<h2>
+						<i class="fa fa-fw fa-calendar"></i> Calendar</h2>
+					<p>The new Calendar tab lets you easily plan out your day. It already knows when your classes are, so you don't have to
+						waste time entering your schedule.</p>
+
+					<h2>
+						<i class="fa fa-fw fa-comments-o"></i> Feedback</h2>
+					<p>With the redesign of the feedback buttons, we've made submitting feedback easier than ever.</p>
+
+					<h2>
+						<i class="fa fa-fw fa-ellipsis-v"></i> Overall design improvements</h2>
+					<p>We've changed icons, colors, and many other things to give MyHomeworkSpace more of a modern feeling.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
-		<div class="topBar"></div>
-		<div class="sidebar">
-			
+	</div>
+	<div class="topBar"></div>
+	<div class="sidebar">
+
+	</div>
+	<div id="loadingStart" class="page">
+		Loading...
+	</div>
+	<div id="login" class="page hidden">
+		<div id="loginContainer">
+			<h1 id="loginTitle">Log in</h1>
+			<h3 id="loginSubtitle">Sign in using your Dalton account.</h3>
+			<h4 id="loginError"></h4>
+			<div id="loginForm">
+				<input type="text" id="loginUsername" placeholder="Username" class="form-control" />
+				<input type="password" id="loginPassword" placeholder="Password" class="form-control" />
+				<button id="loginSubmit" class="btn btn-primary">Log in</button>
+				<p>By pressing the "Log in" button, you agree to our
+					<a href="https://legal.myhomework.space">Terms of Service and Privacy Policy</a>
+				</p>
+			</div>
 		</div>
-		<div id="loadingStart" class="page">
-			Loading...
-		</div>
-		<div id="login" class="page hidden">
-			<div id="loginContainer">
-				<h1 id="loginTitle">Log in</h1>
-				<h3 id="loginSubtitle">Sign in using your Dalton account.</h3>
-				<h4 id="loginError"></h4>
-				<div id="loginForm">
-					<input type="text" id="loginUsername" placeholder="Username" class="form-control" />
-					<input type="password" id="loginPassword" placeholder="Password" class="form-control" />
-					<button id="loginSubmit" class="btn btn-primary">Log in</button>
-					<p>By pressing the "Log in" button, you agree to our <a href="https://legal.myhomework.space">Terms of Service and Privacy Policy</a></p>
+	</div>
+	<div id="homework" class="page hidden">
+		<div></div>
+	</div>
+	<div id="classes" class="page hidden">
+		<h2>Classes
+			<button id="addClass" class="btn btn-default btn-sm">
+				<i class="fa fa-plus"></i> Add</button>
+		</h2>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="classList"></div>
+			</div>
+			<div id="classPane" class="col-md-6">
+				<div id="classPaneHeader">
+					<h3 id="classPaneName">Math</h3>
+					<h4 id="classPaneTeacher">Teacher</h4>
+				</div>
+				<div id="classPaneHomework">
+					<h4>Upcoming homework</h4>
+
 				</div>
 			</div>
 		</div>
-		<div id="homework" class="page hidden">
-			<div></div>
-		</div>
-		<div id="classes" class="page hidden">
-			<h2>Classes <button id="addClass" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add</button></h2>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="classList"></div>
-				</div>
-				<div id="classPane" class="col-md-6">
-					<div id="classPaneHeader">
-						<h3 id="classPaneName">Math</h3>
-						<h4 id="classPaneTeacher">Teacher</h4>
-					</div>
-					<div id="classPaneHomework">
-						<h4>Upcoming homework</h4>
+	</div>
+	<div id="planner" class="page hidden">
+		<div class="dateHeader"></div>
+		<table id="plannerTable">
+			<thead>
+				<tr id="plannerTableDowRow">
+					<th></th>
+					<th>Monday
+						<span id="dowDay0" class="dowDay"></span>
+					</th>
+					<th>Tuesday
+						<span id="dowDay1" class="dowDay"></span>
+					</th>
+					<th>Wednesday
+						<span id="dowDay2" class="dowDay"></span>
+					</th>
+					<th>Thursday
+						<span id="dowDay3" class="dowDay"></span>
+					</th>
+					<th>Friday
+						<span id="plannerFridayIndex"></span>
+						<span id="dowDay4" class="dowDay"></span>
+					</th>
+					<th>Saturday
+						<span id="dowDay5" class="dowDay"></span>
+					</th>
+					<th>Sunday
+						<span id="dowDay6" class="dowDay"></span>
+					</th>
+				</tr>
+				<tr id="plannerAnnouncementRow">
+					<th></th>
+					<th>
+						<span id="announcementDay0" class="announcementDay"></span>
+					</th>
+					<th>
+						<span id="announcementDay1" class="announcementDay"></span>
+					</th>
+					<th>
+						<span id="announcementDay2" class="announcementDay"></span>
+					</th>
+					<th>
+						<span id="announcementDay3" class="announcementDay"></span>
+					</th>
+					<th>
+						<span id="announcementDay4" class="announcementDay"></span>
+					</th>
+					<th>
+						<span id="announcementDay5" class="announcementDay"></span>
+					</th>
+					<th>
+						<span id="announcementDay6" class="announcementDay"></span>
+					</th>
+				</tr>
+			</thead>
+			<tbody id="plannerTableBody">
 
+			</tbody>
+		</table>
+	</div>
+	<div id="calendar" class="page hidden">
+		<div></div>
+	</div>
+	<div id="settings" class="page hidden">
+		<h2>Settings</h2>
+		<div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active">
+					<a href="#settings_account" aria-controls="home" role="tab" data-toggle="tab">Account</a>
+				</li>
+				<li role="presentation">
+					<a href="#settings_quickAdd" aria-controls="settings_quickAdd" role="tab" data-toggle="tab">Quick Add</a>
+				</li>
+				<li role="presentation">
+					<a href="#settings_applications" aria-controls="settings_applications" role="tab" data-toggle="tab">Applications</a>
+				</li>
+				<li role="presentation">
+					<a href="#settings_homework" aria-controls="settings_homework" role="tab" data-toggle="tab">Homework</a>
+				</li>
+				<li role="presentation">
+					<a href="#settings_planner" aria-controls="settings_planner" role="tab" data-toggle="tab">Planner</a>
+				</li>
+				<li role="presentation">
+					<a href="#settings_calendar" aria-controls="settings_calendar" role="tab" data-toggle="tab">Calendar</a>
+				</li>
+				<li role="presentation">
+					<a href="#settings_more" aria-controls="settings_more" role="tab" data-toggle="tab">More Projects</a>
+				</li>
+			</ul>
+
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="settings_account">
+					<h3 id="settings_account_name"></h3>
+					<h4 id="settings_account_email"></h4>
+					<h4 id="settings_account_grade"></h4>
+
+					<br />
+
+					<h4>Password</h4>
+					<p>You are signed in with your Dalton account. For assistance with Dalton accounts, please contact
+						<a href="mailto:help@dalton.org">help@dalton.org</a>.</p>
+					<a href="https://password.dalton.org" data-toggle="tooltip" title="This will bring you to password.dalton.org, a website maintained by The Dalton School to change your password. This website is not maintained by MyHomeworkSpace. Thanks!"
+					 class="btn btn-primary">Change password</a>
+
+					<br />
+					<br />
+
+					<h4>Background</h4>
+					<button id="settings_change_background" class="btn btn-primary">Change background</button>
+
+					<div id="settingsHidingSpacer"></div>
+
+					<button id="clipify" class="btn btn-primary btn-sm partyLikeItsThe90s" onclick="partyLike90s();">Party Like it's the 90s</button>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="settings_applications">
+					<p>Manage other applications you've given access to your account.</p>
+					<div id="settingsApplicationsList">
+						<div></div>
 					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="settings_quickAdd">
+					<p>Quick Add lets you add homework to your planner by typing in information about it. Examples:</p>
+					<ul>
+						<li>read chapter 3 for English tomorrow</li>
+						<li>take test on unit 4 in Science next Tuesday</li>
+						<li>next Friday, I have to write an essay about the revolution for History</li>
+					</ul>
+					<p>You can access Quick Add from the "
+						<i class="fa fa-plus-square"></i> Add Homework" button above, or with the Control-Space keyboard shortcut.</p>
+					<input type="checkbox" id="settings_disableQuickAdd" class="settings_checkbox" data-pref="disableQuickAdd" data-pref-inverted="true"
+					 checked />
+					<label for="settings_disableQuickAdd">Enable Quick Add</label>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="settings_homework">
+					<div id="settingsHomeworkContainer">
+						<div></div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="settings_planner">
+					<input type="checkbox" id="settings_darkenDoneBoxes" class="settings_checkbox" data-pref="darkenDoneBoxes" data-pref-inverted="false"
+					/>
+					<label for="settings_darkenDoneBoxes">Darken boxes with all work completed</label>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="settings_calendar">
+					<div id="settingsCalendarContainer">
+						<div></div>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="settings_more">
+					<h3>DaltonTab</h3>
+					<p>
+						<strong>Free, Chrome Extension, Dalton Laptop Program Compatible</strong>
+					</p>
+					<p>DaltonTab is your home base for homework, classes, and your schedule. View your information from multiple sites in one
+						central view, available at the click of a new tab.</p>
+					<a href="https://chrome.google.com/webstore/detail/daltontab/ggfjkmflbbjndabmnngilkfpmdegbfkm" class="btn btn-primary" target="_blank">Download</a>
+
+					<h3>MyHomeworkSpace Button</h3>
+					<p>
+						<strong>Free, Chrome Extension, Dalton Laptop Program Compatible</strong>
+					</p>
+					<p>A button in your toolbar that leads directly to MyHomeworkSpace.</p>
+					<a href="https://chrome.google.com/webstore/detail/myhomeworkspace-button/bgjhpfdlpnddingdjkjlefefbjdnnndm" class="btn btn-primary"
+					 target="_blank">Download</a>
+
+					<h3>Back to Drive</h3>
+					<p>
+						<strong>Free, Chrome Extension, Dalton Laptop Program Compatible</strong>
+					</p>
+					<p>A nifty little extension that changes the link on the Docs, Spreadsheets, Slides, Drawings and Forms logo back to Drive.</p>
+					<a href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp" class="btn btn-primary"
+					 target="_blank">Download</a>
 				</div>
 			</div>
 		</div>
-		<div id="planner" class="page hidden">
-			<div class="dateHeader"></div>
-			<table id="plannerTable">
-				<thead>
-					<tr id="plannerTableDowRow">
-						<th></th>
-						<th>Monday <span id="dowDay0" class="dowDay"></span></th>
-						<th>Tuesday <span id="dowDay1" class="dowDay"></span></th>
-						<th>Wednesday <span id="dowDay2" class="dowDay"></span></th>
-						<th>Thursday <span id="dowDay3" class="dowDay"></span></th>
-						<th>Friday <span id="plannerFridayIndex"></span><span id="dowDay4" class="dowDay"></span></th>
-						<th>Saturday <span id="dowDay5" class="dowDay"></span></th>
-						<th>Sunday <span id="dowDay6" class="dowDay"></span></th>
-					</tr>
-					<tr id="plannerAnnouncementRow">
-						<th></th>
-						<th><span id="announcementDay0" class="announcementDay"></span></th>
-						<th><span id="announcementDay1" class="announcementDay"></span></th>
-						<th><span id="announcementDay2" class="announcementDay"></span></th>
-						<th><span id="announcementDay3" class="announcementDay"></span></th>
-						<th><span id="announcementDay4" class="announcementDay"></span></th>
-						<th><span id="announcementDay5" class="announcementDay"></span></th>
-						<th><span id="announcementDay6" class="announcementDay"></span></th>
-					</tr>
-				</thead>
-				<tbody id="plannerTableBody">
+	</div>
+	<div id="help" class="page hidden">
+		<div></div>
+	</div>
+	<div id="admin" class="page hidden">
+		<h2>Admin</h2>
+		<div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active">
+					<a href="#admin_users" aria-controls="home" role="tab" data-toggle="tab">Users</a>
+				</li>
+				<li role="presentation">
+					<a href="#admin_feedback" aria-controls="admin_feedback" role="tab" data-toggle="tab">Feedback</a>
+				</li>
+			</ul>
 
-				</tbody>
-			</table>
-		</div>
-		<div id="calendar" class="page hidden">
-			<div></div>
-		</div>
-		<div id="settings" class="page hidden">
-			<h2>Settings</h2>
-			<div>
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#settings_account" aria-controls="home" role="tab" data-toggle="tab">Account</a></li>
-					<li role="presentation"><a href="#settings_quickAdd" aria-controls="settings_quickAdd" role="tab" data-toggle="tab">Quick Add</a></li>
-					<li role="presentation"><a href="#settings_applications" aria-controls="settings_applications" role="tab" data-toggle="tab">Applications</a></li>
-					<li role="presentation"><a href="#settings_homework" aria-controls="settings_homework" role="tab" data-toggle="tab">Homework</a></li>
-					<li role="presentation"><a href="#settings_planner" aria-controls="settings_planner" role="tab" data-toggle="tab">Planner</a></li>
-					<li role="presentation"><a href="#settings_calendar" aria-controls="settings_calendar" role="tab" data-toggle="tab">Calendar</a></li>
-					<li role="presentation"><a href="#settings_more" aria-controls="settings_more" role="tab" data-toggle="tab">More Projects</a></li>
-				</ul>
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="admin_users">
+					<h4>Users</h4>
+				</div>
 
-				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="settings_account">
-						<h3 id="settings_account_name"></h3>
-						<h4 id="settings_account_email"></h4>
-						<h4 id="settings_account_grade"></h4>
-
-						<br />
-
-						<h4>Password</h4>
-						<p>You are signed in with your Dalton account. For assistance with Dalton accounts, please contact <a href="mailto:help@dalton.org">help@dalton.org</a>.</p>
-						<a href="https://password.dalton.org" data-toggle="tooltip" title="This will bring you to password.dalton.org, a website maintained by The Dalton School to change your password. This website is not maintained by MyHomeworkSpace. Thanks!" class="btn btn-primary">Change password</a>
-
-						<br />
-						<br />
-
-						<h4>Background</h4>
-						<button id="settings_change_background" class="btn btn-primary">Change background</button>
-
-						<div id="settingsHidingSpacer"></div>
-
-						<button id="clipify" class="btn btn-primary btn-sm partyLikeItsThe90s" onclick="partyLike90s();">Party Like it's the 90s</button>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="settings_applications">
-						<p>Manage other applications you've given access to your account.</p>
-						<div id="settingsApplicationsList">
-							<div></div>
-						</div>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="settings_quickAdd">
-						<p>Quick Add lets you add homework to your planner by typing in information about it. Examples:</p>
-						<ul>
-							<li>read chapter 3 for English tomorrow</li>
-							<li>take test on unit 4 in Science next Tuesday</li>
-							<li>next Friday, I have to write an essay about the revolution for History</li>
-						</ul>
-						<p>You can access Quick Add from the "<i class="fa fa-plus-square"></i> Add Homework" button above, or with the Control-Space keyboard shortcut.</p>
-						<input type="checkbox" id="settings_disableQuickAdd" class="settings_checkbox" data-pref="disableQuickAdd" data-pref-inverted="true" checked />
-						<label for="settings_disableQuickAdd">Enable Quick Add</label>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="settings_homework">
-						<div id="settingsHomeworkContainer">
-							<div></div>
-						</div>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="settings_planner">
-						<input type="checkbox" id="settings_darkenDoneBoxes" class="settings_checkbox" data-pref="darkenDoneBoxes" data-pref-inverted="false" />
-						<label for="settings_darkenDoneBoxes">Darken boxes with all work completed</label>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="settings_calendar">
-						<div id="settingsCalendarContainer">
-							<div></div>
-						</div>
-					</div>
-					<div role="tabpanel" class="tab-pane" id="settings_more">
-						<h3>DaltonTab</h3>
-						<p><strong>Free, Chrome Extension, Dalton Laptop Program Compatible</strong></p>
-						<p>DaltonTab is your home base for homework, classes, and your schedule. View your information from multiple sites in one central view, available at the click of a new tab.</p>
-						<a href="https://chrome.google.com/webstore/detail/daltontab/ggfjkmflbbjndabmnngilkfpmdegbfkm" class="btn btn-primary" target="_blank">Download</a>
-
-						<h3>MyHomeworkSpace Button</h3>
-						<p><strong>Free, Chrome Extension, Dalton Laptop Program Compatible</strong></p>
-						<p>A button in your toolbar that leads directly to MyHomeworkSpace.</p>
-						<a href="https://chrome.google.com/webstore/detail/myhomeworkspace-button/bgjhpfdlpnddingdjkjlefefbjdnnndm" class="btn btn-primary" target="_blank">Download</a>
-
-						<h3>Back to Drive</h3>
-						<p><strong>Free, Chrome Extension, Dalton Laptop Program Compatible</strong></p>
-						<p>A nifty little extension that changes the link on the Docs, Spreadsheets, Slides, Drawings and Forms logo back to Drive.</p>
-						<a href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp" class="btn btn-primary" target="_blank">Download</a>
-					</div>
+				<div role="tabpanel" class="tab-pane" id="admin_feedback">
+					<h4>Feedback</h4>
 				</div>
 			</div>
 		</div>
-		<div id="help" class="page hidden">
-			<div></div>
-		</div>
-		<div id="admin" class="page hidden">
-			<h2>Admin</h2>
-			<div>
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#admin_users" aria-controls="home" role="tab" data-toggle="tab">Users</a></li>
-					<li role="presentation"><a href="#admin_feedback" aria-controls="admin_feedback" role="tab" data-toggle="tab">Feedback</a></li>				</ul>
+	</div>
+</body>
 
-				<div class="tab-content">
-					<div role="tabpanel" class="tab-pane active" id="admin_users">
-						<h4>Users</h4>
-					</div>
-						
-					<div role="tabpanel" class="tab-pane" id="admin_feedback">
-						<h4>Feedback</h4>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
 </html>
