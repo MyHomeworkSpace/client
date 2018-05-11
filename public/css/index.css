@@ -91,9 +91,13 @@ body {
 	bottom: 5vh;
 	right: 5vw;
 	width: 20vw;
-	padding: 5px 5px 5px 5px;
+	padding: 10px;
 	background-color: rgba(0, 0, 0, 0.7);
 	color: white;
+}
+
+.feature-spotlight h1 {
+	margin-top: 0;
 }
 
 #keep-scrolling {
