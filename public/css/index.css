@@ -63,11 +63,14 @@ body {
 	color: white;
 }
 
+#features {
+	overflow: hidden;
+}
+
 .feature {
 	height: 100vh;
 	background-size: cover;
-	background-image: no-repeat center center;
-	background-attachment: fixed !important;
+	background-attachment: fixed;
 	position: relative;
 }
 
@@ -111,7 +114,6 @@ body {
 	background-color: #333;
 	color: white;
 	text-align: center;
-
 }
 
 .popover-title, .popover-content {
