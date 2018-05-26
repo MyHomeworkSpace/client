@@ -38,3 +38,9 @@ $('.marquee-right').marquee({
     duplicated: true,
     // pauseOnHover: true //don't need until we add popovers
 });
+
+$(document).ready(function() {
+    if(document.location.href.indexOf("display-extra=finals") > -1) {
+		$("#finals").modal()
+	}
+});
