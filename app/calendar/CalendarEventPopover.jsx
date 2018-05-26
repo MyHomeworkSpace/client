@@ -44,7 +44,7 @@ class CalendarEventPopover extends Component {
 			<div class="calendarEventPopoverName">{props.item.type == consts.EVENT_TYPE_HOMEWORK ? <HomeworkName name={props.item.data.homework.name} /> : props.item.name}</div>
 			{info}
 			<div class="calendarEventPopoverTime">{startDisplay} to {endDisplay}</div>
-			{props.item.type == consts.EVENT_TYPE_SCHEDULE && (props.item.data.buildingName || props.item.data.roomNumber) && <div class="calendarEventPopoverLocation">{props.item.data.buildingName} {(props.item.data.roomNumber != "Library" || props.item.data.roomNumber != "Cafeteria") ? "Room " : ""}{props.item.data.roomNumber}</div>}
+			{props.item.type == consts.EVENT_TYPE_SCHEDULE && (props.item.data.buildingName || props.item.data.roomNumber) && <div class="calendarEventPopoverLocation">{props.item.data.buildingName} {(props.item.data.roomNumber != "Library" && props.item.data.roomNumber != "Cafeteria") ? "Room " : ""}{props.item.data.roomNumber}</div>}
 			{props.item.type == consts.EVENT_TYPE_SCHEDULE && props.item.data.block && <div class="calendarEventPopoverPeriod">{props.item.data.block} Period</div>}
 			{actions}
 			{props.item.type == consts.EVENT_TYPE_SCHEDULE && <div class="calendarEventPopoverOrigin"><i class="fa fa-clock-o" /> from your schedule</div>}
