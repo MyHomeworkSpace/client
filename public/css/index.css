@@ -9,6 +9,7 @@ body {
 }
 .jumbotron {
 	background: transparent;
+	margin-bottom: 0;
 }
 .jumbotron h1 {
 	font-size: 48px;
