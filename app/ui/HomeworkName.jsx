@@ -17,3 +17,11 @@ class HomeworkName extends Component {
 }
 
 export default HomeworkName;
+
+
+// Maybe put this somewhere at some point, but there's no good place right now
+// import PrefixList from "ui/PrefixList.jsx";
+// import Collapse from "ui/Collapse.jsx";
+// <Collapse title="See all Tags">
+// 	<PrefixList />
+// </Collapse>
