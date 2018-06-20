@@ -12,7 +12,6 @@ class TimePickerPopup extends Component {
 		if (showDuration) {
 			// we're an end time picker, so calculate 
 			var offset = this.props.time.diff(this.props.suggestStart, "minutes") / 15;
-			console.log(offset);
 			this._popup.scrollTop = Math.max(0, (offset * 24) - 45);
 		} else {
 			// we're a start time picker, so selected time is always in the center
