@@ -173,6 +173,14 @@ export default {
 			}
 		}
 
+		// values probably shouldn't be flagged as dates
+		// this fixes things like "HW 7.2 tuesday", where "7.2 tuesday" is chosen as date
+		sentence.terms().list.forEach(function(term) {
+			if (term.get(0).tags.Value && term.get(0).tags.Date) {
+				term.get(0).tags.Date = false;
+			}
+		})
+
 		response.tag = sentence.match("#MHSPrefix").terms(0).out().trim();
 		response.due = sentence.replace("Test", "").replace("test", "").match("#Date").out().trim();
 
