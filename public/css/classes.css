@@ -54,24 +54,6 @@
 	font-size: 12px;
 }
 
-#classSwapOptions {
-	list-style-type: none;
-	padding: 0;
-}
-.classSwapItem {
-	border: solid 1px black;
-	cursor: pointer;
-	width: 300px;
-	height: 40px;
-	margin-left: 0;
-	margin-bottom: 10px;
-	padding: 10px;
-	transition: all 0.2s;
-}
-.classSwapItem:hover {
-	background: rgb(200, 200, 200);
-}
-
 #classPane {
 	border: solid 1px black;
 	padding: 0;
