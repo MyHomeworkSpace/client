@@ -2,6 +2,8 @@ import "homework/HomeworkItem.styl";
 
 import { h, Component } from "preact";
 
+import prefixes from "prefixes.js";
+
 import ClassName from "ui/ClassName.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
@@ -38,7 +40,7 @@ class HomeworkItem extends Component {
 
 	render(props, state) {
 		var prefix = props.homework.name.split(" ")[0];
-		var prefixInfo = MyHomeworkSpace.Prefixes.matchPrefix(prefix);
+		var prefixInfo = prefixes.matchPrefix(prefix);
 
 		var due = moment(props.homework.due);
 		var dueText = due.calendar().split(" at ")[0];
@@ -64,7 +66,7 @@ class HomeworkItem extends Component {
 			}
 		}
 
-		return <div class={`hwItem ${props.isOverdue ? "hwLate": ""} ${state.complete == "1" ? "done": ""}`} data-hwId={props.homework.id}>
+		return <div class={`hwItem ${props.isOverdue ? "hwLate": ""} ${state.complete == "1" ? "done": ""}`} style={`border-left-color: #${prefixInfo.background}`} data-hwId={props.homework.id}>
 			<div class="hwOptions">
 				<i class={`fa ${state.complete ? "fa-check-circle-o" : "fa-circle-o"} toggleable-check`} onClick={this.toggleComplete.bind(this)}></i>
 				<i class="fa fa-edit" onClick={this.edit.bind(this)}></i>
