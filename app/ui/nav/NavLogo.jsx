@@ -5,7 +5,7 @@ import { h, Component } from "preact";
 class NavLogo extends Component {
 	render(props, state) {
 		return <div class="navLogo">
-			MyHomeworkSpace
+			<img src="/img/icon128.png" />
 		</div>;
 	}
 }

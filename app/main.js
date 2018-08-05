@@ -22,7 +22,6 @@ import HomeworkName from "ui/HomeworkName.jsx";
 import ModalManager from "ui/ModalManager.jsx";
 import DateHeader from "ui/DateHeader.jsx";
 
-import Sidebar from "ui/nav/Sidebar.jsx";
 import TopBar from "ui/nav/TopBar.jsx";
 
 var modalName = "";
@@ -130,7 +129,6 @@ export default {
 		ClassName: ClassName,
 		FeedbackControl: FeedbackControl,
 		HomeworkName: HomeworkName,
-		Sidebar: Sidebar,
 		TopBar: TopBar,
 		DateHeader: DateHeader
 	},

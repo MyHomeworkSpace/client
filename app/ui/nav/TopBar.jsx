@@ -8,7 +8,8 @@ import AddAction from "ui/AddAction.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
 
 import NavLogo from "ui/nav/NavLogo.jsx";
-import SidebarToggleButton from "ui/nav/SidebarToggleButton.jsx";
+import TopBarButton from "ui/nav/TopBarButton.jsx";
+import TopBarDropdown from "ui/nav/TopBarDropdown.jsx";
 
 class TopBar extends Component {
 	logout() {
@@ -17,11 +18,27 @@ class TopBar extends Component {
 		});
 	}
 
+	openPage(page) {
+		this.props.openPage(page);
+	}
+
 	render(props, state) {
+		var that = this;
+		var tabs = {
+			"homework": { icon: "file-o", name: "Homework" },
+			"planner": { icon: "book", name: "Planner" },
+			"calendar": { icon: "calendar", name: "Calendar" }
+		};
+
 		return <div class={`topBar ${props.inverted ? "inverted": ""}`}>
 			<div>
-				<SidebarToggleButton toggleSidebar={props.toggleSidebar} />
 				<NavLogo />
+
+				{Object.keys(tabs).map(function(tabKey) {
+					var tab = tabs[tabKey];
+					return <TopBarButton icon={tab.icon} selected={props.page == tabKey} onClick={that.openPage.bind(that, tabKey)}>{tab.name}</TopBarButton>;
+				})}
+				<TopBarDropdown tabs={props.tabs} page={props.page} openPage={props.openPage} />
 			</div>
 			<AddAction page={props.page} openModal={props.openModal} />
 			<div>

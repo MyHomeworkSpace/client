@@ -29,36 +29,15 @@ MyHomeworkSpace.Tabs = null; // will store the current user's tabs when logged i
 
 MyHomeworkSpace.Nav = {
 	inverted: false,
-	showSidebar: true,
 	rerenderNav: function() {
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.Sidebar, {
-			me: MyHomeworkSpace.Me,
-			tabs: MyHomeworkSpace.Tabs,
-			page: MyHomeworkSpace.Page.current(),
-			openModal: MHSBridge.default.openModal,
-			openPage: MyHomeworkSpace.Page.show,
-			inverted: MyHomeworkSpace.Nav.inverted,
-			visible: MyHomeworkSpace.Nav.showSidebar
-		}), null, $(".sidebar")[0]);
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.TopBar, {
 			me: MyHomeworkSpace.Me,
 			tabs: MyHomeworkSpace.Tabs,
 			page: MyHomeworkSpace.Page.current(),
 			openModal: MHSBridge.default.openModal,
 			openPage: MyHomeworkSpace.Page.show,
-			inverted: MyHomeworkSpace.Nav.inverted,
-			toggleSidebar: function() {
-				MyHomeworkSpace.Nav.showSidebar = !MyHomeworkSpace.Nav.showSidebar;
-				MyHomeworkSpace.Nav.rerenderNav();
-			}
+			inverted: MyHomeworkSpace.Nav.inverteds
 		}), null, $(".topBar")[0]);
-		if (MyHomeworkSpace.Nav.showSidebar) {
-			$(".page").removeClass("sidebarHiding");
-			$(".page").addClass("sidebarVisible");
-		} else {
-			$(".page").removeClass("sidebarVisible");
-			$(".page").addClass("sidebarHiding");
-		}
 	},
 	init: function() {
 		MyHomeworkSpace.API.get("prefs/get/background", {}, function(data) {
@@ -76,14 +55,12 @@ MyHomeworkSpace.Page = {
 	},
 	show: function(path) {
 		$(".page:not(.hidden)").addClass("hidden");
-		$(".sidebarItem.selected").removeClass("selected");
 		if (path) {
 			var parts = path.split(":");
 			var name = parts[0];
 			var param = parts[1];
 			var $page = $("#" + name);
 			$page.removeClass("hidden");
-			$(".sidebarItem[data-page=" + name + "]").addClass("selected");
 			window.location.hash = "!" + name + (param ? ":" + param : "");
 			if (MyHomeworkSpace.Pages[name] && MyHomeworkSpace.Pages[name].open) {
 				MyHomeworkSpace.Pages[name].open(param);
@@ -115,15 +92,6 @@ $(document).ready(function() {
 		return;
 	}
 	MyHomeworkSpace.API.init(function() {
-		$(".sidebarItem").click(function() {
-			if ($(".page:not(.hidden)").attr("id") == $(this).attr("data-page")) {
-				// if it's already open, close the current page
-				MyHomeworkSpace.Page.show("");
-				return;
-			}
-			MyHomeworkSpace.Page.show($(this).attr("data-page"));
-		});
-		
 		for (var pageIndex in MyHomeworkSpace.Pages) {
 			if (MyHomeworkSpace.Pages[pageIndex].init) {
 				MyHomeworkSpace.Pages[pageIndex].init();

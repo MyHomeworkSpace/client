@@ -4,6 +4,7 @@ import { h, Component } from "preact";
 import linkState from "linkstate";
 
 import FeedbackPopup from "ui/FeedbackPopup.jsx";
+import TopBarButton from "ui/nav/TopBarButton.jsx";
 
 class FeedbackControl extends Component {
 	constructor(props) {
@@ -35,9 +36,9 @@ class FeedbackControl extends Component {
 
 	render(props, state) {
 		return <span class="feedbackControlContainer">
-			<span class={`feedbackControl ${state.open ? "opened" : ""}`} onClick={this.toggle.bind(this)}>
-				<i class="fa fa-comments-o" /> Feedback
-			</span>
+			<TopBarButton icon="comments-o" selected={state.open} onClick={this.toggle.bind(this)}>
+				Feedback
+			</TopBarButton>
 			{state.open && <FeedbackPopup />}
 		</span>;
 	}

@@ -32,12 +32,12 @@ html, body {
 }
 
 .page {
-	width: calc(100% - 100px);
+	width: 100%;
 	height: calc(100% - 50px);
 	background: rgba(255, 255, 255, 0.9);
 	position: absolute;
 	top: 50px;
-	left: 100px;
+	left: 0;
 
 	padding-left: 10px;
 	/*padding-bottom: 45px;*/
@@ -52,11 +52,6 @@ html, body {
 	display: block !important;
 	opacity: 0;
 	z-index: -1;
-}
-.page.sidebarHiding {
-	transition-delay: 0.1s;
-	left: 0;
-	width: 100%;
 }
 
 #homeworkModal .modal-body input:not([type=checkbox]), #homeworkModal .modal-body select, #homeworkModal .modal-body .form-control {

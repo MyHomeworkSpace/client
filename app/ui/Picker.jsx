@@ -65,7 +65,7 @@ class Picker extends Component {
 
 	render(props, state) {
 		var format = props.format || "ddd, MMMM Do, YYYY";
-		return <div class="pickerContainer" ref={ (pickerContainer) => {
+		return <div class={`pickerContainer ${props.containerClass || ""}`} ref={ (pickerContainer) => {
 			this._pickerContainer = pickerContainer;
 		}}>
 			<div class={`picker ${props.editable ? "editable" : ""} ${props.open && props.editable ? "focus" : ""} ${props.class || ""}`} onClick={this.toggle.bind(this)}>
@@ -73,7 +73,7 @@ class Picker extends Component {
 					this._pickerText = pickerText;
 				}}/>}
 				{!props.editable && <div class="pickerOutput">{props.display}</div>}
-				<div class="pickerAction"><i class={props.open ? "fa fa-chevron-circle-up" : "fa fa-chevron-circle-down"} /></div>
+				<div class="pickerAction">{props.action ? props.action : <i class={props.open ? "fa fa-chevron-circle-up" : "fa fa-chevron-circle-down"} />}</div>
 				<div class="pickerClear"></div>
 			</div>
 			{props.open && <div class="pickerContents">
