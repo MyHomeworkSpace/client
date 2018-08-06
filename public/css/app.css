@@ -65,28 +65,8 @@ html, body {
 	min-height: 150px;
 }
 
-#helpView {
-	height: calc(100% - 70px);
-	overflow: scroll;
-}
-
-.backgroundOption {
-	border: solid 1px black;
-	cursor: pointer;
-	width: 250px;
-	height: 150px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-}
-
 .toggleable-check {
 	width: 13px;
-}
-
-.no-link {
-    color:inherit;
-    text-decoration:none;
-    pointer-events:none;
 }
 
 #settingsHidingSpacer {
