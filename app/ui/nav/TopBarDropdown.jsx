@@ -20,7 +20,7 @@ export default class TopBarDropdown extends Component {
 
 		var tabs = {};
 		tabs["classes"] = { icon: "graduation-cap", name: "Classes" };
-		props.tabs.forEach(function(tab) {
+		(props.tabs || []).forEach(function(tab) {
 			tabs[tab.slug] = { icon: tab.icon, name: tab.label };
 		});
 		tabs["settings"] = { icon: "cogs", name: "Settings" };
