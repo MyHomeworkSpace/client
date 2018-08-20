@@ -1,45 +1,14 @@
 MyHomeworkSpace.Pages.login = {
 	init: function(isSecretlyApplicationAuth, applicationAuthCallback) {
-		var loginError = function(errorMessage) {
-			$("#loginError").text(errorMessage).fadeOut(100).fadeIn(100);
-			$("#loginForm").effect("shake");
-		};
-		$("#loginUsername, #loginPassword").keyup(function(e) {
-			if (e.keyCode == 13) {
-				$("#loginSubmit").click();
-			}
-		});
-		$("#loginSubmit").click(function() {
-			$("#loginUsername").prop("disabled", true);
-			$("#loginPassword").prop("disabled", true);
-			$("#loginSubmit").html('<i class="fa fa-refresh fa-spin"></i>');
-			MyHomeworkSpace.API.post("auth/login", {
-				username: $("#loginUsername").val(),
-				password: $("#loginPassword").val()
-			}, function(response) {
-				if (response.status != "ok") {
-					$("#loginUsername").prop("disabled", false);
-					$("#loginPassword").prop("disabled", false);
-					$("#loginSubmit").text("Log in");
-					loginError(MHSBridge.default.errors.getFriendlyString(response.error));
-					return;
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.LoginForm, {
+			callback: function(data) {
+				if (isSecretlyApplicationAuth) {
+					applicationAuthCallback(data);
+				} else {
+					MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 				}
-				$("#loginUsername").prop("disabled", false);
-				$("#loginPassword").prop("disabled", false);
-				$("#loginSubmit").text("Log in");
-				MyHomeworkSpace.API.get("auth/me", {}, function(data) {
-					if (data.status == "ok") {
-						if (isSecretlyApplicationAuth) {
-							applicationAuthCallback(data);
-						} else {
-							MyHomeworkSpace.Pages.login.handleLoginComplete(data);
-						}
-					} else {
-						loginError("Something weird happened, try again?");
-					}
-				});
-			});
-		});
+			}
+		}), document.querySelector("#loginContainer"));
 	},
 	handleLoginComplete: function(info) {
 		MyHomeworkSpace.Classes.load(function() {
@@ -80,7 +49,7 @@ MyHomeworkSpace.Pages.login = {
 				} else {
 					MyHomeworkSpace.Page.show("homework");
 				}
-				$("#login").effect("drop", { direction: "up" });
+				$("#login").remove();
 				if (MyHomeworkSpace.Me.showMigrateMessage) {
 					MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {
 						$("#migrationWelcome").modal();

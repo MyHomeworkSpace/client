@@ -32,7 +32,6 @@ var afterLogin = function(info) {
 };
 
 $(document).ready(function() {
-	MyHomeworkSpace.Pages.login.init(true, afterLogin);
 	MyHomeworkSpace.API.init(function() {
 		MyHomeworkSpace.API.get("auth/me", {}, function(data) {
 			if (data.status == "ok") {
@@ -43,6 +42,12 @@ $(document).ready(function() {
 			$(".applicationAuthLoadingOverlay").addClass("hidden");
 		});
 	});
+
+	MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.LoginForm, {
+		callback: function(data) {
+			afterLogin(data);
+		}
+	}), document.querySelector("#loginContainer"));
 
 	$("#applicationAuthAllow").click(function() {
 		$(".applicationAuthLoadingOverlay").removeClass("hidden");

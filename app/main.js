@@ -17,10 +17,11 @@ import HomeworkSettings from "settings/HomeworkSettings.jsx";
 
 import AddAction from "ui/AddAction.jsx";
 import ClassName from "ui/ClassName.jsx";
+import DateHeader from "ui/DateHeader.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
+import LoginForm from "ui/LoginForm.jsx";
 import ModalManager from "ui/ModalManager.jsx";
-import DateHeader from "ui/DateHeader.jsx";
 
 import TopBar from "ui/nav/TopBar.jsx";
 
@@ -127,10 +128,11 @@ export default {
 	ui: {
 		AddAction: AddAction,
 		ClassName: ClassName,
+		DateHeader: DateHeader,
 		FeedbackControl: FeedbackControl,
 		HomeworkName: HomeworkName,
-		TopBar: TopBar,
-		DateHeader: DateHeader
+		LoginForm: LoginForm,
+		TopBar: TopBar
 	},
 
 	// functions from preact

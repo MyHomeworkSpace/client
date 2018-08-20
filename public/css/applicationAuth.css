@@ -22,16 +22,12 @@
 }
 
 .applicationAuthContainer {
-	margin: 0 auto;
+	margin: 0 auto 1rem auto;
 	width: 600px;
 }
 
 .applicationAuthContainer h1 {
 	margin-top: 10px;
-}
-
-#loginContainer {
-	text-align: center;
 }
 
 .applicationAuthInfo {
