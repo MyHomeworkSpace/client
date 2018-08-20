@@ -1,12 +1,8 @@
 MyHomeworkSpace.Pages.login = {
-	init: function(isSecretlyApplicationAuth, applicationAuthCallback) {
+	init: function() {
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.LoginForm, {
 			callback: function(data) {
-				if (isSecretlyApplicationAuth) {
-					applicationAuthCallback(data);
-				} else {
-					MyHomeworkSpace.Pages.login.handleLoginComplete(data);
-				}
+				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 			}
 		}), document.querySelector("#loginContainer"));
 	},
