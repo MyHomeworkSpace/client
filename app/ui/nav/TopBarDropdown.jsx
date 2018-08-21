@@ -13,6 +13,7 @@ export default class TopBarDropdown extends Component {
 
 	openPage(page) {
 		this.props.openPage(page);
+		this.setOpen(false);
 	}
 
 	render(props, state) {
