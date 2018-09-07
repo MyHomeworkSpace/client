@@ -4,6 +4,7 @@ import { h, Component } from "preact";
 import linkState from "linkstate";
 
 import api from "api.js";
+import consts from "consts.js";
 import errors from "errors.js";
 
 import CalendarMonth from "calendar/CalendarMonth.jsx";
@@ -17,6 +18,7 @@ class CalendarPage extends Component {
 		super(props);
 		this.state = {
 			loading: true,
+			needUpdate: false,
 			terms: [],
 			type: "week"
 		};
@@ -25,8 +27,14 @@ class CalendarPage extends Component {
 	componentWillMount() {
 		var that = this;
 		api.get("calendar/getStatus", {}, function(data) {
-			if (data.statusNum == 1) {
-				that.loadSchedule.bind(that)();
+			if (data.statusNum == consts.CALENDAR_STATUS_IMPORTED) {
+				that.loadSchedule.call(that);
+			} else if (data.statusNum == consts.CALENDAR_STATUS_NEEDS_UPDATE) {
+				that.setState({
+					needUpdate: true
+				}, function() {
+					that.loadSchedule.call(that);
+				});
 			} else {
 				that.setState({
 					loading: false,
@@ -98,6 +106,7 @@ class CalendarPage extends Component {
 
 	getStarted() {
 		this.setState({
+			enabled: false,
 			askingPassword: true,
 			password: ""
 		}, function() {
@@ -173,6 +182,11 @@ class CalendarPage extends Component {
 
 		return <div class="calendarPage">
 			<DateHeader showTypeSwitcher switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />
+			{state.needUpdate && <div class="alert alert-info updateAlert">
+				<strong>Update your schedule for the new school year</strong>
+				<div>We'll need you to confirm your Dalton password first.</div>
+				<button class="btn btn-primary" onClick={this.getStarted.bind(this)}>Update schedule</button>
+			</div>}
 			{state.type == "week" && <CalendarWeek openModal={props.openModal} view={state.view} monday={state.start} />}
 			{state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
 		</div>;
