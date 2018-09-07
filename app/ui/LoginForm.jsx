@@ -78,7 +78,7 @@ export default class LoginForm extends Component {
 				<input type="text" class="form-control" placeholder="Username" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "username")} value={state.username} disabled={state.loading} />
 				<span class="input-group-addon">@dalton.org</span>
 			</div>
-			<div class="input-group">
+			<div class="input-group no-addon">
 				<input type="password" class="form-control" placeholder="Password" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "password")} value={state.password} disabled={state.loading} />
 			</div>
 			<button class="btn btn-lg btn-primary pull-right" onClick={this.login.bind(this)} disabled={state.loading}>
