@@ -31,9 +31,9 @@ class CalendarPage extends Component {
 				that.loadSchedule.call(that);
 			} else if (data.statusNum == consts.CALENDAR_STATUS_NEEDS_UPDATE) {
 				that.setState({
+					loading: false,
+					enabled: false,
 					needUpdate: true
-				}, function() {
-					that.loadSchedule.call(that);
 				});
 			} else {
 				that.setState({
@@ -169,6 +169,14 @@ class CalendarPage extends Component {
 						{!state.askingPasswordLoading && <button class="btn btn-primary btn-lg" onClick={this.confirmPassword.bind(this)}>Get schedule <i class="fa fa-arrow-right"></i></button>}
 					</div>
 				</div>;
+			} else if (state.needUpdate) {
+				return <div>
+					<div class="calendarPageWelcome">
+						<h2>Update schedule</h2>
+						<h4>You need to refresh your schedule data for the new school year.</h4>
+						<button class="btn btn-primary btn-lg" onClick={this.getStarted.bind(this)}>Update <i class="fa fa-arrow-right"></i></button>
+					</div>
+				</div>;
 			} else {
 				return <div>
 					<div class="calendarPageWelcome">
@@ -182,11 +190,6 @@ class CalendarPage extends Component {
 
 		return <div class="calendarPage">
 			<DateHeader showTypeSwitcher switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />
-			{state.needUpdate && <div class="alert alert-info updateAlert">
-				<strong>Update your schedule for the new school year</strong>
-				<div>We'll need you to confirm your Dalton password first.</div>
-				<button class="btn btn-primary" onClick={this.getStarted.bind(this)}>Update schedule</button>
-			</div>}
 			{state.type == "week" && <CalendarWeek openModal={props.openModal} view={state.view} monday={state.start} />}
 			{state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
 		</div>;
