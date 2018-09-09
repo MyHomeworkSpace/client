@@ -19,7 +19,13 @@ class TopBar extends Component {
 	}
 
 	openPage(page) {
-		this.props.openPage(page);
+		if (this.props.page != page) {
+			// open the new page
+			this.props.openPage(page);
+		} else {
+			// already on this page, so just hide it
+			this.props.openPage("");
+		}
 	}
 
 	render(props, state) {
