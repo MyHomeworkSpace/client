@@ -36,7 +36,8 @@ MyHomeworkSpace.Nav = {
 			page: MyHomeworkSpace.Page.current(),
 			openModal: MHSBridge.default.openModal,
 			openPage: MyHomeworkSpace.Page.show,
-			inverted: MyHomeworkSpace.Nav.inverteds
+			inverted: MyHomeworkSpace.Nav.inverted,
+			dimmed: MHSBridge.default.background.isDimBackground()
 		}), null, $(".topBar")[0]);
 	},
 	init: function() {

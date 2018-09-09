@@ -30,7 +30,7 @@ class TopBar extends Component {
 			"calendar": { icon: "calendar", name: "Calendar" }
 		};
 
-		return <div class={`topBar ${props.inverted ? "inverted": ""}`}>
+		return <div class={`topBar ${props.inverted ? "inverted": ""} ${props.dimmed ? "dimmed": ""}`}>
 			<div>
 				<NavLogo />
 

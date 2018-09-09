@@ -38,6 +38,18 @@ var refreshClasses = function(callback) {
 	});
 };
 
+var isDimBackground = function() {
+	var bgType = currentBackground.split(":")[0];
+	var bgVal = currentBackground.split(":")[1];
+	if (bgType == "img") {
+		var dimBackgrounds = [ 4, 5, 7, 8, 9, 10 ];
+		if (dimBackgrounds.indexOf(parseInt(bgVal)) > -1) {
+			return true;
+		}
+	}
+	return false;
+};
+
 var setBackground = function(newBackground) {
 	var bgType = newBackground.split(":")[0];
 	var bgVal = newBackground.split(":")[1];
@@ -105,6 +117,7 @@ export default {
 
 	background: {
 		currentBackground: currentBackground,
+		isDimBackground: isDimBackground,
 		setBackground: setBackground
 	},
 
