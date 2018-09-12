@@ -22,6 +22,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900" rel='stylesheet' type='text/css'>
 
 	<link rel="stylesheet" href="css/layout.css" />
+	<% if (current.path[0] == "daltontab") { %>
+		<link rel="stylesheet" href="css/daltontab.css" />
+	<% } %>
 
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -30,6 +33,9 @@
 	<script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
 	<script src="js/mousetrap.min.js"></script>
 	<script src="js/layout.js"></script>
+	<% if (current.path[0] == "daltontab") { %>
+		<script src="js/daltontab.js"></script>
+	<% } %>
 </head>
 	<% if (current.path[0] == "index") { %>
 		<body data-spy="scroll" data-target="#features-navbar">
