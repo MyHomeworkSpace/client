@@ -46,6 +46,10 @@
 		</div>
 	</div>
 </div>
+<div class="whatsnew-alert alert alert-info" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	<a onclick='$("#welcomeback").modal()'>Welcome Back! See what's new <i class="fa fa-chevron-right"></i></a>
+</div>
 <div class="more-section">
 	<div class="container">
 		<div class="row">
@@ -181,30 +185,29 @@
 <link rel="stylesheet" href="css/index.css" />
 <script src="js/index.js"></script>
 
-<!--Finals Modal-->
-<div class="modal fade" id="finals" tabindex="-1" role="dialog" aria-labelledby="finalsLabel">
+<!--Welcome Back Modal-->
+<div class="modal fade" id="welcomeback" tabindex="-1" role="dialog" aria-labelledby="welcomebackLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="finalsLabel">Finals</h4>
+				<h4 class="modal-title" id="welcomebackLabel">New in MyHomeworkSpace</h4>
 			</div>
 			<div class="modal-body">
-				<h2><i class="fa fa-fw fa-calendar"></i> Exam Schedules</h2>
-				<p>Exam schedules are available in Calendar view for High School Students</p>
-				
-				<h2><i class="fa fa-fw fa-tags"></i> Major Assessment Tags</h2>
-				<p>Use the <span style="background-color: rgb(220, 20, 60); color: rgb(255, 255, 255); padding: 2px;">Final</span>,
-				<span style="background-color: rgb(220, 20, 60); color: rgb(255, 255, 255); padding: 2px;">Exam</span>, and
-				<span style="background-color: rgb(220, 20, 60); color: rgb(255, 255, 255); padding: 2px;">Ahh</span> Tags to add your finals to your planner.
-				You can also use the <span style="background-color: rgb(42, 241, 94); color: rgb(255, 255, 255); padding: 2px;">Study</span> and 
-				<span style="background-color: rgb(42, 241, 94); color: rgb(255, 255, 255); padding: 2px;">Memorize</span> tags to set aside study time.</p>
-				
-				<h2><i class="fa fa-fw fa-map-marker"></i> Exam Rooms</h2>
-				<p>Find out where your exams are in Calendar view.</p>
+				<h1 style="text-align: center">Welcome Back!</h1>
+				<h4 style="text-align: center">Here's what's changed since arch day.</h4>
+				<h2><i class="fa fa-fw fa-eye"></i> Design Improvements</h2>
+				<p>We killed off the sidebar to give you more room to focus on your work.</p>
+				<h2><i class="fa fa-fw fa-question"></i> Support Site</h2>
+				<p>We've added a new support site. While there isn't much there now, it's rapidly growing! Check it out at
+				<a href="https://help.myhomework.space">help.myhomework.space</a>.</p>
+				<br>
+				<h1 style="text-align: center">Also Try...</h1>
+				<h4 style="text-align: center"></h4>
+				<h2><i class="fa fa-fw fa-plus-circle"></i> <a href="daltontab">DaltonTab</h2>
+				<p>A beautiful new tab page that integrates with MyHomeworkSpace.</p>
 			</div>
 			<div class="modal-footer">
-				<p><strong>Good Luck!</strong> From all of us at MyHomeworkSpace</p>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
