@@ -50,18 +50,22 @@ body {
 	text-align: center;
 }
 
-.whatsnew-alert {
+#whatsnew-alert {
 	border-radius: 0;
 	border: none;
-	background-color: lightseagreen;
+	background-color: rgb(32, 178, 170);
 	color: white;
 	font-size: 1.2em;
 	text-align: center;
 	cursor: pointer;
 }
 
-.whatsnew-alert a {
+#whatsnew-alert a {
 	color: white;
+}
+
+#welcomeback h1, #welcomeback h4:not(.modal-title) {
+	text-align: center;
 }
 
 #features {
@@ -119,10 +123,6 @@ body {
 	background-color: #333;
 	color: white;
 	text-align: center;
-}
-
-.popover-title, .popover-content {
-	color: black !important;
 }
 
 .feature-marquee {

@@ -46,9 +46,8 @@
 		</div>
 	</div>
 </div>
-<div class="whatsnew-alert alert alert-info" role="alert">
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	<a onclick='$("#welcomeback").modal()'>Welcome Back! See what's new <i class="fa fa-chevron-right"></i></a>
+<div id="whatsnew-alert" class="alert alert-info" role="alert">
+	Welcome back! See what's new <i class="fa fa-arrow-right"></i>
 </div>
 <div class="more-section">
 	<div class="container">
@@ -185,7 +184,6 @@
 <link rel="stylesheet" href="css/index.css" />
 <script src="js/index.js"></script>
 
-<!--Welcome Back Modal-->
 <div class="modal fade" id="welcomeback" tabindex="-1" role="dialog" aria-labelledby="welcomebackLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -194,17 +192,18 @@
 				<h4 class="modal-title" id="welcomebackLabel">New in MyHomeworkSpace</h4>
 			</div>
 			<div class="modal-body">
-				<h1 style="text-align: center">Welcome Back!</h1>
-				<h4 style="text-align: center">Here's what's changed since arch day.</h4>
-				<h2><i class="fa fa-fw fa-eye"></i> Design Improvements</h2>
-				<p>We killed off the sidebar to give you more room to focus on your work.</p>
+				<h1>Welcome back!</h1>
+				<h4>Here's what's changed since Arch Day.</h4>
+
+				<h2><i class="fa fa-fw fa-paint-brush"></i> Design Improvements</h2>
+				<p>We've moved the sidebar to give you more room to focus on your work.</p>
+
 				<h2><i class="fa fa-fw fa-question"></i> Support Site</h2>
-				<p>We've added a new support site. While there isn't much there now, it's rapidly growing! Check it out at
-				<a href="https://help.myhomework.space">help.myhomework.space</a>.</p>
-				<br>
-				<h1 style="text-align: center">Also Try...</h1>
-				<h4 style="text-align: center"></h4>
-				<h2><i class="fa fa-fw fa-plus-circle"></i> <a href="daltontab">DaltonTab</a></h2>
+				<p>We've added a new support site. While there isn't much there now, it's rapidly growing! Check it out at <a href="https://help.myhomework.space">help.myhomework.space</a>.</p>
+
+				<h3>Also try&hellip;</h3>
+
+				<h2><i class="fa fa-fw fa-plus-circle"></i> <a href="/daltontab.html">DaltonTab</a></h2>
 				<p>A beautiful new tab page that integrates with MyHomeworkSpace.</p>
 			</div>
 			<div class="modal-footer">

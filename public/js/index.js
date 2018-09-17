@@ -7,10 +7,6 @@ window.addEventListener("scroll",function() {
     }
  },false);
 
-$(function () {
-    $('[data-toggle="popover"]').popover()
-})
-
 $('.marquee-left').marquee({
 	//duration in milliseconds of the marquee
 	duration: 10000,
@@ -44,3 +40,12 @@ $(document).ready(function() {
 		$("#finals").modal()
 	}
 });
+
+window.onload = function() {
+	var alert = document.querySelector("#whatsnew-alert");
+	if (alert) {
+		alert.addEventListener("click", function() {
+			$("#welcomeback").modal();
+		});
+	}
+};
