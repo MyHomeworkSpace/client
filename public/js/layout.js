@@ -1,8 +1,3 @@
-Mousetrap.bind('up up down down left right left right b a', function() {
-    cornify_add();
-    // window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-});
-
 var happyWords = [
     "happy",
     "cheerful",
