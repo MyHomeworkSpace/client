@@ -66,6 +66,13 @@ class HomeworkItem extends Component {
 			}
 		}
 
+		var hideDue = props.hideDue;
+		if (due.day() == 0 || due.day() == 6) {
+			// it's due on Saturday or Sunday, meaning that we should always show its due date
+			// this forces weekend homework items to have a due date, even when they're in the Monday column
+			hideDue = false;
+		}
+
 		return <div class={`hwItem ${props.isOverdue ? "hwLate": ""} ${state.complete == "1" ? "done": ""}`} style={`border-left-color: #${prefixInfo.background}`} data-hwId={props.homework.id}>
 			<div class="hwOptions">
 				<i class={`fa ${state.complete ? "fa-check-circle-o" : "fa-circle-o"} toggleable-check`} onClick={this.toggleComplete.bind(this)}></i>
@@ -75,7 +82,7 @@ class HomeworkItem extends Component {
 				<HomeworkName name={props.homework.name} />
 			</div>
 			<div class="hwDetails">
-				{!props.hideDue && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
+				{!hideDue && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
 				<div><ClassName classObject={classObject} /></div>
 			</div>
 			{props.homework.desc.trim() != "" && <i class="hwDescIcon fa fa-align-left" title="This homework has a description"></i>}
