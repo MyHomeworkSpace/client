@@ -50,6 +50,10 @@ class HomeworkItem extends Component {
 			dueText = dueText[0].toLowerCase() + dueText.substr(1);
 		}
 
+		if (daysTo >= 7 && daysTo < 14) {
+			dueText = "next " + due.format("dddd");
+		}
+
 		var keyword = "due ";
 		if (prefix.toLowerCase() == "test" || prefix.toLowerCase() == "exam" || prefix.toLowerCase() == "midterm" || prefix.toLowerCase() == "quiz" || prefix.toLowerCase() == "ica" || prefix.toLowerCase() == "lab") {
 			keyword = "on ";
