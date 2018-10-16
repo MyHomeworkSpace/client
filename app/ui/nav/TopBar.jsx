@@ -28,6 +28,15 @@ class TopBar extends Component {
 		}
 	}
 
+	componentDidMount() {
+		Mousetrap.bind('h', (e) => this.openPage("homework"));
+		Mousetrap.bind('p', (e) => this.openPage("planner"));
+		Mousetrap.bind('c', (e) => this.openPage("calendar"));
+		Mousetrap.bind('?', (e) => this.openPage("help"));
+		Mousetrap.bind('l', (e) => this.openPage("classes"));
+		Mousetrap.bind(['ctrl+,', 'command+,'], (e) => this.openPage("settings"));
+	}
+
 	render(props, state) {
 		var that = this;
 		var tabs = {
