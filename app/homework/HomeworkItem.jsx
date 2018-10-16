@@ -95,7 +95,7 @@ class HomeworkItem extends Component {
 				{!hideDue && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
 				<div><ClassName classObject={classObject} /></div>
 			</div>
-			{props.homework.desc.trim() != "" && <i class={state.expanded ? "hwDescIcon fa fa-arrow-up":"hwDescIcon fa fa-arrow-down"} onClick={this.toggleDescription.bind(this)} data-toggle="tooltip" data-placement="left"  title="Show description"></i>}
+			{props.homework.desc.trim() != "" && <i class={state.expanded ? "hwDescIcon fa fa-arrow-circle-up":"hwDescIcon fa fa-arrow-circle-down"} onClick={this.toggleDescription.bind(this)} data-toggle="tooltip" data-placement="left"  title="Show description"></i>}
 			{state.expanded && <p>{props.homework.desc}</p>}
 		</div>;
 	}
