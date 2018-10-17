@@ -40,8 +40,9 @@ class HomeworkItem extends Component {
 	}
 
 	toggleDescription() {
-		var newExpanded = !this.state.expanded;
-		this.setState({expanded: newExpanded});
+		this.setState({
+			expanded: !this.state.expanded
+		});
 	}
 
 	render(props, state) {
@@ -95,7 +96,7 @@ class HomeworkItem extends Component {
 				{!hideDue && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
 				<div><ClassName classObject={classObject} /></div>
 			</div>
-			{props.homework.desc.trim() != "" && <i class={state.expanded ? "hwDescIcon fa fa-arrow-circle-up":"hwDescIcon fa fa-arrow-circle-down"} onClick={this.toggleDescription.bind(this)} data-toggle="tooltip" data-placement="left"  title="Show description"></i>}
+			{props.homework.desc.trim() != "" && <i class={state.expanded ? "hwDescIcon fa fa-arrow-circle-up" : "hwDescIcon fa fa-arrow-circle-down"} onClick={this.toggleDescription.bind(this)} data-toggle="tooltip" data-placement="left" title="Toggle description"></i>}
 			{state.expanded && <p>{props.homework.desc}</p>}
 		</div>;
 	}

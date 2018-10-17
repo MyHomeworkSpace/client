@@ -44,7 +44,7 @@ class TopBar extends Component {
 			"planner": { icon: "book", name: "Planner" },
 			"calendar": { icon: "calendar", name: "Calendar" }
 		};
-		
+
 		return <div class={`topBar ${props.inverted ? "inverted": ""} ${props.dimmed ? "dimmed": ""}`}>
 			<div>
 				<NavLogo />
@@ -59,7 +59,7 @@ class TopBar extends Component {
 			<div>
 				<FeedbackControl />
 				<div class="logout" onClick={this.logout.bind(this)}><i class="fa fa-sign-out"></i></div>
-			<div class="topName">{props.me && props.me.name}{props.me.level > 0 && <span> <span class="label label-primary">Admin</span></span>}</div>
+				<div class="topName">{props.me && props.me.name}</div>
 			</div>
 		</div>;
 	}
