@@ -1,4 +1,4 @@
-import "homework/HomeworkItem.styl";
+import "ui/HomeworkItem.styl";
 
 import { h, Component } from "preact";
 

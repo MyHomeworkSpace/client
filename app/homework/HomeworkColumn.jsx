@@ -2,7 +2,7 @@ import "homework/HomeworkColumn.styl";
 
 import { h, Component } from "preact";
 
-import HomeworkItem from "homework/HomeworkItem.jsx";
+import HomeworkItem from "ui/HomeworkItem.jsx";
 
 class HomeworkColumn extends Component {
 	render(props, state) {

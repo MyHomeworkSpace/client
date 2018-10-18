@@ -7,7 +7,7 @@ import api from "api.js";
 import EditClassButton from "classes/EditClassButton.jsx";
 import SwapClassButton from "classes/SwapClassButton.jsx";
 
-import HomeworkItem from "homework/HomeworkItem.jsx";
+import HomeworkItem from "ui/HomeworkItem.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
