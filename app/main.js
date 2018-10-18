@@ -11,6 +11,8 @@ import HelpPage from "help/HelpPage.jsx";
 
 import HomeworkPage from "homework/HomeworkPage.jsx";
 
+import ClassesPage from "classes/ClassesPage.jsx"
+
 import ApplicationList from "settings/ApplicationList.jsx";
 import CalendarSettings from "settings/CalendarSettings.jsx";
 import HomeworkSettings from "settings/HomeworkSettings.jsx";
@@ -130,6 +132,9 @@ export default {
 		},
 		homework: {
 			HomeworkPage: HomeworkPage
+		},
+		classes: {
+			ClassesPage: ClassesPage
 		},
 		settings: {
 			ApplicationList: ApplicationList,
