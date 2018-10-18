@@ -11,7 +11,7 @@ import HelpPage from "help/HelpPage.jsx";
 
 import HomeworkPage from "homework/HomeworkPage.jsx";
 
-import ClassesPage from "classes/ClassesPage.jsx"
+import ClassesPage from "classes/ClassesPage.jsx";
 
 import ApplicationList from "settings/ApplicationList.jsx";
 import CalendarSettings from "settings/CalendarSettings.jsx";
