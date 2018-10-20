@@ -42,6 +42,17 @@ class ClassDetails extends Component {
 	}
 
 	render(props, state) {
+		var filteredHomework;
+		if (!state.loading) {
+			filteredHomework = state.homework.filter(function(item) {
+				if (item.name.toLowerCase().startsWith("none") || item.name.toLowerCase().startsWith("nohw")) {
+					return false;
+				} else if ((moment(item.due).unix() < moment().unix()) && item.complete != 0) {
+					return false;
+				}
+				return true;
+			});
+		}
 		return <div class="classDetails">
 			<h1>{props.classObject.name}</h1>
 			{props.classObject.teacher && <p class="lead classTeacher">{props.classObject.teacher}</p>}
@@ -52,12 +63,7 @@ class ClassDetails extends Component {
 
 			<div>
 				{state.loading && <LoadingIndicator />}
-				{!state.loading && state.homework.map(function(item) {
-					if (item.name.toLowerCase().startsWith("none") || item.name.toLowerCase().startsWith("nohw")) {
-						return null;
-					} else if ((moment(item.due).unix() < moment().unix()) && item.complete != 0) {
-						return null;
-					}
+				{!state.loading && filteredHomework.map(function(item) {
 					return <HomeworkItem
 						homework={item}
 						classes={MyHomeworkSpace.Classes.list}
@@ -70,7 +76,7 @@ class ClassDetails extends Component {
 						}}
 					/>;
 				})}
-				{!state.loading && state.homework.length == 0 && <p>You have no upcoming homework in this class.</p>}
+				{!state.loading && filteredHomework.length == 0 && <p>You have no upcoming homework in this class.</p>}
 			</div>
 		</div>;
 	}
