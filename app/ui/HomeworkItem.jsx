@@ -97,7 +97,11 @@ class HomeworkItem extends Component {
 				<div><ClassName classObject={classObject} /></div>
 			</div>
 			{props.homework.desc.trim() != "" && <i class={state.expanded ? "hwDescIcon fa fa-arrow-circle-up" : "hwDescIcon fa fa-arrow-circle-down"} onClick={this.toggleDescription.bind(this)} data-toggle="tooltip" data-placement="left" title="Toggle description"></i>}
-			{state.expanded && <p>{props.homework.desc}</p>}
+			{state.expanded && <div>
+				{props.homework.desc.split("\n").map(function(line) {
+					return <div>{line}</div>;
+				})}
+			</div>}
 		</div>;
 	}
 }
