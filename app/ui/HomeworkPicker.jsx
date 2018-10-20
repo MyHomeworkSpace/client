@@ -11,8 +11,11 @@ import Picker from "ui/Picker.jsx";
 
 class HomeworkPicker extends Component {
 	selectHW(hw) {
-		this.props.change(hw);
-		this.toggle();
+		this.setState({
+			open: false
+		}, function() {
+			this.props.change(hw);
+		});
 	}
 
 	setOpen(open) {
