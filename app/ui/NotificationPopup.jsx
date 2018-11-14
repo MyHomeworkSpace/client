@@ -16,10 +16,11 @@ class NotificationPopup extends Component {
 			<div class="notificationPopup">
 				<div class="notificationPopupHeading">Notifications</div>
 				<ul>
+					{/* Yes, you read that correctly. It does say "dangerouslySetInnerHTML", but it is safe to
+						set HTML in that method IN THIS CASE ONLY, because the HTML received from the server is
+						KNOWN TO BE SAFE, is it was set by admins, whom we know we can trust.*/}
 					{props.notifications.map((notification, index) => {
-						return (<li list_key={index}>
-							{notification.content}
-						</li>)
+						return (<li list_key={index} dangerouslySetInnerHTML={{__html: notification.content}}/>)
 					})}
 				</ul>
 			</div>

@@ -33,7 +33,10 @@ class AdminListItem extends Component {
             </div>);
         } else if (props.type == "notification") {
             return (<div class="adminListItem">
-                <p class="adminListName">{props.data.content}</p>
+                {/* Yes, you read that correctly. It does say "dangerouslySetInnerHTML", but it is safe to
+						set HTML in that method IN THIS CASE ONLY, because the HTML received from the server is
+						KNOWN TO BE SAFE, is it was set by admins, whom we know we can trust.*/}
+                <p class="adminListName" dangerouslySetInnerHTML={{__html: props.data.content}}/>
                 <div>
                 <span>{props.data.id} | Expires {props.data.expiry} | <button class="btn btn-xs btn-danger" onClick={() => this.deleteNotification(props.data.id)}>Delete</button></span>
                 </div>
