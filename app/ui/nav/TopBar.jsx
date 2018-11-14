@@ -6,6 +6,7 @@ import api from "api.js";
 
 import AddAction from "ui/AddAction.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
+import NotificationControl from "ui/NotificationControl.jsx"
 
 import NavLogo from "ui/nav/NavLogo.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";
@@ -44,6 +45,9 @@ class TopBar extends Component {
 			"planner": { icon: "book", name: "Planner" },
 			"calendar": { icon: "calendar", name: "Calendar" }
 		};
+		if(props.me.level > 0) {
+			tabs["admin"] = { icon: "server", name: "Admin" };
+		}
 
 		return <div class={`topBar ${props.inverted ? "inverted": ""} ${props.dimmed ? "dimmed": ""}`}>
 			<div>
@@ -57,6 +61,7 @@ class TopBar extends Component {
 			</div>
 			<AddAction page={props.page} openModal={props.openModal} />
 			<div>
+				<NotificationControl />
 				<FeedbackControl />
 				<div class="logout" onClick={this.logout.bind(this)}><i class="fa fa-sign-out"></i></div>
 				<div class="topName">{props.me && props.me.name}</div>
