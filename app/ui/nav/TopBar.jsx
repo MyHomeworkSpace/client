@@ -45,9 +45,6 @@ class TopBar extends Component {
 			"planner": { icon: "book", name: "Planner" },
 			"calendar": { icon: "calendar", name: "Calendar" }
 		};
-		if(props.me.level > 0) {
-			tabs["admin"] = { icon: "server", name: "Admin" };
-		}
 
 		return <div class={`topBar ${props.inverted ? "inverted": ""} ${props.dimmed ? "dimmed": ""}`}>
 			<div>
@@ -57,7 +54,7 @@ class TopBar extends Component {
 					var tab = tabs[tabKey];
 					return <TopBarButton icon={tab.icon} selected={props.page == tabKey} onClick={that.openPage.bind(that, tabKey)}>{tab.name}</TopBarButton>;
 				})}
-				<TopBarDropdown tabs={props.tabs} page={props.page} openPage={props.openPage} />
+				<TopBarDropdown me={props.me} tabs={props.tabs} page={props.page} openPage={props.openPage} />
 			</div>
 			<AddAction page={props.page} openModal={props.openModal} />
 			<div>

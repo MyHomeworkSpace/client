@@ -1,103 +1,101 @@
-import "admin/AdminPage.styl"
+import "admin/AdminPage.styl";
 
-import { h, Component } from 'preact';
+import { h, Component } from "preact";
 
-import AdminListItem from 'admin/AdminListItem.jsx'
+import api from "api.js";
 
-import api from 'api.js';
+import AdminListItem from "admin/AdminListItem.jsx";
 
 class AdminPage extends Component {
-    constructor() {
-        this.state = {
-            loading: true
-        }
-        this.load()
-    }
+	constructor() {
+		this.state = {
+			loading: true
+		};
+	}
 
-    load() {
-        this.setState({
-            loading: true,
-            users: undefined,
-            feedback: undefined,
-            notifications: undefined
-        })
-        api.get("admin/getAllUsers", {}, (users) => {
-            this.setState({
-                users: users.users
-            }, () => {
-                this.checkIfDoneLoading();
-            })
-        })
-        api.get("admin/getAllFeedback", {}, (feedback) => {
-            this.setState({
-                feedback: feedback.feedbacks
-            }, () => {
-                this.checkIfDoneLoading();
-            })
-        })
-        api.get("notifications/get", {}, (notifications) => {
-            this.setState({
-                notifications: notifications.notifications
-            }, () => {
-                this.checkIfDoneLoading();
-            })
-        })
-    }
+	componentDidMount() {
+		this.load();
+	}
 
-    checkIfDoneLoading() {
-        if (this.state.feedback && this.state.users && this.state.notifications) {
-            this.setState({
-                loading: false
-            })
-        }
-    }
+	load() {
+		var that = this;
+		this.setState({
+			loading: true,
+			users: null,
+			feedback: null,
+			notifications: null
+		}, function() {
+			api.get("admin/getAllUsers", {}, function(data) {
+				that.setState({
+					users: data.users
+				}, that.checkIfDoneLoading.bind(that));
+			});
+			api.get("admin/getAllFeedback", {}, function(data) {
+				that.setState({
+					feedback: data.feedbacks
+				}, that.checkIfDoneLoading.bind(that));
+			})
+			api.get("notifications/get", {}, function(data) {
+				that.setState({
+					notifications: data.notifications
+				}, that.checkIfDoneLoading.bind(that));
+			});
+		});
+	}
 
-    newNotification() {
-        var content = prompt("Enter notification content")
-        var expiry = prompt("Enter notification expiry")
-        if(confirm("Look good? Content: " + content + " Expires: " + expiry)){
-            api.post("notifications/add", {expiry: expiry, content: content}, (response) => {
-                alert(JSON.stringify(response));
-                this.load();
-            })
-        } else {
-            alert("Aborted.")
-        }
-    }
+	checkIfDoneLoading() {
+		if (this.state.feedback && this.state.users && this.state.notifications) {
+			this.setState({
+				loading: false
+			});
+		}
+	}
 
-    render(props, state) {
-        if (this.state.loading) return <p>Loading... Please wait</p>
-        return <div class="adminPage">
-            <h2>Administration Tools</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <h4 class="adminListTitle">Users</h4>
-                    {this.state.users.map((user) => {
-                        return (
-                            <AdminListItem type="user" data={user} load={this.load.bind(this)}/>
-                        )
-                    })}
-                </div>
-                <div class="col-md-4">
-                    <h4 class="adminListTitle">Feedback</h4>
-                    {this.state.feedback.map((feedback) => {
-                        return (
-                            <AdminListItem type="feedback" data={feedback} load={this.load.bind(this)}/>
-                        )
-                    })}
-                </div>
-                <div class="col-md-4">
-                    <h4 class="adminListTitle">Notifications</h4>
-                    {this.state.notifications.map((notification) => {
-                        return (
-                            <AdminListItem type="notification" data={notification} load={this.load.bind(this)}/>
-                        )
-                    })}
-                    <button class="btn btn-primary" onClick={this.newNotification}>New Notification</button>
-                </div>
-            </div>
-        </div>;
-    }
+	newNotification() {
+		var that = this;
+		var content = prompt("Enter notification content");
+		var expiry = prompt("Enter notification expiry");
+		if (confirm("Look good? Content: " + content + " Expires: " + expiry)) {
+			api.post("notifications/add", {expiry: expiry, content: content}, function(response) {
+				that.load.call(that);
+			});
+		} else {
+			alert("Aborted.")
+		}
+	}
+
+	render(props, state) {
+		var that = this;
+
+		if (state.loading) {
+			return <p>Loading... please wait</p>;
+		}
+
+		return <div class="adminPage">
+			<h2>Administration Tools</h2>
+			<div class="row">
+				<div class="col-md-4">
+					<h4 class="adminListTitle">Users</h4>
+					{state.users.map(function(user) {
+						return <AdminListItem type="user" data={user} load={that.load.bind(that)}/>;
+					})}
+				</div>
+				<div class="col-md-4">
+					<h4 class="adminListTitle">Feedback</h4>
+					{state.feedback.map(function(feedback) {
+						return <AdminListItem type="feedback" data={feedback} load={that.load.bind(that)}/>;
+					})}
+				</div>
+				<div class="col-md-4">
+					<h4 class="adminListTitle">Notifications</h4>
+					{state.notifications.map(function(notification) {
+						return <AdminListItem type="notification" data={notification} load={that.load.bind(that)}/>;
+					})}
+					<button class="btn btn-primary" onClick={that.newNotification.bind(that)}>New Notification</button>
+				</div>
+			</div>
+		</div>;
+	}
 }
 
 export default AdminPage;

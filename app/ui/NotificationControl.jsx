@@ -4,14 +4,14 @@ import { h, Component } from "preact";
 
 import api from "api.js";
 
+import NotificationPopup from "ui/NotificationPopup.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";
-import NotificationPopup from "ui/NotificationPopup.jsx"
 
 class NotificationControl extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			open: false,
+			open: false
 		};
 	}
 	
@@ -50,6 +50,10 @@ class NotificationControl extends Component {
 	//TODO: Fix popup dismiss on body click
 
 	render(props, state) {
+		if (!state.notifications || state.notifications.length == 0) {
+			return null;
+		}
+
 		return <span class="notificationControlContainer">
 			<TopBarButton icon="bell-o" selected={state.open} onClick={this.toggle.bind(this)}>
 				Notifications

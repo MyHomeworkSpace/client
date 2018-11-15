@@ -26,6 +26,9 @@ export default class TopBarDropdown extends Component {
 		});
 		tabs["settings"] = { icon: "cogs", name: "Settings" };
 		tabs["help"] = { icon: "question-circle", name: "Help" };
+		if (props.me.level > 0) {
+			tabs["admin"] = { icon: "server", name: "Admin" };
+		}
 
 		return <Picker action={<span class="topBarButtonText">
 			<i class={`fa fa-fw fa-${state.open ? "chevron-circle-up" : "chevron-circle-down"}`} />
