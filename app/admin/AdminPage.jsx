@@ -25,9 +25,9 @@ class AdminPage extends Component {
 			feedback: null,
 			notifications: null
 		}, function() {
-			api.get("admin/getAllUsers", {}, function(data) {
+			api.get("admin/getUserCount", {}, function(data) {
 				that.setState({
-					users: data.users
+					userCount: data.count
 				}, that.checkIfDoneLoading.bind(that));
 			});
 			api.get("admin/getAllFeedback", {}, function(data) {
@@ -44,7 +44,7 @@ class AdminPage extends Component {
 	}
 
 	checkIfDoneLoading() {
-		if (this.state.feedback && this.state.users && this.state.notifications) {
+		if (this.state.feedback && this.state.userCount && this.state.notifications) {
 			this.setState({
 				loading: false
 			});
@@ -60,7 +60,7 @@ class AdminPage extends Component {
 				that.load.call(that);
 			});
 		} else {
-			alert("Aborted.")
+			alert("Aborted.");
 		}
 	}
 
@@ -76,9 +76,7 @@ class AdminPage extends Component {
 			<div class="row">
 				<div class="col-md-4">
 					<h4 class="adminListTitle">Users</h4>
-					{state.users.map(function(user) {
-						return <AdminListItem type="user" data={user} load={that.load.bind(that)}/>;
-					})}
+					<p>There {state.userCount > 1 ? "are" : "is"} {state.userCount} user{state.userCount > 1 ? "s" : ""}.</p>
 				</div>
 				<div class="col-md-4">
 					<h4 class="adminListTitle">Feedback</h4>
