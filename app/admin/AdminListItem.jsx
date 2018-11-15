@@ -30,7 +30,7 @@ class AdminListItem extends Component {
 			return <div class="adminListItem">
 				<p class="adminListName">{props.data.text}</p>
 				<div>
-					<span>{props.data.id} | User {props.data.userid} | {props.data.type} | {props.data.timestamp}</span>
+					<span>{props.data.id} | {props.data.userName} ({props.data.userEmail}) | {props.data.type} | {props.data.timestamp}</span>
 				</div>
 			</div>;
 		} else if (props.type == "notification") {
