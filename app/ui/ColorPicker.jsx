@@ -16,7 +16,7 @@ class ColorPicker extends Component {
 	}
 
 	onBodyClick(e) {
-		if ($(e.target).closest(".ColorPickerPopup").length == 0) {
+		if ($(e.target).closest(".colorPickerPopup").length == 0) {
 			this.toggle();
 		}
 	}
@@ -42,13 +42,13 @@ class ColorPicker extends Component {
 	}
 
 	render(props, state) {
-		return <div class="ColorPickerContainer">
-			<div class="ColorPicker" onClick={!state.open && this.toggle.bind(this)}>
-				<div class="ColorPickerOutput">
-					<div class="ColorPickerColor" style={`background-color:#${props.value}`} />
+		return <div class="colorPickerContainer">
+			<div class="colorPicker" onClick={!state.open && this.toggle.bind(this)}>
+				<div class="colorPickerOutput">
+					<div class="colorPickerColor" style={`background-color:#${props.value}`} />
 				</div>
-				<div class="ColorPickerAction"><i class={state.open ? "fa fa-chevron-circle-up" : "fa fa-chevron-circle-down"} /></div>
-				<div class="ColorPickerClear"></div>
+				<div class="colorPickerAction"><i class={state.open ? "fa fa-chevron-circle-up" : "fa fa-chevron-circle-down"} /></div>
+				<div class="colorPickerClear"></div>
 			</div>
 			{state.open && <ColorPickerPopup value={props.value} selectColor={this.selectColor.bind(this)} />}
 		</div>;

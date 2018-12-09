@@ -7,6 +7,7 @@ import api from "api.js";
 
 import ClassName from "ui/ClassName.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
+
 import PrefixList from "settings/PrefixList.jsx";
 
 class HomeworkSettings extends Component {

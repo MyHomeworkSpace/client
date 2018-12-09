@@ -7,7 +7,6 @@ import api from "api.js";
 import consts from "consts.js";
 
 import ColorPicker from "ui/ColorPicker.jsx";
-
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
 

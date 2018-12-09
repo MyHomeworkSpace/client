@@ -2,87 +2,62 @@ import "settings/PrefixList.styl";
 
 import { h, Component } from "preact";
 
-import HomeworkName from "ui/HomeworkName.jsx";
-import AddPrefix from "settings/AddPrefix.jsx";
-
-import prefixes from "prefixes.js";
 import api from "api.js";
+import errors from "errors.js";
+import prefixes from "prefixes.js";
+
+import HomeworkName from "ui/HomeworkName.jsx";
+
+import AddPrefix from "settings/AddPrefix.jsx";
 
 class PrefixList extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			status: null,
-			hideGroups: [],
-		}
+			hideGroups: []
+		};
 	}
 
 	deleteGroup(id) {
-		let that = this;
-		api.post("prefixes/delete", { id: id }, (response) => {
-			if (response.status == "ok") {
-				this.setState({
-					status: {
-						type: "success",
-						message: "Successfully deleted. Refresh the page to update."
-					},
+		var that = this;
+		api.post("prefixes/delete", { id: id }, function(data) {
+			if (data.status == "ok") {
+				that.setState({
 					hideGroups: that.state.hideGroups.concat([id])
-				})
+				});
 			} else {
-				this.setState({
-					status: {
-						type: "danger",
-						message: "An internal server error occured."
-					}
-				})
+				that.setState({
+					error: errors.getFriendlyString(data.error)
+				});
 			}
-		})
-	}
-
-	handleAddPrefix(details) {
-		let that = this;
-		api.post("prefixes/add", details, (response) => {
-			if (response.status == "ok") {
-				this.setState({
-					status: {
-						type: "success",
-						message: "Successfully added. Refresh the page to update."
-					},
-				})
-			} else {
-				this.setState({
-					status: {
-						type: "danger",
-						message: "An internal server error occured."
-					}
-				})
-			}
-		})
+		});
 	}
 
 	render(props, state) {
-		let that = this;
-		var groups = prefixes.list.map(function (group) {
-			if (group.words.indexOf("Hex") > -1 || that.state.hideGroups.indexOf(that.state.id) > -1) {
+		var that = this;
+		var groups = prefixes.list.map(function(group) {
+			if (group.words.indexOf("Hex") > -1 || state.hideGroups.indexOf(group.id) > -1) {
 				// shhhhh
 				return;
 			}
-			var words = group.words.map(function (word) {
+
+			var words = group.words.map(function(word) {
 				return <HomeworkName name={word} />;
 			});
+
 			return <div class="prefixListGroup">
 				{words}
-				{group.id > 0
-					? <button class="btn btn-xs btn-default" onclick={() => that.deleteGroup(group.id)}><i class="fa fa-trash-o"></i></button>
-					: null}
+				{group.id != -1 && <button class="btn btn-xs btn-danger" onClick={that.deleteGroup.bind(that, group.id)}><i class="fa fa-trash-o" /></button>}
 			</div>;
 		});
+
 		return <div class="prefixList">
-			{that.state.status
-				? <div class={"alert alert-" + that.state.status.type} role="alert">{that.state.status.message}</div> : null}
+			{state.error && <div class="alert alert-danger">{state.error}</div>}
+
 			{groups}
-			<h4>Add Tag</h4>
-			<AddPrefix onAddPrefix={this.handleAddPrefix.bind(this)}/>
+
+			<h4>Add custom tag <small>(separate multiple with spaces)</small></h4>
+			<AddPrefix />
 		</div>;
 	}
 }
