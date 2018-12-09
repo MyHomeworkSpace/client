@@ -7,6 +7,7 @@ import api from "api.js";
 
 import ClassName from "ui/ClassName.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
+import PrefixList from "settings/PrefixList.jsx";
 
 class HomeworkSettings extends Component {
 	constructor() {
@@ -108,6 +109,10 @@ class HomeworkSettings extends Component {
 		var availableClasses = this.getAvailableClasses();
 		
 		return <div class="homeworkSettings">
+			<h4>Tags</h4>
+			<p class="homeworkSettingsDescription">You add custom tags to be used on MyHomeworkSpace.</p>
+			<PrefixList />
+
 			<h4>Hidden classes</h4>
 			<p class="homeworkSettingsDescription">You can hide certain classes from Homework view. If you hide a class, its homework will still appear in Planner and Calendar, but will not be displayed in any Homework columns.</p>
 			

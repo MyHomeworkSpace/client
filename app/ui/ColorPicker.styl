@@ -1,10 +1,10 @@
-.classColorPickerContainer
+.ColorPickerContainer
 	display: inline-block
 	float: left
 	margin-bottom: -5px
 	position: relative
 
-.classColorPicker
+.ColorPicker
 	border: 1px solid #ccc
 	border-radius: 4px
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
@@ -14,31 +14,32 @@
 	padding: 6px 12px
 	user-select: none
 	width: 65px
+	background-color: white
 	
-	.classColorPickerOutput
+	.ColorPickerOutput
 		float: left
 		height: 25px
 		overflow: hidden
 		text-overflow: ellipsis
 		white-space: nowrap
 		
-		.classColorPickerOutputNoSelect
+		.ColorPickerOutputNoSelect
 			color: #aaa
 			font-style: italic
 
-		.classColorPickerColor
+		.ColorPickerColor
 			border-radius: 100%
 			margin-top: 5px
 			width: 16px
 			height: 16px
 
-	.classColorPickerAction
+	.ColorPickerAction
 		color: #ccc
 		float: right
 	
-	.classColorPickerClear	
+	.ColorPickerClear	
 		clear: both
 
-.classColorPicker:hover
-	.classColorPickerAction
+.ColorPicker:hover
+	.ColorPickerAction
 		color: #333

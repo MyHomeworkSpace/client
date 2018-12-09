@@ -6,7 +6,7 @@ import linkState from "linkstate";
 import api from "api.js";
 import consts from "consts.js";
 
-import ClassColorPicker from "classes/ClassColorPicker.jsx";
+import ColorPicker from "ui/ColorPicker.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
@@ -93,7 +93,7 @@ class ClassModal extends Component {
 
 		return <Modal title={(state.isNew ? "Add class" : "Edit class")} openModal={props.openModal} class="classModal">
 			<div class="modal-body">
-				<ClassColorPicker onChange={this.changeColor.bind(this)} value={this.state.color} />
+				<ColorPicker onChange={this.changeColor.bind(this)} value={this.state.color} />
 				<input type="text" placeholder="Name" class="classModalName form-control" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} value={this.state.name} />
 
 				<div class="classColorClear" />
