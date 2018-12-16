@@ -6,6 +6,7 @@ import api from "api.js";
 
 import AddAction from "ui/AddAction.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
+import NotificationControl from "ui/NotificationControl.jsx"
 
 import NavLogo from "ui/nav/NavLogo.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";
@@ -53,10 +54,11 @@ class TopBar extends Component {
 					var tab = tabs[tabKey];
 					return <TopBarButton icon={tab.icon} selected={props.page == tabKey} onClick={that.openPage.bind(that, tabKey)}>{tab.name}</TopBarButton>;
 				})}
-				<TopBarDropdown tabs={props.tabs} page={props.page} openPage={props.openPage} />
+				<TopBarDropdown me={props.me} tabs={props.tabs} page={props.page} openPage={props.openPage} />
 			</div>
 			<AddAction page={props.page} openModal={props.openModal} />
 			<div>
+				<NotificationControl />
 				<FeedbackControl />
 				<div class="logout" onClick={this.logout.bind(this)}><i class="fa fa-sign-out"></i></div>
 				<div class="topName">{props.me && props.me.name}</div>

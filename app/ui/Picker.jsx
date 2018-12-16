@@ -64,7 +64,6 @@ class Picker extends Component {
 	}
 
 	render(props, state) {
-		var format = props.format || "ddd, MMMM Do, YYYY";
 		return <div class={`pickerContainer ${props.containerClass || ""}`} ref={ (pickerContainer) => {
 			this._pickerContainer = pickerContainer;
 		}}>

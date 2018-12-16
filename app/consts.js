@@ -1,5 +1,5 @@
 export default {
-	classColors: [
+	colors: [
 		"ff4d40",
 		"ffa540",
 		"40ff73",

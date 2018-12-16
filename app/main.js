@@ -13,6 +13,8 @@ import HomeworkPage from "homework/HomeworkPage.jsx";
 
 import ClassesPage from "classes/ClassesPage.jsx";
 
+import AdminPage from "admin/AdminPage.jsx";
+
 import ApplicationList from "settings/ApplicationList.jsx";
 import CalendarSettings from "settings/CalendarSettings.jsx";
 import HomeworkSettings from "settings/HomeworkSettings.jsx";
@@ -135,6 +137,9 @@ export default {
 		},
 		classes: {
 			ClassesPage: ClassesPage
+		},
+		admin: {
+			AdminPage: AdminPage
 		},
 		settings: {
 			ApplicationList: ApplicationList,

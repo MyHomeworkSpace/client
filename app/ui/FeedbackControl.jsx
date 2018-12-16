@@ -9,9 +9,9 @@ import TopBarButton from "ui/nav/TopBarButton.jsx";
 class FeedbackControl extends Component {
 	constructor(props) {
 		super(props);
+		this._bodyClick = this.onBodyClick.bind(this);
 		this.state = {
-			open: false,
-			bodyClick: this.onBodyClick.bind(this)
+			open: false
 		};
 	}
 
@@ -27,9 +27,9 @@ class FeedbackControl extends Component {
 			open: !this.state.open
 		}, function() {
 			if (this.state.open) {
-				$("body").bind("click", this.state.bodyClick);
+				document.body.addEventListener("click", this._bodyClick);
 			} else {
-				$("body").unbind("click", this.state.bodyClick);
+				document.body.removeEventListener("click", this._bodyClick);
 			}
 		});
 	}
