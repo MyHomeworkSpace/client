@@ -25,7 +25,7 @@ class FeedbackControl extends Component {
 	toggle() {
 		this.setState({
 			open: !this.state.open
-		}, function() {
+		}, function () {
 			if (this.state.open) {
 				document.body.addEventListener("click", this._bodyClick);
 			} else {
@@ -35,7 +35,7 @@ class FeedbackControl extends Component {
 	}
 
 	render(props, state) {
-		return <span class="feedbackControlContainer">
+		return <span class="feedbackControlContainer" data-html2canvas-ignore="true">
 			<TopBarButton icon="comments-o" selected={state.open} onClick={this.toggle.bind(this)}>
 				Feedback
 			</TopBarButton>

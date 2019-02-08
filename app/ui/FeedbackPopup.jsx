@@ -15,14 +15,15 @@ class FeedbackPopup extends Component {
 			message: "",
 			error: false,
 			loading: false,
-			sent: false
+			sent: false,
+			screenshot: null
 		};
 	}
 
 	selectFeeling(type) {
 		this.setState({
 			type: type
-		}, function() {
+		}, function () {
 			document.querySelector(".feedbackPopupMessage").focus();
 		});
 	}
@@ -32,7 +33,7 @@ class FeedbackPopup extends Component {
 		if (this.state.message.trim() == "") {
 			this.setState({
 				error: true
-			}, function() {
+			}, function () {
 				document.querySelector(".feedbackPopupMessage").focus();
 			});
 			return;
@@ -40,11 +41,12 @@ class FeedbackPopup extends Component {
 		this.setState({
 			loading: true,
 			error: false
-		}, function() {
+		}, function () {
 			api.post("feedback/add", {
 				type: that.state.type,
-				text: that.state.message
-			}, function(data) {
+				text: that.state.message,
+				screenshot: that.state.screenshot,
+			}, function (data) {
 				that.setState({
 					loading: false,
 					sent: true
@@ -61,11 +63,48 @@ class FeedbackPopup extends Component {
 		}
 	}
 
+	takeScreenshot() {
+		if (this.state.screenshot) {
+			this.setState({
+				screenshot: null
+			})
+			return;
+		}
+
+		/* Load asynchronously because it's a big file */
+		this.setState({
+			loading: true,
+		})
+		new Promise(function (resolve, reject) {
+			var s;
+			s = document.createElement('script');
+			s.src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
+			s.onload = resolve;
+			s.onerror = reject;
+			document.head.appendChild(s);
+		}).then(
+			() => html2canvas(document.body, { scale: window.devicePixelRatio / 3 }).then(canvas => {
+				this.setState({
+					screenshot: canvas.toDataURL(),
+					loading: false
+				})
+			}),
+			(r) => {
+				alert("Error generating screenshot. Submitting feedback without screenshot.");
+				console.error("Error generating screenshot");
+				console.error(r);
+				this.setState({
+					loading: false
+				})
+			}
+		)
+	}
+
 	render(props, state) {
 		if (state.sent) {
 			return <span class="feedbackPopup feedbackPopupExtended feedbackPopupSuccess">
 				<div class="feedbackPopupHeading">Thanks for the feedback!</div>
-				<p>Your feedback has been successfully sent. We will look at it, and if needed, reply.</p>
+				<p>Your feedback has been successfully sent. While we read each feedback that we receive, we might not be able to get back to you.</p>
 			</span>;
 		}
 
@@ -89,16 +128,26 @@ class FeedbackPopup extends Component {
 					<div class="feedbackPopupCol col-md-7 feedbackPopupMessageContainer">
 						<div class="feedbackPopupHeading">Tell us more...</div>
 						<textarea class="feedbackPopupMessage form-control" disabled={state.loading} value={state.message} onInput={linkState(this, "message")} onKeyup={this.keyup.bind(this)}></textarea>
+						<button
+							class="btn btn-default btn-sm"
+							name="screenshot"
+							type="checkbox"
+							onClick={this.takeScreenshot.bind(this)}>
+							{state.screenshot ? "Remove Screenshot" : "Add a Screenshot"}
+						</button>
+						{state.screenshot ? <img src={state.screenshot} class="feedbackPopupScreenshotImg" /> : null}
 						<div class="feedbackPopupMessageAction">
 							<div>
-								{!state.loading && <button class="btn btn-default btn-sm" onClick={this.submit.bind(this)}>Submit</button>}
-								{state.loading && <button class="btn btn-default btn-sm" disabled={true}><LoadingIndicator type="inline" /> Loading...</button>}
+								{!state.loading && <button class="btn btn-primary btn-sm" onClick={this.submit.bind(this)}>Submit</button>}
+								{state.loading && <button class="btn btn-primary btn-sm" disabled={true}><LoadingIndicator type="inline" /> Loading...</button>}
 							</div>
-							<div class="feedbackPopupMessageActionInfo">Your name will also be sent.</div>
+							<div class="feedbackPopupMessageActionInfo">Your name will also be sent. {state.screenshot ? <span>
+								Use of the screenshot you included is subject to our <a href="https://legal.myhomework.space/privacy">Privacy Policy</a>.
+								</span> : null}</div>
 						</div>
 					</div>
 				</div>
-			</span>;
+			</span >;
 		}
 	}
 }
