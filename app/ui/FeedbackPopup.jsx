@@ -128,22 +128,20 @@ class FeedbackPopup extends Component {
 					<div class="feedbackPopupCol col-md-7 feedbackPopupMessageContainer">
 						<div class="feedbackPopupHeading">Tell us more...</div>
 						<textarea class="feedbackPopupMessage form-control" disabled={state.loading} value={state.message} onInput={linkState(this, "message")} onKeyup={this.keyup.bind(this)}></textarea>
+						{state.screenshot ? <img src={state.screenshot} class="feedbackPopupScreenshotImg" /> : null}
+						<small class="finetext">Your name will also be sent. {state.screenshot ? <span>
+							Use of the screenshot you included is subject to our <a href="https://legal.myhomework.space/privacy">Privacy Policy</a>.
+									</span> : null}</small>
 						<button
-							class="btn btn-default btn-sm"
+							class="btn btn-default btn-sm addScreenshotButton"
 							name="screenshot"
 							type="checkbox"
 							onClick={this.takeScreenshot.bind(this)}>
 							{state.screenshot ? "Remove Screenshot" : "Add a Screenshot"}
 						</button>
-						{state.screenshot ? <img src={state.screenshot} class="feedbackPopupScreenshotImg" /> : null}
-						<div class="feedbackPopupMessageAction">
-							<div>
-								{!state.loading && <button class="btn btn-primary btn-sm" onClick={this.submit.bind(this)}>Submit</button>}
-								{state.loading && <button class="btn btn-primary btn-sm" disabled={true}><LoadingIndicator type="inline" /> Loading...</button>}
-							</div>
-							<div class="feedbackPopupMessageActionInfo">Your name will also be sent. {state.screenshot ? <span>
-								Use of the screenshot you included is subject to our <a href="https://legal.myhomework.space/privacy">Privacy Policy</a>.
-								</span> : null}</div>
+						<div>
+							{!state.loading && <button class="btn btn-primary btn-sm feedbackSubmitButton" onClick={this.submit.bind(this)}>Submit</button>}
+							{state.loading && <button class="btn btn-primary btn-sm feedbackSubmitButton" disabled={true}><LoadingIndicator type="inline" /> Loading...</button>}
 						</div>
 					</div>
 				</div>
