@@ -18,7 +18,7 @@ class ClassModal extends Component {
 			isNew: isNew,
 			name: (isNew ? "" : props.modalState.name),
 			teacher: (isNew ? "" : props.modalState.teacher),
-			color: (isNew ? consts.classColors[Math.floor(Math.random() * consts.classColors.length)] : props.modalState.color)
+			color: (isNew ? consts.colors[Math.floor(Math.random() * consts.colors.length)] : props.modalState.color)
 		};
 	}
 
