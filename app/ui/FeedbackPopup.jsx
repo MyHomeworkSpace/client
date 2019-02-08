@@ -139,10 +139,8 @@ class FeedbackPopup extends Component {
 							onClick={this.takeScreenshot.bind(this)}>
 							{state.screenshot ? "Remove Screenshot" : "Add a Screenshot"}
 						</button>
-						<div>
-							{!state.loading && <button class="btn btn-primary btn-sm feedbackSubmitButton" onClick={this.submit.bind(this)}>Submit</button>}
-							{state.loading && <button class="btn btn-primary btn-sm feedbackSubmitButton" disabled={true}><LoadingIndicator type="inline" /> Loading...</button>}
-						</div>
+						{!state.loading && <button class="btn btn-primary btn-sm feedbackSubmitButton" onClick={this.submit.bind(this)}>Submit</button>}
+						{state.loading && <button class="btn btn-primary btn-sm feedbackSubmitButton" disabled={true}><LoadingIndicator type="inline" /> Loading...</button>}
 					</div>
 				</div>
 			</span >;
