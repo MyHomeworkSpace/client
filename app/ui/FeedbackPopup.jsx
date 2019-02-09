@@ -23,7 +23,7 @@ class FeedbackPopup extends Component {
 	selectFeeling(type) {
 		this.setState({
 			type: type
-		}, function () {
+		}, function() {
 			document.querySelector(".feedbackPopupMessage").focus();
 		});
 	}
@@ -33,7 +33,7 @@ class FeedbackPopup extends Component {
 		if (this.state.message.trim() == "") {
 			this.setState({
 				error: true
-			}, function () {
+			}, function() {
 				document.querySelector(".feedbackPopupMessage").focus();
 			});
 			return;
@@ -41,12 +41,12 @@ class FeedbackPopup extends Component {
 		this.setState({
 			loading: true,
 			error: false
-		}, function () {
+		}, function() {
 			api.post("feedback/add", {
 				type: that.state.type,
 				text: that.state.message,
-				screenshot: that.state.screenshot,
-			}, function (data) {
+				screenshot: that.state.screenshot
+			}, function(data) {
 				that.setState({
 					loading: false,
 					sent: true
@@ -130,7 +130,7 @@ class FeedbackPopup extends Component {
 						<textarea class="feedbackPopupMessage form-control" disabled={state.loading} value={state.message} onInput={linkState(this, "message")} onKeyup={this.keyup.bind(this)}></textarea>
 						{state.screenshot ? <img src={state.screenshot} class="feedbackPopupScreenshotImg" /> : null}
 						<small class="finetext">Your name will also be sent. {state.screenshot ? <span>
-							Use of the screenshot you included is subject to our <a href="https://legal.myhomework.space/privacy">Privacy Policy</a>.
+							Use of the screenshot you included is subject to our <a href="https://legal.myhomework.space/privacy" target="_blank">Privacy Policy</a>.
 									</span> : null}</small>
 						<button
 							class="btn btn-default btn-sm addScreenshotButton"

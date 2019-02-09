@@ -25,7 +25,7 @@ class FeedbackControl extends Component {
 	toggle() {
 		this.setState({
 			open: !this.state.open
-		}, function () {
+		}, function() {
 			if (this.state.open) {
 				document.body.addEventListener("click", this._bodyClick);
 			} else {
