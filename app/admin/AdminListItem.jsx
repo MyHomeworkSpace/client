@@ -10,7 +10,7 @@ class AdminListItem extends Component {
 		if (confirm("Are you sure you want to delete this notification?")) {
 			api.post("notifications/delete", {
 				id: id
-			}, function() {
+			}, function () {
 				alert("Deleted!");
 				that.props.load.call(that);
 			});
@@ -30,7 +30,7 @@ class AdminListItem extends Component {
 			return <div class="adminListItem">
 				<p class="adminListName">{props.data.text}</p>
 				<div>
-					<span>{props.data.id} | {props.data.userName} ({props.data.userEmail}) | {props.data.type} | {props.data.timestamp}</span>
+					<span>{props.data.id} | {props.data.userName} ({props.data.userEmail}) | {props.data.type} | {props.data.timestamp} {(props.data.hasScreenshot ? <span> | <a href={`${api.baseURL}admin/getFeedbackScreenshot/${props.data.id}.png?csrfToken=${api.getToken()}`} target="_blank">Open Screenshot</a></span> : null)}</span>
 				</div>
 			</div>;
 		} else if (props.type == "notification") {
