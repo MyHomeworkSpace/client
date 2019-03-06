@@ -29,6 +29,14 @@ class EventModal extends Component {
 			endTime = moment(startTime).add(30, "minutes");
 		}
 
+		var recurRule = props.modalState.recurRule;
+		var recurUntil = null;
+		if (recurRule) {
+			if (recurRule.until != "") {
+				recurUntil = moment(recurRule.until, "YYYY-MM-DD");
+			}
+		}
+
 		this.state = {
 			isNew: isNew,
 			type: props.modalState.type || consts.EVENT_TYPE_PLAIN,
@@ -37,6 +45,10 @@ class EventModal extends Component {
 			description: ((isNew || props.modalState.type != consts.EVENT_TYPE_PLAIN) ? "" : props.modalState.data.desc),
 
 			homework: (props.modalState.type == consts.EVENT_TYPE_HOMEWORK && props.modalState.data ? props.modalState.data.homework : null),
+
+			recurRule: recurRule,
+			recurUntil: recurUntil,
+			recur: !!recurRule,
 
 			startDate: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
 			startTime: startTime,
@@ -94,6 +106,19 @@ class EventModal extends Component {
 			}
 			if (this.state.type == consts.EVENT_TYPE_HOMEWORK) {
 				eventInfo["homeworkId"] = this.state.homework.id;
+			}
+
+			eventInfo["recur"] = this.state.recur;
+
+			if (this.state.recur) {
+				var recurRule = this.state.recurRule;
+				recurRule.until = moment(this.state.recurUntil).format("YYYY-MM-DD");
+
+				eventInfo["recurFrequency"] = recurRule.frequency;
+				eventInfo["recurInterval"] = recurRule.interval;
+				if (this.state.recurUntil) {
+					eventInfo["recurUntil"] = recurRule.until;
+				}
 			}
 
 			var endpointType = (this.state.type == consts.EVENT_TYPE_HOMEWORK ? "hwEvents" : "events");
@@ -168,6 +193,49 @@ class EventModal extends Component {
 		this.setState(newState);
 	}
 
+	onRecurChange(e) {
+		if (e.target.checked) {
+			// enable it
+			var newRule = this.state.recurRule || {
+				frequency: consts.RECUR_FREQUENCY_DAILY,
+				interval: 1,
+				until: null
+			};
+			this.setState({
+				recur: true,
+				recurRule: newRule,
+				recurUntil: (newRule.until ? moment(newRule.until, "YYYY-MM-DD") : null)
+			});
+		} else {
+			// disable it
+			this.setState({
+				recur: false
+			});
+		}
+	}
+
+	addRecurEnd() {
+		var newRule = this.state.recurRule;
+		newRule.until = moment(this.state.startDate).format("YYYY-MM-DD");
+		this.setState({
+			recurRule: newRule,
+			recurUntil: moment(this.state.startDate)
+		});
+	}
+
+	removeRecurEnd() {
+		// hack: setTimeout because otherwise it triggers another click event for some dumb reason that I don't understand
+		var that = this;
+		setTimeout(function() {
+			var newRule = that.state.recurRule;
+			newRule.until = null;
+			that.setState({
+				recurRule: newRule,
+				recurUntil: null
+			});
+		}, 0);
+	}
+
 	render(props, state) {
 		if (state.loading) {
 			return <Modal title={(state.isNew ? "Add event" : "Edit event")} openModal={props.openModal} noClose class="eventModal">
@@ -200,6 +268,43 @@ class EventModal extends Component {
 						<TimePicker value={state.endTime} change={this.pickerChange.bind(this, "endTime")} suggestStart={state.startTime} />
 					</div>
 				</div>
+
+				{state.type == consts.EVENT_TYPE_PLAIN && <div class="row">
+					<div class="col-md-1 eventModalLabel">Repeat</div>
+					<div class={`col-md-9 eventModalData eventModalRepeat ${state.recur ? "open" : ""}`}>
+						<div class="row">
+							<div class="col-md-1 eventModalRepeatCheckbox">
+								<input type="checkbox" checked={state.recur} onChange={this.onRecurChange.bind(this)} />
+							</div>
+							{state.recur && <div class="col-md-11">
+								<div>
+									every
+									<input type="number" value={state.recurRule.interval} min={0} onChange={linkState(this, "recurRule.interval")} />
+									<select value={state.recurRule.frequency} onChange={linkState(this, "recurRule.frequency")}>
+										{[
+											["day", consts.RECUR_FREQUENCY_DAILY],
+											["week", consts.RECUR_FREQUENCY_WEEKLY],
+											["month", consts.RECUR_FREQUENCY_MONTHLY],
+											["year", consts.RECUR_FREQUENCY_YEARLY]
+										].map(function(pair) {
+											var label = pair[0];
+											var value = pair[1];
+											return <option value={value}>{label}{state.recurRule.interval > 1 ? "s" : ""}</option>
+										})}
+									</select>
+								</div>
+								<div>
+									<div class="eventModalRepeatAlign">until</div>
+									{!state.recurUntil && <div class="eventModalRepeatAction" onClick={this.addRecurEnd.bind(this)}>forever</div>}
+									{state.recurUntil && <div class="eventModalRepeatUntil">
+										<DatePicker value={state.recurUntil} change={this.pickerChange.bind(this, "recurUntil")} />
+										<div class="eventModalRepeatAlign eventModalRepeatAction" onClick={this.removeRecurEnd.bind(this)}>remove end date</div>
+									</div>}
+								</div>
+							</div>}
+						</div>
+					</div>
+				</div>}
 
 				{state.type == consts.EVENT_TYPE_PLAIN && <textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />}
 			</div>

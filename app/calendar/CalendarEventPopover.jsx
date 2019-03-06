@@ -48,6 +48,7 @@ class CalendarEventPopover extends Component {
 			{props.item.type == consts.EVENT_TYPE_SCHEDULE && props.item.data.block && <div class="calendarEventPopoverPeriod">{props.item.data.block} Period</div>}
 			{actions}
 			{props.item.type == consts.EVENT_TYPE_SCHEDULE && <div class="calendarEventPopoverOrigin"><i class="fa fa-clock-o" /> from your schedule</div>}
+			{props.item.recurRule && <div class="calendarEventPopoverOrigin"><i class="fa fa-refresh" /> recurring event</div>}
 		</div>;
 	}
 }
