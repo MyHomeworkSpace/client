@@ -96,7 +96,11 @@ class CalendarMonth extends Component {
 						return <div class="calendarMonthDayAnnouncement">{announcement.text}</div>;
 					})}
 					{viewDay && viewDay.events.sort(function(a, b) {
-						return a.start - b.start;
+						var aStart = moment.unix(a.start);
+						var bStart = moment.unix(b.start);
+						var aOffset = aStart.diff(moment(aStart).startOf("day"), "seconds");
+						var bOffset = bStart.diff(moment(bStart).startOf("day"), "seconds");
+						return aOffset - bOffset;
 					}).map(function(event) {
 						return <CalendarEvent tiny type={event.type} item={event} groupIndex={0} groupLength={1} openPopover={that.openPopover.bind(that)} />;
 					})}
