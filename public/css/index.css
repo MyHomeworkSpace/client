@@ -155,6 +155,11 @@ body {
 	color: white;
 }
 
+.cloud-feature {
+	background-image: linear-gradient(-215deg, #30cfd0 0%, #330867 100%);
+	color: white;
+}
+
 .feature {
 	height: 40vh;
 	min-height: 250px;
