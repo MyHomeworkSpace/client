@@ -91,14 +91,10 @@ body {
 
 .landing-graphic-background {
 	height: 70%;
-	width: 70%;
+	width: 90%;
 	background-color: #ffffff;
 	border-radius: 30px;
 	padding: 30px;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: 1fr 3fr 3fr 3fr 3fr;
-	grid-auto-flow: column;
 	box-shadow: 0 4px 80px 0 rgba(0, 0, 0, 0.2), 0 6px 80px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -108,21 +104,14 @@ body {
 
 .hwItem {
 	cursor: default;
-	background: #fff;
-	background-color: rgb(255, 255, 255);
-	border-radius: 3px;
-	border-top-left-radius: 3px;
-	border-bottom-left-radius: 3px;
+	background: #ffffff;
 	border: 1px solid #cbcccd;
-	border-left-color: rgb(203, 204, 205);
-	border-left-width: 1px;
 	border-left-width: 4px;
+	border-radius: 3px;
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, .18);
 	padding: .8rem;
-	padding-right: 0.8rem;
-	padding-right: 30px;
 	margin-bottom: 1.2rem;
 	position: relative;
 	transition: all .2s;
@@ -142,14 +131,6 @@ body {
 .hwItem .hwName {
 	font-size: 16px;
 	font-weight: 500;
-}
-
-.popout-hwItem {
-	width: 384.5px;
-	height: 80.85px;
-	position: absolute;
-	top: 5%;
-	z-index: 2;
 }
 
 .graphic-time-period {
