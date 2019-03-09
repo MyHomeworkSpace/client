@@ -3,116 +3,39 @@ body {
 }
 
 .landing {
-	background-image: url("../img/mainbg.jpeg");
-	background-size: cover;
-	background-position: center center;
-}
-.jumbotron {
-	background: transparent;
-	margin-bottom: 0;
-}
-.jumbotron h1 {
-	font-size: 48px;
-}
-.jumbotron .lead {
-	font-size: 24px;
-}
-.jumbotron .container {
-	padding-bottom: 10px;
-}
-.feature-name {
-	display: inline-block;
-	font-size: 1.8em;
-	height: 42px;
-	line-height: 42px;
-	margin-left: 4px;
-	position: relative;
-	top: -6px;
-}
-
-.more-section .col-md-1 {
-	margin-top: 8px;
-}
-.more-section .col-md-11 {
-	padding-left: 20px;
-}
-.more-section .fa {
-	font-size: 64px;
-}
-.more-section h1 {
-	font-size: 36px;
-}
-.more-section p {
-	font-size: 18px;
-}
-
-.social-col {
-	text-align: center;
-}
-
-#whatsnew-alert {
-	border-radius: 0;
-	border: none;
-	background-color: rgb(32, 178, 170);
-	color: white;
-	font-size: 1.2em;
-	text-align: center;
-	cursor: pointer;
-}
-
-#whatsnew-alert a {
-	color: white;
-}
-
-#welcomeback h1, #welcomeback h4:not(.modal-title) {
-	text-align: center;
-}
-
-#features {
+	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	height: calc(100vh - 57px);
 	overflow: hidden;
 }
 
-.feature {
-	height: 100vh;
-	background-size: cover;
-	background-attachment: fixed;
-	position: relative;
+.landing>.container-fluid, .header-row, .landing-text {
+	height: 100%
 }
 
-#planner {
-	background-image: url(/img/planner-sample.jpg);
+@media only screen and (min-width: 540px) {
+	.header-row {
+		width: 80%;
+		margin: auto;
+	}
 }
 
-#homework {
-	background-image: url(/img/homework-sample.jpg);
+@media only screen and (max-width: 539.9999px) {
+	.header-row {
+		width: 100%;
+	}
+	.landing-graphic {
+		display: none;
+	}
 }
 
-#calendar {
-	background-image: url(/img/calendar-sample.jpg);
+.landing-text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
-.feature-spotlight {
-	position: absolute;
-	bottom: 5vh;
-	right: 5vw;
-	width: 20vw;
-	padding: 10px;
-	background-color: rgba(0, 0, 0, 0.7);
-	color: white;
-}
-
-.feature-spotlight h1 {
-	margin-top: 0;
-}
-
-#keep-scrolling {
-	font-size: 30px;
-	color: white;
-	background-color: #333;
-	height: 80px;
-	line-height: 80px;
-	text-align: center;
-	padding-top: 1px;
+.landing-text-2 {
+	font-size: 24px;
 }
 
 .bottom-more-section {
@@ -141,7 +64,7 @@ body {
 	padding-right: 90px !important;
 }
 
-.mini-feature:hover, .fine-print:hover{
+.mini-feature:hover, .fine-print:hover {
 	opacity: 1;
 }
 
@@ -157,4 +80,121 @@ body {
 
 .ca {
 	text-align: center;
+}
+
+.landing-graphic {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.landing-graphic-background {
+	height: 70%;
+	width: 70%;
+	background-color: #ffffff;
+	border-radius: 30px;
+	padding: 30px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 1fr 3fr 3fr 3fr 3fr;
+	grid-auto-flow: column;
+	box-shadow: 0 4px 80px 0 rgba(0, 0, 0, 0.2), 0 6px 80px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hwItem:hover {
+	background-color: #c8c8c8;
+}
+
+.hwItem {
+	cursor: default;
+	background: #fff;
+	background-color: rgb(255, 255, 255);
+	border-radius: 3px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	border: 1px solid #cbcccd;
+	border-left-color: rgb(203, 204, 205);
+	border-left-width: 1px;
+	border-left-width: 4px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, .18);
+	padding: .8rem;
+	padding-right: 0.8rem;
+	padding-right: 30px;
+	margin-bottom: 1.2rem;
+	position: relative;
+	transition: all .2s;
+	font-size: 14px;
+	margin: 5px;
+}
+
+.hwOptions {
+	color: #3c3c3c;
+	font-size: 16px;
+	opacity: 0;
+	position: absolute;
+	right: 10px;
+	transition: all .2s;
+}
+
+.hwItem .hwName {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.popout-hwItem {
+	width: 384.5px;
+	height: 80.85px;
+	position: absolute;
+	top: 5%;
+	z-index: 2;
+}
+
+.graphic-time-period {
+	text-align: center;
+}
+
+.planner-feature {
+	background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+}
+
+.hw-feature {
+	background-image: linear-gradient(75deg, #2af598 0%, #009efd 100%);
+	color: white;
+}
+
+.schedule-feature {
+	background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+	color: white;
+}
+
+.feature {
+	height: 40vh;
+	min-height: 250px;
+}
+
+.vertical-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%
+}
+
+.fh {
+	height: 100%
+}
+
+.giant-icon {
+	font-size: 200px;
+}
+
+.tar {
+	text-align: right;
+}
+
+.vh100 {
+	height: 100vh;
 }

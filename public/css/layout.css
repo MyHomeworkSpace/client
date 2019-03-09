@@ -1,5 +1,5 @@
 body {
-	font-family: "Lato", sans-serif;
+	font-family: "Lato", sans-serif !important;
 }
 
 .navbar {
@@ -42,4 +42,41 @@ body {
 
 .alert-white-text {
 	color: white;
+}
+
+.nav-logo {
+	margin-right: 5px;
+}
+
+.main-container {
+	padding-top: 30px;
+}
+
+.feature {
+	padding-top: 30px;
+	padding-bottom: 30px
+}
+
+.footer {
+	font-size: 14px;
+}
+
+.footer-icon {
+	height: 1.5rem;
+}
+
+.right-nav {
+	justify-content: end;
+}
+
+@media only screen and (min-width: 991px) {
+	.left-log-in {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 991px) {
+	.right-log-in {
+		display: none;
+	}
 }

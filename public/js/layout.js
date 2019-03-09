@@ -178,12 +178,12 @@ var serverLocations = [
     "Zhuzhou, CN",
 ]
 
-$(document).ready(function() {
-    var happyWord = happyWords[Math.round(Math.random() * (happyWords.length-1))];
+$(document).ready(function () {
+    var happyWord = happyWords[Math.round(Math.random() * (happyWords.length - 1))];
     $(".happy-synonym").text(happyWord);
 })
 
-$(document).ready(function() {
-    var serverLocation = serverLocations[Math.round(Math.random() * (serverLocations.length-1))];
+$(document).ready(function () {
+    var serverLocation = serverLocations[Math.round(Math.random() * (serverLocations.length - 1))];
     $(".server-location").text(serverLocation);
 })
