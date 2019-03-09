@@ -23,6 +23,9 @@ body {
 	.header-row {
 		width: 100%;
 	}
+}
+
+@media only screen and (max-width: 980px) {
 	.landing-graphic {
 		display: none;
 	}
@@ -178,4 +181,10 @@ body {
 
 .vh100 {
 	height: 100vh;
+}
+
+@media only screen and (max-width: 768px) {
+	.icon-holder {
+		display: none;
+	}
 }
