@@ -8,6 +8,7 @@ import EventModal from "calendar/EventModal.jsx";
 import ClassModal from "classes/ClassModal.jsx";
 import ClassSwapModal from "classes/ClassSwapModal.jsx";
 import BackgroundModal from "settings/BackgroundModal.jsx";
+import TwoFactorModal from "settings/TwoFactorModal.jsx"
 
 class ModalManager extends Component {
 	closeModal() {
@@ -25,6 +26,8 @@ class ModalManager extends Component {
 			modal = <ClassSwapModal modalState={props.modalState} openModal={props.openModal} classes={props.classes} refreshClasses={props.refreshClasses} />;
 		} else if (props.modalName == "background") {
 			modal = <BackgroundModal modalState={props.modalState} openModal={props.openModal} currentBackground={props.currentBackground} setBackground={props.setBackground} />;
+		} else if (props.modalName == "twoFactor") {
+			modal = <TwoFactorModal modalState={props.modalState} openModal={props.openModal} twoFactorEnabled={props.twoFactorEnabled} />
 		}
 
 		return <div>

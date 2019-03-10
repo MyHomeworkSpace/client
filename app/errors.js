@@ -7,14 +7,15 @@ var errorMap = {
 	"missing_params": "Required parameters were missing from the request.",
 	"internal_server_error": "An internal server error occurred while processing the request.",
 	"invalid_params": "Some parameters of the request were invalid.",
-	"user_record_missing": "Your user ID record is missing from the database. Please contact hello@myhomework.space for assistance."
+	"user_record_missing": "Your user ID record is missing from the database. Please contact hello@myhomework.space for assistance.",
+	"two_factor_incorrect": "The two factor authentication code you entered is incorrect."
 };
 
 export default {
-	getFriendlyString: function(key) {
+	getFriendlyString: function (key) {
 		if (errorMap[key]) {
 			return errorMap[key];
 		}
-		return "An unknown error (" + key + ") occurred.";	
+		return "An unknown error (" + key + ") occurred.";
 	}
 };

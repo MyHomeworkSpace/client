@@ -34,19 +34,19 @@ var modalState = {};
 
 var currentBackground = "";
 
-var refreshClasses = function(callback) {
-	MyHomeworkSpace.Classes.load(function() {
+var refreshClasses = function (callback) {
+	MyHomeworkSpace.Classes.load(function () {
 		MyHomeworkSpace.Classes.reload();
 		MyHomeworkSpace.Page.show("classes");
 		callback();
 	});
 };
 
-var isDimBackground = function() {
+var isDimBackground = function () {
 	var bgType = currentBackground.split(":")[0];
 	var bgVal = currentBackground.split(":")[1];
 	if (bgType == "img") {
-		var dimBackgrounds = [ 4, 5, 7, 8, 9, 10 ];
+		var dimBackgrounds = [4, 5, 7, 8, 9, 10];
 		if (dimBackgrounds.indexOf(parseInt(bgVal)) > -1) {
 			return true;
 		}
@@ -54,7 +54,7 @@ var isDimBackground = function() {
 	return false;
 };
 
-var setBackground = function(newBackground) {
+var setBackground = function (newBackground) {
 	var bgType = newBackground.split(":")[0];
 	var bgVal = newBackground.split(":")[1];
 	if (bgType == "img") {
@@ -82,7 +82,7 @@ var setBackground = function(newBackground) {
 	MyHomeworkSpace.Nav.rerenderNav();
 };
 
-var renderModalManager = function() {
+var renderModalManager = function () {
 	render(h(ModalManager, {
 		modalName: modalName,
 		modalState: modalState,
@@ -92,11 +92,13 @@ var renderModalManager = function() {
 		refreshClasses: refreshClasses,
 
 		currentBackground: currentBackground,
-		setBackground: setBackground
+		setBackground: setBackground,
+
+		twoFactorEnabled: (MyHomeworkSpace.Me.twoFactorVerified == 1)
 	}), null, document.querySelector("#modalManager > div"));
 };
 
-var openModal = function(name, state) {
+var openModal = function (name, state) {
 	modalName = name;
 	modalState = state;
 	renderModalManager();
@@ -113,7 +115,7 @@ export default {
 	prefixes: prefixes,
 	quickAdd: quickAdd,
 
-	init: function() {
+	init: function () {
 		renderModalManager();
 	},
 
