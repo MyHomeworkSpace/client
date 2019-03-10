@@ -121,6 +121,7 @@ export default class LoginForm extends Component {
 		return <div class="loginForm">
 			<div class="loginFormTitle">Log in</div>
 			<p class="lead">A two factor authentication code is required to log into this account. Get one from your Two Factor Authentication app.</p>
+			<p>Lost your phone? Try to set up another device using your emergency key. Having other issues? Feel free to reach out to us at hello@myhomework.space for assistance.</p>
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
 			<div class={`input-group no-addon ${props.bootstrap4 ? "" : "bs3"}`}>
 				<input type="text" class="form-control" placeholder="Two factor code" onKeyup={this.keyup.bind(this)} onchange={linkState(this, "code")} value={state.code} disabled={state.loading} />
