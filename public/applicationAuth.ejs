@@ -12,7 +12,7 @@
 			<div class="col-md-4">
 				<div class="card app-card">
 					<div class="card-header">
-						Application requesting access:
+						Application
 					</div>
 					<div class="card-body app-card-body">
 						<h3 class="applicationAuthName"></h3>
@@ -21,23 +21,18 @@
 				</div>
 			</div>
 			<div class="col-md-8">
-				<p>Not <strong class="applicationAuthUser"></strong>? <a href="#" class="applicationAuthLogout">Log out</a> to switch to your own account.
-				<p>The application <strong class="applicationAuthName"></strong> would like to access your account's data.  Granting <span class="applicationAuthName"></span>
-				access to your account allows the application to manage your homework, assignments, and calendar. <span class="applicationAuthName"></span> may not be bound by
-				MyHomeworkSpace's privacy policy, and may have different data use policies. You can control what applications can access your account and revoke access at any
-				time from the Settings tab.</p>
+				<p>Not <strong class="applicationAuthUser"></strong>? <a href="#" class="applicationAuthLogout">Log out</a> and switch to your own account.
+				<p>The application <strong class="applicationAuthName"></strong> would like to access and manage your account's data, including your planner, assignments, and calendar. <span class="applicationAuthName"></span> may have different data use policies from MyHomeworkSpace. You can control what applications can access your account and revoke access at any time from the Settings tab.</p>
 				<p><strong>Your password will never be shared with <span class="applicationAuthName"></span></strong>.</p>
-				<p>If you accept access, MyHomeworkSpace will send you back to <strong class="applicationAuthName"></strong>. If you deny access, you will be redirected to the
-				MyHomeworkSpace home page.</p>
 				<div class="applicationAuthButtons">
-					<button id="applicationAuthDeny" class="btn btn-danger btn-lg">Deny access</button>
-					<button id="applicationAuthAllow" class="btn btn-primary btn-lg">Allow access</button>
+					<button id="applicationAuthDeny" class="btn btn-danger btn-lg">Deny</button>
+					<button id="applicationAuthAllow" class="btn btn-primary btn-lg">Allow</button>
 				</div>
 			</div>
 		</div>
 		<div class="authBottomNotes">
 			<p>Are you a developer who wants to make apps that work with MyHomeworkSpace? Learn about our API
-			<a target="_blank" rel="noopener noreferrer" href="https://support.myhomework.space/docs/get-started-api">here</a>.</p>
+			<a target="_blank" href="https://support.myhomework.space/docs/get-started-api">here</a>.</p>
 		</div>
 	</div>
 	<div class="applicationAuthError hidden">
@@ -55,7 +50,7 @@
 <script src="js/login.js"></script>
 <script src="js/applicationAuth.js"></script>
 <script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+$(document).ready(function() {
+	$('[data-toggle="tooltip"]').tooltip();
+});
 </script>

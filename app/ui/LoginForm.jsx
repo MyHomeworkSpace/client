@@ -45,14 +45,14 @@ export default class LoginForm extends Component {
 		this.setState({
 			loading: true,
 			error: ""
-		}, function () {
+		}, function() {
 			api.post("auth/login", {
 				username: that.state.username,
 				password: that.state.password,
 				code: that.state.code,
-			}, function (loginData) {
+			}, function(loginData) {
 				if (loginData.status == "ok") {
-					api.get("auth/me", {}, function (userData) {
+					api.get("auth/me", {}, function(userData) {
 						if (userData.status == "ok") {
 							that.props.callback.call(that, userData);
 						} else {
