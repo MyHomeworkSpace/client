@@ -91,8 +91,6 @@ class FeedbackPopup extends Component {
 			}),
 			(r) => {
 				alert("Error generating screenshot. Submitting feedback without screenshot.");
-				console.error("Error generating screenshot");
-				console.error(r);
 				this.setState({
 					loading: false
 				});
