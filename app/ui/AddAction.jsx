@@ -19,7 +19,7 @@ class AddAction extends Component {
 
 	click() {
 		// TODO: convert homework modal to preact, and then remove this icky DOM manipulation
-		if (MyHomeworkSpace.Pages.settings.cache.disableQuickAdd) {
+		if (MyHomeworkSpace.Pages.settings.cache.disableQuickAdd && this.props.page != "calendar") {
 			// show the modal
 			$("#homeworkName").val("");
 			$("#homeworkClass").val(-1);
