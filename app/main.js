@@ -18,6 +18,7 @@ import AdminPage from "admin/AdminPage.jsx";
 import ApplicationList from "settings/ApplicationList.jsx";
 import CalendarSettings from "settings/CalendarSettings.jsx";
 import HomeworkSettings from "settings/HomeworkSettings.jsx";
+import TwoFactorInfo from "settings/TwoFactorInfo.jsx";
 
 import AddAction from "ui/AddAction.jsx";
 import ClassName from "ui/ClassName.jsx";
@@ -34,15 +35,15 @@ var modalState = {};
 
 var currentBackground = "";
 
-var refreshClasses = function (callback) {
-	MyHomeworkSpace.Classes.load(function () {
+var refreshClasses = function(callback) {
+	MyHomeworkSpace.Classes.load(function() {
 		MyHomeworkSpace.Classes.reload();
 		MyHomeworkSpace.Page.show("classes");
 		callback();
 	});
 };
 
-var isDimBackground = function () {
+var isDimBackground = function() {
 	var bgType = currentBackground.split(":")[0];
 	var bgVal = currentBackground.split(":")[1];
 	if (bgType == "img") {
@@ -54,7 +55,7 @@ var isDimBackground = function () {
 	return false;
 };
 
-var setBackground = function (newBackground) {
+var setBackground = function(newBackground) {
 	var bgType = newBackground.split(":")[0];
 	var bgVal = newBackground.split(":")[1];
 	if (bgType == "img") {
@@ -82,7 +83,7 @@ var setBackground = function (newBackground) {
 	MyHomeworkSpace.Nav.rerenderNav();
 };
 
-var renderModalManager = function () {
+var renderModalManager = function() {
 	render(h(ModalManager, {
 		modalName: modalName,
 		modalState: modalState,
@@ -92,13 +93,11 @@ var renderModalManager = function () {
 		refreshClasses: refreshClasses,
 
 		currentBackground: currentBackground,
-		setBackground: setBackground,
-
-		twoFactorEnabled: (MyHomeworkSpace.Me.twoFactorVerified == 1)
+		setBackground: setBackground
 	}), null, document.querySelector("#modalManager > div"));
 };
 
-var openModal = function (name, state) {
+var openModal = function(name, state) {
 	modalName = name;
 	modalState = state;
 	renderModalManager();
@@ -115,7 +114,7 @@ export default {
 	prefixes: prefixes,
 	quickAdd: quickAdd,
 
-	init: function () {
+	init: function() {
 		renderModalManager();
 	},
 
@@ -146,7 +145,8 @@ export default {
 		settings: {
 			ApplicationList: ApplicationList,
 			CalendarSettings: CalendarSettings,
-			HomeworkSettings: HomeworkSettings
+			HomeworkSettings: HomeworkSettings,
+			TwoFactorInfo: TwoFactorInfo
 		}
 	},
 
