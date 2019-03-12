@@ -1,7 +1,6 @@
 import "ui/FeedbackControl.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import FeedbackPopup from "ui/FeedbackPopup.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";

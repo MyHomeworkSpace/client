@@ -2,8 +2,6 @@ import "ui/Modal.styl";
 
 import { h, Component } from "preact";
 
-import api from "api.js";
-
 class Modal extends Component {
 	close() {
 		this.props.openModal("", {});

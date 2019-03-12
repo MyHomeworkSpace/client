@@ -1,7 +1,6 @@
 import "ui/DateHeader.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import DatePicker from "ui/DatePicker.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";

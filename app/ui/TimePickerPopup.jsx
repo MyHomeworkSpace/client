@@ -1,7 +1,6 @@
 import "ui/TimePickerPopup.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import moment from "moment";
 

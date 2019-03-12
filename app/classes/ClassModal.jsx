@@ -35,7 +35,7 @@ class ClassModal extends Component {
 			if (!that.state.isNew) {
 				classInfo.id = this.props.modalState.id;
 			}
-			api.post((that.state.isNew ? "classes/add" : "classes/edit"), classInfo, function(data) {
+			api.post((that.state.isNew ? "classes/add" : "classes/edit"), classInfo, function() {
 				that.props.refreshClasses(function() {
 					that.props.openModal("");
 				});

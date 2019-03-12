@@ -1,7 +1,6 @@
 import "ui/DatePickerCalendarGrid.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import moment from "moment";
 
@@ -18,7 +17,7 @@ class DatePickerCalendarGrid extends Component {
 			// add spacers for days from last month
 			items.push(<div class="datePickerCalendarGridItem"></div>);
 		}
-		for (var i = firstDay.date(); i <= lastDay.date(); i++) {
+		for (i = firstDay.date(); i <= lastDay.date(); i++) {
 			var thisDay = moment(props.date).date(i);
 			var isSelected = thisDay.isSame(props.currentDate, "day");
 			items.push(<div class={`datePickerCalendarGridItem datePickerCalendarGridItemDay ${isSelected ? "datePickerCalendarGridItemDaySelected" : ""}`} onClick={this.selectDate.bind(this, i)}>{i}</div>);

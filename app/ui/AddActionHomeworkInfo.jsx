@@ -1,7 +1,6 @@
 import "ui/AddActionHomeworkInfo.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import quickAdd from "quickAdd.js";
 

@@ -46,7 +46,7 @@ class FeedbackPopup extends Component {
 				type: that.state.type,
 				text: that.state.message,
 				screenshot: that.state.screenshot
-			}, function(data) {
+			}, function() {
 				that.setState({
 					loading: false,
 					sent: true

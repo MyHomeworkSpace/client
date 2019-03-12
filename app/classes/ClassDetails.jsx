@@ -23,7 +23,7 @@ class ClassDetails extends Component {
 		this.load();
 	}
 
-	componentWillReceiveProps(nextProps, nextState) {
+	componentWillReceiveProps() {
 		this.load();
 	}
 

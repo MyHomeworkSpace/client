@@ -18,7 +18,7 @@ class HomeworkPage extends Component {
 		this.load();
 	}
 
-	componentWillReceiveProps(nextProps, nextState) {
+	componentWillReceiveProps() {
 		this.load();
 	}
 
@@ -40,7 +40,7 @@ class HomeworkPage extends Component {
 
 	markOverdueDone() {
 		var that = this;
-		api.post("homework/markOverdueDone", {}, function(data) {
+		api.post("homework/markOverdueDone", {}, function() {
 			that.load.call(that);
 		});
 	}

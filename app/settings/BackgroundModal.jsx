@@ -1,11 +1,9 @@
 import "settings/BackgroundModal.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import api from "api.js";
 
-import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
 
 class BackgroundModal extends Component {
@@ -33,9 +31,7 @@ class BackgroundModal extends Component {
 		api.post("prefs/set", {
 			key: "background",
 			value: bg
-		}, function(data) {
-
-		});
+		}, function() {});
 	}
 
 	onColorChange(e) {

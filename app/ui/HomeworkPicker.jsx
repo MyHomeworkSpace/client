@@ -1,9 +1,6 @@
 import "ui/HomeworkPicker.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
-
-import moment from "moment";
 
 import HomeworkName from "ui/HomeworkName.jsx";
 import HomeworkPickerPopup from "ui/HomeworkPickerPopup.jsx";

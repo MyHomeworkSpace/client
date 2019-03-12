@@ -1,7 +1,6 @@
 import "ui/DatePickerCalendar.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import DatePickerCalendarGrid from "ui/DatePickerCalendarGrid.jsx";
 

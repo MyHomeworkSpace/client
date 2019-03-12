@@ -2,8 +2,6 @@ import "ui/ModalManager.styl";
 
 import { h, Component } from "preact";
 
-import api from "api.js";
-
 import EventModal from "calendar/EventModal.jsx";
 import ClassModal from "classes/ClassModal.jsx";
 import ClassSwapModal from "classes/ClassSwapModal.jsx";

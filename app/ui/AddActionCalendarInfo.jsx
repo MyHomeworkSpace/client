@@ -1,12 +1,10 @@
 import "ui/AddActionCalendarInfo.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import consts from "consts.js";
 
 import AddActionInfo from "ui/AddActionInfo.jsx";
-import HomeworkName from "ui/HomeworkName.jsx";
 
 class AddActionCalendarInfo extends Component {
 	addFromHomework() {

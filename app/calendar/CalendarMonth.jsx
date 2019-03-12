@@ -1,7 +1,6 @@
 import "calendar/CalendarMonth.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import CalendarEvent from "calendar/CalendarEvent.jsx";
 import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
@@ -82,7 +81,7 @@ class CalendarMonth extends Component {
 			// add spacers for days from last month
 			rowItems.push(<div class="calendarMonthGridItem calendarMonthGridSpacer"></div>);
 		}
-		for (var i = firstDay.date(); i <= lastDay.date(); i++) {
+		for (i = firstDay.date(); i <= lastDay.date(); i++) {
 			var thisDay = moment(props.start).date(i);
 			var isToday = thisDay.isSame(moment.unix(state.time), "day");
 			var viewDay;

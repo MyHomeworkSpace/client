@@ -7,7 +7,8 @@ import api from "api.js";
 import AdminListItem from "admin/AdminListItem.jsx";
 
 class AdminPage extends Component {
-	constructor() {
+	constructor(props) {
+		super(props);
 		this.state = {
 			loading: true
 		};
@@ -56,7 +57,7 @@ class AdminPage extends Component {
 		var content = prompt("Enter notification content");
 		var expiry = prompt("Enter notification expiry");
 		if (confirm("Look good? Content: " + content + " Expires: " + expiry)) {
-			api.post("notifications/add", {expiry: expiry, content: content}, function(response) {
+			api.post("notifications/add", {expiry: expiry, content: content}, function() {
 				that.load.call(that);
 			});
 		} else {

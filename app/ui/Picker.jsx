@@ -1,9 +1,6 @@
 import "ui/Picker.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
-
-import moment from "moment";
 
 class Picker extends Component {
 	constructor(props) {
@@ -46,13 +43,13 @@ class Picker extends Component {
 		}
 	}
 
-	onFocus(e) {
+	onFocus() {
 		if (this.props.editable) {
 			this.props.setOpen(true);
 		}
 	}
 
-	toggle(e) {
+	toggle() {
 		if (this.props.editable) {
 			return;
 		}

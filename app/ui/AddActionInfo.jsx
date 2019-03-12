@@ -1,7 +1,6 @@
 import "ui/AddActionInfo.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 class AddActionInfo extends Component {
 	render(props, state) {

@@ -57,8 +57,8 @@ class AddAction extends Component {
 
 	componentDidMount() {
 		var that = this;
-		Mousetrap.bind("ctrl+space", function(e) {
-			that.click.bind(that)();
+		Mousetrap.bind("ctrl+space", function() {
+			that.click.call(that);
 			return false;
 		});
 	}

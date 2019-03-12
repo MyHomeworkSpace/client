@@ -1,7 +1,6 @@
 import "calendar/CalendarEvents.styl";
 
 import { h, Component } from "preact";
-import linkState from "linkstate";
 
 import CalendarEvent from "calendar/CalendarEvent.jsx";
 import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
@@ -86,7 +85,7 @@ class CalendarEvents extends Component {
 		}
 		events.forEach(function(eventList, dow) {
 			var groupsForDay = eventGroups[dow];
-			eventList.forEach(function(eventItem, eventItemIndex) {
+			eventList.forEach(function(eventItem) {
 				// find which group this event belongs to
 				var foundGroupIndex = -1;
 				for (var groupIndex in groupsForDay) {

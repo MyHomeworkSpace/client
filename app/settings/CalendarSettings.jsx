@@ -1,6 +1,7 @@
 import { h, Component } from "preact";
 
 import api from "api.js";
+import errors from "errors.js";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
@@ -48,7 +49,7 @@ class CalendarSettings extends Component {
 						alert("Schedule data has been cleared.");
 						window.location.reload();
 					} else {
-						this.setState({
+						that.setState({
 							loading: false
 						}, function() {
 							alert(errors.getFriendlyString(data.error));
@@ -60,8 +61,6 @@ class CalendarSettings extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		if (state.loading) {
 			return <div><LoadingIndicator /> Loading, please wait...</div>;
 		}

@@ -21,7 +21,7 @@ class ClassSwapModal extends Component {
 			api.post("classes/swap", {
 				id1: this.props.modalState.id,
 				id2: otherClass.id
-			}, function(response) {
+			}, function() {
 				that.props.refreshClasses(function() {
 					that.close.call(that);
 				});

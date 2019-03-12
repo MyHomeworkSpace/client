@@ -14,7 +14,7 @@ import TopBarDropdown from "ui/nav/TopBarDropdown.jsx";
 
 class TopBar extends Component {
 	logout() {
-		api.get("auth/logout", {}, function(data) {
+		api.get("auth/logout", {}, function() {
 			window.location.reload();
 		});
 	}
@@ -30,12 +30,12 @@ class TopBar extends Component {
 	}
 
 	componentDidMount() {
-		Mousetrap.bind("h", (e) => this.openPage("homework"));
-		Mousetrap.bind("p", (e) => this.openPage("planner"));
-		Mousetrap.bind("c", (e) => this.openPage("calendar"));
-		Mousetrap.bind("?", (e) => this.openPage("help"));
-		Mousetrap.bind("l", (e) => this.openPage("classes"));
-		Mousetrap.bind(["ctrl+,", "command+,"], (e) => this.openPage("settings"));
+		Mousetrap.bind("h", () => this.openPage("homework"));
+		Mousetrap.bind("p", () => this.openPage("planner"));
+		Mousetrap.bind("c", () => this.openPage("calendar"));
+		Mousetrap.bind("?", () => this.openPage("help"));
+		Mousetrap.bind("l", () => this.openPage("classes"));
+		Mousetrap.bind(["ctrl+,", "command+,"], () => this.openPage("settings"));
 	}
 
 	render(props, state) {

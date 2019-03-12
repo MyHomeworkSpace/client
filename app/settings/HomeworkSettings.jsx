@@ -74,7 +74,7 @@ class HomeworkSettings extends Component {
 				api.post("prefs/set", {
 					key: "homeworkHiddenClasses",
 					value: JSON.stringify(hiddenClasses)
-				}, function(data) {
+				}, function() {
 					that.refresh.call(that);
 				});
 			});
@@ -94,7 +94,7 @@ class HomeworkSettings extends Component {
 			api.post("prefs/set", {
 				key: "homeworkHiddenClasses",
 				value: JSON.stringify(hiddenClasses)
-			}, function(data) {
+			}, function() {
 				that.refresh.call(that);
 			});
 		});
