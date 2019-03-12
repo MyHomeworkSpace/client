@@ -67,17 +67,17 @@ class FeedbackPopup extends Component {
 		if (this.state.screenshot) {
 			this.setState({
 				screenshot: null
-			})
+			});
 			return;
 		}
 
 		/* Load asynchronously because it's a big file */
 		this.setState({
 			loading: true,
-		})
-		new Promise(function (resolve, reject) {
+		});
+		new Promise(function(resolve, reject) {
 			var s;
-			s = document.createElement('script');
+			s = document.createElement("script");
 			s.src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
 			s.onload = resolve;
 			s.onerror = reject;
@@ -87,7 +87,7 @@ class FeedbackPopup extends Component {
 				this.setState({
 					screenshot: canvas.toDataURL(),
 					loading: false
-				})
+				});
 			}),
 			(r) => {
 				alert("Error generating screenshot. Submitting feedback without screenshot.");
@@ -95,9 +95,9 @@ class FeedbackPopup extends Component {
 				console.error(r);
 				this.setState({
 					loading: false
-				})
+				});
 			}
-		)
+		);
 	}
 
 	render(props, state) {
@@ -131,7 +131,7 @@ class FeedbackPopup extends Component {
 						{state.screenshot ? <img src={state.screenshot} class="feedbackPopupScreenshotImg" /> : null}
 						<small class="finetext">Your name will also be sent. {state.screenshot ? <span>
 							Use of the screenshot you included is subject to our <a href="https://legal.myhomework.space/privacy" target="_blank">Privacy Policy</a>.
-									</span> : null}</small>
+						</span> : null}</small>
 						<button
 							class="btn btn-default btn-sm addScreenshotButton"
 							name="screenshot"

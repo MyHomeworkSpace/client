@@ -289,7 +289,7 @@ class EventModal extends Component {
 										].map(function(pair) {
 											var label = pair[0];
 											var value = pair[1];
-											return <option value={value}>{label}{state.recurRule.interval > 1 ? "s" : ""}</option>
+											return <option value={value}>{label}{state.recurRule.interval > 1 ? "s" : ""}</option>;
 										})}
 									</select>
 								</div>

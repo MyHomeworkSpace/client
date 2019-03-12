@@ -12,7 +12,7 @@ class AddClass extends Component {
 	}
 
 	render(props, state) {
-		return <div class="addClass" onClick={this.handleClick.bind(this)}><i class="fa fa-plus-square-o" aria-hidden="true"></i> Add class</div>
+		return <div class="addClass" onClick={this.handleClick.bind(this)}><i class="fa fa-plus-square-o" aria-hidden="true"></i> Add class</div>;
 	}
 }
 

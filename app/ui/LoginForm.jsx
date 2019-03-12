@@ -76,7 +76,7 @@ export default class LoginForm extends Component {
 						error: null,
 						twoFactor: true,
 						code: ""
-					})
+					});
 				} else {
 					that.setState({
 						loading: false,
@@ -137,4 +137,4 @@ export default class LoginForm extends Component {
 			<div class="clearfix"></div>
 		</div>;
 	}
-};
+}

@@ -10,7 +10,7 @@ class AdminListItem extends Component {
 		if (confirm("Are you sure you want to delete this notification?")) {
 			api.post("notifications/delete", {
 				id: id
-			}, function () {
+			}, function() {
 				alert("Deleted!");
 				that.props.load.call(that);
 			});

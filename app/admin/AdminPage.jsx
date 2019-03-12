@@ -34,7 +34,7 @@ class AdminPage extends Component {
 				that.setState({
 					feedback: data.feedbacks
 				}, that.checkIfDoneLoading.bind(that));
-			})
+			});
 			api.get("notifications/get", {}, function(data) {
 				that.setState({
 					notifications: data.notifications

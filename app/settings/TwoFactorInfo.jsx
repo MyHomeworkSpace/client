@@ -46,6 +46,6 @@ class TwoFactorInfo extends Component {
 			</div>
 		</div>;
 	}
-};
+}
 
 export default TwoFactorInfo;

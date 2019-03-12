@@ -31,8 +31,8 @@ class ClassDetails extends Component {
 		const that = this;
 		this.setState({
 			loading: true
-		}, function () {
-			api.get(`homework/getForClass/${this.props.classObject.id}`, null, function (data) {
+		}, function() {
+			api.get(`homework/getForClass/${this.props.classObject.id}`, null, function(data) {
 				that.setState({
 					loading: false,
 					homework: data.homework

@@ -1,4 +1,4 @@
-import "ui/NotificationControl.styl"
+import "ui/NotificationControl.styl";
 
 import { h, Component } from "preact";
 
@@ -57,10 +57,10 @@ class NotificationControl extends Component {
 			<TopBarButton icon="bell-o" selected={state.open} onClick={this.toggle.bind(this)}>
 				Notifications
 				{this.state.notifications
-				? this.state.notifications.length > 0
-					? <span class="label label-danger">{this.state.notifications.length}</span>
-					: null
-				: null}
+					? this.state.notifications.length > 0
+						? <span class="label label-danger">{this.state.notifications.length}</span>
+						: null
+					: null}
 			</TopBarButton>
 			<NotificationPopup notifications={this.state.notifications} open={this.state.open}/>
 		</span>;

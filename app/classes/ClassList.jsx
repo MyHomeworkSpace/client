@@ -9,10 +9,10 @@ class ClassList extends Component {
 		return <div class="classList">
 			<div class="classItems">
 				{props.classes.map(function(classDetails) {
-					return <ClassItem classItem={classDetails} onClick={props.onClick}/>
+					return <ClassItem classItem={classDetails} onClick={props.onClick}/>;
 				})}
 			</div>
-		</div>
+		</div>;
 	}
 }
 

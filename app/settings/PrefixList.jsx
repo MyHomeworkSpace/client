@@ -12,7 +12,7 @@ import AddPrefix from "settings/AddPrefix.jsx";
 
 class PrefixList extends Component {
 	constructor(props) {
-		super(props)
+		super(props);
 		this.state = {
 			hideGroups: []
 		};

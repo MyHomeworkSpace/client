@@ -6,7 +6,7 @@ import api from "api.js";
 
 import AddAction from "ui/AddAction.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
-import NotificationControl from "ui/NotificationControl.jsx"
+import NotificationControl from "ui/NotificationControl.jsx";
 
 import NavLogo from "ui/nav/NavLogo.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";
@@ -30,12 +30,12 @@ class TopBar extends Component {
 	}
 
 	componentDidMount() {
-		Mousetrap.bind('h', (e) => this.openPage("homework"));
-		Mousetrap.bind('p', (e) => this.openPage("planner"));
-		Mousetrap.bind('c', (e) => this.openPage("calendar"));
-		Mousetrap.bind('?', (e) => this.openPage("help"));
-		Mousetrap.bind('l', (e) => this.openPage("classes"));
-		Mousetrap.bind(['ctrl+,', 'command+,'], (e) => this.openPage("settings"));
+		Mousetrap.bind("h", (e) => this.openPage("homework"));
+		Mousetrap.bind("p", (e) => this.openPage("planner"));
+		Mousetrap.bind("c", (e) => this.openPage("calendar"));
+		Mousetrap.bind("?", (e) => this.openPage("help"));
+		Mousetrap.bind("l", (e) => this.openPage("classes"));
+		Mousetrap.bind(["ctrl+,", "command+,"], (e) => this.openPage("settings"));
 	}
 
 	render(props, state) {

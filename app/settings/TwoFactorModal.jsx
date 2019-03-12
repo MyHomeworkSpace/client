@@ -1,4 +1,4 @@
-import "settings/TwoFactorModal.styl"
+import "settings/TwoFactorModal.styl";
 
 import { h, Component } from "preact";
 import linkState from "linkstate";
@@ -6,7 +6,7 @@ import linkState from "linkstate";
 import api from "api.js";
 import errors from "errors.js";
 
-import Modal from "ui/Modal.jsx"
+import Modal from "ui/Modal.jsx";
 
 class TwoFactorModal extends Component {
 	constructor(props) {

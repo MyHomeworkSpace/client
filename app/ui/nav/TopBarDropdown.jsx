@@ -43,4 +43,4 @@ export default class TopBarDropdown extends Component {
 			</div>
 		</Picker>;
 	}
-};
+}

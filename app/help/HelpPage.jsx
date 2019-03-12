@@ -6,7 +6,7 @@ class HelpPage extends Component {
 			<h2>Help</h2>
 			<p class="lead">All support documentation is available at <a href="https://help.myhomework.space">help.myhomework.space</a>.</p>
 			<iframe src="https://support.myhomework.space/embedded-search" name="" scrolling="yes" marginheight="0px" marginwidth="0px" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
-		</div>)
+		</div>);
 	}
 }
 
