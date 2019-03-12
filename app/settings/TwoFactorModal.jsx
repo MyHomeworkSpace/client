@@ -117,7 +117,7 @@ class TwoFactorModal extends Component {
 				</div>;
 			} else if (state.phase == 2) {
 				body = <div>
-					<p>If you don't have one already, you'll need an authenticator app. We recommend Google Authenticator, which you can download for <a href="https://appstore.com/googleauthenticator" target="_blank">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank">Android</a>; however, there are many other compatible apps.</p>
+					<p>If you don't have one already, you'll need an authenticator app. We recommend Google Authenticator, which you can download for <a href="https://appstore.com/googleauthenticator" target="_blank" rel="noopener noreferrer">iOS</a> or <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank" rel="noopener noreferrer">Android</a>; however, there are many other compatible apps.</p>
 					<p>Once you've downloaded an authenticator app, scan the barcode below. Alternatively, you can type your emergency key into the authenticator app.</p>
 
 					<img height="200" width="200" class="twoFactorBarcodeImage" src={state.imageURL}></img>
