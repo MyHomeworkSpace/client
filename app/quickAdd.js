@@ -179,7 +179,7 @@ export default {
 			if (term.get(0).tags.Value && term.get(0).tags.Date) {
 				term.get(0).tags.Date = false;
 			}
-		})
+		});
 
 		response.tag = sentence.match("#MHSPrefix").terms(0).out().trim();
 		response.due = sentence.replace("Test", "").replace("test", "").match("#Date").out().trim();

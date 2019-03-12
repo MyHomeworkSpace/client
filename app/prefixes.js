@@ -8,8 +8,6 @@ export default {
 
 	init: function(callback) {
 		api.get("prefixes/getList", {}, function(data) {
-			var data = data;
-
 			prefixes = data.prefixes;
 			fallback = {
 				background: data.fallbackBackground,

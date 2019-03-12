@@ -6,11 +6,11 @@ if (window.location.hostname.indexOf("localtest.me") > -1) {
 	baseURL = "http://mhs-api.localtest.me/";
 }
 
-var rawRequest = function (path, method, data, callback) {
+var rawRequest = function(path, method, data, callback) {
 	$("#workingOverlay").css("opacity", 0);
 	$("#workingOverlay").hide();
 	if (workingTimeout === undefined) {
-		workingTimeout = setTimeout(function () {
+		workingTimeout = setTimeout(function() {
 			$("#workingOverlay").show();
 			$("#workingOverlay").css("opacity", 0.5);
 		}, 2000);
@@ -23,7 +23,7 @@ var rawRequest = function (path, method, data, callback) {
 		xhrFields: {
 			withCredentials: true
 		},
-		complete: function (jqXHR) {
+		complete: function(jqXHR) {
 			$("#workingOverlay").css("opacity", 0);
 			$("#workingOverlay").hide();
 			clearTimeout(workingTimeout);
@@ -40,25 +40,25 @@ var rawRequest = function (path, method, data, callback) {
 	});
 };
 
-var request = function (path, method, data, callback) {
+var request = function(path, method, data, callback) {
 	return rawRequest(path + "?csrfToken=" + encodeURIComponent(token), method, data, callback);
 };
 
 export default {
-	get: function (path, data, callback) {
+	get: function(path, data, callback) {
 		return request(path, "GET", data, callback);
 	},
-	post: function (path, data, callback) {
+	post: function(path, data, callback) {
 		return request(path, "POST", data, callback);
 	},
-	init: function (callback) {
-		rawRequest("auth/csrf", "GET", {}, function (data) {
+	init: function(callback) {
+		rawRequest("auth/csrf", "GET", {}, function(data) {
 			token = data.token;
 			callback();
 		});
 	},
-	getToken: function () {
-		return encodeURIComponent(token)
+	getToken: function() {
+		return encodeURIComponent(token);
 	},
 	baseURL: baseURL,
 };
