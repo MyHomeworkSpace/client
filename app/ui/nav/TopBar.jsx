@@ -48,14 +48,10 @@ class TopBar extends Component {
 			"calendar": { icon: "calendar", name: "Calendar" }
 		};
 
-		console.log(document.location)
-
 		if (moment().format("YYYY-MM-DD") == "2019-04-01") {
 			//Happy april fools day!
 			tabs["fools"] = { icon: "clock-o", name: "Procrastinate" }
 		}
-
-		console.log(tabs)
 
 		return <div class={`topBar ${props.inverted ? "inverted" : ""} ${props.dimmed ? "dimmed" : ""}`}>
 			<div>
