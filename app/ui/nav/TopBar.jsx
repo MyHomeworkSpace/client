@@ -50,7 +50,7 @@ class TopBar extends Component {
 
 		console.log(document.location)
 
-		if (moment().format("YYYY-MM-DD") == "2019-03-31") {
+		if (moment().format("YYYY-MM-DD") == "2019-04-01") {
 			//Happy april fools day!
 			tabs["fools"] = { icon: "clock-o", name: "Procrastinate" }
 		}
