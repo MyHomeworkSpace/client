@@ -20,9 +20,7 @@ class TopBar extends Component {
 	}
 
 	openPage(page) {
-		if (page == "fools") {
-			document.location = "/fools.html"
-		} else if (this.props.page != page) {
+		if (this.props.page != page) {
 			// open the new page
 			this.props.openPage(page);
 		} else {
@@ -47,11 +45,6 @@ class TopBar extends Component {
 			"planner": { icon: "book", name: "Planner" },
 			"calendar": { icon: "calendar", name: "Calendar" }
 		};
-
-		if (moment().format("YYYY-MM-DD") == "2019-04-01") {
-			//Happy april fools day!
-			tabs["fools"] = { icon: "clock-o", name: "Procrastinate" }
-		}
 
 		return <div class={`topBar ${props.inverted ? "inverted" : ""} ${props.dimmed ? "dimmed" : ""}`}>
 			<div>
