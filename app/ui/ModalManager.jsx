@@ -5,6 +5,7 @@ import { h, Component } from "preact";
 import EventModal from "calendar/EventModal.jsx";
 import ClassModal from "classes/ClassModal.jsx";
 import ClassSwapModal from "classes/ClassSwapModal.jsx";
+import HomeworkModal from "homework/HomeworkModal.jsx";
 import BackgroundModal from "settings/BackgroundModal.jsx";
 import TwoFactorModal from "settings/TwoFactorModal.jsx";
 
@@ -22,6 +23,8 @@ class ModalManager extends Component {
 			modal = <ClassModal modalState={props.modalState} openModal={props.openModal} classes={props.classes} refreshClasses={props.refreshClasses} />;
 		} else if (props.modalName == "classSwap") {
 			modal = <ClassSwapModal modalState={props.modalState} openModal={props.openModal} classes={props.classes} refreshClasses={props.refreshClasses} />;
+		} else if (props.modalName == "homework") {
+			modal = <HomeworkModal modalState={props.modalState} openModal={props.openModal} classes={props.classes} refreshClasses={props.refreshClasses} />;
 		} else if (props.modalName == "background") {
 			modal = <BackgroundModal modalState={props.modalState} openModal={props.openModal} currentBackground={props.currentBackground} setBackground={props.setBackground} />;
 		} else if (props.modalName == "twoFactor") {
