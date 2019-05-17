@@ -13,6 +13,18 @@ import TopBarButton from "ui/nav/TopBarButton.jsx";
 import TopBarDropdown from "ui/nav/TopBarDropdown.jsx";
 
 class TopBar extends Component {
+	componentDidMount() {
+		if (this.props.me && Object.keys(this.props.me).length > 0) {
+			this.enableShortcuts();
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if ((!this.props.me || Object.keys(this.props.me).length == 0) && nextProps.me && Object.keys(nextProps.me).length > 0) {
+			this.enableShortcuts();
+		}
+	}
+
 	logout() {
 		api.get("auth/logout", {}, function() {
 			window.location.reload();
@@ -29,13 +41,13 @@ class TopBar extends Component {
 		}
 	}
 
-	componentDidMount() {
-		Mousetrap.bind("h", () => this.openPage("homework"));
-		Mousetrap.bind("p", () => this.openPage("planner"));
-		Mousetrap.bind("c", () => this.openPage("calendar"));
-		Mousetrap.bind("?", () => this.openPage("help"));
-		Mousetrap.bind("l", () => this.openPage("classes"));
-		Mousetrap.bind(["ctrl+,", "command+,"], () => this.openPage("settings"));
+	enableShortcuts() {
+		Mousetrap.bind("h", this.openPage.bind(this, "homework"));
+		Mousetrap.bind("p", this.openPage.bind(this, "planner"));
+		Mousetrap.bind("c", this.openPage.bind(this, "calendar"));
+		Mousetrap.bind("?", this.openPage.bind(this, "help"));
+		Mousetrap.bind("l", this.openPage.bind(this, "classes"));
+		Mousetrap.bind(["ctrl+,", "command+,"], this.openPage.bind(this, "settings"));
 	}
 
 	render(props, state) {
