@@ -2,6 +2,8 @@ import "calendar/CalendarNowLine.styl";
 
 import { h, Component } from "preact";
 
+import moment from "moment";
+
 class CalendarNowLine extends Component {
 	constructor(props) {
 		super(props);

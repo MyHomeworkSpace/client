@@ -12,7 +12,6 @@ module.exports = {
 		"SharedArrayBuffer": "readonly",
 
 		"html2canvas": "readonly",
-		"moment": "readonly",
 		"Mousetrap": "readonly",
 		"nlp": "readonly",
 		"$": "readonly",

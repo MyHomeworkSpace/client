@@ -2,6 +2,8 @@ import "calendar/CalendarEvents.styl";
 
 import { h, Component } from "preact";
 
+import moment from "moment";
+
 import CalendarEvent from "calendar/CalendarEvent.jsx";
 import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
 import CalendarEventsDay from "calendar/CalendarEventsDay.jsx";

@@ -2,6 +2,8 @@ import "calendar/CalendarEventPopover.styl";
 
 import { h, Component } from "preact";
 
+import moment from "moment";
+
 import consts from "consts.js";
 
 import HomeworkName from "ui/HomeworkName.jsx";

@@ -2,6 +2,8 @@ import "classes/ClassDetails.styl";
 
 import { h, Component } from "preact";
 
+import moment from "moment";
+
 import api from "api.js";
 
 import EditClassButton from "classes/EditClassButton.jsx";

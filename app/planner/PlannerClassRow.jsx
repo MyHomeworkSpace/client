@@ -2,6 +2,8 @@ import "planner/PlannerClassRow.styl";
 
 import { h, Component } from "preact";
 
+import moment from "moment";
+
 import PlannerHomeworkItem from "planner/PlannerHomeworkItem.jsx";
 
 import ClassName from "ui/ClassName.jsx";

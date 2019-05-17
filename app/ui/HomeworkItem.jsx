@@ -2,6 +2,8 @@ import "ui/HomeworkItem.styl";
 
 import { h, Component } from "preact";
 
+import moment from "moment";
+
 import prefixes from "prefixes.js";
 
 import ClassName from "ui/ClassName.jsx";

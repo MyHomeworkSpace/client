@@ -2,6 +2,8 @@ import "ui/DatePickerCalendar.styl";
 
 import { h, Component } from "preact";
 
+import moment from "moment";
+
 import DatePickerCalendarGrid from "ui/DatePickerCalendarGrid.jsx";
 
 class DatePickerCalendar extends Component {

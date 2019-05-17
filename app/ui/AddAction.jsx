@@ -3,6 +3,8 @@ import "ui/AddAction.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import moment from "moment";
+
 import consts from "consts.js";
 import quickAdd from "quickAdd.js";
 

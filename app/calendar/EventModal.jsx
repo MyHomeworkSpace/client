@@ -3,6 +3,8 @@ import "calendar/EventModal.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import moment from "moment";
+
 import api from "api.js";
 import consts from "consts.js";
 import errors from "errors.js";

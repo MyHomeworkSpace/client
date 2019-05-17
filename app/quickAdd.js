@@ -1,3 +1,5 @@
+import moment from "moment";
+
 import prefixes from "prefixes.js";
 
 var classes = [];

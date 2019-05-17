@@ -2,6 +2,8 @@ import "calendar/CalendarWeek.styl";
 
 import { h, Component } from "preact";
 
+import moment from "moment";
+
 import CalendarEvents from "calendar/CalendarEvents.jsx";
 import CalendarWeekDay from "calendar/CalendarWeekDay.jsx";
 

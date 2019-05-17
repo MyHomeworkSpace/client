@@ -3,6 +3,8 @@ import "homework/HomeworkModal.styl";
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
+import moment from "moment";
+
 import api from "api.js";
 import errors from "errors.js";
 
