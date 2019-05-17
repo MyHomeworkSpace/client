@@ -21,6 +21,14 @@ class AddPrefix extends Component {
 	addPrefix() {
 		var that = this;
 
+		if (this.state.words.trim() == "") {
+			this.setState({
+				loading: false,
+				error: "You must enter a tag name!"
+			});
+			return;
+		}
+
 		this.setState({
 			loading: true
 		}, function() {
@@ -74,6 +82,7 @@ class AddPrefix extends Component {
 
 	render(props, state) {
 		return <div class="addPrefix">
+			{state.error && <div class="alert alert-danger">{state.error}</div>}
 			{state.refresh && <div class="alert alert-info">Your tag has been added. Refresh the page to see your changes.</div>}
 
 			<ColorPicker disabled={state.loading} onChange={this.changeBackgroundColor.bind(this)} value={state.background} />
