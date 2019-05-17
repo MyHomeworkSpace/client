@@ -27,9 +27,12 @@ export default class PrefixedEdit extends Component {
 
 		var top = 0;
 		var left = 0;
+		var bottom = 0;
 
 		var topProperties = [ "margin-top", "padding-top", "border-top-width" ];
 		var leftProperties = [ "margin-left", "padding-left", "border-left-width" ];
+		var bottomProperties = [ "margin-bottom", "padding-bottom", "border-bottom-width" ];
+		var cloneProperties = [ "font-size" ];
 
 		topProperties.forEach(function(property) {
 			var propertyValue = parseInt((textComputedStyle[property] || "").replace("px", "")) || 0;
@@ -41,7 +44,19 @@ export default class PrefixedEdit extends Component {
 			left += propertyValue;
 		});
 
-		var positionStyle = `top:${top}px;left:${left}px;`;		
+		bottomProperties.forEach(function(property) {
+			var propertyValue = parseInt((textComputedStyle[property] || "").replace("px", "")) || 0;
+			bottom += propertyValue;
+		});
+
+		var computedHeight = parseInt((textComputedStyle["height"] || "").replace("px", "")) || 0;
+
+		var positionStyle = `top:${top}px;left:${left}px;height:${computedHeight - top - bottom}px;`;
+
+		cloneProperties.forEach(function(property) {
+			var propertyValue = (textComputedStyle[property] || "");
+			positionStyle += property + ":" + propertyValue + ";";
+		});
 
 		return <div class={`prefixedEdit ${props.class || ""}`}>
 			{showPrefix && <div
