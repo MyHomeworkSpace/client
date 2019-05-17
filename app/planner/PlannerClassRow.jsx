@@ -27,7 +27,11 @@ export default class PlannerClassRow extends Component {
 				var homework = (props.classHomework[props.classObject.id] || []).filter(function(homeworkItem) {
 					return (formattedDay == homeworkItem.due);
 				});
-				return <div class="plannerRowItem">
+				var allDone = homework.reduce(function(allDone, homework) {
+					if (!allDone) { return false; }
+					return (homework.complete == 1);
+				}, true);
+				return <div class={`plannerRowItem ${MyHomeworkSpace.Pages.settings.cache.darkenDoneBoxes && allDone ? "plannerRowItemDone" :""}`}>
 					{homework.map(function(homeworkItem) {
 						return <PlannerHomeworkItem
 							homeworkItem={homeworkItem}
