@@ -1,6 +1,5 @@
 MyHomeworkSpace.Pages.homework = {
 	init: function() {},
-	onLogin: function() {},
 
 	edit: function(id) {
 		MHSBridge.default.openModal("loading", {});

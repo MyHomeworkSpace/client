@@ -17,10 +17,7 @@ import AdminPage from "admin/AdminPage.jsx";
 
 import PlannerPage from "planner/PlannerPage.jsx";
 
-import ApplicationList from "settings/ApplicationList.jsx";
-import CalendarSettings from "settings/CalendarSettings.jsx";
-import HomeworkSettings from "settings/HomeworkSettings.jsx";
-import TwoFactorInfo from "settings/TwoFactorInfo.jsx";
+import SettingsPage from "settings/SettingsPage.jsx";
 
 import AddAction from "ui/AddAction.jsx";
 import ClassName from "ui/ClassName.jsx";
@@ -148,10 +145,7 @@ export default {
 			PlannerPage: PlannerPage
 		},
 		settings: {
-			ApplicationList: ApplicationList,
-			CalendarSettings: CalendarSettings,
-			HomeworkSettings: HomeworkSettings,
-			TwoFactorInfo: TwoFactorInfo
+			SettingsPage: SettingsPage
 		}
 	},
 

@@ -1,10 +1,12 @@
+import "settings/ApplicationList.styl";
+
 import { h, Component } from "preact";
 
 import api from "api.js";
 
 import ApplicationListItem from "settings/ApplicationListItem.jsx";
 
-class ApplicationList extends Component {
+export default class ApplicationList extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -34,17 +36,15 @@ class ApplicationList extends Component {
 		var that = this;
 
 		if (state.loading) {
-			return <div><i class="fa fa-refresh fa-spin"></i> Loading, please wait...</div>;
+			return <div class="applicationList"><i class="fa fa-refresh fa-spin"></i> Loading, please wait...</div>;
 		}
 		if (state.authorizations.length == 0) {
-			return <div>You have not given any applications permission to access your account.</div>;
+			return <div class="applicationList">You have not given any applications permission to access your account.</div>;
 		}
 
 		var authorizations = state.authorizations.map(function(authorization) {
 			return <ApplicationListItem authorization={authorization} refresh={that.refresh.bind(that)} />;
 		});
-		return <div>{authorizations}</div>;
+		return <div class="applicationList">{authorizations}</div>;
 	}
-}
-
-export default ApplicationList;
+};

@@ -26,9 +26,6 @@ MyHomeworkSpace.Pages.login = {
 					MHSBridge.default.quickAdd.init();
 
 					MyHomeworkSpace.Nav.init();
-					
-					MyHomeworkSpace.Pages.homework.onLogin();
-					MyHomeworkSpace.Pages.settings.onLogin();
 
 					MyHomeworkSpace.Me = info.user;
 					MyHomeworkSpace.Me.grade = info.grade;

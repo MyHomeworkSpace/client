@@ -18,12 +18,10 @@
 
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/line-awesome-font-awesome.min.css">
-	<link rel="stylesheet" href="css/clippy.css" />
 
 	<link rel="stylesheet" href="css/app.css" />
 
 	<link rel="stylesheet" href="css/login.css" />
-	<link rel="stylesheet" href="css/settings.css" />
 
 	<link rel="stylesheet" href="css/bundle.css" />
 
@@ -32,8 +30,6 @@
 
 	<script src="js/compromise.min.js"></script>
 	<script src="js/mousetrap.min.js"></script>
-	<script src="js/clippy.min.js"></script>
-	<script src="js/easteregg.js"></script>
 
 	<script src="js/bundle.js"></script>
 
@@ -101,116 +97,7 @@
 		<div></div>
 	</div>
 	<div id="settings" class="page hidden">
-		<h2>Settings</h2>
-		<div>
-			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active">
-					<a href="#settings_account" aria-controls="home" role="tab" data-toggle="tab">Account</a>
-				</li>
-				<li role="presentation">
-					<a href="#settings_quickAdd" aria-controls="settings_quickAdd" role="tab" data-toggle="tab">Quick Add</a>
-				</li>
-				<li role="presentation">
-					<a href="#settings_applications" aria-controls="settings_applications" role="tab" data-toggle="tab">Applications</a>
-				</li>
-				<li role="presentation">
-					<a href="#settings_homework" aria-controls="settings_homework" role="tab" data-toggle="tab">Homework</a>
-				</li>
-				<li role="presentation">
-					<a href="#settings_planner" aria-controls="settings_planner" role="tab" data-toggle="tab">Planner</a>
-				</li>
-				<li role="presentation">
-					<a href="#settings_calendar" aria-controls="settings_calendar" role="tab" data-toggle="tab">Calendar</a>
-				</li>
-				<li role="presentation">
-					<a href="#settings_more" aria-controls="settings_more" role="tab" data-toggle="tab">More Projects</a>
-				</li>
-			</ul>
-
-			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="settings_account">
-					<h3 id="settings_account_name"></h3>
-					<h4 id="settings_account_email"></h4>
-					<h4 id="settings_account_grade"></h4>
-
-					<br />
-
-					<h4>Password</h4>
-					<p>You are signed in with your Dalton account. For assistance with Dalton accounts, please contact <a href="mailto:help@dalton.org">help@dalton.org</a>.</p>
-					<a href="https://password.dalton.org" data-toggle="tooltip" title="This will bring you to password.dalton.org, a website maintained by The Dalton School to change your password. This website is not maintained by MyHomeworkSpace. Thanks!" class="btn btn-primary">Change password</a>
-
-					<br />
-					<br />
-
-					<div id="settingsTwoFactor">
-						<div></div>
-					</div>
-
-					<br />
-
-					<h4>Background</h4>
-					<button id="settings_change_background" class="btn btn-primary">Change background</button>
-
-					<div id="settingsHidingSpacer"></div>
-
-					<button id="clipify" class="btn btn-primary btn-sm partyLikeItsThe90s" onclick="partyLike90s();">Party Like it's the 90s</button>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="settings_applications">
-					<p>Manage other applications you've given access to your account.</p>
-					<div id="settingsApplicationsList">
-						<div></div>
-					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="settings_quickAdd">
-					<p>Quick Add lets you add homework to your planner by typing in information about it. Examples:</p>
-					<ul>
-						<li>read chapter 3 for English tomorrow</li>
-						<li>take test on unit 4 in Science next Tuesday</li>
-						<li>next Friday, I have to write an essay about the revolution for History</li>
-					</ul>
-					<p>You can access Quick Add from the "<i class="fa fa-plus-square"></i> Add Homework" button above, or with the Control-Space keyboard shortcut.</p>
-					<input type="checkbox" id="settings_disableQuickAdd" class="settings_checkbox" data-pref="disableQuickAdd" data-pref-inverted="true" checked />
-					<label for="settings_disableQuickAdd">Enable Quick Add</label>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="settings_homework">
-					<div id="settingsHomeworkContainer">
-						<div></div>
-					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="settings_planner">
-					<input type="checkbox" id="settings_darkenDoneBoxes" class="settings_checkbox"
-						data-pref="darkenDoneBoxes" data-pref-inverted="false" />
-					<label for="settings_darkenDoneBoxes">Darken boxes with all work completed</label>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="settings_calendar">
-					<div id="settingsCalendarContainer">
-						<div></div>
-					</div>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="settings_more">
-					<h3>DaltonTab</h3>
-					<p>
-						<strong>Free, Chrome Extension, Dalton Laptop Program Compatible</strong>
-					</p>
-					<p>DaltonTab is your home base for homework, classes, and your schedule. View your information from multiple sites in one central view, available at the click of a new tab.</p>
-					<a href="https://chrome.google.com/webstore/detail/daltontab/ggfjkmflbbjndabmnngilkfpmdegbfkm" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download</a>
-
-					<h3>MyHomeworkSpace Button</h3>
-					<p>
-						<strong>Free, Chrome Extension, Dalton Laptop Program Compatible</strong>
-					</p>
-					<p>A button in your toolbar that leads directly to MyHomeworkSpace.</p>
-					<a href="https://chrome.google.com/webstore/detail/myhomeworkspace-button/bgjhpfdlpnddingdjkjlefefbjdnnndm" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download</a>
-
-					<h3>Back to Drive</h3>
-					<p>
-						<strong>Free, Chrome Extension, Dalton Laptop Program Compatible</strong>
-					</p>
-					<p>A nifty little extension that changes the link on the Docs, Spreadsheets, Slides, Drawings and Forms logo back to Drive.</p>
-					<a href="https://chrome.google.com/webstore/detail/back-to-drive/nkamccjapcjemblidlcaipacjgkmpgkp" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Download</a>
-				</div>
-			</div>
-		</div>
+		<div></div>
 	</div>
 	<div id="help" class="page hidden">
 		<div></div>

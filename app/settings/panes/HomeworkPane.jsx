@@ -1,6 +1,7 @@
-import "settings/HomeworkSettings.styl";
+import "settings/panes/HomeworkPane.styl";
 
 import { h, Component } from "preact";
+
 import linkState from "linkstate";
 
 import api from "api.js";
@@ -10,7 +11,7 @@ import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
 import PrefixList from "settings/PrefixList.jsx";
 
-class HomeworkSettings extends Component {
+export default class HomeworkPane extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -109,7 +110,7 @@ class HomeworkSettings extends Component {
 
 		var availableClasses = this.getAvailableClasses();
 		
-		return <div class="homeworkSettings">
+		return <div class="homeworkPane">
 			<h4>Tags</h4>
 			<p class="homeworkSettingsDescription">You add custom tags to be used on MyHomeworkSpace.</p>
 			<PrefixList />
@@ -152,6 +153,4 @@ class HomeworkSettings extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default HomeworkSettings;
+};

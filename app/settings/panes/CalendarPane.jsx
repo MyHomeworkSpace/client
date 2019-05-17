@@ -5,7 +5,7 @@ import errors from "errors.js";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
-class CalendarSettings extends Component {
+export default class CalendarPane extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -72,6 +72,4 @@ class CalendarSettings extends Component {
 			<button onClick={this.reset.bind(this)} class="btn btn-danger btn-sm">Reset schedule information</button>
 		</div>;
 	}
-}
-
-export default CalendarSettings;
+};

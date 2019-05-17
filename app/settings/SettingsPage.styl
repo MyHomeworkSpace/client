@@ -1,0 +1,29 @@
+.settingsPage
+	width: 100%
+	height: calc(100% - 50px)
+
+	.settingsPaneContainer
+		display: flex
+		overflow-y: auto
+		width: 100%
+		height: calc(100% - 14px)
+
+		.settingsPaneSelect
+			border-right: solid 1px #aaa
+			flex: 0 0 20rem
+
+			.settingsPaneOption
+				cursor: pointer
+				font-size: 1.5rem
+				padding: 0.5rem 1rem
+
+			.settingsPaneOption.settingsPaneOptionSelected, .settingsPaneOption.settingsPaneOptionSelected:hover
+				background: #ccc
+
+			.settingsPaneOption:hover
+				background: #ddd
+
+		.settingsPane
+			flex: 1 0 0
+			padding: 0 1rem
+			overflow-y: auto

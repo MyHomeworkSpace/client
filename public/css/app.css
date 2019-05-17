@@ -58,10 +58,6 @@ html, body {
 	width: 13px;
 }
 
-#settingsHidingSpacer {
-	height: 500px;
-}
-
 #migrationWelcome h1, #migrationWelcome h4:not(.modal-title) {
 	text-align: center;
 }

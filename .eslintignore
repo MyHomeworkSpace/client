@@ -1,7 +1,6 @@
 node_modules/
 webpack.config.js
 public/js/bundle.js
-public/js/clippy.min.js
 public/js/compromise.min.js
 public/js/jquery-1.12.4.min.js
 public/js/mousetrap.min.js
