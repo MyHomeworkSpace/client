@@ -8,11 +8,9 @@ export default class PrefixedEdit extends Component {
 	componentDidMount() {
 		var textElement = document.querySelector(".prefixedEditText");
 		var style = window.getComputedStyle(textElement, null);
-		this._computedStyle = style;
-	}
-
-	getComputedStyle() {
-		return this._computedStyle || {};
+		this.setState({
+			computedStyle: style
+		});
 	}
 
 	render(props, state) {
@@ -23,7 +21,7 @@ export default class PrefixedEdit extends Component {
 
 		var showPrefix = (value.trim() != "");
 
-		var textComputedStyle = this.getComputedStyle();
+		var textComputedStyle = state.computedStyle || {};
 
 		var top = 0;
 		var left = 0;
