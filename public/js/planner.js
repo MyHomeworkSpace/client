@@ -149,17 +149,10 @@ MyHomeworkSpace.Pages.planner = {
 				for (var i = 0; i < parseInt($(this).parent().attr("data-dow")); i++) {
 					dueDate.add(1, "day");
 				}
-				$("#homeworkName").val("");
-				$("#homeworkClass").val($(this).parent().parent().attr("data-classId"));
-				$("#homeworkDue").val(dueDate.format("YYYY-MM-DD"));
-				$("#homeworkComplete").prop("checked", false);
-				$("#homeworkDesc").val("");
-				$("#deleteHomeworkModal").hide();
-				$("#homeworkModalType").text("Add");
-				$("#homeworkModal").attr("data-actionType", "add");
-				$("#homeworkName").trigger("input"); // trigger tag system
-				$("#homeworkModal").modal();
-				$("#addHWClose").click();
+				MHSBridge.default.openModal("homework", {
+					due: dueDate.format("YYYY-MM-DD"),
+					classId: parseInt($(this).parent().parent().attr("data-classId"))
+				});
 			});
 		$(".classRow td:not(.subjectCell)").append($addButton);
 		if (!MyHomeworkSpace.Pages.planner.currentWeek) {

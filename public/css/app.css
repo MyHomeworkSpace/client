@@ -54,17 +54,6 @@ html, body {
 	z-index: -1;
 }
 
-#homeworkModal .modal-body input:not([type=checkbox]), #homeworkModal .modal-body select, #homeworkModal .modal-body .form-control {
-	width: 300px;
-}
-#homeworkName {
-	font-size: 18px;
-}
-#homeworkModal .modal-body #homeworkDesc {
-	min-width: 400px;
-	min-height: 150px;
-}
-
 .toggleable-check {
 	width: 13px;
 }

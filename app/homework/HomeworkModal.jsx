@@ -21,9 +21,9 @@ export default class HomeworkModal extends Component {
 		this.state = {
 			isNew: isNew,
 
-			name: (isNew ? "" : props.modalState.name),
-			due: (isNew ? moment() : moment(props.modalState.due, "YYYY-MM-DD")),
-			classId: (isNew ? -1 : props.modalState.classId),
+			name: props.modalState.name || "",
+			due: (props.modalState.due ? moment(props.modalState.due, "YYYY-MM-DD") : moment()),
+			classId: props.modalState.classId || -1,
 			complete: (isNew ? 0 : props.modalState.complete),
 			desc: (isNew ? "" : props.modalState.desc)
 		};

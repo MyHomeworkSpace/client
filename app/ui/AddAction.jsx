@@ -18,21 +18,9 @@ class AddAction extends Component {
 	}
 
 	click() {
-		// TODO: convert homework modal to preact, and then remove this icky DOM manipulation
 		if (MyHomeworkSpace.Pages.settings.cache.disableQuickAdd && this.props.page != "calendar") {
 			// show the modal
-			$("#homeworkName").val("");
-			$("#homeworkClass").val(-1);
-			$("#homeworkDue").val("");
-			$("#homeworkDue").next(".form-control").children("button").text(moment().format("dddd, MMMM Do, YYYY"));
-			$("#homeworkDue").next(".form-control").children("div").datepicker("setDate", moment().toDate());
-			$("#homeworkComplete").prop("checked", false);
-			$("#homeworkDesc").val("");
-			$("#deleteHomeworkModal").hide();
-			$("#homeworkModalType").text("Add");
-			$("#homeworkModal").attr("data-actionType", "add");
-			$("#homeworkName").trigger("input"); // trigger tag system
-			$("#homeworkModal").modal();
+			MHSBridge.default.openModal("homework", {});
 		} else {
 			// open the textbox
 			this.setState({
@@ -67,23 +55,19 @@ class AddAction extends Component {
 		if (e.keyCode == 13) {
 			// TODO: convert homework modal to preact, and then remove this icky DOM manipulation
 			var info = quickAdd.parseText(this.state.input);
-			if (info.tag || info.name) {
-				$("#homeworkName").val(info.tag + " " + info.name);
-			} else {
-				$("#homeworkName").val("");
-			}
-			$("#homeworkClass").val((info.class ? info.class.id : -1));
 			var dueDate = quickAdd.parseDate(info.due) || undefined;
-			$("#homeworkDue").val(dueDate);
-			$("#homeworkDue").next(".form-control").children("button").text(moment(dueDate).format("dddd, MMMM Do, YYYY"));
-			$("#homeworkDue").next(".form-control").children("div").datepicker("setDate", moment(dueDate).toDate());
-			$("#homeworkComplete").prop("checked", false);
-			$("#homeworkDesc").val("");
-			$("#deleteHomeworkModal").hide();
-			$("#homeworkModalType").text("Add");
-			$("#homeworkModal").attr("data-actionType", "add");
-			$("#homeworkName").trigger("input"); // trigger tag system
-			$("#homeworkModal").modal();
+
+			var hwName = "";
+
+			if (info.tag || info.name) {
+				hwName = info.tag + " " + info.name;
+			}
+
+			MHSBridge.default.openModal("homework", {
+				name: hwName,
+				due: (dueDate ? moment(dueDate).format("YYYY-MM-DD") : null),
+				classId: (info.class ? info.class.id : -1)
+			});
 			this.close();
 		}
 	}

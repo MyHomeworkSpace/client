@@ -8,6 +8,7 @@ import ClassSwapModal from "classes/ClassSwapModal.jsx";
 import HomeworkModal from "homework/HomeworkModal.jsx";
 import BackgroundModal from "settings/BackgroundModal.jsx";
 import TwoFactorModal from "settings/TwoFactorModal.jsx";
+import LoadingModal from "ui/LoadingModal.jsx";
 
 class ModalManager extends Component {
 	closeModal() {
@@ -29,6 +30,8 @@ class ModalManager extends Component {
 			modal = <BackgroundModal modalState={props.modalState} openModal={props.openModal} currentBackground={props.currentBackground} setBackground={props.setBackground} />;
 		} else if (props.modalName == "twoFactor") {
 			modal = <TwoFactorModal modalState={props.modalState} openModal={props.openModal} twoFactorEnabled={props.twoFactorEnabled} />;
+		} else if (props.modalName == "loading") {
+			modal = <LoadingModal modalState={props.modalState} openModal={props.openModal} />;
 		}
 
 		return <div>
