@@ -101,28 +101,31 @@ export default class PlannerPage extends Component {
 				loadingEvents={state.loading}
 				type="week"
 			/>
-			<div class="plannerHeader">
+			<div class="plannerHeader plannerHeaderFirst">
 				{[ 0, 1, 2, 3, 4, 5, 6 ].map(function(day) {
 					var currentDay = moment(state.currentWeek).add(day, "days");
-					var formattedDay = currentDay.format("YYYY-MM-DD");
 					var fridayIndex;
 					if (currentDay.weekday() == 5) {
 						if (state.weekInfo && state.weekInfo.friday && state.weekInfo.friday.index > -1) {
 							fridayIndex = state.weekInfo.friday.index;
 						}
 					}
-					return <div class="plannerHeaderColumn">
-						<div class="plannerHeaderDay">
-							<span class="plannerHeaderDayOfWeek">{currentDay.format("dddd")} {fridayIndex}</span>
-							<span class="plannerHeaderDate">{currentDay.format("M/D")}</span>
-						</div>
-						<div class={`plannerHeaderAnnouncement ${day == 0 ? "plannerHeaderAnnouncementFirst": ""}`}>
-							{(state.weekInfo ? state.weekInfo.announcements : []).filter(function(announcement) {
-								return (announcement.date == formattedDay);
-							}).map(function(announcement) {
-								return <div class="plannerHeaderAnnouncementItem">{announcement.text}</div>;
-							})}
-						</div>
+					return <div class="plannerHeaderColumn plannerHeaderDay">
+						<span class="plannerHeaderDayOfWeek">{currentDay.format("dddd")} {fridayIndex}</span>
+						<span class="plannerHeaderDate">{currentDay.format("M/D")}</span>
+					</div>;
+				})}
+			</div>
+			<div class="plannerHeader">
+				{[ 0, 1, 2, 3, 4, 5, 6 ].map(function(day) {
+					var currentDay = moment(state.currentWeek).add(day, "days");
+					var formattedDay = currentDay.format("YYYY-MM-DD");
+					return <div class={`plannerHeaderColumn plannerHeaderAnnouncement ${day == 0 ? "plannerHeaderAnnouncementFirst": ""}`}>
+						{(state.weekInfo ? state.weekInfo.announcements : []).filter(function(announcement) {
+							return (announcement.date == formattedDay);
+						}).map(function(announcement) {
+							return <div class="plannerHeaderAnnouncementItem">{announcement.text}</div>;
+						})}
 					</div>;
 				})}
 			</div>
