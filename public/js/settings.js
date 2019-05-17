@@ -6,17 +6,10 @@ MyHomeworkSpace.Pages.settings = {
 	},
 	onLogin: function() {
 		$(".settings_checkbox").each(function() {
-			var $that = $(this);
-			MyHomeworkSpace.API.get("prefs/get/" + $(this).attr("data-pref"), {}, function(data) {
-				if (data.status != "error") {
-					var newVal = (data.pref.value == "true");
-					MyHomeworkSpace.Pages.settings.cache[data.pref.key] = newVal;
-					if ($that.attr("data-pref-inverted") && $that.attr("data-pref-inverted") == "true") {
-						newVal = !newVal;
-					}
-					$that.prop("checked", newVal);
-				}
-			});
+			var pref = $(this).attr("data-pref");
+			if (MyHomeworkSpace.Pages.settings.cache[pref]) {
+				$(this).prop("checked", MyHomeworkSpace.Pages.settings.cache[pref]);
+			}
 		});
 		$(".settings_checkbox").change(function() {
 			var newVal = $(this).prop("checked");

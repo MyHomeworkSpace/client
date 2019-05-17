@@ -32,12 +32,9 @@ MyHomeworkSpace.Nav = {
 		}), null, $(".topBar")[0]);
 	},
 	init: function() {
-		MyHomeworkSpace.API.get("prefs/get/background", {}, function(data) {
-			if (data.status != "error") {
-				var bgVal = data.pref.value;
-				MHSBridge.default.background.setBackground(bgVal);
-			}
-		});
+		if (MyHomeworkSpace.Pages.settings.cache.background) {
+			MHSBridge.default.background.setBackground(MyHomeworkSpace.Pages.settings.cache.background);
+		}
 	}
 };
 
