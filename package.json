@@ -22,7 +22,7 @@
 	"dependencies": {
 		"cross-env": "^4.0.0",
 		"linkstate": "^1.0.1",
-		"preact": "^8.1.0",
+		"preact": "8.4.2",
 		"preact-router": "^2.5.1"
 	}
 }
