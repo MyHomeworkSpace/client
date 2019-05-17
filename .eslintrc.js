@@ -35,14 +35,12 @@ module.exports = {
 			"error",
 			"tab"
 		],
-		"linebreak-style": [
-			"error",
-			"unix"
-		],
+		"linebreak-style": "off",
 		"no-constant-condition": [
 			"error",
 			{ "checkLoops": false }
 		],
+		"no-extra-semi": "off",
 		"no-unused-vars": [
 			"off",
 			{ "varsIgnorePattern": "(props|state)" }
