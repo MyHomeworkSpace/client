@@ -55,7 +55,6 @@ class AddAction extends Component {
 
 	keyup(e) {
 		if (e.keyCode == 13) {
-			// TODO: convert homework modal to preact, and then remove this icky DOM manipulation
 			var info = quickAdd.parseText(this.state.input);
 			var dueDate = quickAdd.parseDate(info.due) || undefined;
 

@@ -57,11 +57,6 @@ MyHomeworkSpace.Pages.login = {
 						MyHomeworkSpace.Page.show("homework");
 					}
 					$("#login").remove();
-					if (MyHomeworkSpace.Me.showMigrateMessage) {
-						MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {
-							$("#migrationWelcome").modal();
-						});
-					}
 				});
 			});
 		});

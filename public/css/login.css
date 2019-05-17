@@ -19,16 +19,3 @@
 	padding: 2rem;
 	width: 45rem;
 }
-
-#migrationWelcome .modal-dialog {
-	width: 700px;
-}
-
-#migrationWelcome .lead {
-	text-align: center;
-}
-
-#migrationBigText {
-	font-size: 2em;
-	text-align: center;
-}

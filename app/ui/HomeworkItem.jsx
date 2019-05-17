@@ -88,7 +88,7 @@ class HomeworkItem extends Component {
 
 		return <div class={`hwItem ${props.isOverdue ? "hwLate": ""} ${state.complete == "1" ? "done": ""}`} style={`border-left-color: #${prefixInfo.background}`} data-hwId={props.homework.id}>
 			<div class="hwOptions">
-				<i class={`fa ${state.complete ? "fa-check-circle-o" : "fa-circle-o"} toggleable-check`} onClick={this.toggleComplete.bind(this)}></i>
+				<i class={`fa ${state.complete ? "fa-check-circle-o" : "fa-circle-o"}`} onClick={this.toggleComplete.bind(this)}></i>
 				<i class="fa fa-edit" onClick={this.edit.bind(this)}></i>
 			</div>
 			<div class="hwName">
@@ -98,7 +98,7 @@ class HomeworkItem extends Component {
 				{!hideDue && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
 				<div><ClassName classObject={classObject} /></div>
 			</div>
-			{props.homework.desc.trim() != "" && <i class={state.expanded ? "hwDescIcon fa fa-arrow-circle-up" : "hwDescIcon fa fa-arrow-circle-down"} onClick={this.toggleDescription.bind(this)} data-toggle="tooltip" data-placement="left" title="Toggle description"></i>}
+			{props.homework.desc.trim() != "" && <i class={state.expanded ? "hwDescIcon fa fa-arrow-circle-up" : "hwDescIcon fa fa-arrow-circle-down"} onClick={this.toggleDescription.bind(this)}></i>}
 			{state.expanded && <div>
 				{props.homework.desc.split("\n").map(function(line) {
 					return <div>{line}</div>;
