@@ -137,6 +137,11 @@ class HomeworkSettings extends Component {
 						}
 					});
 
+					if (!classObject) {
+						// it no longer exists, ignore it
+						return;
+					}
+
 					return <div class="homeworkSettingsClass">
 						<ClassName classObject={classObject} />
 						<div class="homeworkSettingsClassRemove" onClick={that.removeClass.bind(that, classObject.id)}>
