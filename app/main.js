@@ -15,6 +15,8 @@ import ClassesPage from "classes/ClassesPage.jsx";
 
 import AdminPage from "admin/AdminPage.jsx";
 
+import PlannerPage from "planner/PlannerPage.jsx";
+
 import ApplicationList from "settings/ApplicationList.jsx";
 import CalendarSettings from "settings/CalendarSettings.jsx";
 import HomeworkSettings from "settings/HomeworkSettings.jsx";
@@ -141,6 +143,9 @@ export default {
 		},
 		admin: {
 			AdminPage: AdminPage
+		},
+		planner: {
+			PlannerPage: PlannerPage
 		},
 		settings: {
 			ApplicationList: ApplicationList,

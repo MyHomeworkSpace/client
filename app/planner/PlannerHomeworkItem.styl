@@ -1,0 +1,30 @@
+.plannerHomeworkItem
+	transition: 0.1s background
+	padding-right: 3.35rem
+	position: relative
+
+	.plannerHomeworkActions
+		display: inline-block
+		font-size: 1.4rem
+		position: absolute
+		top: 0
+		right: 0
+		opacity: 0
+		text-align: right
+		transition: 0.1s opacity
+		padding-right: 0.25rem
+		width: 3.1rem
+
+		.fa
+			cursor: pointer
+
+.plannerHomeworkItem.done, .plannerHomeworkItem.done:hover
+	background: #cccccc
+	font-style: italic
+	text-decoration: line-through
+
+.plannerHomeworkItem:hover
+	background: #dddddd
+	
+	.plannerHomeworkActions
+		opacity: 1
