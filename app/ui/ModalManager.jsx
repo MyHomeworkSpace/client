@@ -16,22 +16,31 @@ class ModalManager extends Component {
 	}
 
 	render(props, state) {
+		var modals = {
+			calendarEvent: EventModal,
+			class: ClassModal,
+			classSwap: ClassSwapModal,
+			homework: HomeworkModal,
+			background: BackgroundModal,
+			twoFactor: TwoFactorModal,
+			loading: LoadingModal,
+		};
+		
 		var modal;
 
-		if (props.modalName == "calendarEvent") {
-			modal = <EventModal modalState={props.modalState} openModal={props.openModal} />;
-		} else if (props.modalName == "class") {
-			modal = <ClassModal modalState={props.modalState} openModal={props.openModal} classes={props.classes} refreshClasses={props.refreshClasses} />;
-		} else if (props.modalName == "classSwap") {
-			modal = <ClassSwapModal modalState={props.modalState} openModal={props.openModal} classes={props.classes} refreshClasses={props.refreshClasses} />;
-		} else if (props.modalName == "homework") {
-			modal = <HomeworkModal modalState={props.modalState} openModal={props.openModal} classes={props.classes} refreshClasses={props.refreshClasses} />;
-		} else if (props.modalName == "background") {
-			modal = <BackgroundModal modalState={props.modalState} openModal={props.openModal} currentBackground={props.currentBackground} setBackground={props.setBackground} />;
-		} else if (props.modalName == "twoFactor") {
-			modal = <TwoFactorModal modalState={props.modalState} openModal={props.openModal} twoFactorEnabled={props.twoFactorEnabled} />;
-		} else if (props.modalName == "loading") {
-			modal = <LoadingModal modalState={props.modalState} openModal={props.openModal} />;
+		if (props.modalName) {
+			modal = h(modals[props.modalName], {
+				modalState: props.modalState,
+				openModal: props.openModal,
+
+				classes: props.classes,
+				refreshClasses: props.refreshClasses,
+
+				currentBackground: props.currentBackground,
+				setBackground: props.setBackground,
+
+				twoFactorEnabled: props.twoFactorEnabled
+			});
 		}
 
 		return <div>
