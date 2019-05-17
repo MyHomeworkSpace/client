@@ -7,15 +7,6 @@ MyHomeworkSpace.Classes = {
 	load: function(callback) {
 		MyHomeworkSpace.API.get("classes/get", {}, function(data) {
 			MyHomeworkSpace.Classes.list = data.classes;
-			$("#homeworkClass").html("");
-			$("#homeworkClass").append('<option value="-1">No class</option>');
-			for (var classIndex in MyHomeworkSpace.Classes.list) {
-				var classItem = MyHomeworkSpace.Classes.list[classIndex];
-				var $option = $('<option></option>');
-					$option.val(classItem.id);
-					$option.text(classItem.name);
-				$("#homeworkClass").append($option);
-			}
 			callback();
 		});
 	},
