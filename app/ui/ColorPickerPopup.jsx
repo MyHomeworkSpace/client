@@ -4,7 +4,7 @@ import { h, Component } from "preact";
 
 import consts from "consts.js";
 
-class ColorPickerPopup extends Component {
+export default class ColorPickerPopup extends Component {
 	pickColor(color) {
 		this.props.selectColor(color);
 	}
@@ -20,10 +20,8 @@ class ColorPickerPopup extends Component {
 			/>;
 		});
 
-		return <div class="colorPickerPopup">
+		return <div class="pickerPopup colorPickerPopup">
 			{colorElements}
 		</div>;
 	}
-}
-
-export default ColorPickerPopup;
+};
