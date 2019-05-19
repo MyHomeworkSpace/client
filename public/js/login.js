@@ -28,7 +28,6 @@ MyHomeworkSpace.Pages.login = {
 					MyHomeworkSpace.Nav.init();
 
 					MyHomeworkSpace.Me = info.user;
-					MyHomeworkSpace.Me.grade = info.grade;
 					MyHomeworkSpace.Tabs = info.tabs;
 
 					// add the server-side tabs

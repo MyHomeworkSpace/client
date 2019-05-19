@@ -13,7 +13,6 @@ export default class AccountPane extends Component {
 		return <div class="accountPane">
 			<h3>{props.me.name}</h3>
 			<h4>{props.me.email}</h4>
-			{props.me.grade > 12 ? <h4>Faculty member</h4> : <h4>{props.me.grade}th grade</h4>}
 
 			<br />
 
