@@ -48,7 +48,7 @@ class CalendarEventPopover extends Component {
 			{props.item.type == consts.EVENT_TYPE_SCHEDULE && (props.item.data.buildingName || props.item.data.roomNumber) && <div class="calendarEventPopoverLocation">{props.item.data.buildingName} {(props.item.data.roomNumber != "Library" && props.item.data.roomNumber != "Cafeteria" && props.item.data.roomNumber != "Theater") ? "Room " : ""}{props.item.data.roomNumber}</div>}
 			{props.item.type == consts.EVENT_TYPE_SCHEDULE && props.item.data.block && <div class="calendarEventPopoverPeriod">{props.item.data.block} Period</div>}
 			{actions}
-			{props.item.type == consts.EVENT_TYPE_SCHEDULE && <div class="calendarEventPopoverOrigin"><i class="fa fa-clock-o" /> from your schedule</div>}
+			{props.item.source > -1 && <div class="calendarEventPopoverOrigin"><i class="fa fa-calendar" /> from {props.view.providers[props.item.source].name}</div>}
 			{props.item.recurRule && <div class="calendarEventPopoverOrigin"><i class="fa fa-refresh" /> recurring event</div>}
 		</div>;
 	}

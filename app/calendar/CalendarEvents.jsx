@@ -116,7 +116,7 @@ class CalendarEvents extends Component {
 		eventGroups.forEach(function(eventGroupList, dow) {
 			eventGroupList.forEach(function(eventGroup) {
 				eventGroup.forEach(function(eventItem, eventGroupIndex) {
-					eventElements[dow].push(<CalendarEvent type={eventItem.type} item={eventItem} groupIndex={eventGroupIndex} groupLength={eventGroup.length} openPopover={that.openPopover.bind(that)} />);
+					eventElements[dow].push(<CalendarEvent type={eventItem.type} item={eventItem} groupIndex={eventGroupIndex} groupLength={eventGroup.length} view={props.view} openPopover={that.openPopover.bind(that)} />);
 				});
 			});
 		});
@@ -157,7 +157,7 @@ class CalendarEvents extends Component {
 			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(4, "day")}>{eventElements[4]}</CalendarEventsDay>
 			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(5, "day")}>{eventElements[5]}</CalendarEventsDay>
 			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(6, "day")}>{eventElements[6]}</CalendarEventsDay>
-			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} openModal={props.openModal} />}
+			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
 		</div>;
 	}
 }

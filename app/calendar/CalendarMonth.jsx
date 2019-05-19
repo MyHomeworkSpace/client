@@ -103,7 +103,7 @@ class CalendarMonth extends Component {
 						var bOffset = bStart.diff(moment(bStart).startOf("day"), "seconds");
 						return aOffset - bOffset;
 					}).map(function(event) {
-						return <CalendarEvent tiny type={event.type} item={event} groupIndex={0} groupLength={1} openPopover={that.openPopover.bind(that)} />;
+						return <CalendarEvent tiny type={event.type} item={event} groupIndex={0} groupLength={1} view={props.view} openPopover={that.openPopover.bind(that)} />;
 					})}
 				</div>
 			</div>;
@@ -138,7 +138,7 @@ class CalendarMonth extends Component {
 				</div>
 				{rows}
 			</div>
-			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} openModal={props.openModal} />}
+			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
 		</div>;
 	}
 }
