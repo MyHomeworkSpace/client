@@ -104,14 +104,8 @@ export default class PlannerPage extends Component {
 			<div class="plannerHeader plannerHeaderFirst">
 				{[ 0, 1, 2, 3, 4, 5, 6 ].map(function(day) {
 					var currentDay = moment(state.currentWeek).add(day, "days");
-					var fridayIndex;
-					if (currentDay.weekday() == 5) {
-						if (state.weekInfo && state.weekInfo.friday && state.weekInfo.friday.index > -1) {
-							fridayIndex = state.weekInfo.friday.index;
-						}
-					}
 					return <div class="plannerHeaderColumn plannerHeaderDay">
-						<span class="plannerHeaderDayOfWeek">{currentDay.format("dddd")} {fridayIndex}</span>
+						<span class="plannerHeaderDayOfWeek">{currentDay.format("dddd")}</span>
 						<span class="plannerHeaderDate">{currentDay.format("M/D")}</span>
 					</div>;
 				})}

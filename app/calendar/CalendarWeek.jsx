@@ -63,7 +63,7 @@ class CalendarWeek extends Component {
 				<CalendarWeekDay announcements={props.view && props.view.days[1].announcements} time={momentTime} name="Tuesday" day={moment(props.monday).add(1, "day")} />
 				<CalendarWeekDay announcements={props.view && props.view.days[2].announcements} time={momentTime} name="Wednesday" day={moment(props.monday).add(2, "days")} />
 				<CalendarWeekDay announcements={props.view && props.view.days[3].announcements} time={momentTime} name="Thursday" day={moment(props.monday).add(3, "days")} />
-				<CalendarWeekDay announcements={props.view && props.view.days[4].announcements} time={momentTime} name={props.view && props.view.days[4].shiftingIndex != -1 ? `Friday ${props.view.days[4].shiftingIndex}` : "Friday"} day={moment(props.monday).add(4, "days")} />
+				<CalendarWeekDay announcements={props.view && props.view.days[4].announcements} time={momentTime} name="Friday" day={moment(props.monday).add(4, "days")} />
 				<CalendarWeekDay announcements={props.view && props.view.days[5].announcements} time={momentTime} name="Saturday" day={moment(props.monday).add(5, "days")} />
 				<CalendarWeekDay announcements={props.view && props.view.days[6].announcements} time={momentTime} name="Sunday" day={moment(props.monday).add(6, "days")} />
 			</div>
