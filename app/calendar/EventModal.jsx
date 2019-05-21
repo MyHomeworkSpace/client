@@ -39,14 +39,26 @@ class EventModal extends Component {
 			}
 		}
 
+		var type = props.modalState.type;
+
+		if (!type) {
+			type = consts.EVENT_TYPE_PLAIN;
+
+			if (props.modalState.tags[consts.EVENT_TAG_HOMEWORK]) {
+				type = consts.EVENT_TYPE_HOMEWORK;
+			} else if (props.modalState.tags[consts.EVENT_TAG_CLASS_ID]) {
+				type = consts.EVENT_TYPE_SCHEDULE;
+			}
+		}
+
 		this.state = {
 			isNew: isNew,
-			type: props.modalState.type || consts.EVENT_TYPE_PLAIN,
+			type: type,
 
 			name: (isNew ? "" : props.modalState.name),
-			description: ((isNew || props.modalState.type != consts.EVENT_TYPE_PLAIN) ? "" : props.modalState.data.desc),
+			description: ((isNew || !props.modalState.tags[consts.EVENT_TAG_DESCRIPTION]) ? "" : props.modalState.tags[consts.EVENT_TAG_DESCRIPTION]),
 
-			homework: (props.modalState.type == consts.EVENT_TYPE_HOMEWORK && props.modalState.data ? props.modalState.data.homework : null),
+			homework: (props.modalState.tags && props.modalState.tags[consts.EVENT_TAG_HOMEWORK]) || null,
 
 			recurRule: recurRule,
 			recurUntil: recurUntil,

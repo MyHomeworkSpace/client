@@ -36,9 +36,9 @@ class CalendarEvent extends Component {
 		var startDisplay = start.format("h:mm a");
 		var endDisplay = end.format("h:mm a");
 
-		var displayName = (props.item.type == consts.EVENT_TYPE_HOMEWORK ? props.item.data.homework.name : props.item.name);
+		var displayName = props.item.name;
 
-		if (props.item.type == consts.EVENT_TYPE_SCHEDULE) {
+		if (props.item.tags[consts.EVENT_TAG_CLASS_ID]) {
 			var displayNameSectionless = displayName.replace(/ -(.*)\(.*\)/g, "");
 			displayName = displayNameSectionless.trim();
 		}
@@ -59,15 +59,15 @@ class CalendarEvent extends Component {
 				<div class="calendarEventDurationLine"></div>
 				<div class="calendarEventInfo">
 					<span class="calendarEventTime">{startDisplay}</span>
-					<span class="calendarEventName">{recurIcon}{props.item.type == consts.EVENT_TYPE_HOMEWORK ? <HomeworkName name={displayName} /> : displayName}</span>
+					<span class="calendarEventName">{recurIcon}{props.item.tags[consts.EVENT_TAG_HOMEWORK] ? <HomeworkName name={displayName} /> : displayName}</span>
 				</div>
 			</div>;
 		} else {
 			return <div class="calendarEventContainer">
 				<div class="calendarEvent" style={`top: ${offset}px; left:${groupWidth*props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
 					<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
-					<div class="calendarEventName">{recurIcon}{props.item.type == consts.EVENT_TYPE_HOMEWORK ? <HomeworkName name={displayName} /> : displayName}</div>
-					<div class="calendarEventTime">{startDisplay} to {endDisplay}{(props.item.type == consts.EVENT_TYPE_SCHEDULE && props.item.data.roomNumber) ? ` in ${props.item.data.roomNumber}` : ""}</div>
+					<div class="calendarEventName">{recurIcon}{props.item.tags[consts.EVENT_TAG_HOMEWORK] ? <HomeworkName name={displayName} /> : displayName}</div>
+					<div class="calendarEventTime">{startDisplay} to {endDisplay}{props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] ? ` in ${props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}` : ""}</div>
 				</div>
 			</div>;
 		}

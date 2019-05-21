@@ -24,11 +24,11 @@ class CalendarEventPopover extends Component {
 
 		var info;
 		var actions;
-		if (props.item.type == consts.EVENT_TYPE_SCHEDULE) {
+		if (props.item.tags[consts.EVENT_TAG_OWNER_NAME]) {
 			info = <div class="calendarEventPopoverInfo">
 				{props.item.ownerName}
 			</div>;
-		} else if ((props.item.type == consts.EVENT_TYPE_PLAIN || props.item.type == consts.EVENT_TYPE_HOMEWORK) && props.item.id != -1) {
+		} else if (!props.item.tags[consts.EVENT_TAG_CLASS_ID] && props.item.id != -1) {
 			actions = <div class="calendarEventPopoverActions">
 				<button class="btn btn-default btn-sm" onClick={this.edit.bind(this)}><i class="fa fa-pencil" /> Edit</button>
 			</div>;
@@ -42,11 +42,11 @@ class CalendarEventPopover extends Component {
 		}
 
 		return <div class={`calendarEventPopover ${props.alternate ? "calendarEventPopoverAlternate" : ""}`} style={`top: ${props.top}px; left: ${left}px`}>
-			<div class="calendarEventPopoverName">{props.item.type == consts.EVENT_TYPE_HOMEWORK ? <HomeworkName name={props.item.data.homework.name} /> : props.item.name}</div>
+			<div class="calendarEventPopoverName">{props.item.tags[consts.EVENT_TAG_HOMEWORK] ? <HomeworkName name={props.item.tags[consts.EVENT_TAG_HOMEWORK].name} /> : props.item.name}</div>
 			{info}
 			<div class="calendarEventPopoverTime">{startDisplay} to {endDisplay}</div>
-			{props.item.type == consts.EVENT_TYPE_SCHEDULE && (props.item.data.buildingName || props.item.data.roomNumber) && <div class="calendarEventPopoverLocation">{props.item.data.buildingName} {(props.item.data.roomNumber != "Library" && props.item.data.roomNumber != "Cafeteria" && props.item.data.roomNumber != "Theater") ? "Room " : ""}{props.item.data.roomNumber}</div>}
-			{props.item.type == consts.EVENT_TYPE_SCHEDULE && props.item.data.block && <div class="calendarEventPopoverPeriod">{props.item.data.block} Period</div>}
+			{(props.item.tags[consts.EVENT_TAG_BUILDING_NAME] || props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]) && <div class="calendarEventPopoverLocation">{props.item.tags[consts.EVENT_TAG_BUILDING_NAME]} {(props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] != "Library" && props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] != "Cafeteria" && props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] != "Theater") ? "Room " : ""}{props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}</div>}
+			{props.item.tags[consts.EVENT_TAG_BLOCK] && <div class="calendarEventPopoverPeriod">{props.item.tags[consts.EVENT_TAG_BLOCK]} Period</div>}
 			{actions}
 			{props.item.source > -1 && <div class="calendarEventPopoverOrigin"><i class="fa fa-calendar" /> from {props.view.providers[props.item.source].name}</div>}
 			{props.item.recurRule && <div class="calendarEventPopoverOrigin"><i class="fa fa-refresh" /> recurring event</div>}
