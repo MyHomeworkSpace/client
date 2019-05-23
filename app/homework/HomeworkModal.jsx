@@ -18,6 +18,8 @@ export default class HomeworkModal extends Component {
 	constructor(props) {
 		super(props);
 		
+		this._bodyKeyUp = this.keyup.bind(this);
+		
 		var isNew = !props.modalState.id;
 
 		this.state = {
@@ -29,6 +31,17 @@ export default class HomeworkModal extends Component {
 			complete: (isNew ? 0 : props.modalState.complete),
 			desc: (isNew ? "" : props.modalState.desc)
 		};
+	}
+
+	componentDidMount() {
+		var that = this;
+		setTimeout(function() {
+			document.body.addEventListener("keyup", that._bodyKeyUp);
+		}, 10);
+	}
+
+	componentWillUnmount() {
+		document.body.removeEventListener("keyup", this._bodyKeyUp);
 	}
 
 	save() {
