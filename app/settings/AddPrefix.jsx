@@ -87,7 +87,8 @@ class AddPrefix extends Component {
 
 			<ColorPicker disabled={state.loading} onChange={this.changeBackgroundColor.bind(this)} value={state.background} />
 			<input type="text" placeholder="Tags" disabled={state.loading} class="addPrefixWords form-control" onKeyUp={this.keyup.bind(this)} onChange={linkState(this, "words")} value={state.words} />
-			<button class="btn btn-default" disabled={state.loading} onClick={this.addPrefix.bind(this)}>Add</button><br></br>
+			<button class="btn btn-primary" disabled={state.loading} onClick={this.addPrefix.bind(this)}><i class="fa fa-fw fa-check" /></button>
+			<button class="btn btn-danger" onClick={props.cancelAddPrefix}><i class="fa fa-fw fa-times" /></button>
 		</div>;
 	}
 }

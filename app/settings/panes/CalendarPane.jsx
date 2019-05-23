@@ -69,7 +69,7 @@ export default class CalendarPane extends Component {
 		}
 		
 		return <div>
-			<button onClick={this.reset.bind(this)} class="btn btn-danger btn-sm">Reset schedule information</button>
+			<button onClick={this.reset.bind(this)} class="btn btn-danger"><i class="fa fa-fw fa-calendar-times-o" /> Reset schedule information</button>
 		</div>;
 	}
 };

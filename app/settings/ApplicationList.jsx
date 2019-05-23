@@ -36,10 +36,10 @@ export default class ApplicationList extends Component {
 		var that = this;
 
 		if (state.loading) {
-			return <div class="applicationList"><i class="fa fa-refresh fa-spin"></i> Loading, please wait...</div>;
+			return <div class="applicationList loading"><i class="fa fa-refresh fa-spin"></i> Loading, please wait...</div>;
 		}
 		if (state.authorizations.length == 0) {
-			return <div class="applicationList">You have not given any applications permission to access your account.</div>;
+			return <div class="applicationList empty">You have not given any applications permission to access your account.</div>;
 		}
 
 		var authorizations = state.authorizations.map(function(authorization) {

@@ -7,6 +7,7 @@ import linkState from "linkstate";
 import api from "api.js";
 
 import ClassName from "ui/ClassName.jsx";
+import ClassPicker from "ui/ClassPicker.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
 import PrefixList from "settings/PrefixList.jsx";
@@ -57,6 +58,12 @@ export default class HomeworkPane extends Component {
 			}
 		});
 		return availableClasses;
+	}
+
+	cancelAddClass() {
+		this.setState({
+			classPrompt: false
+		});
 	}
 
 	addClass() {
@@ -118,14 +125,14 @@ export default class HomeworkPane extends Component {
 			<h4>Hidden classes</h4>
 			<p class="homeworkSettingsDescription">You can hide certain classes from Homework view. If you hide a class, its homework will still appear in Planner and Calendar, but will not be displayed in any Homework columns.</p>
 			
-			{state.classPrompt && <select onChange={linkState(this, "selectedClass")}>
-				{availableClasses.map(function(classObject) {
-					return <option value={classObject.id}>{classObject.name}</option>;
-				})}
-			</select>}
-			<button class="btn btn-default btn-sm" onClick={this.addClass.bind(this)}>
-				<i class="fa fa-plus-circle" /> add
-			</button>
+			<div class="homeworkPaneClassesAdd">
+				{state.classPrompt && <ClassPicker value={state.selectedClass} change={linkState(this, "selectedClass")} classes={availableClasses} />}
+				{!state.classPrompt && <button class="btn btn-primary actionBtn" onClick={this.addClass.bind(this)}>
+					<i class="fa fa-fw fa-plus-circle" /> Add a hidden class
+				</button>}
+				{state.classPrompt && <button class="btn btn-primary" onClick={this.addClass.bind(this)}><i class="fa fa-fw fa-check" /></button>}
+				{state.classPrompt && <button class="btn btn-danger" onClick={this.cancelAddClass.bind(this)}><i class="fa fa-fw fa-times" /></button>}
+			</div>
 
 			<div class="homeworkSettingsClassList">
 				{state.hiddenClasses.length == 0 && <p>You haven't hidden any classes.</p>}

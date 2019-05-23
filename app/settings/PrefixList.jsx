@@ -33,6 +33,18 @@ class PrefixList extends Component {
 		});
 	}
 
+	addPrefix() {
+		this.setState({
+			addPrefix: true
+		});
+	}
+
+	cancelAddPrefix() {
+		this.setState({
+			addPrefix: false
+		});
+	}
+
 	render(props, state) {
 		var that = this;
 		var groups = prefixes.list.map(function(group) {
@@ -56,8 +68,12 @@ class PrefixList extends Component {
 
 			{groups}
 
-			<h4>Add custom tag <small>(separate multiple with spaces)</small></h4>
-			<AddPrefix />
+			{state.addPrefix ? <div>
+				<h4>Add custom tag <small>(separate multiple with spaces)</small></h4>
+				<AddPrefix cancelAddPrefix={this.cancelAddPrefix.bind(this)} />
+			</div> : <button class="btn btn-primary actionBtn" onClick={this.addPrefix.bind(this)}>
+				<i class="fa fa-fw fa-plus-circle" /> Add a custom tag
+			</button>}
 		</div>;
 	}
 }
