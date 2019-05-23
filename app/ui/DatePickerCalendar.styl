@@ -14,7 +14,7 @@
 		font-size: 18px
 		height: 35px
 		position: relative
-		
+
 		.datePickerCalendarControl
 			display: inline-block
 			text-align: center
@@ -23,13 +23,27 @@
 			width: 26px
 			
 			.btn
+				border-top: none
 				display: inline-block
 				text-align: center
 				width: 20px
 			
 				.fa
 					position: relative
-					left: -3px
+					left: -6px
+
+		.datePickerCalendarControl.left
+			margin-left: -1px
+			.btn
+				border-left: none
+				border-top-right-radius: 0
+				border-bottom-left-radius: 0
+
+		.datePickerCalendarControl.right
+			.btn
+				border-right: none
+				border-top-left-radius: 0
+				border-bottom-right-radius: 0
 			
 		.datePickerCalendarControl:first-child
 			left: 0

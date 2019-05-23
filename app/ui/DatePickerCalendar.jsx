@@ -27,11 +27,11 @@ class DatePickerCalendar extends Component {
 	render(props, state) {
 		return <div class="datePickerCalendar">
 			<div class="datePickerCalendarControls">
-				<div class="datePickerCalendarControl">
+				<div class="datePickerCalendarControl left">
 					<button class="btn btn-default" onClick={this.jumpMonth.bind(this, -1)}><i class="fa fa-chevron-left"></i></button>
 				</div>
 				<div class="datePickerCalendarMonth">{state.viewDate.format("MMMM YYYY")}</div>
-				<div class="datePickerCalendarControl">
+				<div class="datePickerCalendarControl right">
 					<button class="btn btn-default" onClick={this.jumpMonth.bind(this, 1)}><i class="fa fa-chevron-right"></i></button>
 				</div>
 			</div>
