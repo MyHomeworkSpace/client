@@ -21,7 +21,6 @@ class CalendarPage extends Component {
 		this.state = {
 			loading: true,
 			needUpdate: false,
-			importError: false,
 			terms: [],
 			type: "week"
 		};
@@ -37,12 +36,6 @@ class CalendarPage extends Component {
 					loading: false,
 					enabled: false,
 					needUpdate: true
-				});
-			}  else if (data.statusNum == consts.CALENDAR_STATUS_IMPORT_ROOM_ERROR) {
-				that.setState({
-					importError: true
-				}, function() {
-					that.loadSchedule.call(that);
 				});
 			} else {
 				that.setState({
@@ -133,11 +126,7 @@ class CalendarPage extends Component {
 				password: that.state.password
 			}, function(data) {
 				if (data.status == "ok") {
-					if (that.state.importError) {
-						window.location.reload();
-					} else {
-						that.loadSchedule.bind(that)();
-					}
+					that.loadSchedule.bind(that)();
 				} else {
 					that.setState({
 						askingPasswordLoading: false,
@@ -203,9 +192,6 @@ class CalendarPage extends Component {
 
 		return <div class="calendarPage">
 			<DateHeader showTypeSwitcher switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />
-			{state.importError && <div class="calendarPageImportError alert alert-danger">
-				<strong><i class="fa fa-exclamation-triangle" /> Some rooms are missing!</strong> Due to an import error, some rooms might be missing on your schedule. <button class="btn btn-primary" onClick={this.getStarted.bind(this)}>Fix this</button>
-			</div>}
 			{state.type == "week" && <CalendarWeek openModal={props.openModal} view={state.view} monday={state.start} />}
 			{state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
 		</div>;
