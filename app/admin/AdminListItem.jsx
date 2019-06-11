@@ -22,7 +22,7 @@ class AdminListItem extends Component {
 			return <div class="adminListItem">
 				<p class="adminListName">{props.data.name}</p>
 				<div>
-					<span>{props.data.id} | {props.data.username} | {props.data.email} | {props.data.type} | Level {props.data.level} </span>
+					<span>{props.data.id} | {props.data.email} | {props.data.type} | Level {props.data.level} </span>
 					<span>| Show migrate message? {props.data.showMigrateMessage == 1 ? "yes" : "no"}</span>
 				</div>
 			</div>;
