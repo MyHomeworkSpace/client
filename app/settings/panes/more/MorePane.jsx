@@ -1,4 +1,4 @@
-import "settings/panes/MorePane.styl";
+import "settings/panes/more/MorePane.styl";
 
 import { h, Component } from "preact";
 

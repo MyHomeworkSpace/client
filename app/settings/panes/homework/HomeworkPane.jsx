@@ -1,4 +1,4 @@
-import "settings/panes/HomeworkPane.styl";
+import "settings/panes/homework/HomeworkPane.styl";
 
 import { h, Component } from "preact";
 
@@ -10,7 +10,7 @@ import ClassName from "ui/ClassName.jsx";
 import ClassPicker from "ui/ClassPicker.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
-import PrefixList from "settings/PrefixList.jsx";
+import PrefixList from "settings/panes/homework/PrefixList.jsx";
 
 export default class HomeworkPane extends Component {
 	constructor() {

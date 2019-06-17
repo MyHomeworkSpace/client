@@ -1,4 +1,4 @@
-import "settings/PrefixList.styl";
+import "settings/panes/homework/PrefixList.styl";
 
 import { h, Component } from "preact";
 
@@ -8,7 +8,7 @@ import prefixes from "prefixes.js";
 
 import HomeworkName from "ui/HomeworkName.jsx";
 
-import AddPrefix from "settings/AddPrefix.jsx";
+import AddPrefix from "settings/panes/homework/AddPrefix.jsx";
 
 class PrefixList extends Component {
 	constructor(props) {

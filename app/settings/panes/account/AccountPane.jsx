@@ -1,8 +1,8 @@
-import "settings/panes/AccountPane.styl";
+import "settings/panes/account/AccountPane.styl";
 
 import { h, Component } from "preact";
 
-import TwoFactorInfo from "settings/TwoFactorInfo.jsx";
+import TwoFactorInfo from "settings/panes/account/TwoFactorInfo.jsx";
 
 export default class AccountPane extends Component {
 	changeBackground() {

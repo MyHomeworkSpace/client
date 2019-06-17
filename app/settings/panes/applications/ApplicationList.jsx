@@ -1,10 +1,10 @@
-import "settings/ApplicationList.styl";
+import "settings/panes/applications/ApplicationList.styl";
 
 import { h, Component } from "preact";
 
 import api from "api.js";
 
-import ApplicationListItem from "settings/ApplicationListItem.jsx";
+import ApplicationListItem from "settings/panes/applications/ApplicationListItem.jsx";
 
 export default class ApplicationList extends Component {
 	constructor() {

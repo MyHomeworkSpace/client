@@ -2,13 +2,13 @@ import "settings/SettingsPage.styl";
 
 import { h, Component } from "preact";
 
-import AccountPane from "settings/panes/AccountPane.jsx";
-import ApplicationsPane from "settings/panes/ApplicationsPane.jsx";
-import CalendarPane from "settings/panes/CalendarPane.jsx";
-import HomeworkPane from "settings/panes/HomeworkPane.jsx";
-import MorePane from "settings/panes/MorePane.jsx";
-import PlannerPane from "settings/panes/PlannerPane.jsx";
-import QuickAddPane from "settings/panes/QuickAddPane.jsx";
+import AccountPane from "settings/panes/account/AccountPane.jsx";
+import ApplicationsPane from "settings/panes/applications/ApplicationsPane.jsx";
+import CalendarPane from "settings/panes/calendar/CalendarPane.jsx";
+import HomeworkPane from "settings/panes/homework/HomeworkPane.jsx";
+import MorePane from "settings/panes/more/MorePane.jsx";
+import PlannerPane from "settings/panes/planner/PlannerPane.jsx";
+import QuickAddPane from "settings/panes/quickAdd/QuickAddPane.jsx";
 
 export default class SettingsPage extends Component {
 	constructor() {

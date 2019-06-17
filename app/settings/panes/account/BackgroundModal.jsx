@@ -1,4 +1,4 @@
-import "settings/BackgroundModal.styl";
+import "settings/panes/account/BackgroundModal.styl";
 
 import { h, Component } from "preact";
 

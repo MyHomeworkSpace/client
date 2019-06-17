@@ -1,6 +1,6 @@
 import { h, Component } from "preact";
 
-import ApplicationList from "settings/ApplicationList.jsx";
+import ApplicationList from "settings/panes/applications/ApplicationList.jsx";
 
 export default class ApplicationsPane extends Component {
 	render(props, state) {
