@@ -12,8 +12,13 @@ export default class AccountPane extends Component {
 
 	render(props, state) {
 		return <div class="accountPane">
-			<h3>{props.me.name}</h3>
-			<h4>{props.me.email}</h4>
+			<div class="accountGroup">
+				<h4>Account</h4>
+				<div class="profileBox">
+					<h3 class="name">{props.me.name}</h3>
+					<h4 class="email">{props.me.email}</h4>
+				</div>
+			</div>
 
 			<div class="accountGroup">
 				<h4>Background</h4>

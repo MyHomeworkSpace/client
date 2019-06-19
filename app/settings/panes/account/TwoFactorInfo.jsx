@@ -37,7 +37,7 @@ class TwoFactorInfo extends Component {
 			<p>
 				It's currently <strong>{state.enrolled ? "enabled" : "disabled"}</strong> on your account.
 			</p>
-			<button class={`btn btn-${state.enrolled ? "danger" : "primary"}`} onClick={this.manage2fa.bind(this)}><i class="fa fa-fw fa-qrcode" /> {state.enrolled ? "Disable" : "Enable"} two-factor authentication</button>
+			<button class={`btn btn-${state.enrolled ? "danger" : "primary"}`} onClick={this.manage2fa.bind(this)}><i class="fa fa-fw fa-lock" /> {state.enrolled ? "Disable" : "Enable"} two-factor authentication</button>
 		</div>;
 	}
 }

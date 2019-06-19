@@ -67,8 +67,9 @@ export default class CalendarPane extends Component {
 		if (!state.calendarEnabled) {
 			return <div>You haven't enabled Calendar! Go to the Calendar tab to do so.</div>;
 		}
-		
+
 		return <div>
+			<p>Resetting your schedule information will remove your schedule from the calendar. Any events or homework you've added will remain; however, you will needd to re-import your schedule to view these events and use the Calendar.</p>
 			<button onClick={this.reset.bind(this)} class="btn btn-danger"><i class="fa fa-fw fa-calendar-times-o" /> Reset schedule information</button>
 		</div>;
 	}
