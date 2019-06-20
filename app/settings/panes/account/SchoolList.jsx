@@ -14,6 +14,7 @@ export default class SchoolList extends Component {
 			{props.me.schools.map(function(school) {
 				return <div class="schoolItem">
 					<div class="schoolName">{school.displayName}</div>
+					<div class="schoolDetails">{school.userDetails}</div>
 				</div>;
 			})}
 		</div>;
