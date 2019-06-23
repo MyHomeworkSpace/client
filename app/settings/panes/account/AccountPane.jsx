@@ -10,6 +10,10 @@ export default class AccountPane extends Component {
 		this.props.openModal("background", {});
 	}
 
+	connectAccount() {
+		this.props.openModal("enroll", {});
+	}
+
 	render(props, state) {
 		return <div class="accountPane">
 			<div class="accountGroup">
@@ -33,10 +37,11 @@ export default class AccountPane extends Component {
 				<TwoFactorInfo openModal={props.openModal} />
 			</div>
 
-			<div class="accountGroup">
+			<div class="accountGroup schools">
 				<h4>Connected school accounts</h4>
 				<p>You can connect your school account to MyHomeworkSpace and we'll automatically import your schedule and other information.</p>
 
+				<button class="btn btn-primary" onClick={this.connectAccount.bind(this)}><i class="fa fa-fw fa-link" /> Connect account</button>
 				<SchoolList me={props.me} openModal={props.openModal} />
 			</div>
 		</div>;

@@ -6,6 +6,7 @@ import EventModal from "calendar/EventModal.jsx";
 import ClassModal from "classes/ClassModal.jsx";
 import ClassSwapModal from "classes/ClassSwapModal.jsx";
 import HomeworkModal from "homework/HomeworkModal.jsx";
+import EnrollModal from "schools/EnrollModal.jsx";
 import BackgroundModal from "settings/panes/account/BackgroundModal.jsx";
 import TwoFactorModal from "settings/panes/account/TwoFactorModal.jsx";
 import LoadingModal from "ui/LoadingModal.jsx";
@@ -21,6 +22,7 @@ class ModalManager extends Component {
 			class: ClassModal,
 			classSwap: ClassSwapModal,
 			homework: HomeworkModal,
+			enroll: EnrollModal,
 			background: BackgroundModal,
 			twoFactor: TwoFactorModal,
 			loading: LoadingModal,

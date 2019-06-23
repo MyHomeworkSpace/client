@@ -1,4 +1,5 @@
 var errorMap = {
+	"already_enrolled": "You've already connected that school to your MyHomeworkSpace account.",
 	"bad_totp_code": "The two factor authentication code you entered is incorrect.",
 	"bb_no_grade": "We couldn't find what grade you're in. If you're a faculty member, this is a known issue that we're working to fix. If you're a student, please contact us with the Feedback button at the top-right.",
 	"bb_signin_error": "There was an error signing you in. Are you sure the password is correct?",
