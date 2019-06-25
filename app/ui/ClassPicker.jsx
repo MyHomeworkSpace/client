@@ -1,3 +1,5 @@
+import "ui/ClassPicker.styl";
+
 import { h, Component } from "preact";
 
 import ClassName from "ui/ClassName.jsx";
@@ -40,7 +42,7 @@ export default class ClassPicker extends Component {
 		}
 
 		return <Picker display={display} open={state.open} setOpen={this.setOpen.bind(this)}>
-			<div class="pickerPopup">
+			<div class="pickerPopup classPickerPopup">
 				{props.classes.map(function(classObject) {
 					return <ClassPickerItem classObject={classObject} onClick={that.selectClass.bind(that, classObject)} />;
 				})}
