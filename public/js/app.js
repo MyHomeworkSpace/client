@@ -40,6 +40,15 @@ MyHomeworkSpace.Nav = {
 
 MyHomeworkSpace.Page = {
 	noLogin: [ "login", "createAccount", "completeEmail", "resetPassword" ],
+	init: function() {
+		window.addEventListener("hashchange", function(e) {
+			var requestedPage = window.location.hash.substr(2);
+			var requestedPageParts = requestedPage.split(":");
+			if (MyHomeworkSpace.Page.current() != requestedPageParts[0]) {
+				MyHomeworkSpace.Page.show(requestedPage);
+			}
+		});
+	},
 	current: function() {
 		return $(".page:not(.hidden)").attr("id");
 	},
@@ -81,6 +90,7 @@ $(document).ready(function() {
 		// we're just here for the api object
 		return;
 	}
+	MyHomeworkSpace.Page.init();
 	MyHomeworkSpace.API.init(function() {
 		for (var pageIndex in MyHomeworkSpace.Pages) {
 			if (MyHomeworkSpace.Pages[pageIndex].init) {
