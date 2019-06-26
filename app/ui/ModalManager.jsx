@@ -2,6 +2,8 @@ import "ui/ModalManager.styl";
 
 import { h, Component } from "preact";
 
+import ChangeEmailModal from "auth/ChangeEmailModal.jsx";
+import ChangePasswordModal from "auth/ChangePasswordModal.jsx";
 import EventModal from "calendar/EventModal.jsx";
 import ClassModal from "classes/ClassModal.jsx";
 import ClassSwapModal from "classes/ClassSwapModal.jsx";
@@ -26,6 +28,8 @@ class ModalManager extends Component {
 			background: BackgroundModal,
 			twoFactor: TwoFactorModal,
 			loading: LoadingModal,
+			changeEmail: ChangeEmailModal,
+			changePassword: ChangePasswordModal,
 		};
 		
 		var modal;

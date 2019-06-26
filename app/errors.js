@@ -6,6 +6,7 @@ var errorMap = {
 	"bb_signin_rate_limit": "We're sorry, but schedule importing is currently unavailable. Try again in 30 minutes.",
 	"creds_incorrect": "The username or password was incorrect.",
 	"disconnected": "You're disconnected from the Internet. Try that again once you've reconnected.",
+	"email_exists": "There's already a MyHomeworkSpace account with that email address.",
 	"missing_params": "Required parameters were missing from the request.",
 	"no_account": "There's no MyHomeworkSpace account with that email address.",
 	"internal_server_error": "An internal server error occurred while processing the request.",
