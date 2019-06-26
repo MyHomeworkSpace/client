@@ -6,6 +6,7 @@ import linkState from "linkstate";
 import api from "api.js";
 import errors from "errors.js";
 
+import FullForm from "ui/FullForm.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
 export default class CreateAccountForm extends Component {
@@ -13,6 +14,7 @@ export default class CreateAccountForm extends Component {
 		super(props);
 		this.state = {
 			loading: false,
+			name: "",
 			email: "",
 			password: "",
 			passwordConf: ""
@@ -30,10 +32,13 @@ export default class CreateAccountForm extends Component {
 	}
 
 	render(props, state) {
-		return <div class="fullForm">
+		return <FullForm>
 			<div class="fullFormTitle">Create account</div>
 
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
+			<div class="input-group no-addon">
+				<input type="text" class="form-control" placeholder="Your name" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} value={state.name} disabled={state.loading} />
+			</div>
 			<div class="input-group no-addon">
 				<input type="email" class="form-control" placeholder="Email address" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "email")} value={state.email} disabled={state.loading} />
 			</div>
@@ -49,6 +54,6 @@ export default class CreateAccountForm extends Component {
 			</button>
 
 			<div class="clearfix"></div>
-		</div>;
+		</FullForm>;
 	}
 }

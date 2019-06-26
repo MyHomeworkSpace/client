@@ -6,6 +6,7 @@ import linkState from "linkstate";
 import api from "api.js";
 import errors from "errors.js";
 
+import FullForm from "ui/FullForm.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
 export default class LoginForm extends Component {
@@ -111,7 +112,7 @@ export default class LoginForm extends Component {
 			</div>;
 		}
 
-		return <div class={`fullForm loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
+		return <FullForm class={`loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
 			<div class="fullFormTitle">Log in</div>
 			<p class="lead">Sign in using your MyHomeworkSpace account</p>
 
@@ -128,6 +129,6 @@ export default class LoginForm extends Component {
 			</button>
 
 			<div class="clearfix"></div>
-		</div>;
+		</FullForm>;
 	}
 }

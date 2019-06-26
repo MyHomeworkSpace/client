@@ -39,6 +39,7 @@ MyHomeworkSpace.Nav = {
 };
 
 MyHomeworkSpace.Page = {
+	noLogin: [ "login", "createAccount", "completeEmail", "resetPassword" ],
 	current: function() {
 		return $(".page:not(.hidden)").attr("id");
 	},
@@ -91,8 +92,12 @@ $(document).ready(function() {
 			if (data.status == "ok") {
 				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 			} else {
-				var openPage = (window.location.hash == "#!createAccount" ? "createAccount" : "login");
-				MyHomeworkSpace.Page.show(openPage);
+				var requestedPage = window.location.hash.substr(2);
+				var pageToOpen = "login";
+				if (MyHomeworkSpace.Page.noLogin.indexOf(requestedPage.split(":")[0]) > -1) {
+					pageToOpen = requestedPage;
+				}
+				MyHomeworkSpace.Page.show(pageToOpen);
 			}
 			$("#loadingStart").remove();
 		});

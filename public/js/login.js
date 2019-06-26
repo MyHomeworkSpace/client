@@ -4,7 +4,7 @@ MyHomeworkSpace.Pages.login = {
 			callback: function(data) {
 				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 			}
-		}), document.querySelector("#login > div"));
+		}), null, document.querySelector("#login > div"));
 	},
 	handleLoginComplete: function(info) {
 		MyHomeworkSpace.Classes.load(function() {
@@ -49,9 +49,11 @@ MyHomeworkSpace.Pages.login = {
 							$tab.append($frame);
 						$("body").append($tab);
 					}
+
+					var requestedPage = window.location.hash.substr(2);
 					
-					if (window.location.hash.length > 1 && window.location.hash.substr(2) != "login") {
-						MyHomeworkSpace.Page.show(window.location.hash.substr(2));
+					if (requestedPage && requestedPage != "login") {
+						MyHomeworkSpace.Page.show(requestedPage);
 					} else {
 						MyHomeworkSpace.Page.show("homework");
 					}

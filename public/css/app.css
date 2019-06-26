@@ -48,35 +48,3 @@ html, body {
 	opacity: 0;
 	z-index: -1;
 }
-
-.page.fullPage {
-	padding: 4rem 0;
-	z-index: 999;
-
-	background-image: url("../img/backgrounds/bg1.jpg");
-	background-size: cover;
-
-	top: 0;
-	left: 0;
-
-	width: 100%;
-	height: 100%;
-}
-
-.page.fullPage > div {
-	background: rgba(255, 255, 255, 0.8);
-	border-radius: 5px;
-	margin: 0 auto;
-	padding: 2rem;
-	width: 50rem;
-}
-
-.page.fullPage .fullForm {
-	width: 100%;
-}
-
-.page.fullPage .fullForm .fullFormTitle {
-	font-size: 3rem;
-	margin-top: 0;
-	margin-bottom: 0.5rem;
-}
