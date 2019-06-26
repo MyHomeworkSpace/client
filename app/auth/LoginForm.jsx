@@ -1,4 +1,4 @@
-import "ui/LoginForm.styl";
+import "auth/LoginForm.styl";
 
 import { h, Component } from "preact";
 import linkState from "linkstate";
@@ -14,7 +14,7 @@ export default class LoginForm extends Component {
 		this.state = {
 			loading: false,
 			twoFactor: false,
-			username: "",
+			email: "",
 			password: "",
 			code: "",
 		};
@@ -37,9 +37,9 @@ export default class LoginForm extends Component {
 	login() {
 		var that = this;
 
-		if (this.state.username.trim() == "") {
+		if (this.state.email.trim() == "") {
 			this.setState({
-				error: "You must enter your username!"
+				error: "You must enter your email!"
 			});
 			return;
 		}
@@ -55,7 +55,7 @@ export default class LoginForm extends Component {
 			error: ""
 		}, function() {
 			api.post("auth/login", {
-				username: that.state.username,
+				email: that.state.email,
 				password: that.state.password,
 				code: that.state.code,
 			}, function(loginData) {
@@ -89,8 +89,8 @@ export default class LoginForm extends Component {
 
 	render(props, state) {
 		if (state.twoFactor) {
-			return <div class={`loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
-				<div class="loginFormTitle">Verify code</div>
+			return <div class={`fullForm loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
+				<div class="fullFormTitle">Verify code</div>
 				<p class="lead">You'll need a code from your two-factor authentication device</p>
 
 				{state.error && <div class="alert alert-danger">{state.error}</div>}
@@ -111,20 +111,13 @@ export default class LoginForm extends Component {
 			</div>;
 		}
 
-		return <div class={`loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
-			<div class="loginFormTitle">Log in</div>
-			<p class="lead">Sign in using your Dalton account</p>
+		return <div class={`fullForm loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
+			<div class="fullFormTitle">Log in</div>
+			<p class="lead">Sign in using your MyHomeworkSpace account</p>
 
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
-			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="Username" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "username")} value={state.username} disabled={state.loading} />
-				{props.bootstrap4 ?
-					<div class="input-group-append">
-						<span class="input-group-text">@dalton.org</span>
-					</div>
-					:
-					<span class="input-group-addon">@dalton.org</span>
-				}
+			<div class="input-group no-addon">
+				<input type="email" class="form-control" placeholder="Email address" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "email")} value={state.email} disabled={state.loading} />
 			</div>
 			<div class="input-group no-addon">
 				<input type="password" class="form-control" placeholder="Password" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "password")} value={state.password} disabled={state.loading} />

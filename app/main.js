@@ -15,6 +15,9 @@ import ClassesPage from "classes/ClassesPage.jsx";
 
 import AdminPage from "admin/AdminPage.jsx";
 
+import CreateAccountForm from "auth/CreateAccountForm.jsx";
+import LoginForm from "auth/LoginForm.jsx";
+
 import PlannerPage from "planner/PlannerPage.jsx";
 
 import SettingsPage from "settings/SettingsPage.jsx";
@@ -24,7 +27,6 @@ import ClassName from "ui/ClassName.jsx";
 import DateHeader from "ui/DateHeader.jsx";
 import FeedbackControl from "ui/FeedbackControl.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
-import LoginForm from "ui/LoginForm.jsx";
 import ModalManager from "ui/ModalManager.jsx";
 
 import TopBar from "ui/nav/TopBar.jsx";
@@ -125,6 +127,11 @@ export default {
 		setBackground: setBackground
 	},
 
+	auth: {
+		CreateAccountForm: CreateAccountForm,
+		LoginForm: LoginForm
+	},
+
 	pages: {
 		calendar: {
 			CalendarPage: CalendarPage
@@ -155,7 +162,6 @@ export default {
 		DateHeader: DateHeader,
 		FeedbackControl: FeedbackControl,
 		HomeworkName: HomeworkName,
-		LoginForm: LoginForm,
 		TopBar: TopBar
 	},
 

@@ -44,7 +44,7 @@ $(document).ready(function() {
 		});
 	});
 
-	MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.LoginForm, {
+	MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.auth.LoginForm, {
 		callback: function(data) {
 			afterLogin(data);
 		},

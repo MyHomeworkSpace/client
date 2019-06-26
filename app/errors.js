@@ -7,6 +7,7 @@ var errorMap = {
 	"creds_incorrect": "The username or password was incorrect.",
 	"disconnected": "You're disconnected from the Internet. Try that again once you've reconnected.",
 	"missing_params": "Required parameters were missing from the request.",
+	"no_account": "There's no MyHomeworkSpace account with that email address.",
 	"internal_server_error": "An internal server error occurred while processing the request.",
 	"invalid_params": "Some parameters of the request were invalid.",
 	"user_record_missing": "Your user ID record is missing from the database. Please contact hello@myhomework.space for assistance."

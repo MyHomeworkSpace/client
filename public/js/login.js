@@ -1,10 +1,10 @@
 MyHomeworkSpace.Pages.login = {
 	init: function() {
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.LoginForm, {
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.auth.LoginForm, {
 			callback: function(data) {
 				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 			}
-		}), document.querySelector("#loginContainer"));
+		}), document.querySelector("#login > div"));
 	},
 	handleLoginComplete: function(info) {
 		MyHomeworkSpace.Classes.load(function() {

@@ -91,7 +91,8 @@ $(document).ready(function() {
 			if (data.status == "ok") {
 				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 			} else {
-				MyHomeworkSpace.Page.show("login");
+				var openPage = (window.location.hash == "#!createAccount" ? "createAccount" : "login");
+				MyHomeworkSpace.Page.show(openPage);
 			}
 			$("#loadingStart").remove();
 		});
