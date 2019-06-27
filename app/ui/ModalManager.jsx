@@ -2,6 +2,7 @@ import "ui/ModalManager.styl";
 
 import { h, Component } from "preact";
 
+import AccountMigrateModal from "auth/AccountMigrateModal.jsx";
 import ChangeEmailModal from "auth/ChangeEmailModal.jsx";
 import ChangePasswordModal from "auth/ChangePasswordModal.jsx";
 import EventModal from "calendar/EventModal.jsx";
@@ -30,6 +31,7 @@ class ModalManager extends Component {
 			loading: LoadingModal,
 			changeEmail: ChangeEmailModal,
 			changePassword: ChangePasswordModal,
+			accountMigrate: AccountMigrateModal,
 		};
 		
 		var modal;
@@ -38,6 +40,8 @@ class ModalManager extends Component {
 			modal = h(modals[props.modalName], {
 				modalState: props.modalState,
 				openModal: props.openModal,
+
+				me: MyHomeworkSpace.Me,
 
 				classes: props.classes,
 				refreshClasses: props.refreshClasses,

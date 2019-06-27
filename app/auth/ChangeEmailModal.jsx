@@ -72,7 +72,7 @@ export default class ChangeEmailModal extends Component {
 			<div class="modal-body">
 				{state.error && <div class="alert alert-danger">{state.error}</div>}
 
-				<p>Now, enter your new email.</p>
+				<p>Enter your new email.</p>
 				<input type="email" class="form-control" placeholder="New email" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "newEmail")} value={state.newEmail} disabled={state.loading} />
 			</div>
 			<div class="modal-footer">

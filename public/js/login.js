@@ -1,6 +1,7 @@
 MyHomeworkSpace.Pages.login = {
 	init: function() {
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.auth.LoginForm, {
+			openModal: MHSBridge.default.openModal,
 			callback: function(data) {
 				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 			}
@@ -29,6 +30,11 @@ MyHomeworkSpace.Pages.login = {
 
 					MyHomeworkSpace.Me = info.user;
 					MyHomeworkSpace.Tabs = info.tabs;
+
+					if (info.showMigrateMessage) {
+						MHSBridge.default.openModal("accountMigrate", {});
+						MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {});
+					}			
 
 					// add the server-side tabs
 					$(".serverTab").remove();
