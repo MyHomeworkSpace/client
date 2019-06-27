@@ -68,7 +68,7 @@ export default class ResetPasswordForm extends Component {
 			<p>Enter the email associated with your MyHomeworkSpace account.</p>
 
 			<div class="input-group no-addon">
-				<input type="email" class="form-control" placeholder="Email" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "email")} value={state.email} />
+				<input type="email" class="form-control" placeholder="Email" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "email")} value={state.email} />
 			</div>
 
 			<div class="pull-right">

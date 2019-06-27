@@ -107,9 +107,9 @@ export default class CompleteEmailForm extends Component {
 							<PasswordSecurityCheck password={state.password} />
 						</div>
 						<div class="col-md-8">
-							<p>Enter a new password for your MyHomeworkSpace account. You must enter your new password twice to confirm that you didn't mistype it the first time. Passwords must conform to the password guidelines on the left.</p>
-							<input type="password" class="form-control" placeholder="New password" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "password")} value={state.password} disabled={state.loading} />
-							<input type="password" class="form-control" placeholder="New password (again)" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "passwordConf")} value={state.passwordConf} disabled={state.loading} />
+							<p>Enter a new password for your MyHomeworkSpace account. You must enter your new password twice to confirm that you didn't mistype it the first time. Passwords must follow the password guidelines on the left.</p>
+							<input type="password" class="form-control" placeholder="New password" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "password")} value={state.password} disabled={state.loading} />
+							<input type="password" class="form-control" placeholder="New password (again)" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "passwordConf")} value={state.passwordConf} disabled={state.loading} />
 						</div>
 					</div>
 				</div>;
