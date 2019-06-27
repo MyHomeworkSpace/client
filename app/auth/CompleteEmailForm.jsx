@@ -7,6 +7,7 @@ import errors from "errors.js";
 
 import FullForm from "ui/FullForm.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
+import { PasswordSecurityCheck, checkPassword } from "auth/PasswordSecurityCheck.jsx";
 
 export default class CompleteEmailForm extends Component {
 	constructor(props) {
@@ -101,15 +102,18 @@ export default class CompleteEmailForm extends Component {
 			} else {
 				title = "Reset password";
 				contents = <div>
-					<p>Enter a new password for your MyHomeworkSpace account.</p>
-					<div class="input-group no-addon">
-						<input type="password" class="form-control" placeholder="New password" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "password")} value={state.password} />
-					</div>
-					<div class="input-group no-addon">
-						<input type="password" class="form-control" placeholder="New password (again)" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "passwordConf")} value={state.passwordConf} />
+					<div class="row">
+						<div class="col-md-4">
+							<PasswordSecurityCheck password={state.password} />
+						</div>
+						<div class="col-md-8">
+							<p>Enter a new password for your MyHomeworkSpace account. You must enter your new password twice to confirm that you didn't mistype it the first time. Passwords must conform to the password guidelines on the left.</p>
+							<input type="password" class="form-control" placeholder="New password" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "password")} value={state.password} disabled={state.loading} />
+							<input type="password" class="form-control" placeholder="New password (again)" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "passwordConf")} value={state.passwordConf} disabled={state.loading} />
+						</div>
 					</div>
 				</div>;
-				buttons = <button class="btn btn-lg btn-primary" onClick={this.submit.bind(this)}>
+				buttons = <button class="btn btn-lg btn-primary" onClick={this.submit.bind(this)} disabled={checkPassword(state.password).length != 0}>
 					Change
 				</button>;
 			}

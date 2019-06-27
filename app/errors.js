@@ -11,7 +11,8 @@ var errorMap = {
 	"no_account": "There's no MyHomeworkSpace account with that email address.",
 	"internal_server_error": "An internal server error occurred while processing the request.",
 	"invalid_params": "Some parameters of the request were invalid.",
-	"user_record_missing": "Your user ID record is missing from the database. Please contact hello@myhomework.space for assistance."
+	"user_record_missing": "Your user ID record is missing from the database. Please contact hello@myhomework.space for assistance.",
+	"insecure_password": "The password you picked isn't secure enough. Please try again."
 };
 
 export default {
