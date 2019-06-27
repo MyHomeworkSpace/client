@@ -96,7 +96,7 @@ export default class CompleteEmailForm extends Component {
 				title = "Reset password";
 				contents = <div>
 					<p>Your password has been changed successfully!</p>
-					<a href="https://myhomework.space/app.html" class="btn btn-primary">Back to MyHomeworkSpace</a>
+					<a href="/app.html" class="btn btn-primary">Back to MyHomeworkSpace</a>
 				</div>;
 			} else {
 				title = "Reset password";
@@ -117,7 +117,7 @@ export default class CompleteEmailForm extends Component {
 			title = "Change email";
 			contents = <div>
 				<p>Your email has been changed successfully!</p>
-				<a href="https://myhomework.space/app.html" class="btn btn-primary">Back to MyHomeworkSpace</a>
+				<a href="/app.html" class="btn btn-primary">Back to MyHomeworkSpace</a>
 			</div>;
 		} else {
 			title = "Link expired";
@@ -130,7 +130,7 @@ export default class CompleteEmailForm extends Component {
 			<div class="fullFormTitle">{title}</div>
 
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
-			
+
 			{contents}
 
 			{buttons && <div class="pull-right">{buttons}</div>}

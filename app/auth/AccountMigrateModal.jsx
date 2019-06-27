@@ -13,11 +13,11 @@ export default class AccountMigrateModal extends Component {
 	changeEmail(e) {
 		e.preventDefault();
 		this.props.openModal("changeEmail");
-	}	
+	}
 
 	render(props, state) {
 		var username;
-		
+
 		if (props.me.email) {
 			username = props.me.email.replace("@dalton.org", "");
 		} else {
@@ -28,7 +28,7 @@ export default class AccountMigrateModal extends Component {
 			<div class="modal-body">
 				<div class="accountMigrateHeader">Your Dalton account has been converted to a MyHomeworkSpace account.</div>
 				<div>All your data is still here, and everything works the same way.</div>
-				<div>When you sign in, make sure to use your @dalton.org email.</div>
+				<div>When you sign in, make sure to use your full @dalton.org email, not just your username.</div>
 				<div class="accountMigrateCompare row">
 					<div class="col-md-6">
 						{username}

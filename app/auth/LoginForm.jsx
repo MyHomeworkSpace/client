@@ -133,7 +133,7 @@ export default class LoginForm extends Component {
 				<input type="password" class="form-control" placeholder="Password" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "password")} value={state.password} disabled={state.loading} />
 			</div>
 
-			<a href={(props.bootstrap4 ? "https://myhomework.space/app.html" : "") + "#!resetPassword"} class="btn btn-primary pull-left">Forgot password</a>
+			<a href={(props.bootstrap4 ? "https://myhomework.space/app.html" : "") + "#!resetPassword"} class="btn btn-default pull-left">Forgot password</a>
 
 			<button class="btn btn-lg btn-primary pull-right" onClick={this.login.bind(this)} disabled={state.loading}>
 				{state.loading ? <LoadingIndicator /> : "Log in"}
