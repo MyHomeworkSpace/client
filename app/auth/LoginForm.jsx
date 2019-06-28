@@ -100,7 +100,7 @@ export default class LoginForm extends Component {
 
 	render(props, state) {
 		if (state.twoFactor) {
-			return <div class={`fullForm loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
+			return <FullForm class={`loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
 				<div class="fullFormTitle">Verify code</div>
 				<p class="lead">You'll need a code from your two-factor authentication device</p>
 
@@ -119,7 +119,7 @@ export default class LoginForm extends Component {
 				</div>
 
 				<div class="clearfix"></div>
-			</div>;
+			</FullForm>;
 		}
 
 		return <FullForm class={`loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
