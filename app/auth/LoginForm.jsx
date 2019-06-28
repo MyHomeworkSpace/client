@@ -57,6 +57,7 @@ export default class LoginForm extends Component {
 				this.props.openModal("accountMigrate", {
 					username: this.state.email
 				});
+				return;
 			}
 		}
 
