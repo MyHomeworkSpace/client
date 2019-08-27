@@ -34,6 +34,14 @@ export default class TopBarDropdown extends Component {
 			<i class={`fa fa-fw fa-${state.open ? "chevron-circle-up" : "chevron-circle-down"}`} />
 		</span>} containerClass={`topBarButton topBarDropdownContainer ${state.open ? "selected" : "" }`} class="topBarDropdown" open={!!state.open} setOpen={this.setOpen.bind(this)}>
 			<div class="topBarDropdownPopup">
+				<div class="topBarDropdownMainTabs">
+					{Object.keys(props.mainTabs).map(function(tabKey) {
+						var tab = props.mainTabs[tabKey];
+						return <div class="topBarDropdownOption mainTab" onClick={that.openPage.bind(that, tabKey)}>
+							<i class={`fa fa-fw fa-${tab.icon}`} /> {tab.name}
+						</div>;
+					})}
+				</div>
 				{Object.keys(tabs).map(function(tabKey) {
 					var tab = tabs[tabKey];
 					return <div class="topBarDropdownOption" onClick={that.openPage.bind(that, tabKey)}>

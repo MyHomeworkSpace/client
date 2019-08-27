@@ -66,7 +66,7 @@ class TopBar extends Component {
 					var tab = tabs[tabKey];
 					return <TopBarButton icon={tab.icon} selected={props.page == tabKey} onClick={that.openPage.bind(that, tabKey)}>{tab.name}</TopBarButton>;
 				})}
-				<TopBarDropdown me={props.me} tabs={props.tabs} page={props.page} openPage={props.openPage} />
+				<TopBarDropdown me={props.me} mainTabs={tabs} tabs={props.tabs} page={props.page} openPage={props.openPage} />
 			</div>
 			<AddAction page={props.page} openModal={props.openModal} />
 			<div>

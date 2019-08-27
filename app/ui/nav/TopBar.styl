@@ -39,3 +39,13 @@
 
 .topBar.inverted
 	color: black
+
+.topBarDropdownMainTabs
+	display: none
+
+@media (max-width: 1024px)
+	.topBarButton:not(.pickerContainer)
+		display: none
+
+	.topBarDropdownMainTabs
+		display: block
