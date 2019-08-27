@@ -1,5 +1,6 @@
 .datePickerCalendarGrid
 	padding-left: 2px
+
 	.datePickerCalendarGridItem
 		display: inline-block
 		text-align: center
@@ -11,9 +12,12 @@
 		cursor: pointer
 		height: 30px
 		line-height: 30px
-	
-	.datePickerCalendarGridItemDay:hover
-		background: #eee
+
+	.datePickerCalendarGridItemDay.datePickerCalendarGridItemDayToday
+		background: #ffc
 		
 	.datePickerCalendarGridItemDay.datePickerCalendarGridItemDaySelected
 		background: #ccc
+
+	.datePickerCalendarGridItemDay:hover, .datePickerCalendarGridItemDay.datePickerCalendarGridItemDayToday:hover
+		background: #eee
