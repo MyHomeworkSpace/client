@@ -28,7 +28,7 @@ export default class CompleteEmailForm extends Component {
 		var that = this;
 
 		var params = {
-			token: this.props.param
+			token: this.props.params[0]
 		};
 
 		if (this.state.tokenType == consts.TOKEN_TYPE_RESET_PASSWORD) {

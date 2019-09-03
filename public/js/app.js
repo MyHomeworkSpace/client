@@ -57,12 +57,13 @@ MyHomeworkSpace.Page = {
 		if (path) {
 			var parts = path.split(":");
 			var name = parts[0];
-			var param = parts[1];
+			var params = [].concat(parts);
+			params.splice(0, 1);
 			var $page = $("#" + name);
 			$page.removeClass("hidden");
-			window.location.hash = "!" + name + (param ? ":" + param : "");
+			window.location.hash = "!" + name + (params.length > 0 ? ":" + params.join(":") : "");
 			if (MyHomeworkSpace.Pages[name] && MyHomeworkSpace.Pages[name].open) {
-				MyHomeworkSpace.Pages[name].open(param);
+				MyHomeworkSpace.Pages[name].open(params);
 			}
 			if ($page.hasClass("serverTab")) {
 				var tab;
@@ -72,7 +73,7 @@ MyHomeworkSpace.Page = {
 					}
 				}
 				var src = $page.children("iframe").attr("src");
-				src = tab.target + "#" + (param || "");
+				src = tab.target + "#" + (params.join(":") || "");
 				$page.children("iframe").attr("src", src);
 			}
 		}

@@ -1,9 +1,10 @@
 function createComponentPage(component, id) {
 	return {
-		open: function(param) {
+		open: function(params) {
 			MHSBridge.default.render(MHSBridge.default.h(component, {
-				param: param,
+				params: params,
 				classes: MyHomeworkSpace.Classes.list,
+				me: MyHomeworkSpace.Me,
 				openModal: MHSBridge.default.openModal
 			}), null, document.querySelector("#" + id + " > div"));
 		}
@@ -21,6 +22,8 @@ MyHomeworkSpace.Pages.classes = createComponentPage(MHSBridge.default.pages.clas
 MyHomeworkSpace.Pages.planner = createComponentPage(MHSBridge.default.pages.planner.PlannerPage, "planner");
 
 MyHomeworkSpace.Pages.calendar = createComponentPage(MHSBridge.default.pages.calendar.CalendarPage, "calendar");
+
+MyHomeworkSpace.Pages.settings = createComponentPage(MHSBridge.default.pages.settings.SettingsPage, "settings");
 
 MyHomeworkSpace.Pages.help = createComponentPage(MHSBridge.default.pages.help.HelpPage, "help");
 
