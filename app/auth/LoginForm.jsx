@@ -100,7 +100,7 @@ export default class LoginForm extends Component {
 
 	render(props, state) {
 		if (state.twoFactor) {
-			return <FullForm class={`loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
+			return <FullForm class="loginForm">
 				<div class="fullFormTitle">Verify code</div>
 				<p class="lead">You'll need a code from your two-factor authentication device</p>
 
@@ -122,7 +122,7 @@ export default class LoginForm extends Component {
 			</FullForm>;
 		}
 
-		return <FullForm class={`loginForm ${props.bootstrap4 ? "bs4" : "bs3"}`}>
+		return <FullForm class="loginForm">
 			<div class="fullFormTitle">Log in</div>
 			<p class="lead">Sign in using your MyHomeworkSpace account</p>
 
@@ -135,7 +135,7 @@ export default class LoginForm extends Component {
 				<input type="password" class="form-control" placeholder="Password" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "password")} value={state.password} disabled={state.loading} />
 			</div>
 
-			<a href={(props.bootstrap4 ? "https://myhomework.space/app.html" : "") + "#!resetPassword"} class="btn btn-default pull-left">Forgot password</a>
+			<a href="#!resetPassword" class="btn btn-default pull-left">Forgot password</a>
 
 			<button class="btn btn-lg btn-primary pull-right" onClick={this.login.bind(this)} disabled={state.loading}>
 				{state.loading ? <LoadingIndicator /> : "Log in"}

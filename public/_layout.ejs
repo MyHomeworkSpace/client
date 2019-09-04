@@ -54,18 +54,9 @@
 				</li>
 			</ul>
 			<ul class="navbar-nav">
-				<% if (current.path[0] != "applicationAuth") { %>				
-					<li class="nav-item">
-						<a class="nav-link" href="/app.html">Log in</a>
-					</li>
-				<% } else { %>
-					<li class="nav-item applicationAuthLoginInfo hidden">
-						<span class="nav-link applicationAuthUser"></span>
-					</li>
-					<li class="nav-item applicationAuthLoginInfo hidden">
-						<a class="nav-link applicationAuthLogout" href="#">Log out</a>
-					</li>
-				<% } %>
+				<li class="nav-item">
+					<a class="nav-link" href="/app.html">Log in</a>
+				</li>
 			</ul>
 		</div>
 	</nav>
