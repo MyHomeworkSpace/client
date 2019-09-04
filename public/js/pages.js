@@ -11,6 +11,8 @@ function createComponentPage(component, id) {
 	};
 }
 
+MyHomeworkSpace.Pages.applicationAuth = createComponentPage(MHSBridge.default.auth.ApplicationAuthForm, "applicationAuth");
+
 MyHomeworkSpace.Pages.completeEmail = createComponentPage(MHSBridge.default.auth.CompleteEmailForm, "completeEmail");
 
 MyHomeworkSpace.Pages.resetPassword = createComponentPage(MHSBridge.default.auth.ResetPasswordForm, "resetPassword");

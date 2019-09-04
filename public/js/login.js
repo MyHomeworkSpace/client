@@ -1,13 +1,5 @@
 MyHomeworkSpace.Pages.login = {
-	init: function() {
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.auth.LoginForm, {
-			openModal: MHSBridge.default.openModal,
-			callback: function(data) {
-				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
-			}
-		}), null, document.querySelector("#login > div"));
-	},
-	handleLoginComplete: function(info) {
+	handleLoginComplete: function(info, targetPage) {
 		MyHomeworkSpace.Classes.load(function() {
 			MyHomeworkSpace.Prefixes.init(function() {
 				MyHomeworkSpace.API.get("prefs/getAll", {}, function(prefsData) {
@@ -56,9 +48,11 @@ MyHomeworkSpace.Pages.login = {
 						$("body").append($tab);
 					}
 
-					var requestedPage = window.location.hash.substr(2);
-					
-					if (requestedPage && requestedPage != "login") {
+					var requestedPage = targetPage || window.location.hash.substr(2);
+
+					if (requestedPage.indexOf("login:") == 0) {
+						MyHomeworkSpace.Page.show(requestedPage.replace("login:", ""));
+					} else if (requestedPage && requestedPage != "login") {
 						MyHomeworkSpace.Page.show(requestedPage);
 					} else {
 						MyHomeworkSpace.Page.show("homework");
@@ -67,5 +61,14 @@ MyHomeworkSpace.Pages.login = {
 				});
 			});
 		});
+	},
+	open: function(params) {
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.auth.LoginForm, {
+			params: params,
+			openModal: MHSBridge.default.openModal,
+			callback: function(data, targetPage) {
+				MyHomeworkSpace.Pages.login.handleLoginComplete(data, targetPage);
+			}
+		}), null, document.querySelector("#login > div"));
 	}
 };

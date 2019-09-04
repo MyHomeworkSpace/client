@@ -15,6 +15,7 @@ import ClassesPage from "classes/ClassesPage.jsx";
 
 import AdminPage from "admin/AdminPage.jsx";
 
+import ApplicationAuthForm from "auth/ApplicationAuthForm.jsx";
 import CreateAccountForm from "auth/CreateAccountForm.jsx";
 import CompleteEmailForm from "auth/CompleteEmailForm.jsx";
 import LoginForm from "auth/LoginForm.jsx";
@@ -130,6 +131,7 @@ export default {
 	},
 
 	auth: {
+		ApplicationAuthForm: ApplicationAuthForm,
 		CreateAccountForm: CreateAccountForm,
 		CompleteEmailForm: CompleteEmailForm,
 		LoginForm: LoginForm,

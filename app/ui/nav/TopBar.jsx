@@ -27,6 +27,7 @@ class TopBar extends Component {
 
 	logout() {
 		api.get("auth/logout", {}, function() {
+			window.location.hash = "!login";
 			window.location.reload();
 		});
 	}

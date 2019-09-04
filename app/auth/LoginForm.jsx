@@ -73,7 +73,7 @@ export default class LoginForm extends Component {
 				if (loginData.status == "ok") {
 					api.get("auth/me", {}, function(userData) {
 						if (userData.status == "ok") {
-							that.props.callback.call(that, userData);
+							that.props.callback.call(that, userData, (that.props.params.length > 0 ? that.props.params.join(":") : ""));
 						} else {
 							that.setState({
 								loading: false,
@@ -126,6 +126,7 @@ export default class LoginForm extends Component {
 			<div class="fullFormTitle">Log in</div>
 			<p class="lead">Sign in using your MyHomeworkSpace account</p>
 
+			{props.params.length > 0 && <div class="alert alert-info">To access that page, log in to your MyHomeworkSpace account.</div>}
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
 			<div class="input-group no-addon">
 				<input type="email" class="form-control" placeholder="Email address" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "email")} value={state.email} disabled={state.loading} />

@@ -86,7 +86,7 @@ MyHomeworkSpace.Pages = {};
 MyHomeworkSpace.Prefixes = MHSBridge.default.prefixes;
 
 $(document).ready(function() {
-	if (window.location.href.indexOf("applicationAuth") > -1) {
+	if (window.location.href.indexOf("applicationAuth.html") > -1) {
 		// we're actually on the application auth page, so don't run this code
 		// we're just here for the api object
 		return;
@@ -104,9 +104,13 @@ $(document).ready(function() {
 				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 			} else {
 				var requestedPage = window.location.hash.substr(2);
+				var requestedPageName = requestedPage.split(":")[0];
 				var pageToOpen = "login";
-				if (MyHomeworkSpace.Page.noLogin.indexOf(requestedPage.split(":")[0]) > -1) {
+				if (MyHomeworkSpace.Page.noLogin.indexOf(requestedPageName) > -1) {
 					pageToOpen = requestedPage;
+				} else if (requestedPage) {
+					// tell the login page to redirect
+					pageToOpen = "login:" + requestedPage;
 				}
 				MyHomeworkSpace.Page.show(pageToOpen);
 			}
