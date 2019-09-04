@@ -57,7 +57,7 @@ export default class ApplicationAuthForm extends Component {
 				clientId: applicationID
 			}, function(data) {
 				if (data.status == "ok") {
-					window.location.href = that.state.application.callbackUrl + "?token=" + escape(data.token) + (state ? "&state=" + state : "");
+					window.location.href = that.state.application.callbackUrl + "?token=" + escape(data.token) + (state ? "&state=" + encodeURIComponent(atob(state)) : "");
 				} else {
 					that.setState({
 						loading: false,
