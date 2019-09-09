@@ -107,7 +107,7 @@ class CalendarPage extends Component {
 
 		return <div class="calendarPage">
 			<DateHeader showTypeSwitcher switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />
-			{state.view.schoolsToUpdate.map(function(schoolToUpdate) {
+			{state.view && state.view.schoolsToUpdate.map(function(schoolToUpdate) {
 				return <div class="calendarPageAlert alert alert-warning">
 					Your schedule data for <strong>{schoolToUpdate.displayName}</strong> needs to be updated. <button class="btn btn-primary" onClick={that.updateSchool.bind(that, schoolToUpdate)}>Update</button>
 				</div>;
