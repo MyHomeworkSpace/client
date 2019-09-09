@@ -45,6 +45,7 @@ export default class DaltonEnroll extends Component {
 		}, function() {
 			api.post("schools/enroll", {
 				school: "dalton",
+				reenroll: that.props.reenroll,
 				data: JSON.stringify({
 					username: that.state.username,
 					password: that.state.password

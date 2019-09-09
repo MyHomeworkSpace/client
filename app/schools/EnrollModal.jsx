@@ -37,7 +37,18 @@ export default class EnrollModal extends Component {
 		};
 	}
 
-	submitEmail() {
+	componentDidMount() {
+		var that = this;
+		if (this.props.modalState.email) {
+			this.setState({
+				email: this.props.modalState.email
+			}, function() {
+				that.submitEmail.call(that, true);
+			});
+		}
+	}
+
+	submitEmail(skipFoundStep) {
 		if (this.state.email == "") {
 			this.setState({
 				error: "You must enter your school email address."
@@ -65,7 +76,7 @@ export default class EnrollModal extends Component {
 				if (data.status == "ok") {
 					that.setState({
 						loading: false,
-						step: 1,
+						step: (skipFoundStep ? 2 : 1),
 						school: data.school
 					});
 				} else {
@@ -88,7 +99,7 @@ export default class EnrollModal extends Component {
 
 	next() {
 		if (this.state.step == 0) {
-			this.submitEmail();
+			this.submitEmail(false);
 		} else if (this.state.step == 1 || this.state.step == 2) {
 			this.setState({
 				step: this.state.step + 1
@@ -171,6 +182,8 @@ export default class EnrollModal extends Component {
 			showFooter = false;
 			contents = h(enrollComponent, {
 				email: state.email,
+
+				reenroll: !!this.props.modalState.reenroll,
 
 				prev: this.prev.bind(this),
 				next: this.next.bind(this)

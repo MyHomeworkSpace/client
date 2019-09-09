@@ -91,13 +91,27 @@ class CalendarPage extends Component {
 		}
 	}
 
+	updateSchool(school) {
+		this.props.openModal("enroll", {
+			email: school.emailAddress,
+			reenroll: true
+		});
+	}
+
 	render(props, state) {
+		var that = this;
+
 		if (state.loading) {
 			return <div><LoadingIndicator type="inline" /> Loading, please wait...</div>;
 		}
 
 		return <div class="calendarPage">
 			<DateHeader showTypeSwitcher switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />
+			{state.view.schoolsToUpdate.map(function(schoolToUpdate) {
+				return <div class="calendarPageAlert alert alert-warning">
+					Your schedule data for <strong>{schoolToUpdate.displayName}</strong> needs to be updated. <button class="btn btn-primary" onClick={that.updateSchool.bind(that, schoolToUpdate)}>Update</button>
+				</div>;
+			})}
 			{state.type == "week" && <CalendarWeek openModal={props.openModal} view={state.view} monday={state.start} />}
 			{state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
 		</div>;
