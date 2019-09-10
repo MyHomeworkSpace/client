@@ -58,6 +58,13 @@ export default class CreateAccountForm extends Component {
 			return;
 		}
 
+		if (!checkPassword(this.state.password)) {
+			this.setState({
+				error: "Your password doesn't meet the security requirements."
+			});
+			return;
+		}
+
 		this.setState({
 			loading: true
 		}, function() {
@@ -102,13 +109,15 @@ export default class CreateAccountForm extends Component {
 	render(props, state) {
 		return <FullForm class="createAccountForm">
 			<div class="fullFormTitle">Create account</div>
-
+			<p className="lead">On behalf of the entire MyHomeworkSpace team, welcome! We're glad to have you.</p>
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
 			<div class="input-group no-addon">
 				<input type="text" class="form-control" placeholder="Your name" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "name")} value={state.name} disabled={state.loading} />
+				<small class="form-text text-muted">Enter whatever you prefer to be called.</small>
 			</div>
 			<div class="input-group no-addon">
 				<input type="email" class="form-control" placeholder="School email address" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "email")} value={state.email} disabled={state.loading} />
+				<small class="form-text text-muted">If you don't have a school email or can't receive mail at it, you can use your personal email.</small>
 			</div>
 			<div class="row">
 				<div class="col-md-8">
@@ -123,7 +132,7 @@ export default class CreateAccountForm extends Component {
 					<PasswordSecurityCheck password={state.password} />
 				</div>
 			</div>
-
+			<small>By clicking the "Create Account" button, you are agreeing to our Terms of Service and Privacy Policy. We will never sell or market any of your data. <a href="https://legal.myhomework.space">Learn more</a></small>
 			<button class="btn btn-lg btn-primary pull-right" onClick={this.create.bind(this)} disabled={state.loading}>
 				{state.loading ? <LoadingIndicator /> : "Create account"}
 			</button>

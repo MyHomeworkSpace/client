@@ -17,14 +17,20 @@
 
 	<link rel="shortcut icon" type="image/png" href="img/icon128.png">
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/line-awesome-font-awesome.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900">
 	<link rel="stylesheet" href="/css/layout.css">
 
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+		integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 	<% if (current.path[0] == "index") { %>
 	<script src="https://cdn.jsdelivr.net/npm/jquery.marquee@1.5.0/jquery.marquee.min.js"></script>
 	<% } %>
@@ -55,6 +61,9 @@
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item">
+					<a class="nav-link" href="/app.html#!createAccount">Sign Up</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="/app.html">Log in</a>
 				</li>
 			</ul>
@@ -63,11 +72,11 @@
 
 	<% if (current.path[0] != "index") { %>
 	<div class="container main-container">
-	<% } %>
+		<% } %>
 
-	<%- yield %>
+		<%- yield %>
 
-	<% if (current.path[0] != "index") { %>
+		<% if (current.path[0] != "index") { %>
 	</div>
 	<% } %>
 
@@ -93,7 +102,8 @@
 							<a href="/license.html" class="footer-link">License</a>
 						</li>
 						<li>
-							<a href="https://support.myhomework.space/apireference.html" class="footer-link">API Reference</a>
+							<a href="https://support.myhomework.space/apireference.html" class="footer-link">API
+								Reference</a>
 						</li>
 					</ul>
 				</div>
@@ -127,7 +137,8 @@
 				the
 				<a href="/license.html" class="footer-link">MIT License</a> created in New York City. This site was
 				served to you on a
-				<span class="happy-synonym footer-link">happy</span> server <a class="footer-link" href="https://en.wikipedia.org/wiki/Content_delivery_network">somewhere on earth</a>.
+				<span class="happy-synonym footer-link">happy</span> server <a class="footer-link"
+					href="https://en.wikipedia.org/wiki/Content_delivery_network">somewhere on earth</a>.
 			</p>
 			<small>
 				Use of this website is subject to our Terms of Service and Privacy Policy, which can be found on our
