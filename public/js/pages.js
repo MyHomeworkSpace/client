@@ -4,6 +4,7 @@ function createComponentPage(component, id) {
 			MHSBridge.default.render(MHSBridge.default.h(component, {
 				params: params,
 				classes: MyHomeworkSpace.Classes.list,
+				handleLoginComplete: MyHomeworkSpace.Pages.login.handleLoginComplete,
 				me: MyHomeworkSpace.Me,
 				openModal: MHSBridge.default.openModal
 			}), null, document.querySelector("#" + id + " > div"));

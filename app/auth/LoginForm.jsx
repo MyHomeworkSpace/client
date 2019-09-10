@@ -136,6 +136,7 @@ export default class LoginForm extends Component {
 			</div>
 
 			<a href="#!resetPassword" class="btn btn-default pull-left">Forgot password</a>
+			<a href="#!createAccount" class="btn btn-default pull-left">Create account</a>
 
 			<button class="btn btn-lg btn-primary pull-right" onClick={this.login.bind(this)} disabled={state.loading}>
 				{state.loading ? <LoadingIndicator /> : "Log in"}

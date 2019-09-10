@@ -16,19 +16,19 @@ export function checkPassword(password) {
 
 export const passwordRules = [
 	{
-		name: "Passwords must be 8 or more characters.",
+		name: "Must have at least 8 characters",
 		check: function(password) {
 			return (password.length >= 8);
 		}
 	},
 	{
-		name: "Passwords must contain a number.",
+		name: "Must contain a number",
 		check: function(password) {
 			return /[0-9]/.test(password);
 		}
 	},
 	{
-		name: "Passwords must contain a letter.",
+		name: "Must contain a letter",
 		check: function(password) {
 			return /[A-z]/.test(password);
 		}
