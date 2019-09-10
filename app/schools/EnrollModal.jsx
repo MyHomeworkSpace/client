@@ -43,7 +43,7 @@ export default class EnrollModal extends Component {
 			this.setState({
 				email: this.props.modalState.email
 			}, function() {
-				that.submitEmail.call(that, true);
+				that.submitEmail.call(that, this.props.modalState.reenroll);
 			});
 		}
 	}

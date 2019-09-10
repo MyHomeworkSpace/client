@@ -1,5 +1,5 @@
 MyHomeworkSpace.Pages.login = {
-	handleLoginComplete: function(info, targetPage) {
+	handleLoginComplete: function(info, targetPage, callback) {
 		MyHomeworkSpace.Classes.load(function() {
 			MyHomeworkSpace.Prefixes.init(function() {
 				MyHomeworkSpace.API.get("prefs/getAll", {}, function(prefsData) {
@@ -58,6 +58,10 @@ MyHomeworkSpace.Pages.login = {
 						MyHomeworkSpace.Page.show("homework");
 					}
 					$("#login").remove();
+
+					if (callback) {
+						callback();
+					}
 				});
 			});
 		});

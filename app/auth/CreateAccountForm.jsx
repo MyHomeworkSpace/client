@@ -69,7 +69,13 @@ export default class CreateAccountForm extends Component {
 				if (data.status == "ok") {
 					api.get("auth/me", {}, function(userData) {
 						if (userData.status == "ok") {
-							that.props.handleLoginComplete.call(that, userData, "homework");
+							that.props.handleLoginComplete.call(that, userData, "homework", function() {
+								if (data.school) {
+									that.props.openModal("enroll", {
+										email: that.state.email
+									});
+								}
+							});
 						} else {
 							that.setState({
 								loading: false,
@@ -102,7 +108,7 @@ export default class CreateAccountForm extends Component {
 				<input type="text" class="form-control" placeholder="Your name" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "name")} value={state.name} disabled={state.loading} />
 			</div>
 			<div class="input-group no-addon">
-				<input type="email" class="form-control" placeholder="Email address" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "email")} value={state.email} disabled={state.loading} />
+				<input type="email" class="form-control" placeholder="School email address" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "email")} value={state.email} disabled={state.loading} />
 			</div>
 			<div class="row">
 				<div class="col-md-8">
