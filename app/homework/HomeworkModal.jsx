@@ -106,7 +106,7 @@ export default class HomeworkModal extends Component {
 	}
 
 	keyup(e) {
-		if (e.keyCode == 13) {
+		if (e.keyCode == 13 && !this.state.loading) {
 			this.save();
 		}
 	}
