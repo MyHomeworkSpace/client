@@ -143,10 +143,6 @@ export default class LoginForm extends Component {
 			</button>
 
 			<div class="clearfix"></div>
-
-			<div class="loginInfo">
-				We recently made some changes to our login system. If you're having problems getting into your account, you can try to reset your password, or contact us at <a href="mailto:hello@myhomework.space">hello@myhomework.space</a>.
-			</div>
 		</FullForm>;
 	}
 }
