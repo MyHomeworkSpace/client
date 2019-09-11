@@ -117,7 +117,7 @@ export default class CreateAccountForm extends Component {
 			</div>
 			<div class="input-group no-addon">
 				<input type="email" class="form-control" placeholder="School email address" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "email")} value={state.email} disabled={state.loading} />
-				<small class="form-text text-muted">If you don't have a school email or can't receive mail at it, you can use your personal email.</small>
+				<small class="form-text text-muted">If you don't have a school email, you can use your personal email.</small>
 			</div>
 			<div class="row">
 				<div class="col-md-8">
