@@ -132,7 +132,7 @@ export default class CreateAccountForm extends Component {
 					<PasswordSecurityCheck password={state.password} />
 				</div>
 			</div>
-			<small>By clicking the "Create Account" button, you are agreeing to our Terms of Service and Privacy Policy. We will never sell or market any of your data. <a href="https://legal.myhomework.space">Learn more</a></small>
+			<small class="pull-left text-muted">By creating an account, you agree to our Terms of Service and Privacy Policy. We will never sell or market any of your data. <a href="https://legal.myhomework.space" target="_blank">Learn more &raquo;</a></small>
 			<button class="btn btn-lg btn-primary pull-right" onClick={this.create.bind(this)} disabled={state.loading}>
 				{state.loading ? <LoadingIndicator /> : "Create account"}
 			</button>
