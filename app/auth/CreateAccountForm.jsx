@@ -117,7 +117,7 @@ export default class CreateAccountForm extends Component {
 			</div>
 			<div class="input-group no-addon">
 				<input type="email" class="form-control" placeholder="School email address" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "email")} value={state.email} disabled={state.loading} />
-				<small class="form-text text-muted">If you don't have a school email or can't receive mail at it, you can use your personal email.</small>
+				<small class="form-text text-muted">If you don't have a school email, you can use your personal email.</small>
 			</div>
 			<div class="row">
 				<div class="col-md-8">
@@ -132,7 +132,7 @@ export default class CreateAccountForm extends Component {
 					<PasswordSecurityCheck password={state.password} />
 				</div>
 			</div>
-			<small>By clicking the "Create Account" button, you are agreeing to our Terms of Service and Privacy Policy. We will never sell or market any of your data. <a href="https://legal.myhomework.space">Learn more</a></small>
+			<small class="pull-left text-muted">By creating an account, you agree to our Terms of Service and Privacy Policy. We will never sell or market any of your data. <a href="https://legal.myhomework.space" target="_blank" rel="noopener noreferrer">Learn more &raquo;</a></small>
 			<button class="btn btn-lg btn-primary pull-right" onClick={this.create.bind(this)} disabled={state.loading}>
 				{state.loading ? <LoadingIndicator /> : "Create account"}
 			</button>
