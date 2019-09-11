@@ -73,13 +73,15 @@ export default class DaltonEnroll extends Component {
 		return <div class="daltonEnroll">
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
 			Sign in with your Dalton username and password.
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Username" onKeyUp={this.onKeyUp.bind(this)} onChange={linkState(this, "username")} value={state.username} disabled={state.loading} />
+			<div class="input-group first">
+				<input type="text" class="form-control" placeholder="Username" aria-describedby="username-addon" onKeyUp={this.onKeyUp.bind(this)} onChange={linkState(this, "username")} value={state.username} disabled={state.loading} />
+				<span class="input-group-addon" id="username-addon">@dalton.org</span>
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-control" placeholder="Password" onKeyUp={this.onKeyUp.bind(this)} onChange={linkState(this, "password")} value={state.password} disabled={state.loading} />
 			</div>
 			<div class="form-group actions">
+				{state.loading && <span><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Automagically importing schedule</span>}
 				<button class="btn btn-default" onClick={props.prev} disabled={state.loading}><i class="fa fa-chevron-left" /></button>
 				<button class="btn btn-primary" onClick={this.login.bind(this)} disabled={state.loading}>Log in <i class="fa fa-chevron-right" /></button>
 			</div>
