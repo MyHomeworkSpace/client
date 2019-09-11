@@ -81,7 +81,7 @@ export default class DaltonEnroll extends Component {
 				<input type="password" class="form-control" placeholder="Password" onKeyUp={this.onKeyUp.bind(this)} onChange={linkState(this, "password")} value={state.password} disabled={state.loading} />
 			</div>
 			<div class="form-group actions">
-				{state.loading && <span><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Automagically importing schedule</span>}
+				{state.loading && <span><i class="fa fa-circle-o-notch fa-spin fa-fw"></i> Importing schedule...</span>}
 				<button class="btn btn-default" onClick={props.prev} disabled={state.loading}><i class="fa fa-chevron-left" /></button>
 				<button class="btn btn-primary" onClick={this.login.bind(this)} disabled={state.loading}>Log in <i class="fa fa-chevron-right" /></button>
 			</div>
