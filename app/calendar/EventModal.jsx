@@ -18,11 +18,11 @@ import TimePicker from "ui/TimePicker.jsx";
 class EventModal extends Component {
 	constructor(props) {
 		super(props);
-		
+
 		var isNew = (props.modalState.id ? false : true);
 		var startTime = (isNew ? moment().second(0) : moment.unix(props.modalState.start));
 		var endTime = (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end));
-		
+
 		if (isNew) {
 			// round the time to a 15-minute interval
 			while (startTime.minute() % 15 != 0) {
@@ -184,7 +184,7 @@ class EventModal extends Component {
 		for (var key in this.state) {
 			mergedState[key] = this.state[key];
 		}
-		
+
 		mergedState[type] = date;
 
 		// have we changed the start time?
@@ -293,7 +293,7 @@ class EventModal extends Component {
 							{state.recur && <div class="col-md-11">
 								<div>
 									every
-									<input type="number" value={state.recurRule.interval} min={0} onChange={linkState(this, "recurRule.interval")} />
+									<input type="number" value={state.recurRule.interval} min={1} onChange={linkState(this, "recurRule.interval")} />
 									<select value={state.recurRule.frequency} onChange={linkState(this, "recurRule.frequency")}>
 										{[
 											["day", consts.RECUR_FREQUENCY_DAILY],
