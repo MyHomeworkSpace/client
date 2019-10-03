@@ -23,7 +23,7 @@
 		"cross-env": "^4.0.0",
 		"linkstate": "^1.0.1",
 		"moment": "^2.24.0",
-		"preact": "8.4.2",
+		"preact": "8.5.2",
 		"preact-router": "^2.5.1"
 	}
 }
