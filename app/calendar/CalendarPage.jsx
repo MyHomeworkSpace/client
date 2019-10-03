@@ -15,6 +15,18 @@ import DateHeader from "ui/DateHeader.jsx";
 class CalendarPage extends Component {
 	constructor(props) {
 		super(props);
+		this.blankView = {
+			providers: [],
+			schoolsToUpdate: [],
+			days: []
+		};
+		for (var i = 0; i < 35; i++) {
+			this.blankView.days.push({
+				day: "",
+				announcements: [],
+				events: []
+			});
+		}
 		this.state = {
 			loading: true,
 			type: "week"
@@ -44,7 +56,7 @@ class CalendarPage extends Component {
 		this.setState({
 			loadingEvents: true,
 			type: "week",
-			view: null,
+			view: this.blankView,
 			start: monday
 		}, function() {
 			api.get("calendar/getView", {
@@ -64,7 +76,7 @@ class CalendarPage extends Component {
 		this.setState({
 			loadingEvents: true,
 			type: "month",
-			view: null,
+			view: this.blankView,
 			start: start
 		}, function() {
 			api.get("calendar/getView", {
