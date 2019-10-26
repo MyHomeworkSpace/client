@@ -97,7 +97,7 @@ export default class CompleteEmailForm extends Component {
 				title = "Reset password";
 				contents = <div>
 					<p>Your password has been changed successfully!</p>
-					<a href="/app.html" class="btn btn-primary">Back to MyHomeworkSpace</a>
+					<a href="/" class="btn btn-primary">Back to MyHomeworkSpace</a>
 				</div>;
 			} else {
 				title = "Reset password";
@@ -121,13 +121,13 @@ export default class CompleteEmailForm extends Component {
 			title = "Change email";
 			contents = <div>
 				<p>Your email has been changed successfully!</p>
-				<a href="/app.html" class="btn btn-primary">Back to MyHomeworkSpace</a>
+				<a href="/" class="btn btn-primary">Back to MyHomeworkSpace</a>
 			</div>;
 		}  else if (state.tokenType == consts.TOKEN_TYPE_VERIFY_EMAIL) {
 			title = "Verify email";
 			contents = <div>
 				<p>Your email has been verified successfully!</p>
-				<a href="/app.html" class="btn btn-primary">Back to MyHomeworkSpace</a>
+				<a href="/" class="btn btn-primary">Back to MyHomeworkSpace</a>
 			</div>;
 		} else {
 			title = "Link expired";
