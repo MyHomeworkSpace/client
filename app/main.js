@@ -1,3 +1,5 @@
+import "main.styl";
+
 import { h, render } from "preact";
 
 import api from "api.js";
