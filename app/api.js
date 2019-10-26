@@ -1,4 +1,4 @@
-var baseURL = window.location.protocol + "//api-v2." + window.location.hostname + "/";
+var baseURL = window.location.protocol + "//api-v2." + window.location.hostname.replace("app.", "") + "/";
 var token = "";
 var workingTimeout;
 
