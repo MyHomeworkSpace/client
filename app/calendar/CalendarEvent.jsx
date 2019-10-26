@@ -2,16 +2,16 @@ import "calendar/CalendarEvent.styl";
 
 import { h, Component } from "preact";
 
-import $ from "jquery";
 import moment from "moment";
 
 import consts from "consts.js";
+import { closestByClass } from "utils.js";
 
 import HomeworkName from "ui/HomeworkName.jsx";
 
 class CalendarEvent extends Component {
 	click(e) {
-		var calendarEvent = $(e.target).closest(".calendarEvent")[0];
+		var calendarEvent = closestByClass(e.target, "calendarEvent");
 
 		var rect = calendarEvent.getBoundingClientRect();
 		

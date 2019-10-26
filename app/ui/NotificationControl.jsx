@@ -2,9 +2,8 @@ import "ui/NotificationControl.styl";
 
 import { h, Component } from "preact";
 
-import $ from "jquery";
-
 import api from "api.js";
+import { closestByClass } from "utils.js";
 
 import NotificationPopup from "ui/NotificationPopup.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";
@@ -32,8 +31,7 @@ class NotificationControl extends Component {
 	}
 
 	onBodyClick(e) {
-		var $target = $(e.target);
-		if (!$target.hasClass("notificationPopup") && $target.closest(".notificationControlContainer").length == 0) {
+		if (!e.target.classList.contains("notificationPopup") && !closestByClass(e.target, "notificationControlContainer")) {
 			this.toggle();
 		}
 	}

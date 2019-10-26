@@ -2,8 +2,9 @@ import "calendar/CalendarEvents.styl";
 
 import { h, Component } from "preact";
 
-import $ from "jquery";
 import moment from "moment";
+
+import { closestByClass } from "utils.js";
 
 import CalendarEvent from "calendar/CalendarEvent.jsx";
 import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
@@ -43,16 +44,16 @@ class CalendarEvents extends Component {
 	}
 
 	onBodyClick(e) {
-		if ($(e.target).closest(".calendarEventPopover, .calendarEvent").length == 0) {
+		if (!closestByClass(e.target, "calendarEventPopover") && !closestByClass(e.target, "calendarEvent")) {
 			this.openPopover(null);
 		}
 	}
 
 	handleSettingClickHandler() {
 		if (this.state.popover) {
-			$("body").bind("click", this.state.bodyClick);
+			document.body.addEventListener("click", this.state.bodyClick);
 		} else {
-			$("body").unbind("click", this.state.bodyClick);
+			document.body.removeEventListener("click", this.state.bodyClick);
 		}
 	}
 

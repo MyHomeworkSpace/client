@@ -2,7 +2,7 @@ import "ui/FeedbackControl.styl";
 
 import { h, Component } from "preact";
 
-import $ from "jquery";
+import { closestByClass } from "utils.js";
 
 import FeedbackPopup from "ui/FeedbackPopup.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";
@@ -17,8 +17,7 @@ class FeedbackControl extends Component {
 	}
 
 	onBodyClick(e) {
-		var $target = $(e.target);
-		if (!$target.hasClass("feedbackPopupFeelingOption") && $target.closest(".feedbackControlContainer").length == 0) {
+		if (!e.target.classList.contains("feedbackPopupFeelingOption") && !closestByClass(e.target, "feedbackControlContainer")) {
 			this.toggle();
 		}
 	}
