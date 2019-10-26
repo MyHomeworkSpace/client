@@ -30,7 +30,7 @@ class AdminListItem extends Component {
 			return <div class="adminListItem">
 				<p class="adminListName">{props.data.text}</p>
 				<div>
-					<span>{props.data.id} | {props.data.userName} ({props.data.userEmail}) | {props.data.type} | {props.data.timestamp} {(props.data.hasScreenshot ? <span> | <a href={`${api.baseURL}admin/getFeedbackScreenshot/${props.data.id}?csrfToken=${api.getToken()}`} target="_blank" rel="noopener noreferrer">Open Screenshot</a></span> : null)}</span>
+					<span>{props.data.id} | {props.data.userName} ({props.data.userEmail}) | {props.data.type} | {props.data.timestamp} {(props.data.hasScreenshot ? <span> | <a href={api.buildURL(`admin/getFeedbackScreenshot/${props.data.id}`, "GET", {})} target="_blank" rel="noopener noreferrer">Open Screenshot</a></span> : null)}</span>
 				</div>
 			</div>;
 		} else if (props.type == "notification") {

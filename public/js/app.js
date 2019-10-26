@@ -86,11 +86,6 @@ MyHomeworkSpace.Pages = {};
 MyHomeworkSpace.Prefixes = MHSBridge.default.prefixes;
 
 $(document).ready(function() {
-	if (window.location.href.indexOf("applicationAuth.html") > -1) {
-		// we're actually on the application auth page, so don't run this code
-		// we're just here for the api object
-		return;
-	}
 	MyHomeworkSpace.Page.init();
 	MyHomeworkSpace.API.init(function() {
 		for (var pageIndex in MyHomeworkSpace.Pages) {
