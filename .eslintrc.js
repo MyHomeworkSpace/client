@@ -14,7 +14,6 @@ module.exports = {
 		"html2canvas": "readonly",
 		"Mousetrap": "readonly",
 		"nlp": "readonly",
-		"$": "readonly",
 
 		"MyHomeworkSpace": "writable",
 		"MHSBridge": "writable"

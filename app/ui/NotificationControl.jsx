@@ -2,6 +2,8 @@ import "ui/NotificationControl.styl";
 
 import { h, Component } from "preact";
 
+import $ from "jquery";
+
 import api from "api.js";
 
 import NotificationPopup from "ui/NotificationPopup.jsx";

@@ -1,5 +1,7 @@
 import { h, render } from "preact";
 
+import $ from "jquery";
+
 import api from "api.js";
 import errors from "errors.js";
 import prefixes from "prefixes.js";

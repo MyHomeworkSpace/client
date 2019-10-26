@@ -2,6 +2,7 @@ import "calendar/CalendarEvent.styl";
 
 import { h, Component } from "preact";
 
+import $ from "jquery";
 import moment from "moment";
 
 import consts from "consts.js";
