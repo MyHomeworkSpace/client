@@ -85,7 +85,7 @@ MyHomeworkSpace.Pages = {};
 
 MyHomeworkSpace.Prefixes = MHSBridge.default.prefixes;
 
-$(document).ready(function() {
+window.addEventListener("load", function() {
 	MyHomeworkSpace.Page.init();
 	MyHomeworkSpace.API.init(function() {
 		for (var pageIndex in MyHomeworkSpace.Pages) {
@@ -109,7 +109,6 @@ $(document).ready(function() {
 				}
 				MyHomeworkSpace.Page.show(pageToOpen);
 			}
-			$("#loadingStart").remove();
 		});
 	});
 });

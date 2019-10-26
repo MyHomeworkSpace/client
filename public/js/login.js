@@ -57,7 +57,6 @@ MyHomeworkSpace.Pages.login = {
 					} else {
 						MyHomeworkSpace.Page.show("homework");
 					}
-					$("#login").remove();
 
 					if (callback) {
 						callback();

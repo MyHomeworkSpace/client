@@ -1,7 +1,5 @@
 import { h, render } from "preact";
 
-import $ from "jquery";
-
 import api from "api.js";
 import errors from "errors.js";
 import prefixes from "prefixes.js";
@@ -108,9 +106,9 @@ var openModal = function(name, state) {
 	modalState = state;
 	renderModalManager();
 	if (modalName != "") {
-		$("#app").addClass("modal-open");
+		document.getElementById("app").classList.add("modal-open");
 	} else {
-		$("#app").removeClass("modal-open");
+		document.getElementById("app").classList.remove("modal-open");
 	}
 };
 
