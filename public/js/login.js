@@ -28,24 +28,27 @@ MyHomeworkSpace.Pages.login = {
 						MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {});
 					}			
 
+					// clean existing server-side tabs
+					var serverTabs = document.getElementsByClassName("serverTab");
+					for (var i = 0; i < serverTabs.length; i++) {
+						serverTabs[i].remove();
+					}
+
 					// add the server-side tabs
-					$(".serverTab").remove();
 					for (var tabIndex in MyHomeworkSpace.Tabs) {
 						var tab = MyHomeworkSpace.Tabs[tabIndex];
-						var $tab = $('<div class="page serverTab hidden">');
-							$tab.attr("id", tab.slug);
-							$tab.css({
-								padding: "0"
-							});
-							var $frame = $('<iframe seamless></iframe>');
-								$frame.css({
-									border: "none",
-									width: "100%",
-									height: "100%"
-								});
-								$frame.attr("src", tab.target);
-							$tab.append($frame);
-						$("#app").append($tab);
+						var tabElement = document.createElement("div");
+							tabElement.classList.add("page", "serverTab", "hidden");
+							tabElement.id = tab.slug;
+							tabElement.style.padding = "0";
+							var frameElement = document.createElement("iframe");
+								frameElement.seamless = true;
+								frameElement.style.border = "none";
+								frameElement.style.width = "100%";
+								frameElement.style.height = "100%";
+								frameElement.src = tab.target;
+							tabElement.appendChild(frameElement);
+						document.getElementById("app").appendChild(tabElement);
 					}
 
 					var requestedPage = targetPage || window.location.hash.substr(2);

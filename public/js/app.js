@@ -50,31 +50,36 @@ MyHomeworkSpace.Page = {
 		});
 	},
 	current: function() {
-		return $(".page:not(.hidden)").attr("id");
+		var pageElement = document.querySelector(".page:not(.hidden)");
+		return (pageElement ? pageElement.id : "");
 	},
 	show: function(path) {
-		$(".page:not(.hidden)").addClass("hidden");
+		if (MyHomeworkSpace.Page.current() != "") {
+			document.querySelector(".page:not(.hidden)").classList.add("hidden");
+		}
 		if (path) {
 			var parts = path.split(":");
 			var name = parts[0];
 			var params = [].concat(parts);
 			params.splice(0, 1);
-			var $page = $("#" + name);
-			$page.removeClass("hidden");
+
+			var pageElement = document.getElementById(name);
+			pageElement.classList.remove("hidden");
+
 			window.location.hash = "!" + name + (params.length > 0 ? ":" + params.join(":") : "");
 			if (MyHomeworkSpace.Pages[name] && MyHomeworkSpace.Pages[name].open) {
 				MyHomeworkSpace.Pages[name].open(params);
 			}
-			if ($page.hasClass("serverTab")) {
+			if (pageElement.classList.contains("serverTab")) {
 				var tab;
 				for (var tabIndex in MyHomeworkSpace.Tabs) {
 					if (MyHomeworkSpace.Tabs[tabIndex].slug == name) {
 						tab = MyHomeworkSpace.Tabs[tabIndex];
 					}
 				}
-				var src = $page.children("iframe").attr("src");
-				src = tab.target + "#" + (params.join(":") || "");
-				$page.children("iframe").attr("src", src);
+
+				var src = tab.target + "#" + (params.join(":") || "");
+				pageElement.getElementsByTagName("iframe")[0].src = src;
 			}
 		}
 		MyHomeworkSpace.Nav.rerenderNav();

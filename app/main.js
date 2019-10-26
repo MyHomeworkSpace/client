@@ -63,7 +63,7 @@ var setBackground = function(newBackground) {
 	var bgType = newBackground.split(":")[0];
 	var bgVal = newBackground.split(":")[1];
 	if (bgType == "img") {
-		document.getElementById("app").style.backgroundImage = "url(img/backgrounds/bg" + bgVal + ".jpg)"
+		document.getElementById("app").style.backgroundImage = "url(img/backgrounds/bg" + bgVal + ".jpg)";
 		MyHomeworkSpace.Nav.inverted = false;
 	} else if (bgType == "clr") {
 		document.getElementById("app").style.backgroundImage = "none";
