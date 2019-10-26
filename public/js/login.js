@@ -45,7 +45,7 @@ MyHomeworkSpace.Pages.login = {
 								});
 								$frame.attr("src", tab.target);
 							$tab.append($frame);
-						$("body").append($tab);
+						$("#app").append($tab);
 					}
 
 					var requestedPage = targetPage || window.location.hash.substr(2);

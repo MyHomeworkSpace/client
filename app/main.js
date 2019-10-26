@@ -65,11 +65,11 @@ var setBackground = function(newBackground) {
 	var bgType = newBackground.split(":")[0];
 	var bgVal = newBackground.split(":")[1];
 	if (bgType == "img") {
-		$("body").css("background-image", "url(img/backgrounds/bg" + bgVal + ".jpg)");
+		document.getElementById("app").style.backgroundImage = "url(img/backgrounds/bg" + bgVal + ".jpg)"
 		MyHomeworkSpace.Nav.inverted = false;
 	} else if (bgType == "clr") {
-		$("body").css("background-image", "none");
-		$("body").css("background-color", bgVal);
+		document.getElementById("app").style.backgroundImage = "none";
+		document.getElementById("app").style.backgroundColor = bgVal;
 
 		// text adjustment code
 		// this will check if the color is bright, and if it is, invert the color of the tabs and navbar
@@ -108,9 +108,9 @@ var openModal = function(name, state) {
 	modalState = state;
 	renderModalManager();
 	if (modalName != "") {
-		$("body").addClass("modal-open");
+		$("#app").addClass("modal-open");
 	} else {
-		$("body").removeClass("modal-open");
+		$("#app").removeClass("modal-open");
 	}
 };
 
