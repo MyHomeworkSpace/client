@@ -13,7 +13,6 @@ var classSynonyms = [
 var lexicon = {};
 
 var findClass = function(name) {
-	console.log("findClass", name);
 	var normalizedName = name.replace(/ /g, "").toLowerCase();
 	for (var classIndex in classes) {
 		var classItem = classes[classIndex];
