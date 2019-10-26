@@ -13,6 +13,7 @@ var classSynonyms = [
 var lexicon = {};
 
 var findClass = function(name) {
+	console.log("findClass", name);
 	var normalizedName = name.replace(/ /g, "").toLowerCase();
 	for (var classIndex in classes) {
 		var classItem = classes[classIndex];
@@ -31,7 +32,22 @@ var findClass = function(name) {
 		// check all synonyms
 		for (var listIndex in classSynonyms) {
 			var synonymList = classSynonyms[listIndex];
-			if (synonymList.indexOf(classNormalized) > -1 && synonymList.indexOf(normalizedName) > -1) {
+
+			var hasClassName = false;
+			var hasSearchName = false;
+
+			for (var synonymIndex in synonymList) {
+				var synonym = synonymList[synonymIndex];
+				var normalizedSynonym = synonym.replace(/ /g, "").toLowerCase();
+
+				if (normalizedSynonym == classNormalized){
+					hasClassName = true;	
+				} else if (normalizedSynonym == normalizedName) {
+					hasSearchName = true;
+				}
+			}
+
+			if (hasClassName && hasSearchName) {
 				// this class and the target name are synonyms
 				return {
 					id: classId,
