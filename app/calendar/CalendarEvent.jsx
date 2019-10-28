@@ -68,7 +68,11 @@ class CalendarEvent extends Component {
 				<div class="calendarEvent" style={`top: ${offset}px; left:${groupWidth*props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
 					<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
 					<div class="calendarEventName">{recurIcon}{props.item.tags[consts.EVENT_TAG_HOMEWORK] ? <HomeworkName name={displayName} /> : displayName}</div>
-					<div class="calendarEventTime">{startDisplay} to {endDisplay}{props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] ? ` in ${props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}` : ""}</div>
+					<div class="calendarEventTime">
+						{startDisplay} to {endDisplay}
+						{props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] && ` in ${props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}`}
+						{props.item.tags[consts.EVENT_TAG_LOCATION] && ` at ${props.item.tags[consts.EVENT_TAG_LOCATION]}`}
+					</div>
 				</div>
 			</div>;
 		}
