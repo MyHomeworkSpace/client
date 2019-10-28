@@ -28,7 +28,7 @@ class CalendarEventPopover extends Component {
 			info = <div class="calendarEventPopoverInfo">
 				{props.item.ownerName}
 			</div>;
-		} else if (!props.item.tags[consts.EVENT_TAG_CLASS_ID] && props.item.id != -1) {
+		} else if (!props.item.tags[consts.EVENT_TAG_READ_ONLY] && props.item.id != -1) {
 			actions = <div class="calendarEventPopoverActions">
 				<button class="btn btn-default btn-sm" onClick={this.edit.bind(this)}><i class="fa fa-pencil" /> Edit</button>
 			</div>;
