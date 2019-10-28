@@ -8,6 +8,7 @@ import consts from "consts.js";
 import errors from "errors.js";
 
 import DaltonEnroll from "schools/dalton/DaltonEnroll.jsx";
+import MITEnroll from "schools/mit/MITEnroll.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
@@ -21,7 +22,8 @@ import Modal from "ui/Modal.jsx";
  */
 
 var enrollComponents = {
-	dalton: DaltonEnroll
+	dalton: DaltonEnroll,
+	mit: MITEnroll
 };
 
 export default class EnrollModal extends Component {
