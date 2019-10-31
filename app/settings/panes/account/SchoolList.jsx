@@ -5,6 +5,12 @@ import { h, Component } from "preact";
 import api from "api.js";
 
 export default class SchoolList extends Component {
+	settings(school) {
+		this.props.openModal("schoolSettings", {
+			school: school
+		});
+	}
+
 	disconnect(school) {
 		if (confirm(`Disconnect ${school.displayName} from your account? You'll still be able to access your Calendar, but any events from ${school.displayName} will be gone.`)) {
 			api.post("schools/unenroll", {
@@ -32,6 +38,7 @@ export default class SchoolList extends Component {
 						<div class="schoolDetails">{school.userDetails}</div>
 					</div>
 					<div class="schoolActions pull-right">
+						<button class="btn btn-primary" onClick={that.settings.bind(that, school)}><i class="fa fa-fw fa-gear" /> Settings</button>
 						<button class="btn btn-danger" onClick={that.disconnect.bind(that, school)}><i class="fa fa-fw fa-chain-broken" /> Disconnect</button>
 					</div>
 					<div class="schoolClear"></div>

@@ -10,6 +10,7 @@ import ClassModal from "classes/ClassModal.jsx";
 import ClassSwapModal from "classes/ClassSwapModal.jsx";
 import HomeworkModal from "homework/HomeworkModal.jsx";
 import EnrollModal from "schools/EnrollModal.jsx";
+import SchoolSettingsModal from "schools/SchoolSettingsModal.jsx";
 import BackgroundModal from "settings/panes/account/BackgroundModal.jsx";
 import TwoFactorModal from "settings/panes/account/TwoFactorModal.jsx";
 import LoadingModal from "ui/LoadingModal.jsx";
@@ -32,6 +33,7 @@ class ModalManager extends Component {
 			changeEmail: ChangeEmailModal,
 			changePassword: ChangePasswordModal,
 			accountMigrate: AccountMigrateModal,
+			schoolSettings: SchoolSettingsModal,
 		};
 		
 		var modal;
