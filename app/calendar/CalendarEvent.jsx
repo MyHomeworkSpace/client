@@ -39,9 +39,8 @@ class CalendarEvent extends Component {
 
 		var displayName = props.item.name;
 
-		if (props.item.tags[consts.EVENT_TAG_CLASS_ID]) {
-			var displayNameSectionless = displayName.replace(/ -(.*)\(.*\)/g, "");
-			displayName = displayNameSectionless.trim();
+		if (props.item.tags[consts.EVENT_TAG_SHORT_NAME]) {
+			displayName = props.item.tags[consts.EVENT_TAG_SHORT_NAME];
 		}
 
 		var groupWidth = 100 / props.groupLength;
