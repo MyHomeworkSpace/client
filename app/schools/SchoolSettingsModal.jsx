@@ -71,7 +71,7 @@ export default class SchoolSettingsModal extends Component {
 
 		var settingComponent = settingsComponents[school.schoolID];
 
-		return <Modal title={title} openModal={props.openModal} class="schoolSettingsModal">
+		return <Modal title={title} openModal={props.openModal} noClose class="schoolSettingsModal">
 			{h(settingComponent, {
 				currentSettings: state.currentSettings,
 
