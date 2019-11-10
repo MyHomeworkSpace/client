@@ -4,6 +4,8 @@ var path = require('path');
 module.exports = {
 	entry: './app/main.js',
 
+	devtool: 'source-map',
+
 	output: {
 		filename: 'bundle.js',
 		path: (process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'www', 'js') : path.resolve(__dirname, 'public', 'js')),
@@ -20,11 +22,13 @@ module.exports = {
 					jsx: "h"
 				}
 			},
-			{test: /\.(styl)$/, use: ExtractTextPlugin.extract({
-				fallback: 'style-loader',
-				use: [ 'css-loader', 'stylus-loader' ]
-			})},
-			{test: /\.(css)$/, use: 'css-loader'}
+			{
+				test: /\.(styl)$/, use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: ['css-loader', 'stylus-loader']
+				})
+			},
+			{ test: /\.(css)$/, use: 'css-loader' }
 		]
 	},
 
