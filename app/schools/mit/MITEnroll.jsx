@@ -52,7 +52,8 @@ export default class MITEnroll extends Component {
 
 		var that = this;
 		this.setState({
-			loading: true
+			loading: true,
+			error: ""
 		}, function() {
 			api.post("schools/enroll", {
 				school: "mit",

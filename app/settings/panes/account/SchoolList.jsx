@@ -21,6 +21,22 @@ export default class SchoolList extends Component {
 		}
 	}
 
+	setEnabled(school, enabled) {
+		var message = `Disable ${school.displayName}? It won't appear in your Calendar, but you'll be able to re-enable it at any time.`;
+		if (enabled) {
+			message = `Enable ${school.displayName}?`;
+		}
+
+		if (confirm(message)) {
+			api.post("schools/setEnabled", {
+				school: school.schoolID,
+				enabled: enabled
+			}, function(data) {
+				window.location.reload();
+			});
+		}
+	}
+
 	render(props, state) {
 		var that = this;
 
@@ -32,13 +48,15 @@ export default class SchoolList extends Component {
 
 		return <div class="schoolList">
 			{props.me.schools.map(function(school) {
-				return <div class="schoolItem">
+				return <div class={`schoolItem ${school.enabled ? "" : "disabled"}`}>
 					<div class="schoolData pull-left">
-						<div class="schoolName">{school.displayName}</div>
-						<div class="schoolDetails">{school.userDetails}</div>
+						<div class="schoolName">{school.displayName} {!school.enabled && " (disabled)"}</div>
+						{school.enabled && <div class="schoolDetails">{school.userDetails}</div>}
+						{!school.enabled && <div>This school has been disabled. It won't appear in your Calendar.</div>}
 					</div>
 					<div class="schoolActions pull-right">
-						<button class="btn btn-primary" onClick={that.settings.bind(that, school)}><i class="fa fa-fw fa-gear" /> Settings</button>
+						{school.enabled && <button class="btn btn-primary" onClick={that.settings.bind(that, school)}><i class="fa fa-fw fa-gear" /> Settings</button>}
+						<button class={`btn btn-${school.enabled ? "default": "primary"}`} onClick={that.setEnabled.bind(that, school, !school.enabled)}><i class="fa fa-fw fa-power-off" /> {school.enabled ? "Disable" : "Enable"}</button>
 						<button class="btn btn-danger" onClick={that.disconnect.bind(that, school)}><i class="fa fa-fw fa-chain-broken" /> Disconnect</button>
 					</div>
 					<div class="schoolClear"></div>
