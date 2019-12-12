@@ -12,7 +12,7 @@ import CalendarWeek from "calendar/CalendarWeek.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import DateHeader from "ui/DateHeader.jsx";
 
-class CalendarPage extends Component {
+export default class CalendarPage extends Component {
 	constructor(props) {
 		super(props);
 		this.blankView = {
@@ -128,6 +128,4 @@ class CalendarPage extends Component {
 			{state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
 		</div>;
 	}
-}
-
-export default CalendarPage;
+};

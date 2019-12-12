@@ -10,7 +10,7 @@ import CalendarEvent from "calendar/CalendarEvent.jsx";
 import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
 import CalendarEventsDay from "calendar/CalendarEventsDay.jsx";
 
-class CalendarEvents extends Component {
+export default class CalendarEvents extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -162,6 +162,4 @@ class CalendarEvents extends Component {
 			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
 		</div>;
 	}
-}
-
-export default CalendarEvents;
+};

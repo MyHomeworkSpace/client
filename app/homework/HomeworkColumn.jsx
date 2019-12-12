@@ -4,7 +4,7 @@ import { h, Component } from "preact";
 
 import HomeworkItem from "ui/HomeworkItem.jsx";
 
-class HomeworkColumn extends Component {
+export default class HomeworkColumn extends Component {
 	render(props, state) {
 		return <div class={`homeworkColumn ${props.noColumnClass ? "" : "col-md-3"} ${props.halfHeight ? "halfHeight" : ""} ${props.top ? "top" : ""}`}>
 			<div class="homeworkColumnContainer">
@@ -34,6 +34,4 @@ class HomeworkColumn extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default HomeworkColumn;
+};

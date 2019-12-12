@@ -10,7 +10,7 @@ import ColorPicker from "ui/ColorPicker.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
 
-class ClassModal extends Component {
+export default class ClassModal extends Component {
 	constructor(props) {
 		super(props);
 		var isNew = (props.modalState.id ? false : true);
@@ -105,6 +105,4 @@ class ClassModal extends Component {
 			</div>
 		</Modal>;
 	}
-}
-
-export default ClassModal;
+};

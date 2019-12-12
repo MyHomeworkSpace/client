@@ -2,7 +2,7 @@ import "ui/Picker.styl";
 
 import { h, Component } from "preact";
 
-class Picker extends Component {
+export default class Picker extends Component {
 	constructor(props) {
 		super(props);
 		this._bodyClick = this.onBodyClick.bind(this);
@@ -77,6 +77,4 @@ class Picker extends Component {
 			</div>}
 		</div>;
 	}
-}
-
-export default Picker;
+};

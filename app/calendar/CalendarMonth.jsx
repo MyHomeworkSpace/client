@@ -9,7 +9,7 @@ import { closestByClass } from "utils.js";
 import CalendarEvent from "calendar/CalendarEvent.jsx";
 import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
 
-class CalendarMonth extends Component {
+export default class CalendarMonth extends Component {
 	constructor() {
 		super();
 		this.timer = null;
@@ -146,6 +146,4 @@ class CalendarMonth extends Component {
 			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
 		</div>;
 	}
-}
-
-export default CalendarMonth;
+};

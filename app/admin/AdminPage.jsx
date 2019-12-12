@@ -6,7 +6,7 @@ import api from "api.js";
 
 import AdminListItem from "admin/AdminListItem.jsx";
 
-class AdminPage extends Component {
+export default class AdminPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -95,6 +95,4 @@ class AdminPage extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default AdminPage;
+};

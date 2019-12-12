@@ -4,7 +4,7 @@ import { h, Component } from "preact";
 
 import api from "api.js";
 
-class AdminListItem extends Component {
+export default class AdminListItem extends Component {
 	deleteNotification(id) {
 		var that = this;
 		if (confirm("Are you sure you want to delete this notification?")) {
@@ -45,6 +45,4 @@ class AdminListItem extends Component {
 			<p class="adminListName">{JSON.stringify(props.data)}</p>
 		</div>;
 	}
-}
-
-export default AdminListItem;
+};

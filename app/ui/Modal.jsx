@@ -2,7 +2,7 @@ import "ui/Modal.styl";
 
 import { h, Component } from "preact";
 
-class Modal extends Component {
+export default class Modal extends Component {
 	close() {
 		this.props.openModal("", {});
 	}
@@ -20,6 +20,4 @@ class Modal extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default Modal;
+};

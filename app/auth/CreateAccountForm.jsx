@@ -140,4 +140,4 @@ export default class CreateAccountForm extends Component {
 			<div class="clearfix"></div>
 		</FullForm>;
 	}
-}
+};

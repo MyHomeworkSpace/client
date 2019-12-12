@@ -12,7 +12,7 @@ import NavLogo from "ui/nav/NavLogo.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";
 import TopBarDropdown from "ui/nav/TopBarDropdown.jsx";
 
-class TopBar extends Component {
+export default class TopBar extends Component {
 	componentDidMount() {
 		if (this.props.me && Object.keys(this.props.me).length > 0) {
 			this.enableShortcuts();
@@ -78,6 +78,4 @@ class TopBar extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default TopBar;
+};

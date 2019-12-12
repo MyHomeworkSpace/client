@@ -8,7 +8,7 @@ import api from "api.js";
 import HomeworkName from "ui/HomeworkName.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
-class HomeworkPickerPopup extends Component {
+export default class HomeworkPickerPopup extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -84,6 +84,4 @@ class HomeworkPickerPopup extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default HomeworkPickerPopup;
+};

@@ -2,7 +2,7 @@ import { h, Component } from "preact";
 
 import prefixes from "prefixes.js";
 
-class HomeworkName extends Component {
+export default class HomeworkName extends Component {
 	render(props, state) {
 		var nameParts = props.name.split(" ");
 		var tag = nameParts[0];
@@ -14,9 +14,7 @@ class HomeworkName extends Component {
 		}
 		return <span><span style={`background-color:${background};color:#${color.color};padding:2px;`}>{tag}</span> {remain}</span>;
 	}
-}
-
-export default HomeworkName;
+};
 
 
 // Maybe put this somewhere at some point, but there's no good place right now

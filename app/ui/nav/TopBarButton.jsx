@@ -11,4 +11,4 @@ export default class TopBarButton extends Component {
 			</span>
 		</div>;
 	}
-}
+};

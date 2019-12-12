@@ -2,7 +2,7 @@ import "ui/nav/NavLogo.styl";
 
 import { h, Component } from "preact";
 
-class NavLogo extends Component {
+export default class NavLogo extends Component {
 	render(props, state) {
 		return <div class="navLogo">
 			<a href="/">
@@ -10,6 +10,4 @@ class NavLogo extends Component {
 			</a>
 		</div>;
 	}
-}
-
-export default NavLogo;
+};

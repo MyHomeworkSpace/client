@@ -7,7 +7,7 @@ import { closestByClass } from "utils.js";
 import FeedbackPopup from "ui/FeedbackPopup.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";
 
-class FeedbackControl extends Component {
+export default class FeedbackControl extends Component {
 	constructor(props) {
 		super(props);
 		this._bodyClick = this.onBodyClick.bind(this);
@@ -42,6 +42,4 @@ class FeedbackControl extends Component {
 			{state.open && <FeedbackPopup />}
 		</span>;
 	}
-}
-
-export default FeedbackControl;
+};

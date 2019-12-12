@@ -2,7 +2,7 @@ import "calendar/CalendarWeekDay.styl";
 
 import { h, Component } from "preact";
 
-class CalendarWeekDay extends Component {
+export default class CalendarWeekDay extends Component {
 	render(props, state) {
 		return <div class="calendarWeekDay">
 			<div class={`calendarWeekDayName ${props.day.isBefore(props.time, "day") ? "calendarWeekDayPast" : ""} ${props.day.isSame(props.time, "day") ? "calendarWeekDayToday" : ""}`}>
@@ -16,6 +16,4 @@ class CalendarWeekDay extends Component {
 			})}
 		</div>;
 	}
-}
-
-export default CalendarWeekDay;
+};

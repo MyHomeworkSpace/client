@@ -4,7 +4,7 @@ import { h, Component } from "preact";
 
 import CalendarNowLine from "calendar/CalendarNowLine.jsx";
 
-class CalendarEventsDay extends Component {
+export default class CalendarEventsDay extends Component {
 	render(props, state) {
 		var isToday = props.day.isSame(props.today, "day");
 		return <div class={`calendarEventsDay ${isToday ? "calendarEventsDayToday" : ""}`}>
@@ -12,6 +12,4 @@ class CalendarEventsDay extends Component {
 			{props.children}
 		</div>;
 	}
-}
-
-export default CalendarEventsDay;
+};

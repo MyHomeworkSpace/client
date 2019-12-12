@@ -13,7 +13,7 @@ import HomeworkItem from "ui/HomeworkItem.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
-class ClassDetails extends Component {
+export default class ClassDetails extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -82,6 +82,4 @@ class ClassDetails extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default ClassDetails;
+};

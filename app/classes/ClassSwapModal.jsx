@@ -8,7 +8,7 @@ import ClassName from "ui/ClassName.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
 
-class ClassSwapModal extends Component {
+export default class ClassSwapModal extends Component {
 	close() {
 		this.props.openModal("");
 	}
@@ -59,6 +59,4 @@ class ClassSwapModal extends Component {
 			</div>
 		</Modal>;
 	}
-}
-
-export default ClassSwapModal;
+};

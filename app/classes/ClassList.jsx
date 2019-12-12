@@ -4,7 +4,7 @@ import { h, Component } from "preact";
 
 import ClassItem from "classes/ClassItem.jsx";
 
-class ClassList extends Component {
+export default class ClassList extends Component {
 	render(props, state) {
 		return <div class="classList">
 			<div class="classItems">
@@ -14,6 +14,4 @@ class ClassList extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default ClassList;
+};

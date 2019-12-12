@@ -101,4 +101,4 @@ export default class ApplicationAuthForm extends Component {
 			<div class="clearfix"></div>
 		</FullForm>;
 	}
-}
+};
