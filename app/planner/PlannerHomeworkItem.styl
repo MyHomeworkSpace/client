@@ -1,13 +1,13 @@
 .plannerHomeworkItem
-	transition: 0.1s background
-	padding-right: 3.35rem
+	transition: 0.1s all
+	padding: 0.25rem 3.35rem 0.25rem 0.25rem
 	position: relative
 
 	.plannerHomeworkActions
 		display: inline-block
 		font-size: 1.4rem
 		position: absolute
-		top: 0
+		top: 0.25rem
 		right: 0
 		opacity: 0
 		text-align: right
@@ -19,12 +19,13 @@
 			cursor: pointer
 
 .plannerHomeworkItem.done, .plannerHomeworkItem.done:hover
-	background: #cccccc
+	background: #d0d0d0
 	font-style: italic
 	text-decoration: line-through
 
 .plannerHomeworkItem:hover
-	background: #dddddd
+	background: #dfdfdf
+	box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.2)
 	
 	.plannerHomeworkActions
 		opacity: 1
