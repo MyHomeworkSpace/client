@@ -34,7 +34,7 @@ export default class ClassDetails extends Component {
 		this.setState({
 			loading: true
 		}, function() {
-			api.get(`homework/getForClass/${this.props.classObject.id}`, null, function(data) {
+			api.get(`homework/getForClass/${this.props.classObject.id}`, {}, function(data) {
 				that.setState({
 					loading: false,
 					homework: data.homework
@@ -69,7 +69,7 @@ export default class ClassDetails extends Component {
 					return <HomeworkItem
 						homework={item}
 						classes={MyHomeworkSpace.Classes.list}
-						isOverdue={(moment(item.due).unix() < moment().unix())}
+						isOverdue={moment(item.due).isBefore(moment(), "day")}
 						edit={function(id) {
 							MyHomeworkSpace.Pages.homework.edit(id);
 						}}
