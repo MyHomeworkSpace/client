@@ -154,7 +154,7 @@ export default class CalendarEvents extends Component {
 			</div>
 			<div class="calendarEventsHourBackgrounds">
 				{Array.apply(null, Array(24)).map(function(_, i) {
-					return <div class={`calendarEventsHourBackground ${i == 23 ? "last" : ""}`}></div>
+					return <div class={`calendarEventsHourBackground ${i == 23 ? "last" : ""}`}></div>;
 				})}
 			</div>
 			<CalendarEventsDay today={today} time={props.time} day={props.monday}>{eventElements[0]}</CalendarEventsDay>
