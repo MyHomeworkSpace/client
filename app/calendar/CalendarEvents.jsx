@@ -127,30 +127,35 @@ export default class CalendarEvents extends Component {
 
 		return <div class="calendarEvents">
 			<div class="calendarEventsGutter">
-				<div class="calendarEventsGutterHour">12a</div>
-				<div class="calendarEventsGutterHour">1a</div>
-				<div class="calendarEventsGutterHour">2a</div>
-				<div class="calendarEventsGutterHour">3a</div>
-				<div class="calendarEventsGutterHour">4a</div>
-				<div class="calendarEventsGutterHour">5a</div>
-				<div class="calendarEventsGutterHour">6a</div>
-				<div class="calendarEventsGutterHour">7a</div>
-				<div class="calendarEventsGutterHour">8a</div>
-				<div class="calendarEventsGutterHour">9a</div>
-				<div class="calendarEventsGutterHour">10a</div>
-				<div class="calendarEventsGutterHour">11a</div>
-				<div class="calendarEventsGutterHour">12p</div>
-				<div class="calendarEventsGutterHour">1p</div>
-				<div class="calendarEventsGutterHour">2p</div>
-				<div class="calendarEventsGutterHour">3p</div>
-				<div class="calendarEventsGutterHour">4p</div>
-				<div class="calendarEventsGutterHour">5p</div>
-				<div class="calendarEventsGutterHour">6p</div>
-				<div class="calendarEventsGutterHour">7p</div>
-				<div class="calendarEventsGutterHour">8p</div>
-				<div class="calendarEventsGutterHour">9p</div>
-				<div class="calendarEventsGutterHour">10p</div>
-				<div class="calendarEventsGutterHour">11p</div>
+				<div class="calendarEventsGutterHour">12 am</div>
+				<div class="calendarEventsGutterHour">1 am</div>
+				<div class="calendarEventsGutterHour">2 am</div>
+				<div class="calendarEventsGutterHour">3 am</div>
+				<div class="calendarEventsGutterHour">4 am</div>
+				<div class="calendarEventsGutterHour">5 am</div>
+				<div class="calendarEventsGutterHour">6 am</div>
+				<div class="calendarEventsGutterHour">7 am</div>
+				<div class="calendarEventsGutterHour">8 am</div>
+				<div class="calendarEventsGutterHour">9 am</div>
+				<div class="calendarEventsGutterHour">10 am</div>
+				<div class="calendarEventsGutterHour">11 am</div>
+				<div class="calendarEventsGutterHour">12 pm</div>
+				<div class="calendarEventsGutterHour">1 pm</div>
+				<div class="calendarEventsGutterHour">2 pm</div>
+				<div class="calendarEventsGutterHour">3 pm</div>
+				<div class="calendarEventsGutterHour">4 pm</div>
+				<div class="calendarEventsGutterHour">5 pm</div>
+				<div class="calendarEventsGutterHour">6 pm</div>
+				<div class="calendarEventsGutterHour">7 pm</div>
+				<div class="calendarEventsGutterHour">8 pm</div>
+				<div class="calendarEventsGutterHour">9 pm</div>
+				<div class="calendarEventsGutterHour">10 pm</div>
+				<div class="calendarEventsGutterHour last">11 pm</div>
+			</div>
+			<div class="calendarEventsHourBackgrounds">
+				{Array.apply(null, Array(24)).map(function(_, i) {
+					return <div class={`calendarEventsHourBackground ${i == 23 ? "last" : ""}`}></div>
+				})}
 			</div>
 			<CalendarEventsDay today={today} time={props.time} day={props.monday}>{eventElements[0]}</CalendarEventsDay>
 			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(1, "day")}>{eventElements[1]}</CalendarEventsDay>
