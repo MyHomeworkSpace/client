@@ -1,12 +1,28 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+var OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 var path = require('path');
+
+var mode = (process.env.NODE_ENV === "production" ? "production" : "development");
+var isProduction = (mode == "production");
+
+var plugins = [
+	new MiniCssExtractPlugin({
+		filename: "../css/bundle.css"
+	})
+];
+
+if (isProduction) {
+	plugins.push(new OptimizeCssAssetsPlugin({}));
+}
 
 module.exports = {
 	entry: './app/main.js',
 
+	mode: mode,
+
 	output: {
 		filename: 'bundle.js',
-		path: (process.env.NODE_ENV === 'production' ? path.resolve(__dirname, 'www', 'js') : path.resolve(__dirname, 'public', 'js')),
+		path: (isProduction ? path.resolve(__dirname, 'www', 'js') : path.resolve(__dirname, 'public', 'js')),
 		library: "MHSBridge"
 	},
 
@@ -20,17 +36,24 @@ module.exports = {
 					jsx: "h"
 				}
 			},
-			{test: /\.(styl)$/, use: ExtractTextPlugin.extract({
-				fallback: 'style-loader',
-				use: [ 'css-loader', 'stylus-loader' ]
-			})},
+			{
+				test: /\.(styl)$/,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							hmr: isProduction
+						},
+					},
+					"css-loader",
+					"stylus-loader"
+				]
+			},
 			{test: /\.(css)$/, use: 'css-loader'}
 		]
 	},
 
-	plugins: [
-		new ExtractTextPlugin("../css/bundle.css")
-	],
+	plugins: plugins,
 
 	resolve: {
 		modules: [
