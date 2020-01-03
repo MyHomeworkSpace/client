@@ -8,7 +8,7 @@ import errors from "errors.js";
 
 import ColorPicker from "ui/ColorPicker.jsx";
 
-class AddPrefix extends Component {
+export default class AddPrefix extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -91,6 +91,4 @@ class AddPrefix extends Component {
 			<button class="btn btn-danger" onClick={props.cancelAddPrefix}><i class="fa fa-fw fa-times" /></button>
 		</div>;
 	}
-}
-
-export default AddPrefix;
+};

@@ -1,6 +1,6 @@
 import { h, Component } from "preact";
 
-class Collapse extends Component {
+export default class Collapse extends Component {
 	render(props, state) {
 		return <div class="panel panel-default">
 			<div class="panel-heading" role="tab" id="collapseHeading">
@@ -13,6 +13,4 @@ class Collapse extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default Collapse; 
+}; 

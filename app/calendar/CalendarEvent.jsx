@@ -9,7 +9,7 @@ import { closestByClass } from "utils.js";
 
 import HomeworkName from "ui/HomeworkName.jsx";
 
-class CalendarEvent extends Component {
+export default class CalendarEvent extends Component {
 	click(e) {
 		var calendarEvent = closestByClass(e.target, "calendarEvent");
 
@@ -76,6 +76,4 @@ class CalendarEvent extends Component {
 			</div>;
 		}
 	}
-}
-
-export default CalendarEvent;
+};

@@ -4,7 +4,7 @@ import { h, Component } from "preact";
 
 import moment from "moment";
 
-class CalendarNowLine extends Component {
+export default class CalendarNowLine extends Component {
 	constructor(props) {
 		super(props);
 		this.timer = null;
@@ -13,6 +13,4 @@ class CalendarNowLine extends Component {
 	render(props, state) {
 		return <div class="calendarNowLine" style={`top: ${Math.floor((props.time - moment("00:00:00", "HH:mm:ss").unix()) / 60)}px;`}></div>;
 	}
-}
-
-export default CalendarNowLine;
+};

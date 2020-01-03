@@ -6,7 +6,7 @@ import AddClass from "classes/AddClass.jsx";
 import ClassDetails from "classes/ClassDetails.jsx";
 import ClassList from "classes/ClassList.jsx";
 
-class ClassesPage extends Component {
+export default class ClassesPage extends Component {
 	selectClass(newClass) {
 		this.setState({
 			selectedClassID: newClass.id
@@ -41,6 +41,4 @@ class ClassesPage extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default ClassesPage;
+};

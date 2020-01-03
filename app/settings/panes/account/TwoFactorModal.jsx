@@ -8,7 +8,7 @@ import errors from "errors.js";
 
 import Modal from "ui/Modal.jsx";
 
-class TwoFactorModal extends Component {
+export default class TwoFactorModal extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -182,6 +182,4 @@ class TwoFactorModal extends Component {
 			</div>
 		</Modal>;
 	}
-}
-
-export default TwoFactorModal;
+};

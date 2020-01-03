@@ -10,4 +10,4 @@ export default class FullForm extends Component {
 			</div>
 		</div>;
 	}
-}
+};

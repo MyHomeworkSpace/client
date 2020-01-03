@@ -6,7 +6,7 @@ import api from "api.js";
 
 import HomeworkColumn from "homework/HomeworkColumn.jsx";
 
-class HomeworkPage extends Component {
+export default class HomeworkPage extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -64,6 +64,4 @@ class HomeworkPage extends Component {
 			<HomeworkColumn title="Long-term" items={state.homework.longterm} />
 		</div>;
 	}
-}
-
-export default HomeworkPage;
+};

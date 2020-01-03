@@ -148,4 +148,4 @@ export default class CompleteEmailForm extends Component {
 			<div class="clearfix"></div>
 		</FullForm>;
 	}
-}
+};

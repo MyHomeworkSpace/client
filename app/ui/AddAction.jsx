@@ -11,7 +11,7 @@ import quickAdd from "quickAdd.js";
 import AddActionCalendarInfo from "ui/AddActionCalendarInfo.jsx";
 import AddActionHomeworkInfo from "ui/AddActionHomeworkInfo.jsx";
 
-class AddAction extends Component {
+export default class AddAction extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -90,6 +90,4 @@ class AddAction extends Component {
 			{thingToAdd == consts.EVENT_TYPE_PLAIN && state.open && <AddActionCalendarInfo text={state.input} close={this.close.bind(this)} openModal={props.openModal} />}
 		</div>;
 	}
-}
-
-export default AddAction;
+};

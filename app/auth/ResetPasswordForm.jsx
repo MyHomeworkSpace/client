@@ -80,4 +80,4 @@ export default class ResetPasswordForm extends Component {
 			<div class="clearfix"></div>
 		</FullForm>;
 	}
-}
+};

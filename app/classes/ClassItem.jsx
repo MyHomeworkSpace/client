@@ -2,7 +2,7 @@ import "classes/ClassItem.styl";
 
 import { h, Component } from "preact";
 
-class ClassItem extends Component {
+export default class ClassItem extends Component {
 	handleClick() {
 		this.props.onClick(this.props.classItem);
 	}
@@ -12,6 +12,4 @@ class ClassItem extends Component {
 			<p class="className">{props.classItem.name}</p>
 		</div>;
 	}
-}
-
-export default ClassItem;
+};

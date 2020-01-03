@@ -9,7 +9,7 @@ import prefixes from "prefixes.js";
 import ClassName from "ui/ClassName.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
-class HomeworkItem extends Component {
+export default class HomeworkItem extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -106,6 +106,4 @@ class HomeworkItem extends Component {
 			</div>}
 		</div>;
 	}
-}
-
-export default HomeworkItem;
+};

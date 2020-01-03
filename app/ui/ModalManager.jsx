@@ -15,7 +15,7 @@ import BackgroundModal from "settings/panes/account/BackgroundModal.jsx";
 import TwoFactorModal from "settings/panes/account/TwoFactorModal.jsx";
 import LoadingModal from "ui/LoadingModal.jsx";
 
-class ModalManager extends Component {
+export default class ModalManager extends Component {
 	closeModal() {
 		this.props.openModal("", {});
 	}
@@ -60,6 +60,4 @@ class ModalManager extends Component {
 			{modal}
 		</div>;
 	}
-}
-
-export default ModalManager;
+};

@@ -4,7 +4,7 @@ import { h, Component } from "preact";
 
 import moment from "moment";
 
-class TimePickerPopup extends Component {
+export default class TimePickerPopup extends Component {
 	componentDidMount() {
 		var showDuration = !!this.props.suggestStart;
 
@@ -89,6 +89,4 @@ class TimePickerPopup extends Component {
 			})}
 		</div>;
 	}
-}
-
-export default TimePickerPopup;
+};

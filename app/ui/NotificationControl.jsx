@@ -8,7 +8,7 @@ import { closestByClass } from "utils.js";
 import NotificationPopup from "ui/NotificationPopup.jsx";
 import TopBarButton from "ui/nav/TopBarButton.jsx";
 
-class NotificationControl extends Component {
+export default class NotificationControl extends Component {
 	constructor(props) {
 		super(props);
 		this._bodyClick = this.onBodyClick.bind(this);
@@ -65,6 +65,4 @@ class NotificationControl extends Component {
 			<NotificationPopup notifications={this.state.notifications} open={this.state.open}/>
 		</span>;
 	}
-}
-
-export default NotificationControl;
+};

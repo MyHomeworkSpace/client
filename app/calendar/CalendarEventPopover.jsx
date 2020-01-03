@@ -8,7 +8,7 @@ import consts from "consts.js";
 
 import HomeworkName from "ui/HomeworkName.jsx";
 
-class CalendarEventPopover extends Component {
+export default class CalendarEventPopover extends Component {
 	edit() {
 		var item = this.props.item;
 		item.type = this.props.type;
@@ -53,6 +53,4 @@ class CalendarEventPopover extends Component {
 			{props.item.recurRule && <div class="calendarEventPopoverOrigin"><i class="fa fa-refresh" /> recurring event</div>}
 		</div>;
 	}
-}
-
-export default CalendarEventPopover;
+};

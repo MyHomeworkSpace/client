@@ -6,7 +6,7 @@ import moment from "moment";
 import DatePickerCalendar from "ui/DatePickerCalendar.jsx";
 import Picker from "ui/Picker.jsx";
 
-class DatePicker extends Component {
+export default class DatePicker extends Component {
 	selectDate(date) {
 		this.setState({
 			open: false
@@ -27,6 +27,4 @@ class DatePicker extends Component {
 			<DatePickerCalendar date={props.value} selectDate={this.selectDate.bind(this)} />
 		</Picker>;
 	}
-}
-
-export default DatePicker;
+};

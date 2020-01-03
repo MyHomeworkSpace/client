@@ -6,7 +6,7 @@ import api from "api.js";
 
 import Modal from "ui/Modal.jsx";
 
-class BackgroundModal extends Component {
+export default class BackgroundModal extends Component {
 	constructor() {
 		super();
 		this._colorTimeout = null;
@@ -75,6 +75,4 @@ class BackgroundModal extends Component {
 			</div>
 		</Modal>;
 	}
-}
-
-export default BackgroundModal;
+};

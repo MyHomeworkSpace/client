@@ -7,7 +7,7 @@ import api from "api.js";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
-class FeedbackPopup extends Component {
+export default class FeedbackPopup extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -144,6 +144,4 @@ class FeedbackPopup extends Component {
 			</span >;
 		}
 	}
-}
-
-export default FeedbackPopup;
+};

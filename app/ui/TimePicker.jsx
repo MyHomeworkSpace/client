@@ -7,7 +7,7 @@ import moment from "moment";
 import Picker from "ui/Picker.jsx";
 import TimePickerPopup from "ui/TimePickerPopup.jsx";
 
-class TimePicker extends Component {
+export default class TimePicker extends Component {
 	selectTime(time) {
 		this.props.change(time);
 	}
@@ -31,6 +31,4 @@ class TimePicker extends Component {
 			<TimePickerPopup time={props.value} selectTime={this.selectTime.bind(this)} setOpen={this.setOpen.bind(this)} suggestStart={props.suggestStart} />
 		</Picker>;
 	}
-}
-
-export default TimePicker;
+};

@@ -10,7 +10,7 @@ import HomeworkName from "ui/HomeworkName.jsx";
 
 import AddPrefix from "settings/panes/homework/AddPrefix.jsx";
 
-class PrefixList extends Component {
+export default class PrefixList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -76,6 +76,4 @@ class PrefixList extends Component {
 			</button>}
 		</div>;
 	}
-}
-
-export default PrefixList;
+};

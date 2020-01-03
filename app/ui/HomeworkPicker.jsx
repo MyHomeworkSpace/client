@@ -6,7 +6,7 @@ import HomeworkName from "ui/HomeworkName.jsx";
 import HomeworkPickerPopup from "ui/HomeworkPickerPopup.jsx";
 import Picker from "ui/Picker.jsx";
 
-class HomeworkPicker extends Component {
+export default class HomeworkPicker extends Component {
 	selectHW(hw) {
 		this.setState({
 			open: false
@@ -33,6 +33,4 @@ class HomeworkPicker extends Component {
 			<HomeworkPickerPopup hw={props.value} selectHW={this.selectHW.bind(this)} />
 		</Picker>;
 	}
-}
-
-export default HomeworkPicker;
+};

@@ -4,7 +4,7 @@ import { h, Component } from "preact";
 
 import moment from "moment";
 
-class DatePickerCalendarGrid extends Component {
+export default class DatePickerCalendarGrid extends Component {
 	selectDate(day) {
 		this.props.selectDate(moment(this.props.date).date(day));
 	}
@@ -38,6 +38,4 @@ class DatePickerCalendarGrid extends Component {
 			{items}
 		</div>;
 	}
-}
-
-export default DatePickerCalendarGrid;
+};

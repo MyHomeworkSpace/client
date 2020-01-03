@@ -7,7 +7,7 @@ import quickAdd from "quickAdd.js";
 import AddActionInfo from "ui/AddActionInfo.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
-class AddActionHomeworkInfo extends Component {
+export default class AddActionHomeworkInfo extends Component {
 	render(props, state) {
 		if (props.text.trim() == "") {
 			return <AddActionInfo class="addActionHomeworkInfoBlank">
@@ -29,6 +29,4 @@ class AddActionHomeworkInfo extends Component {
 			<div>Due: <strong>{info.due || "unknown"}</strong></div>
 		</AddActionInfo>;
 	}
-}
-
-export default AddActionHomeworkInfo;
+};

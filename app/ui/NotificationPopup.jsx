@@ -2,7 +2,7 @@ import "ui/NotificationPopup.styl";
 
 import { h, Component } from "preact";
 
-class NotificationPopup extends Component {
+export default class NotificationPopup extends Component {
 	render(props, state) {
 		if (!props.open) {
 			return null;
@@ -24,6 +24,4 @@ class NotificationPopup extends Component {
 			</ul>
 		</div>;
 	}
-}
-
-export default NotificationPopup;
+};

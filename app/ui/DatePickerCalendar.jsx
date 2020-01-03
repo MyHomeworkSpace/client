@@ -6,7 +6,7 @@ import moment from "moment";
 
 import DatePickerCalendarGrid from "ui/DatePickerCalendarGrid.jsx";
 
-class DatePickerCalendar extends Component {
+export default class DatePickerCalendar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -39,6 +39,4 @@ class DatePickerCalendar extends Component {
 			<button class="btn btn-default btn-sm datePickerCalendarToday" onClick={this.today.bind(this)}>Today</button>
 		</div>;
 	}
-}
-
-export default DatePickerCalendar;
+};

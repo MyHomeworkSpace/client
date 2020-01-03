@@ -7,7 +7,7 @@ import moment from "moment";
 import DatePicker from "ui/DatePicker.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
-class DateHeader extends Component {
+export default class DateHeader extends Component {
 	jumpBlock(blockAmount) {
 		if (this.props.type == "week") {
 			this.props.loadWeek(moment(this.props.start).add(blockAmount, this.props.type));
@@ -63,6 +63,4 @@ class DateHeader extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default DateHeader;
+};

@@ -7,7 +7,7 @@ import moment from "moment";
 import CalendarEvents from "calendar/CalendarEvents.jsx";
 import CalendarWeekDay from "calendar/CalendarWeekDay.jsx";
 
-class CalendarWeek extends Component {
+export default class CalendarWeek extends Component {
 	constructor() {
 		super();
 		this.timer = null;
@@ -74,6 +74,4 @@ class CalendarWeek extends Component {
 			</div>
 		</div>;
 	}
-}
-
-export default CalendarWeek;
+};

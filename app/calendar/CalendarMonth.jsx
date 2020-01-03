@@ -9,7 +9,7 @@ import { closestByClass } from "utils.js";
 import CalendarEvent from "calendar/CalendarEvent.jsx";
 import CalendarEventPopover from "calendar/CalendarEventPopover.jsx";
 
-class CalendarMonth extends Component {
+export default class CalendarMonth extends Component {
 	constructor() {
 		super();
 		this.timer = null;
@@ -81,19 +81,20 @@ class CalendarMonth extends Component {
 		var rows = [];
 		var rowItems = [];
 		
-		for (var i = 0; i < firstDay.day(); i++) {
-			// add spacers for days from last month
-			rowItems.push(<div class="calendarMonthGridItem calendarMonthGridSpacer"></div>);
-		}
-		for (i = firstDay.date(); i <= lastDay.date(); i++) {
-			var thisDay = moment(props.start).date(i);
+		var prefixDays = firstDay.day();
+		var postfixDays = 6 - lastDay.day();
+		var thisDay = moment(firstDay).subtract(prefixDays, "days");
+		for (var i = firstDay.date() - prefixDays; i <= lastDay.date() + postfixDays; i++) {
+			var isOtherMonth = (i < 1 || i > lastDay.date());
 			var isToday = thisDay.isSame(moment.unix(state.time), "day");
+
 			var viewDay;
 			if (props.view) {
 				viewDay = props.view.days[i - 1 + 7];
 			}
-			var day = <div class={`calendarMonthGridItem calendarMonthDay ${isToday ? "calendarMonthToday" : ""} ${i == 1 ? "calendarMonthDayFirst" : ""} ${i < 8 ? "calendarMonthDayTopBorder" : ""}`}>
-				<div class="calendarMonthDayNumber">{i}</div>
+
+			var day = <div class={`calendarMonthGridItem calendarMonthDay ${isToday ? "calendarMonthToday" : ""} ${isOtherMonth ? "calendarMonthDayOther" : ""} ${i < 8 ? "calendarMonthDayTopBorder" : ""}`}>
+				<div class="calendarMonthDayNumber">{thisDay.date()}</div>
 				<div class="calendarMonthDayEvents">
 					{viewDay && viewDay.announcements.map(function(announcement) {
 						return <div class="calendarMonthDayAnnouncement">{announcement.text}</div>;
@@ -116,6 +117,8 @@ class CalendarMonth extends Component {
 				</div>);
 				rowItems = [];
 			}
+
+			thisDay.add(1, "day");
 		}
 		if (rowItems.length > 0) {
 			while (rowItems.length < 7) {
@@ -143,6 +146,4 @@ class CalendarMonth extends Component {
 			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
 		</div>;
 	}
-}
-
-export default CalendarMonth;
+};

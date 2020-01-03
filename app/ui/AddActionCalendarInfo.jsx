@@ -6,7 +6,7 @@ import consts from "consts.js";
 
 import AddActionInfo from "ui/AddActionInfo.jsx";
 
-class AddActionCalendarInfo extends Component {
+export default class AddActionCalendarInfo extends Component {
 	addFromHomework() {
 		this.props.openModal("calendarEvent", {
 			type: consts.EVENT_TYPE_HOMEWORK
@@ -38,6 +38,4 @@ class AddActionCalendarInfo extends Component {
 			</div>
 		</AddActionInfo>;
 	}
-}
-
-export default AddActionCalendarInfo;
+};

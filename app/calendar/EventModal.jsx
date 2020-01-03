@@ -15,7 +15,7 @@ import HomeworkPicker from "ui/HomeworkPicker.jsx";
 import Modal from "ui/Modal.jsx";
 import TimePicker from "ui/TimePicker.jsx";
 
-class EventModal extends Component {
+export default class EventModal extends Component {
 	constructor(props) {
 		super(props);
 
@@ -328,6 +328,4 @@ class EventModal extends Component {
 			</div>
 		</Modal>;
 	}
-}
-
-export default EventModal;
+};
