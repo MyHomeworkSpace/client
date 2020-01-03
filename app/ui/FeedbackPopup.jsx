@@ -128,7 +128,7 @@ export default class FeedbackPopup extends Component {
 						<textarea class="feedbackPopupMessage form-control" disabled={state.loading} value={state.message} onInput={linkState(this, "message")} onKeyup={this.keyup.bind(this)}></textarea>
 						{state.screenshot ? <img src={state.screenshot} class="feedbackPopupScreenshotImg" /> : null}
 						<small class="finetext">Your name will also be sent. {state.screenshot ? <span>
-							Use of the screenshot you included is subject to our <a href="https://legal.myhomework.space/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+							Use of the screenshot you included is subject to our <a href="https://support.myhomework.space/legal" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
 						</span> : null}</small>
 						<button
 							class="btn btn-default btn-sm addScreenshotButton"
