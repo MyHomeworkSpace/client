@@ -18,7 +18,7 @@ if (isProduction) {
 module.exports = {
 	entry: './app/main.js',
 
-	mode: mode,
+	devtool: 'source-map',
 
 	output: {
 		filename: 'bundle.js',
@@ -49,7 +49,7 @@ module.exports = {
 					"stylus-loader"
 				]
 			},
-			{test: /\.(css)$/, use: 'css-loader'}
+			{ test: /\.(css)$/, use: 'css-loader' }
 		]
 	},
 
