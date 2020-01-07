@@ -18,7 +18,7 @@ MyHomeworkSpace.Pages.homework = {
 		MyHomeworkSpace.API.get("homework/get/" + id, {}, function(data) {
 			var hwItem = data.homework;
 			hwItem.complete = complete;
-			MyHomeworkSpace.API.post("homework/edit/", hwItem, function(data) {
+			MyHomeworkSpace.API.post("homework/edit", hwItem, function(data) {
 				// yay
 			});
 		});
