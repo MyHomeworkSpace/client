@@ -14,10 +14,8 @@ class TwoFactorInfo extends Component {
 	}
 
 	componentDidMount() {
-		var that = this;
-
-		api.get("auth/2fa/status", {}, function(data) {
-			that.setState({
+		api.get("auth/2fa/status", {}, (data) => {
+			this.setState({
 				loading: false,
 				enrolled: data.enrolled
 			});

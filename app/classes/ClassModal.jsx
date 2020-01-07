@@ -23,45 +23,43 @@ export default class ClassModal extends Component {
 	}
 
 	save() {
-		var that = this;
 		this.setState({
 			loading: true
-		}, function() {
+		}, () => {
 			var classInfo = {
 				name: this.state.name,
 				teacher: this.state.teacher,
 				color: this.state.color
 			};
-			if (!that.state.isNew) {
+			if (!this.state.isNew) {
 				classInfo.id = this.props.modalState.id;
 			}
-			api.post((that.state.isNew ? "classes/add" : "classes/edit"), classInfo, function() {
-				that.props.refreshClasses(function() {
-					that.props.openModal("");
+			api.post((this.state.isNew ? "classes/add" : "classes/edit"), classInfo, () => {
+				this.props.refreshClasses(() => {
+					this.props.openModal("");
 				});
 			});
 		});
 	}
 
 	delete() {
-		var that = this;
 		if (confirm("Are you sure you want to delete this?")) {
 			this.setState({
 				loading: true
-			}, function() {
-				api.get("classes/hwInfo/" + that.props.modalState.id, {}, function(data) {
+			}, () => {
+				api.get("classes/hwInfo/" + this.props.modalState.id, {}, (data) => {
 					var hwItems = data.hwItems;
 					if (hwItems > 0) {
 						if (!confirm("This will ALSO delete the " + hwItems + " homework item(s) associated with this class. Are you *sure*?")) {
-							that.props.openModal("");
+							this.props.openModal("");
 							return;
 						}
 					}
 					api.post("classes/delete", {
-						id: that.props.modalState.id
-					}, function() {
-						that.props.refreshClasses(function() {
-							that.props.openModal("");
+						id: this.props.modalState.id
+					}, () => {
+						this.props.refreshClasses(() => {
+							this.props.openModal("");
 						});
 					});
 				});

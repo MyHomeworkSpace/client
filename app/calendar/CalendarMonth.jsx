@@ -59,9 +59,8 @@ export default class CalendarMonth extends Component {
 	}
 
 	componentDidMount() {
-		var that = this;
-		this.timer = setInterval(function() {
-			that.setState({
+		this.timer = setInterval(() => {
+			this.setState({
 				time: moment().unix()
 			});
 		}, 1000);
@@ -73,8 +72,6 @@ export default class CalendarMonth extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		var firstDay = moment(props.start).startOf("month");
 		var lastDay = moment(props.start).endOf("month");
 		
@@ -99,14 +96,14 @@ export default class CalendarMonth extends Component {
 					{viewDay && viewDay.announcements.map(function(announcement) {
 						return <div class="calendarMonthDayAnnouncement">{announcement.text}</div>;
 					})}
-					{viewDay && viewDay.events.sort(function(a, b) {
+					{viewDay && viewDay.events.sort((a, b) => {
 						var aStart = moment.unix(a.start);
 						var bStart = moment.unix(b.start);
 						var aOffset = aStart.diff(moment(aStart).startOf("day"), "seconds");
 						var bOffset = bStart.diff(moment(bStart).startOf("day"), "seconds");
 						return aOffset - bOffset;
-					}).map(function(event) {
-						return <CalendarEvent tiny type={event.type} item={event} groupIndex={0} groupLength={1} view={props.view} openPopover={that.openPopover.bind(that)} />;
+					}).map((event) => {
+						return <CalendarEvent tiny type={event.type} item={event} groupIndex={0} groupLength={1} view={props.view} openPopover={this.openPopover.bind(this)} />;
 					})}
 				</div>
 			</div>;

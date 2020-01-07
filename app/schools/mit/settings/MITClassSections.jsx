@@ -8,8 +8,6 @@ export default class MITClassSections extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		var sectionGroups = {};
 
 		props.registeredClass.sections.forEach(function(section) {
@@ -50,7 +48,7 @@ export default class MITClassSections extends Component {
 		return <div class="mitClassSections">
 			<h4 class="mitClassSectionsName">{props.registeredClass.subjectID} {props.registeredClass.title}</h4>
 			<div class="row">
-				{sectionGroupCodes.map(function(sectionGroupCode, i) {
+				{sectionGroupCodes.map((sectionGroupCode, i) => {
 					var codeToName = {
 						"B": "Lab",
 						"D": "Design",
@@ -63,10 +61,10 @@ export default class MITClassSections extends Component {
 						<div class="mitClassSectionGroupTitle">{codeToName[sectionGroupCode]}</div>
 						{[
 							{ time: "None", sectionCode: sectionGroupCode + "NONE" }
-						].concat(sectionsInGroup).map(function(sectionInGroup) {
+						].concat(sectionsInGroup).map((sectionInGroup) => {
 							return <div class="mitClassSection">
 								<label>
-									<input type="radio" checked={selectedSections.indexOf(sectionInGroup.sectionCode) > -1 || (sectionInGroup.sectionCode == sectionGroupCode + "NONE" && !hasCode[i])} onChange={that.setSection.bind(that, props.registeredClass.subjectID, sectionInGroup.sectionCode)} />
+									<input type="radio" checked={selectedSections.indexOf(sectionInGroup.sectionCode) > -1 || (sectionInGroup.sectionCode == sectionGroupCode + "NONE" && !hasCode[i])} onChange={this.setSection.bind(this, props.registeredClass.subjectID, sectionInGroup.sectionCode)} />
 									<div class="mitClassSectionInfo">
 										<div class="mitClassSectionTime">{sectionInGroup.time}</div>
 										{sectionInGroup.place && <div class="mitClassSectionDetails">in {sectionInGroup.place}</div>}

@@ -35,8 +35,6 @@ export default class TimePickerPopup extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		var suggestionBase = this.getSuggestionBase();
 		var showDuration = !!props.suggestStart;
 
@@ -63,7 +61,7 @@ export default class TimePickerPopup extends Component {
 		return <div class="timePickerPopup" ref={ (popup) => {
 			this._popup = popup;
 		}}>
-			{offsets.map(function(offset) {
+			{offsets.map((offset) => {
 				var momentTime = moment(suggestionBase).add(offset, "minutes");
 
 				var durationDisplay = "";
@@ -80,7 +78,7 @@ export default class TimePickerPopup extends Component {
 					}
 				}
 
-				return <div class="timePickerPopupSuggestion" onClick={that.clickSuggestion.bind(that, offset)}>
+				return <div class="timePickerPopupSuggestion" onClick={this.clickSuggestion.bind(this, offset)}>
 					{momentTime.format("h:mm a")}
 					{showDuration && <span class="timePickerPopupSuggestionDuration">
 						({durationDisplay})

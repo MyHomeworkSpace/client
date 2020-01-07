@@ -17,16 +17,15 @@ export default class ApplicationAuthForm extends Component {
 	}
 
 	componentDidMount() {
-		var that = this;
 		var applicationID = this.props.params[0];
-		api.get("application/get/" + applicationID, {}, function(data) {
+		api.get("application/get/" + applicationID, {}, (data) => {
 			if (data.status == "ok") {
-				that.setState({
+				this.setState({
 					loading: false,
 					application: data.application
 				});
 			} else {
-				that.setState({
+				this.setState({
 					loading: false,
 					error: errors.getFriendlyString(data.error)
 				});
@@ -45,8 +44,6 @@ export default class ApplicationAuthForm extends Component {
 	}
 
 	allow() {
-		var that = this;
-
 		var applicationID = this.props.params[0];
 		var state = this.props.params[1];
 
@@ -55,11 +52,11 @@ export default class ApplicationAuthForm extends Component {
 		}, function() {
 			api.post("application/completeAuth", {
 				clientId: applicationID
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					window.location.href = that.state.application.callbackUrl + "?token=" + escape(data.token) + (state ? "&state=" + encodeURIComponent(atob(state)) : "");
+					window.location.href = this.state.application.callbackUrl + "?token=" + escape(data.token) + (state ? "&state=" + encodeURIComponent(atob(state)) : "");
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});

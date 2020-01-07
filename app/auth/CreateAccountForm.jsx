@@ -24,8 +24,6 @@ export default class CreateAccountForm extends Component {
 	}
 
 	create() {
-		var that = this;
-
 		if (this.state.name == "") {
 			this.setState({
 				error: "You must enter your name!"
@@ -67,31 +65,31 @@ export default class CreateAccountForm extends Component {
 
 		this.setState({
 			loading: true
-		}, function() {
+		}, () => {
 			api.post("auth/createAccount", {
-				name: that.state.name,
-				email: that.state.email,
-				password: that.state.password
-			}, function(data) {
+				name: this.state.name,
+				email: this.state.email,
+				password: this.state.password
+			}, (data) => {
 				if (data.status == "ok") {
-					api.get("auth/me", {}, function(userData) {
+					api.get("auth/me", {}, (userData) => {
 						if (userData.status == "ok") {
-							that.props.handleLoginComplete.call(that, userData, "homework", function() {
+							this.props.handleLoginComplete(userData, "homework", () => {
 								if (data.school) {
-									that.props.openModal("enroll", {
-										email: that.state.email
+									this.props.openModal("enroll", {
+										email: this.state.email
 									});
 								}
 							});
 						} else {
-							that.setState({
+							this.setState({
 								loading: false,
 								error: errors.getFriendlyString(userData.error)
 							});
 						}
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});

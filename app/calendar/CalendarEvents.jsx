@@ -58,8 +58,6 @@ export default class CalendarEvents extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		var events = [
 			[], [], [], [], [], [], []
 		];
@@ -115,10 +113,10 @@ export default class CalendarEvents extends Component {
 			});
 		});
 
-		eventGroups.forEach(function(eventGroupList, dow) {
-			eventGroupList.forEach(function(eventGroup) {
-				eventGroup.forEach(function(eventItem, eventGroupIndex) {
-					eventElements[dow].push(<CalendarEvent type={eventItem.type} item={eventItem} groupIndex={eventGroupIndex} groupLength={eventGroup.length} view={props.view} openPopover={that.openPopover.bind(that)} />);
+		eventGroups.forEach((eventGroupList, dow) => {
+			eventGroupList.forEach((eventGroup) => {
+				eventGroup.forEach((eventItem, eventGroupIndex) => {
+					eventElements[dow].push(<CalendarEvent type={eventItem.type} item={eventItem} groupIndex={eventGroupIndex} groupLength={eventGroup.length} view={props.view} openPopover={this.openPopover.bind(this)} />);
 				});
 			});
 		});

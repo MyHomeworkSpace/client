@@ -84,8 +84,6 @@ export default class EventModal extends Component {
 	}
 
 	save() {
-		var that = this;
-
 		if (this.state.type == consts.EVENT_TYPE_HOMEWORK) {
 			if (!this.state.homework.id) {
 				this.setState({
@@ -105,7 +103,7 @@ export default class EventModal extends Component {
 		this.setState({
 			error: "",
 			loading: true
-		}, function() {
+		}, () => {
 			var start = this.combinedMoment("start");
 			var end = this.combinedMoment("end");
 
@@ -115,7 +113,7 @@ export default class EventModal extends Component {
 				end: end.unix(),
 				desc: this.state.description
 			};
-			if (!that.state.isNew) {
+			if (!this.state.isNew) {
 				eventInfo.id = this.props.modalState.id;
 			}
 			if (this.state.type == consts.EVENT_TYPE_HOMEWORK) {
@@ -137,13 +135,13 @@ export default class EventModal extends Component {
 
 			var endpointType = (this.state.type == consts.EVENT_TYPE_HOMEWORK ? "hwEvents" : "events");
 
-			api.post((that.state.isNew ? `calendar/${endpointType}/add` : `calendar/${endpointType}/edit`), eventInfo, function(data) {
+			api.post((this.state.isNew ? `calendar/${endpointType}/add` : `calendar/${endpointType}/edit`), eventInfo, (data) => {
 				if (data.status == "ok") {
-					that.props.openModal("");
+					this.props.openModal("");
 					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
 					document.querySelector("#calendar .dateHeaderControlsRefresh").click();
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});
@@ -153,16 +151,15 @@ export default class EventModal extends Component {
 	}
 
 	delete() {
-		var that = this;
 		if (confirm("Are you sure you want to delete this?")) {
 			this.setState({
 				loading: true
-			}, function() {
+			}, () => {
 				var endpointType = (this.state.type == consts.EVENT_TYPE_HOMEWORK ? "hwEvents" : "events");
 				api.post(`calendar/${endpointType}/delete`, {
-					id: that.props.modalState.id
-				}, function() {
-					that.props.openModal("");
+					id: this.props.modalState.id
+				}, () => {
+					this.props.openModal("");
 					// TODO: this is an incredibly ugly hack that works until more of the app is using preact
 					document.querySelector("#calendar .dateHeaderControlsRefresh").click();
 				});
@@ -239,11 +236,10 @@ export default class EventModal extends Component {
 
 	removeRecurEnd() {
 		// hack: setTimeout because otherwise it triggers another click event for some dumb reason that I don't understand
-		var that = this;
-		setTimeout(function() {
-			var newRule = that.state.recurRule;
+		setTimeout(() => {
+			var newRule = this.state.recurRule;
 			newRule.until = null;
-			that.setState({
+			this.setState({
 				recurRule: newRule,
 				recurUntil: null
 			});

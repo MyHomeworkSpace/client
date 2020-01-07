@@ -29,7 +29,6 @@ export default class FeedbackPopup extends Component {
 	}
 
 	submit() {
-		var that = this;
 		if (this.state.message.trim() == "") {
 			this.setState({
 				error: true
@@ -38,16 +37,17 @@ export default class FeedbackPopup extends Component {
 			});
 			return;
 		}
+
 		this.setState({
 			loading: true,
 			error: false
-		}, function() {
+		}, () => {
 			api.post("feedback/add", {
-				type: that.state.type,
-				text: that.state.message,
-				screenshot: that.state.screenshot
-			}, function() {
-				that.setState({
+				type: this.state.type,
+				text: this.state.message,
+				screenshot: this.state.screenshot
+			}, () => {
+				this.setState({
 					loading: false,
 					sent: true
 				});

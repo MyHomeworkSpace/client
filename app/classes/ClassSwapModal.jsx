@@ -14,23 +14,21 @@ export default class ClassSwapModal extends Component {
 	}
 
 	swap(otherClass) {
-		var that = this;
 		this.setState({
 			loading: true
-		}, function() {
+		}, () => {
 			api.post("classes/swap", {
 				id1: this.props.modalState.id,
 				id2: otherClass.id
-			}, function() {
-				that.props.refreshClasses(function() {
-					that.close.call(that);
+			}, () => {
+				this.props.refreshClasses(() => {
+					this.close();
 				});
 			});
 		});
 	}
 
 	render(props, state) {
-		var that = this;
 		var title = "Swap '" + props.modalState.name + "'";
 
 		if (state.loading) {
@@ -44,12 +42,12 @@ export default class ClassSwapModal extends Component {
 		return <Modal title={title} openModal={props.openModal} class="classSwapModal">
 			<div class="modal-body">
 				<p>Select a class to swap '{props.modalState.name}' with.</p>
-				{props.classes.map(function(classItem) {
+				{props.classes.map((classItem) => {
 					if (classItem.id == props.modalState.id) {
 						// don't show the current class as an option
 						return null;
 					}
-					return <div class="classSwapOption" onClick={that.swap.bind(that, classItem)}>
+					return <div class="classSwapOption" onClick={this.swap.bind(this, classItem)}>
 						<ClassName classObject={classItem} />
 					</div>;
 				})}

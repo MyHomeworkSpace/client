@@ -17,8 +17,6 @@ export default class TopBarDropdown extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		var tabs = {};
 		tabs["classes"] = { icon: "graduation-cap", name: "Classes" };
 		(props.tabs || []).forEach(function(tab) {
@@ -35,16 +33,16 @@ export default class TopBarDropdown extends Component {
 		</span>} containerClass={`topBarButton topBarDropdownContainer ${state.open ? "selected" : "" }`} class="topBarDropdown" open={!!state.open} setOpen={this.setOpen.bind(this)}>
 			<div class="topBarDropdownPopup">
 				<div class="topBarDropdownMainTabs">
-					{Object.keys(props.mainTabs).map(function(tabKey) {
+					{Object.keys(props.mainTabs).map((tabKey) => {
 						var tab = props.mainTabs[tabKey];
-						return <div class="topBarDropdownOption mainTab" onClick={that.openPage.bind(that, tabKey)}>
+						return <div class="topBarDropdownOption mainTab" onClick={this.openPage.bind(this, tabKey)}>
 							<i class={`fa fa-fw fa-${tab.icon}`} /> {tab.name}
 						</div>;
 					})}
 				</div>
-				{Object.keys(tabs).map(function(tabKey) {
+				{Object.keys(tabs).map((tabKey) => {
 					var tab = tabs[tabKey];
-					return <div class="topBarDropdownOption" onClick={that.openPage.bind(that, tabKey)}>
+					return <div class="topBarDropdownOption" onClick={this.openPage.bind(this, tabKey)}>
 						<i class={`fa fa-fw fa-${tab.icon}`} /> {tab.name}
 					</div>;
 				})}

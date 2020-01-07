@@ -30,12 +30,11 @@ export default class ClassDetails extends Component {
 	}
 
 	load() {
-		const that = this;
 		this.setState({
 			loading: true
-		}, function() {
-			api.get(`homework/getForClass/${this.props.classObject.id}`, {}, function(data) {
-				that.setState({
+		}, () => {
+			api.get(`homework/getForClass/${this.props.classObject.id}`, {}, (data) => {
+				this.setState({
 					loading: false,
 					homework: data.homework
 				});

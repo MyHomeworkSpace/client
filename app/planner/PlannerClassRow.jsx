@@ -17,24 +17,23 @@ export default class PlannerClassRow extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		return <div class="plannerClassRow">
 			<div class="plannerClassInfo plannerRowItem">
 				<ClassName classObject={props.classObject} />
 			</div>
-			{[ 0, 1, 2, 3, 4, 5, 6 ].map(function(dayIndex) {
+			{[ 0, 1, 2, 3, 4, 5, 6 ].map((dayIndex) => {
 				var day = moment(props.currentWeek).add(dayIndex, "days");
 				var formattedDay = day.format("YYYY-MM-DD");
-				var homework = (props.classHomework[props.classObject.id] || []).filter(function(homeworkItem) {
+				var homework = (props.classHomework[props.classObject.id] || []).filter((homeworkItem) => {
 					return (formattedDay == homeworkItem.due);
 				});
-				var allDone = homework.reduce(function(allDone, homework) {
+				var allDone = homework.reduce((allDone, homework) => {
 					if (!allDone) { return false; }
 					return (homework.complete == 1);
 				}, true);
+
 				return <div class={`plannerRowItem ${MyHomeworkSpace.Pages.settings.cache.darkenDoneBoxes && allDone ? "plannerRowItemDone" :""}`}>
-					{homework.map(function(homeworkItem) {
+					{homework.map((homeworkItem) => {
 						return <PlannerHomeworkItem
 							homeworkItem={homeworkItem}
 							setDone={props.setDone}
@@ -42,7 +41,7 @@ export default class PlannerClassRow extends Component {
 						/>;
 					})}
 					<div class="plannerRowItemAdd">
-						<button class="btn btn-default btn-xs" onClick={that.addHomework.bind(that, formattedDay)}><i class="fa fa-plus" /> add</button>
+						<button class="btn btn-default btn-xs" onClick={this.addHomework.bind(this, formattedDay)}><i class="fa fa-plus" /> add</button>
 					</div>
 				</div>;
 			})}

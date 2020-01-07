@@ -52,8 +52,6 @@ export default class MITSettings extends Component {
 	}
 
 	save() {
-		var that = this;
-
 		var settings = {
 			sections: {}
 		};
@@ -64,15 +62,15 @@ export default class MITSettings extends Component {
 
 		this.setState({
 			loading: true
-		}, function() {
+		}, () => {
 			api.post("schools/settings/set", {
 				school: "mit",
 				settings: JSON.stringify(settings)
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.props.closeModal();
+					this.props.closeModal();
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});
@@ -82,8 +80,6 @@ export default class MITSettings extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		if (state.loading) {
 			return <div>
 				<div class="modal-body">
@@ -95,8 +91,8 @@ export default class MITSettings extends Component {
 		return <div>
 			<div class="modal-body">
 				{state.error && <div class="alert alert-danger">{state.error}</div>}
-				{state.registration.map(function(registeredClass) {
-					return <MITClassSections registeredClass={registeredClass} setSectionForSubject={that.setSectionForSubject.bind(that)} />;
+				{state.registration.map((registeredClass) => {
+					return <MITClassSections registeredClass={registeredClass} setSectionForSubject={this.setSectionForSubject.bind(this)} />;
 				})}
 			</div>
 			<div class="modal-footer">

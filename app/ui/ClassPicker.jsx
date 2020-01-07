@@ -22,8 +22,6 @@ export default class ClassPicker extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		var selectedClass;
 		var display;
 
@@ -43,8 +41,8 @@ export default class ClassPicker extends Component {
 
 		return <Picker display={display} open={state.open} setOpen={this.setOpen.bind(this)}>
 			<div class="pickerPopup classPickerPopup">
-				{props.classes.map(function(classObject) {
-					return <ClassPickerItem classObject={classObject} onClick={that.selectClass.bind(that, classObject)} />;
+				{props.classes.map((classObject) => {
+					return <ClassPickerItem classObject={classObject} onClick={this.selectClass.bind(this, classObject)} />;
 				})}
 			</div>
 		</Picker>;

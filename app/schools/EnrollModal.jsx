@@ -40,12 +40,11 @@ export default class EnrollModal extends Component {
 	}
 
 	componentDidMount() {
-		var that = this;
 		if (this.props.modalState.email) {
 			this.setState({
 				email: this.props.modalState.email
-			}, function() {
-				that.submitEmail.call(that, this.props.modalState.reenroll);
+			}, () => {
+				this.submitEmail(this.props.modalState.reenroll);
 			});
 		}
 	}
@@ -67,22 +66,21 @@ export default class EnrollModal extends Component {
 			return;
 		}
 
-		var that = this;
 		this.setState({
 			loading: true,
 			error: ""
-		}, function() {
+		}, () => {
 			api.get("schools/lookup", {
 				email: this.state.email
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						loading: false,
 						step: (skipFoundStep ? 2 : 1),
 						school: data.school
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});

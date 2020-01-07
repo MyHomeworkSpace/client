@@ -25,12 +25,11 @@ export default class HomeworkPage extends Component {
 	load() {
 		this.setState({
 			loading: true
-		}, function() {
-			var that = this;
+		}, () => {
 			api.get("homework/getHWViewSorted", {
 				showToday: true
-			}, function(data) {
-				that.setState({
+			}, (data) => {
+				this.setState({
 					loading: false,
 					homework: data
 				});
@@ -39,9 +38,8 @@ export default class HomeworkPage extends Component {
 	}
 
 	markOverdueDone() {
-		var that = this;
-		api.post("homework/markOverdueDone", {}, function() {
-			that.load.call(that);
+		api.post("homework/markOverdueDone", {}, () => {
+			this.load();
 		});
 	}
 

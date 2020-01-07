@@ -25,8 +25,6 @@ export default class CompleteEmailForm extends Component {
 	}
 
 	submit() {
-		var that = this;
-
 		var params = {
 			token: this.props.params[0]
 		};
@@ -59,15 +57,15 @@ export default class CompleteEmailForm extends Component {
 			loading: true,
 			error: ""
 		}, function() {
-			api.post("auth/completeEmail", params, function(data) {
+			api.post("auth/completeEmail", params, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						loading: false,
 						tokenType: data.token.type,
 						success: !data.infoRequired
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						tokenType: consts.TOKEN_TYPE_NONE
 					});

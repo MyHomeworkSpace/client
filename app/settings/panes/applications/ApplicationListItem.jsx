@@ -4,11 +4,10 @@ import api from "api.js";
 
 export default class ApplicationListItem extends Component {
 	revoke() {
-		var that = this;
 		api.post("application/revokeAuth", {
 			id: this.props.authorization.id
-		}, function() {
-			that.props.refresh();
+		}, () => {
+			this.props.refresh();
 		});
 	}
 

@@ -19,8 +19,6 @@ export default class AddPrefix extends Component {
 	}
 
 	addPrefix() {
-		var that = this;
-
 		if (this.state.words.trim() == "") {
 			this.setState({
 				loading: false,
@@ -31,21 +29,21 @@ export default class AddPrefix extends Component {
 
 		this.setState({
 			loading: true
-		}, function() {
+		}, () => {
 			api.post("prefixes/add", {
 				background: this.state.background,
 				color: this.calculateTextColor(this.state.background),
 				words: JSON.stringify(this.state.words.split(" ")),
 				timedEvent: false
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						loading: false,
 						words: "",
 						refresh: true
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});

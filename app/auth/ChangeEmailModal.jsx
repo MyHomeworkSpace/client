@@ -19,8 +19,6 @@ export default class ChangeEmailModal extends Component {
 	}
 
 	submit() {
-		var that = this;
-
 		if (this.state.newEmail == "") {
 			this.setState({
 				error: "You must enter a new email!"
@@ -34,14 +32,14 @@ export default class ChangeEmailModal extends Component {
 		}, function() {
 			api.post("auth/changeEmail", {
 				new: this.state.newEmail
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						loading: false,
 						success: true
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});

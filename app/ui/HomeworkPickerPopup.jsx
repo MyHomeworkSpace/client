@@ -20,9 +20,8 @@ export default class HomeworkPickerPopup extends Component {
 	}
 
 	componentDidMount() {
-		var that = this;
-		api.get("homework/getPickerSuggestions", {}, function(data) {
-			that.setState({
+		api.get("homework/getPickerSuggestions", {}, (data) => {
+			this.setState({
 				suggestions: data.homework,
 				loading: false
 			});
@@ -30,16 +29,15 @@ export default class HomeworkPickerPopup extends Component {
 	}
 
 	keyup(e) {
-		var that = this;
 		if (e.keyCode == 13) {
 			this.setState({
 				lastQuery: this.state.query,
 				loading: true
-			}, function() {
+			}, () => {
 				api.get("homework/search", {
 					q: this.state.query
-				}, function(data) {
-					that.setState({
+				}, (data) => {
+					this.setState({
 						results: data.homework,
 						loading: false
 					});
@@ -54,14 +52,13 @@ export default class HomeworkPickerPopup extends Component {
 
 	render(props, state) {
 		var noResults = "noResults";
-		var that = this;
 		var results;
 
 		if (state.loading) {
 			results = <p><LoadingIndicator type="inline" /> Loading, please wait...</p>;
 		} else if (state.lastQuery == "") {
-			results = state.suggestions.map(function(result) {
-				return <div class="homeworkPickerPopupResult" onClick={that.resultClick.bind(that, result)}>
+			results = state.suggestions.map((result) => {
+				return <div class="homeworkPickerPopupResult" onClick={this.resultClick.bind(this, result)}>
 					<HomeworkName name={result.name} />
 				</div>;
 			});
@@ -69,8 +66,8 @@ export default class HomeworkPickerPopup extends Component {
 			results = <p>No results found.</p>;
 		} else {
 			noResults = "";
-			results = state.results.map(function(result) {
-				return <div class="homeworkPickerPopupResult" onClick={that.resultClick.bind(that, result)}>
+			results = state.results.map((result) => {
+				return <div class="homeworkPickerPopupResult" onClick={this.resultClick.bind(this, result)}>
 					<HomeworkName name={result.name} />
 				</div>;
 			});

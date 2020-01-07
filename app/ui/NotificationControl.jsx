@@ -22,10 +22,9 @@ export default class NotificationControl extends Component {
 	}
 
 	load() {
-		let that = this;
-		api.get("notifications/get", {}, function(notifications) {
-			that.setState({
-				notifications: notifications.notifications,
+		api.get("notifications/get", {}, (data) => {
+			this.setState({
+				notifications: data.notifications,
 			});
 		});
 	}

@@ -19,14 +19,13 @@ export default class PrefixList extends Component {
 	}
 
 	deleteGroup(id) {
-		var that = this;
-		api.post("prefixes/delete", { id: id }, function(data) {
+		api.post("prefixes/delete", { id: id }, (data) => {
 			if (data.status == "ok") {
-				that.setState({
-					hideGroups: that.state.hideGroups.concat([id])
+				this.setState({
+					hideGroups: this.state.hideGroups.concat([id])
 				});
 			} else {
-				that.setState({
+				this.setState({
 					error: errors.getFriendlyString(data.error)
 				});
 			}
@@ -46,8 +45,7 @@ export default class PrefixList extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-		var groups = prefixes.list.map(function(group) {
+		var groups = prefixes.list.map((group) => {
 			if (group.words.indexOf("Hex") > -1 || state.hideGroups.indexOf(group.id) > -1) {
 				// shhhhh
 				return;
@@ -59,7 +57,7 @@ export default class PrefixList extends Component {
 
 			return <div class="prefixListGroup">
 				{words}
-				{group.id != -1 && <button class="btn btn-xs btn-danger" onClick={that.deleteGroup.bind(that, group.id)}><i class="fa fa-trash-o" /></button>}
+				{group.id != -1 && <button class="btn btn-xs btn-danger" onClick={this.deleteGroup.bind(this, group.id)}><i class="fa fa-trash-o" /></button>}
 			</div>;
 		});
 

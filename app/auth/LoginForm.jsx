@@ -36,8 +36,6 @@ export default class LoginForm extends Component {
 	}
 
 	login() {
-		var that = this;
-
 		if (this.state.email.trim() == "") {
 			this.setState({
 				error: "You must enter your email!"
@@ -64,32 +62,32 @@ export default class LoginForm extends Component {
 		this.setState({
 			loading: true,
 			error: ""
-		}, function() {
+		}, () => {
 			api.post("auth/login", {
-				email: that.state.email,
-				password: that.state.password,
-				code: that.state.code,
-			}, function(loginData) {
+				email: this.state.email,
+				password: this.state.password,
+				code: this.state.code,
+			}, (loginData) => {
 				if (loginData.status == "ok") {
-					api.get("auth/me", {}, function(userData) {
+					api.get("auth/me", {}, (userData) => {
 						if (userData.status == "ok") {
-							that.props.callback.call(that, userData, (that.props.params.length > 0 ? that.props.params.join(":") : ""));
+							this.props.callback(userData, (this.props.params.length > 0 ? this.props.params.join(":") : ""));
 						} else {
-							that.setState({
+							this.setState({
 								loading: false,
 								error: errors.getFriendlyString(userData.error)
 							});
 						}
 					});
 				} else if (loginData.status == "error" && loginData.error == "totp_required") {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: null,
 						twoFactor: true,
 						code: ""
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(loginData.error)
 					});

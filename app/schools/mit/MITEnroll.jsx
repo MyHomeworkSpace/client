@@ -50,30 +50,29 @@ export default class MITEnroll extends Component {
 			return;
 		}
 
-		var that = this;
 		this.setState({
 			loading: true,
 			error: ""
-		}, function() {
+		}, () => {
 			api.post("schools/enroll", {
 				school: "mit",
 				data: JSON.stringify({
 					stage: 0,
-					username: that.state.username,
-					password: that.state.password
+					username: this.state.username,
+					password: this.state.password
 				})
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.props.next();
+					this.props.next();
 				} else {
 					if (data.error == "more_info") {
-						that.setState({
+						this.setState({
 							loading: false,
 							stage: 1,
 							duo: data.details.duo
 						});
 					} else {
-						that.setState({
+						this.setState({
 							loading: false,
 							error: errors.getFriendlyString(data.error)
 						});
@@ -96,8 +95,6 @@ export default class MITEnroll extends Component {
 	}
 
 	completeDuo() {
-		var that = this;
-
 		if (this.state.duoMethod == -1) {
 			this.setState({
 				error: "You must select a Duo method!"
@@ -108,26 +105,26 @@ export default class MITEnroll extends Component {
 		this.setState({
 			loading: true,
 			error: ""
-		}, function() {
+		}, () => {
 			api.post("schools/enroll", {
 				school: "mit",
 				data: JSON.stringify({
 					stage: 1,
-					username: that.state.username,
-					password: that.state.password,
-					duoMethodIndex: parseInt(that.state.duoMethod)
+					username: this.state.username,
+					password: this.state.password,
+					duoMethodIndex: parseInt(this.state.duoMethod)
 				})
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.props.next();
+					this.props.next();
 				} else {
 					if (data.error == "duo_denied") {
-						that.setState({
+						this.setState({
 							loading: false,
 							error: "The Duo sign-in was denied."
 						});
 					} else {
-						that.setState({
+						this.setState({
 							loading: false,
 							error: errors.getFriendlyString(data.error)
 						});
@@ -138,8 +135,6 @@ export default class MITEnroll extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		return <div class="mitEnroll">
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
 
@@ -159,7 +154,7 @@ export default class MITEnroll extends Component {
 			{state.stage == 1 && <div class="stage1">
 				To complete your sign-in, you'll need to authenticate with Duo. Select a method:
 				<div class="duoMethods">
-					{state.duo.methods.map(function(method, methodIndex) {
+					{state.duo.methods.map((method, methodIndex) => {
 						var supported = (method.FriendlyName == "Duo Push");
 						return <div>
 							<label class={supported ? "" : "unsupported"}>
@@ -167,7 +162,7 @@ export default class MITEnroll extends Component {
 									type="radio"
 									value={methodIndex}
 									checked={state.duoMethod == methodIndex}
-									onChange={linkState(that, "duoMethod", "target.value")}
+									onChange={linkState(this, "duoMethod", "target.value")}
 									disabled={!supported}
 								/>
 								<div>

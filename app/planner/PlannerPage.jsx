@@ -27,21 +27,18 @@ export default class PlannerPage extends Component {
 	}
 
 	loadWeek(week) {
-		var that = this;
-
 		this.setState({
 			loading: true,
 			currentWeek: week,
 			homeworkInfo: null,
 			weekInfo: null
-		}, function() {
-			var that = this;
-			api.get("planner/getWeekInfo/" + that.state.currentWeek.format("YYYY-MM-DD"), {}, function(weekData) {
-				that.setState({
+		}, () => {
+			api.get("planner/getWeekInfo/" + this.state.currentWeek.format("YYYY-MM-DD"), {}, (weekData) => {
+				this.setState({
 					weekInfo: weekData
-				}, function() {
-					api.get("homework/getWeek/" + that.state.currentWeek.format("YYYY-MM-DD"), {}, function(homeworkData) {
-						that.setState({
+				}, () => {
+					api.get("homework/getWeek/" + this.state.currentWeek.format("YYYY-MM-DD"), {}, (homeworkData) => {
+						this.setState({
 							loading: false,
 							homeworkInfo: homeworkData
 						});
@@ -77,8 +74,6 @@ export default class PlannerPage extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		if (!state.currentWeek) {
 			return <div class="plannerPage"></div>;
 		}
@@ -124,12 +119,12 @@ export default class PlannerPage extends Component {
 				})}
 			</div>
 			<div class="plannerWeek">
-				{props.classes.map(function(classObject) {
+				{props.classes.map((classObject) => {
 					return <PlannerClassRow
 						currentWeek={state.currentWeek}
 						classObject={classObject}
 						classHomework={classHomework || {}}
-						setDone={that.setDone.bind(that)}
+						setDone={this.setDone.bind(this)}
 						openModal={props.openModal}
 					/>;
 				})}

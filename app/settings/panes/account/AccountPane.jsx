@@ -28,19 +28,17 @@ export default class AccountPane extends Component {
 	}
 
 	resendVerificationEmail() {
-		var that = this;
-
 		this.setState({
 			resendLoading: true
-		}, function() {
-			api.post("auth/resendVerificationEmail", {}, function(data) {
+		}, () => {
+			api.post("auth/resendVerificationEmail", {}, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						resendLoading: false,
 						resendSent: true
 					});
 				} else {
-					that.setState({
+					this.setState({
 						resendLoading: false,
 						error: errors.getFriendlyString(data.error)
 					});

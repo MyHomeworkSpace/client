@@ -38,9 +38,8 @@ export default class BackgroundModal extends Component {
 		if (this._colorTimeout) {
 			clearTimeout(this._colorTimeout);
 		}
-		var that = this;
-		this._colorTimeout = setTimeout(function() {
-			that.saveBackground(bgStr);
+		this._colorTimeout = setTimeout(() => {
+			this.saveBackground(bgStr);
 		}, 300);
 	}
 	

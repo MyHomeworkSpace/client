@@ -24,8 +24,6 @@ export default class ChangePasswordModal extends Component {
 	}
 
 	submit() {
-		var that = this;
-
 		if (this.state.password == "") {
 			this.setState({
 				error: "You must enter a new password!"
@@ -53,14 +51,14 @@ export default class ChangePasswordModal extends Component {
 			api.post("auth/changePassword", {
 				current: this.state.currentPassword,
 				new: this.state.newPassword
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						loading: false,
 						success: true
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});

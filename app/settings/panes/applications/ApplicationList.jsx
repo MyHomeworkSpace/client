@@ -19,12 +19,11 @@ export default class ApplicationList extends Component {
 	}
 
 	refresh() {
-		var that = this;
 		this.setState({
 			loading: true
-		}, function() {
-			api.get("application/getAuthorizations", {}, function(data) {
-				that.setState({
+		}, () => {
+			api.get("application/getAuthorizations", {}, (data) => {
+				this.setState({
 					loading: false,
 					authorizations: data.authorizations
 				});
@@ -33,8 +32,6 @@ export default class ApplicationList extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		if (state.loading) {
 			return <div class="applicationList loading"><i class="fa fa-refresh fa-spin"></i> Loading, please wait...</div>;
 		}
@@ -42,8 +39,8 @@ export default class ApplicationList extends Component {
 			return <div class="applicationList empty">You have not given any applications permission to access your account.</div>;
 		}
 
-		var authorizations = state.authorizations.map(function(authorization) {
-			return <ApplicationListItem authorization={authorization} refresh={that.refresh.bind(that)} />;
+		var authorizations = state.authorizations.map((authorization) => {
+			return <ApplicationListItem authorization={authorization} refresh={this.refresh.bind(this)} />;
 		});
 		return <div class="applicationList">{authorizations}</div>;
 	}

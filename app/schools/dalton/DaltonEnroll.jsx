@@ -39,22 +39,21 @@ export default class DaltonEnroll extends Component {
 			return;
 		}
 
-		var that = this;
 		this.setState({
 			loading: true
-		}, function() {
+		}, () => {
 			api.post("schools/enroll", {
 				school: "dalton",
-				reenroll: that.props.reenroll,
+				reenroll: this.props.reenroll,
 				data: JSON.stringify({
-					username: that.state.username,
-					password: that.state.password
+					username: this.state.username,
+					password: this.state.password
 				})
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.props.next();
+					this.props.next();
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});

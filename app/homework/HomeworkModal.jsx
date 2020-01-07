@@ -34,9 +34,8 @@ export default class HomeworkModal extends Component {
 	}
 
 	componentDidMount() {
-		var that = this;
-		setTimeout(function() {
-			document.body.addEventListener("keyup", that._bodyKeyUp);
+		setTimeout(() => {
+			document.body.addEventListener("keyup", this._bodyKeyUp);
 		}, 10);
 	}
 
@@ -45,8 +44,6 @@ export default class HomeworkModal extends Component {
 	}
 
 	save() {
-		var that = this;
-
 		if (this.state.name == "") {
 			this.setState({
 				error: "You must enter a name."
@@ -63,7 +60,7 @@ export default class HomeworkModal extends Component {
 		this.setState({
 			error: "",
 			loading: true
-		}, function() {
+		}, () => {
 			var homeworkInfo = {
 				name: this.state.name,
 				due: this.state.due.format("YYYY-MM-DD"),
@@ -71,16 +68,16 @@ export default class HomeworkModal extends Component {
 				complete: (this.state.complete ? "1" : "0"),
 				classId: this.state.classId
 			};
-			if (!that.state.isNew) {
+			if (!this.state.isNew) {
 				homeworkInfo.id = this.props.modalState.id;
 			}
 
-			api.post((that.state.isNew ? "homework/add" : "homework/edit"), homeworkInfo, function(data) {
+			api.post((this.state.isNew ? "homework/add" : "homework/edit"), homeworkInfo, (data) => {
 				if (data.status == "ok") {
-					that.props.openModal("");
+					this.props.openModal("");
 					MyHomeworkSpace.Pages.homework.handleNew();
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});
@@ -90,15 +87,14 @@ export default class HomeworkModal extends Component {
 	}
 
 	delete() {
-		var that = this;
 		if (confirm("Are you sure you want to delete this?")) {
 			this.setState({
 				loading: true
-			}, function() {
+			}, () => {
 				api.post("homework/delete", {
-					id: that.props.modalState.id
-				}, function() {
-					that.props.openModal("");
+					id: this.props.modalState.id
+				}, () => {
+					this.props.openModal("");
 					MyHomeworkSpace.Pages.homework.handleNew();
 				});
 			});

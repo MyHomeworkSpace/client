@@ -52,7 +52,6 @@ export default class TopBar extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
 		var tabs = {
 			"homework": { icon: "file-o", name: "Homework" },
 			"planner": { icon: "book", name: "Planner" },
@@ -63,9 +62,9 @@ export default class TopBar extends Component {
 			<div>
 				<NavLogo />
 
-				{Object.keys(tabs).map(function(tabKey) {
+				{Object.keys(tabs).map((tabKey) => {
 					var tab = tabs[tabKey];
-					return <TopBarButton icon={tab.icon} selected={props.page == tabKey} onClick={that.openPage.bind(that, tabKey)}>{tab.name}</TopBarButton>;
+					return <TopBarButton icon={tab.icon} selected={props.page == tabKey} onClick={this.openPage.bind(this, tabKey)}>{tab.name}</TopBarButton>;
 				})}
 				<TopBarDropdown me={props.me} mainTabs={tabs} tabs={props.tabs} page={props.page} openPage={props.openPage} />
 			</div>

@@ -18,9 +18,8 @@ export default class CalendarWeek extends Component {
 	}
 
 	componentDidMount() {
-		var that = this;
-		this.timer = setInterval(function() {
-			that.setState({
+		this.timer = setInterval(() => {
+			this.setState({
 				time: moment().unix()
 			});
 		}, 1000);

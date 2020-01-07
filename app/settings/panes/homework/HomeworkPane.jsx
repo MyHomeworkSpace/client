@@ -26,21 +26,20 @@ export default class HomeworkPane extends Component {
 	}
 
 	refresh() {
-		var that = this;
 		this.setState({
 			loading: true,
 			classPrompt: false
-		}, function() {
-			api.get("prefs/get/homeworkHiddenClasses", {}, function(data) {
+		}, () => {
+			api.get("prefs/get/homeworkHiddenClasses", {}, (data) => {
 				if (data.status == "ok") {
 					// found a preference, read it
-					that.setState({
+					this.setState({
 						loading: false,
 						hiddenClasses: JSON.parse(data.pref.value)
 					});
 				} else {
 					// it's not set, so default to empty
-					that.setState({
+					this.setState({
 						loading: false,
 						hiddenClasses: []
 					});
@@ -50,10 +49,9 @@ export default class HomeworkPane extends Component {
 	}
 
 	getAvailableClasses() {
-		var that = this;
 		var availableClasses = [];
-		this.props.classes.forEach(function(classObject) {
-			if (that.state.hiddenClasses.indexOf(classObject.id) == -1) {
+		this.props.classes.forEach((classObject) => {
+			if (this.state.hiddenClasses.indexOf(classObject.id) == -1) {
 				availableClasses.push(classObject);
 			}
 		});
@@ -67,7 +65,6 @@ export default class HomeworkPane extends Component {
 	}
 
 	addClass() {
-		var that = this;
 		if (!this.state.classPrompt) {
 			this.setState({
 				classPrompt: true,
@@ -76,14 +73,14 @@ export default class HomeworkPane extends Component {
 		} else {
 			this.setState({
 				loading: true
-			}, function() {
+			}, () => {
 				var hiddenClasses = this.state.hiddenClasses;
 				hiddenClasses.push(parseInt(this.state.selectedClass));
 				api.post("prefs/set", {
 					key: "homeworkHiddenClasses",
 					value: JSON.stringify(hiddenClasses)
-				}, function() {
-					that.refresh.call(that);
+				}, () => {
+					this.refresh();
 				});
 			});
 		}
@@ -93,24 +90,22 @@ export default class HomeworkPane extends Component {
 		if (!confirm("Unhide this class?")) {
 			return;
 		}
-		var that = this;
+
 		this.setState({
 			loading: true
-		}, function() {
-			var hiddenClasses = that.state.hiddenClasses;
+		}, () => {
+			var hiddenClasses = this.state.hiddenClasses;
 			hiddenClasses.splice(hiddenClasses.indexOf(classId), 1);
 			api.post("prefs/set", {
 				key: "homeworkHiddenClasses",
 				value: JSON.stringify(hiddenClasses)
-			}, function() {
-				that.refresh.call(that);
+			}, () => {
+				this.refresh();
 			});
 		});
 	}
 
 	render(props, state) {
-		var that = this;
-
 		if (state.loading) {
 			return <div><LoadingIndicator /> Loading, please wait...</div>;
 		}
@@ -136,9 +131,9 @@ export default class HomeworkPane extends Component {
 
 			<div class="homeworkSettingsClassList">
 				{state.hiddenClasses.length == 0 && <p>You haven't hidden any classes.</p>}
-				{state.hiddenClasses.map(function(classId) {
+				{state.hiddenClasses.map((classId) => {
 					var classObject;
-					props.classes.forEach(function(potentialClass) {
+					props.classes.forEach((potentialClass) => {
 						if (potentialClass.id == classId) {
 							classObject = potentialClass;
 							return false;
@@ -152,7 +147,7 @@ export default class HomeworkPane extends Component {
 
 					return <div class="homeworkSettingsClass">
 						<ClassName classObject={classObject} />
-						<div class="homeworkSettingsClassRemove" onClick={that.removeClass.bind(that, classObject.id)}>
+						<div class="homeworkSettingsClassRemove" onClick={this.removeClass.bind(this, classObject.id)}>
 							<i class="fa fa-trash" />
 						</div>
 					</div>;

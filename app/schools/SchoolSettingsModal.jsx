@@ -27,17 +27,16 @@ export default class SchoolSettingsModal extends Component {
 	}
 
 	componentDidMount() {
-		var that = this;
 		api.get("schools/settings/get", {
 			school: this.props.modalState.school.schoolID
-		}, function(data) {
+		}, (data) => {
 			if (data.status == "ok") {
-				that.setState({
+				this.setState({
 					loading: false,
 					currentSettings: data.settings
 				});
 			} else {
-				that.setState({
+				this.setState({
 					loading: false,
 					error: errors.getFriendlyString(data.error)
 				});

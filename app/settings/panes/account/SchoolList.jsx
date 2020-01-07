@@ -38,8 +38,6 @@ export default class SchoolList extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		if (props.me.schools.length == 0) {
 			return <div class="schoolList none">
 				You haven't connected any school accounts to MyHomeworkSpace.
@@ -47,7 +45,7 @@ export default class SchoolList extends Component {
 		}
 
 		return <div class="schoolList">
-			{props.me.schools.map(function(school) {
+			{props.me.schools.map((school) => {
 				return <div class={`schoolItem ${school.enabled ? "" : "disabled"}`}>
 					<div class="schoolData pull-left">
 						<div class="schoolName">{school.displayName} {!school.enabled && " (disabled)"}</div>
@@ -55,9 +53,9 @@ export default class SchoolList extends Component {
 						{!school.enabled && <div>This school has been disabled. It won't appear in your Calendar.</div>}
 					</div>
 					<div class="schoolActions pull-right">
-						{school.enabled && <button class="btn btn-primary" onClick={that.settings.bind(that, school)}><i class="fa fa-fw fa-gear" /> Settings</button>}
-						<button class={`btn btn-${school.enabled ? "default": "primary"}`} onClick={that.setEnabled.bind(that, school, !school.enabled)}><i class="fa fa-fw fa-power-off" /> {school.enabled ? "Disable" : "Enable"}</button>
-						<button class="btn btn-danger" onClick={that.disconnect.bind(that, school)}><i class="fa fa-fw fa-chain-broken" /> Disconnect</button>
+						{school.enabled && <button class="btn btn-primary" onClick={this.settings.bind(this, school)}><i class="fa fa-fw fa-gear" /> Settings</button>}
+						<button class={`btn btn-${school.enabled ? "default": "primary"}`} onClick={this.setEnabled.bind(this, school, !school.enabled)}><i class="fa fa-fw fa-power-off" /> {school.enabled ? "Disable" : "Enable"}</button>
+						<button class="btn btn-danger" onClick={this.disconnect.bind(this, school)}><i class="fa fa-fw fa-chain-broken" /> Disconnect</button>
 					</div>
 					<div class="schoolClear"></div>
 				</div>;

@@ -19,27 +19,26 @@ export default class AdminPage extends Component {
 	}
 
 	load() {
-		var that = this;
 		this.setState({
 			loading: true,
 			users: null,
 			feedback: null,
 			notifications: null
-		}, function() {
-			api.get("admin/getUserCount", {}, function(data) {
-				that.setState({
+		}, () => {
+			api.get("admin/getUserCount", {}, (data) => {
+				this.setState({
 					userCount: data.count
-				}, that.checkIfDoneLoading.bind(that));
+				}, this.checkIfDoneLoading);
 			});
-			api.get("admin/getAllFeedback", {}, function(data) {
-				that.setState({
+			api.get("admin/getAllFeedback", {}, (data) => {
+				this.setState({
 					feedback: data.feedbacks
-				}, that.checkIfDoneLoading.bind(that));
+				}, this.checkIfDoneLoading);
 			});
-			api.get("notifications/get", {}, function(data) {
-				that.setState({
+			api.get("notifications/get", {}, (data) => {
+				this.setState({
 					notifications: data.notifications
-				}, that.checkIfDoneLoading.bind(that));
+				}, this.checkIfDoneLoading);
 			});
 		});
 	}
@@ -53,12 +52,11 @@ export default class AdminPage extends Component {
 	}
 
 	newNotification() {
-		var that = this;
 		var content = prompt("Enter notification content");
 		var expiry = prompt("Enter notification expiry");
 		if (confirm("Look good? Content: " + content + " Expires: " + expiry)) {
-			api.post("notifications/add", {expiry: expiry, content: content}, function() {
-				that.load.call(that);
+			api.post("notifications/add", {expiry: expiry, content: content}, () => {
+				this.load();
 			});
 		} else {
 			alert("Aborted.");
@@ -66,8 +64,6 @@ export default class AdminPage extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
 		if (state.loading) {
 			return <p>Loading... please wait</p>;
 		}
@@ -81,16 +77,16 @@ export default class AdminPage extends Component {
 				</div>
 				<div class="col-md-4">
 					<h4 class="adminListTitle">Feedback</h4>
-					{state.feedback.map(function(feedback) {
-						return <AdminListItem type="feedback" data={feedback} load={that.load.bind(that)}/>;
+					{state.feedback.map((feedback) => {
+						return <AdminListItem type="feedback" data={feedback} load={this.load.bind(this)}/>;
 					})}
 				</div>
 				<div class="col-md-4">
 					<h4 class="adminListTitle">Notifications</h4>
-					{state.notifications.map(function(notification) {
-						return <AdminListItem type="notification" data={notification} load={that.load.bind(that)}/>;
+					{state.notifications.map((notification) => {
+						return <AdminListItem type="notification" data={notification} load={this.load.bind(this)}/>;
 					})}
-					<button class="btn btn-primary" onClick={that.newNotification.bind(that)}>New Notification</button>
+					<button class="btn btn-primary" onClick={this.newNotification.bind(this)}>New Notification</button>
 				</div>
 			</div>
 		</div>;

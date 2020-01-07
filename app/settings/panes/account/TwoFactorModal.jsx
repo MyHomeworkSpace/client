@@ -30,21 +30,20 @@ export default class TwoFactorModal extends Component {
 	}
 
 	beginEnroll() {
-		var that = this;
 		this.setState({
 			loading: true,
 			error: null
-		}, function() {
-			api.post("auth/2fa/beginEnroll", {}, function(data) {
+		}, () => {
+			api.post("auth/2fa/beginEnroll", {}, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						loading: false,
 						secret: data.secret,
 						imageURL: data.imageURL,
 						phase: 2
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});
@@ -54,21 +53,20 @@ export default class TwoFactorModal extends Component {
 	}
 
 	completeEnroll() {
-		var that = this;
 		this.setState({
 			loading: true,
 			error: null
-		}, function() {
+		}, () => {
 			api.post("auth/2fa/completeEnroll", {
 				code: this.state.code
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						loading: false,
 						phase: 4
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});
@@ -78,21 +76,20 @@ export default class TwoFactorModal extends Component {
 	}
 
 	unenroll() {
-		var that = this;
 		this.setState({
 			loading: true,
 			error: null
-		}, function() {
+		}, () => {
 			api.post("auth/2fa/unenroll", {
-				code: that.state.code
-			}, function(data) {
+				code: this.state.code
+			}, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						loading: false,
 						phase: 2
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});

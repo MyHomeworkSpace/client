@@ -17,22 +17,20 @@ export default class ResetPasswordForm extends Component {
 	}
 
 	submit() {
-		var that = this;
-
 		this.setState({
 			loading: true,
 			error: ""
-		}, function() {
+		}, () => {
 			api.post("auth/resetPassword", {
 				email: this.state.email
-			}, function(data) {
+			}, (data) => {
 				if (data.status == "ok") {
-					that.setState({
+					this.setState({
 						loading: false,
 						success: true
 					});
 				} else {
-					that.setState({
+					this.setState({
 						loading: false,
 						error: errors.getFriendlyString(data.error)
 					});

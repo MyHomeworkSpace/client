@@ -10,13 +10,11 @@ export default class ColorPickerPopup extends Component {
 	}
 
 	render(props, state) {
-		var that = this;
-
-		var colorElements = consts.colors.map(function(color) {
+		var colorElements = consts.colors.map((color) => {
 			return <div
 				class={`colorPickerPopupColor ${props.value == color ? "selected" : ""}`}
 				style={`background-color: #${color}`}
-				onClick={that.pickColor.bind(that, color)}
+				onClick={this.pickColor.bind(this, color)}
 			/>;
 		});
 

@@ -6,13 +6,12 @@ import api from "api.js";
 
 export default class AdminListItem extends Component {
 	deleteNotification(id) {
-		var that = this;
 		if (confirm("Are you sure you want to delete this notification?")) {
 			api.post("notifications/delete", {
 				id: id
-			}, function() {
+			}, () => {
 				alert("Deleted!");
-				that.props.load.call(that);
+				this.props.load();
 			});
 		}
 	}
