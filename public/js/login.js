@@ -75,6 +75,6 @@ MyHomeworkSpace.Pages.login = {
 			callback: function(data, targetPage) {
 				MyHomeworkSpace.Pages.login.handleLoginComplete(data, targetPage);
 			}
-		}), document.querySelector("#login > div"));
+		}), document.querySelector("#login"));
 	}
 };
