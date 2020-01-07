@@ -71,31 +71,28 @@ export default class FeedbackPopup extends Component {
 			return;
 		}
 
-		/* Load asynchronously because it's a big file */
+		// load html2canvas asynchronously because it's a big file
 		this.setState({
 			loading: true,
-		});
-		new Promise(function(resolve, reject) {
-			var s;
-			s = document.createElement("script");
+		}, () => {
+			var s = document.createElement("script");
+
 			s.src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
-			s.onload = resolve;
-			s.onerror = reject;
-			document.head.appendChild(s);
-		}).then(
-			() => html2canvas(document.body, { scale: window.devicePixelRatio / 3 }).then(canvas => {
+			s.onload = (() => html2canvas(document.body, { scale: window.devicePixelRatio / 3 }).then(canvas => {
 				this.setState({
 					screenshot: canvas.toDataURL(),
 					loading: false
 				});
-			}),
-			(r) => {
+			}));
+			s.onerror = ((r) => {
 				alert("Error generating screenshot. Submitting feedback without screenshot.");
 				this.setState({
 					loading: false
 				});
-			}
-		);
+			});
+
+			document.head.appendChild(s);
+		});
 	}
 
 	render(props, state) {
