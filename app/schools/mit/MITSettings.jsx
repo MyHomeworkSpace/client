@@ -10,10 +10,12 @@ import MITClassSections from "schools/mit/settings/MITClassSections.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
 export default class MITSettings extends Component {
-	componentWillMount() {
-		this.setState({
-			registration: this.props.currentSettings.registration
-		});
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			registration: props.currentSettings.registration
+		};
 	}
 
 	setSectionForSubject(subjectID, sectionCode) {

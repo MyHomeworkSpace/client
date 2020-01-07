@@ -21,7 +21,7 @@ export default class HomeworkPane extends Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.refresh();
 	}
 

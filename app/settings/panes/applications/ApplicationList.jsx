@@ -14,7 +14,7 @@ export default class ApplicationList extends Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.refresh();
 	}
 

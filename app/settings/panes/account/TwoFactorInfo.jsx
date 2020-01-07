@@ -5,17 +5,21 @@ import api from "api.js";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
 class TwoFactorInfo extends Component {
-	componentWillMount() {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			loading: true
+		};
+	}
+
+	componentDidMount() {
 		var that = this;
 
-		this.setState({
-			loading: true
-		}, function() {
-			api.get("auth/2fa/status", {}, function(data) {
-				that.setState({
-					loading: false,
-					enrolled: data.enrolled
-				});
+		api.get("auth/2fa/status", {}, function(data) {
+			that.setState({
+				loading: false,
+				enrolled: data.enrolled
 			});
 		});
 	}

@@ -9,7 +9,7 @@ export default class Picker extends Component {
 		this.state = {};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		document.body.addEventListener("click", this._bodyClick);
 	}
 

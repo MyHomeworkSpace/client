@@ -7,19 +7,17 @@ import api from "api.js";
 import Modal from "ui/Modal.jsx";
 
 export default class BackgroundModal extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+
 		this._colorTimeout = null;
+
 		this.state = {
 			color: "#00000"
 		};
-	}
 
-	componentWillMount() {
-		if (this.props.currentBackground.indexOf("clr:") == 0) {
-			this.setState({
-				color: this.props.currentBackground.replace("clr:", "")
-			});
+		if (props.currentBackground.indexOf("clr:") == 0) {
+			this.state.color = props.currentBackground.replace("clr:", "");
 		}
 	}
 

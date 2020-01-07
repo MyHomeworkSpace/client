@@ -25,6 +25,6 @@ MyHomeworkSpace.Pages.homework = {
 	},
 
 	open: function() {
-		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.homework.HomeworkPage, {}), null, document.querySelector("#homework > div"));
+		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.pages.homework.HomeworkPage, {}), document.querySelector("#homework"));
 	}
 };

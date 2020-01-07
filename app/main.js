@@ -100,7 +100,7 @@ var renderModalManager = function() {
 
 		currentBackground: currentBackground,
 		setBackground: setBackground
-	}), null, document.querySelector("#modalManager > div"));
+	}), document.querySelector("#modalManager"));
 };
 
 var openModal = function(name, state) {

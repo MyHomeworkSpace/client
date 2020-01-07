@@ -20,7 +20,7 @@ export default class CompleteEmailForm extends Component {
 		};
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.submit();
 	}
 

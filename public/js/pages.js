@@ -7,7 +7,7 @@ function createComponentPage(component, id) {
 				handleLoginComplete: MyHomeworkSpace.Pages.login.handleLoginComplete,
 				me: MyHomeworkSpace.Me,
 				openModal: MHSBridge.default.openModal
-			}), null, document.querySelector("#" + id + " > div"));
+			}), document.querySelector("#" + id));
 		}
 	};
 }

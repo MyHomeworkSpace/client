@@ -9,7 +9,6 @@ import api from "api.js";
 import CalendarMonth from "calendar/CalendarMonth.jsx";
 import CalendarWeek from "calendar/CalendarWeek.jsx";
 
-import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import DateHeader from "ui/DateHeader.jsx";
 
 export default class CalendarPage extends Component {
@@ -27,28 +26,19 @@ export default class CalendarPage extends Component {
 				events: []
 			});
 		}
+
 		this.state = {
-			loading: true,
 			type: "week"
 		};
 	}
 
-	componentWillMount() {
-		var that = this;
-		this.setState({
-			loading: true
-		}, function() {
-			var mondayDate = moment();
-			while (mondayDate.day() != 1) {
-				mondayDate.subtract(1, "day");
-			}
-			that.setState({
-				loading: false,
-				monday: mondayDate
-			}, function() {
-				that.loadWeek.bind(that, mondayDate)();
-			});
-		});
+	componentDidMount() {
+		var mondayDate = moment();
+		while (mondayDate.day() != 1) {
+			mondayDate.subtract(1, "day");
+		}
+
+		this.loadWeek(mondayDate);
 	}
 
 	loadWeek(monday) {
@@ -113,19 +103,15 @@ export default class CalendarPage extends Component {
 	render(props, state) {
 		var that = this;
 
-		if (state.loading) {
-			return <div><LoadingIndicator type="inline" /> Loading, please wait...</div>;
-		}
-
 		return <div class="calendarPage">
-			<DateHeader showTypeSwitcher switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />
+			{state.start && <DateHeader showTypeSwitcher switchType={this.switchType.bind(this)} type={state.type} start={state.start} loadMonth={this.loadMonth.bind(this)} loadWeek={this.loadWeek.bind(this)} loadingEvents={state.loadingEvents} />}
 			{state.view && state.view.schoolsToUpdate.map(function(schoolToUpdate) {
 				return <div class="calendarPageAlert alert alert-warning">
 					Your schedule data for <strong>{schoolToUpdate.displayName}</strong> needs to be updated. <button class="btn btn-primary" onClick={that.updateSchool.bind(that, schoolToUpdate)}>Update</button>
 				</div>;
 			})}
-			{state.type == "week" && <CalendarWeek openModal={props.openModal} view={state.view} monday={state.start} />}
-			{state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
+			{state.start && state.type == "week" && <CalendarWeek openModal={props.openModal} view={state.view} monday={state.start} />}
+			{state.start && state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
 		</div>;
 	}
 };

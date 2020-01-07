@@ -29,7 +29,7 @@ MyHomeworkSpace.Nav = {
 			openPage: MyHomeworkSpace.Page.show,
 			inverted: MyHomeworkSpace.Nav.inverted,
 			dimmed: MHSBridge.default.background.isDimBackground()
-		}), null, document.querySelector(".topBar"));
+		}), document.querySelector(".topBar"));
 	},
 	init: function() {
 		if (MyHomeworkSpace.Pages.settings.cache.background) {

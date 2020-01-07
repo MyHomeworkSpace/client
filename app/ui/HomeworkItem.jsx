@@ -10,16 +10,12 @@ import ClassName from "ui/ClassName.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
 export default class HomeworkItem extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
-			complete: false,
+			complete: props.homework.complete,
 			expanded: false
 		};
-	}
-
-	componentWillMount() {
-		this.componentWillReceiveProps(this.props);
 	}
 
 	componentWillReceiveProps(nextProps) {
