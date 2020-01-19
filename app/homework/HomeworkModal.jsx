@@ -19,6 +19,7 @@ export default class HomeworkModal extends Component {
 		super(props);
 		
 		this._bodyKeyUp = this.keyup.bind(this);
+		this._descriptionTextarea = null;
 		
 		var isNew = !props.modalState.id;
 
@@ -103,7 +104,11 @@ export default class HomeworkModal extends Component {
 
 	keyup(e) {
 		if (e.keyCode == 13 && !this.state.loading) {
-			this.save();
+			// we either need to not be focused on the description, or have the shift key down
+			if (document.activeElement != this._descriptionTextarea || e.shiftKey) {
+				this.save();
+				e.preventDefault();
+			}
 		}
 	}
 
@@ -138,7 +143,9 @@ export default class HomeworkModal extends Component {
 				<label>
 					<input type="checkbox" checked={state.complete} onChange={linkState(this, "complete")} /> Done?
 				</label>
-				<textarea class="form-control homeworkModalDesc" placeholder="Description" onChange={linkState(this, "desc")} value={state.desc}></textarea>
+				<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={linkState(this, "desc")} value={state.desc} ref={ (textarea) => {
+					this._descriptionTextarea = textarea;
+				}}></textarea>
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}
