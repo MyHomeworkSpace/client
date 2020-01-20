@@ -11,19 +11,10 @@ import HomeworkName from "ui/HomeworkName.jsx";
 import AddPrefix from "settings/panes/homework/AddPrefix.jsx";
 
 export default class PrefixList extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			hideGroups: []
-		};
-	}
-
 	deleteGroup(id) {
 		api.post("prefixes/delete", { id: id }, (data) => {
 			if (data.status == "ok") {
-				this.setState({
-					hideGroups: this.state.hideGroups.concat([id])
-				});
+				this.props.refreshContext();
 			} else {
 				this.setState({
 					error: errors.getFriendlyString(data.error)
@@ -46,7 +37,7 @@ export default class PrefixList extends Component {
 
 	render(props, state) {
 		var groups = prefixes.list.map((group) => {
-			if (group.words.indexOf("Hex") > -1 || state.hideGroups.indexOf(group.id) > -1) {
+			if (group.words.indexOf("Hex") > -1) {
 				// shhhhh
 				return;
 			}
@@ -68,7 +59,7 @@ export default class PrefixList extends Component {
 
 			{state.addPrefix ? <div>
 				<h4>Add custom tag <small>(separate multiple with spaces)</small></h4>
-				<AddPrefix cancelAddPrefix={this.cancelAddPrefix.bind(this)} />
+				<AddPrefix cancelAddPrefix={this.cancelAddPrefix.bind(this)} refreshContext={props.refreshContext} />
 			</div> : <button class="btn btn-primary actionBtn" onClick={this.addPrefix.bind(this)}>
 				<i class="fa fa-fw fa-plus-circle" /> Add a custom tag
 			</button>}

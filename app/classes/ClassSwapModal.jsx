@@ -21,7 +21,7 @@ export default class ClassSwapModal extends Component {
 				id1: this.props.modalState.id,
 				id2: otherClass.id
 			}, () => {
-				this.props.refreshClasses(() => {
+				this.props.refreshContext(() => {
 					this.close();
 				});
 			});

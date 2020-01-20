@@ -6,9 +6,6 @@ MyHomeworkSpace.Classes = {
 	list: [],
 	initWithContext: function(context) {
 		MyHomeworkSpace.Classes.list = context.classes;
-	},
-	reload: function() {
-		MHSBridge.default.quickAdd.init();
 	}
 };
 

@@ -35,7 +35,7 @@ export default class ClassModal extends Component {
 				classInfo.id = this.props.modalState.id;
 			}
 			api.post((this.state.isNew ? "classes/add" : "classes/edit"), classInfo, () => {
-				this.props.refreshClasses(() => {
+				this.props.refreshContext(() => {
 					this.props.openModal("");
 				});
 			});
@@ -58,7 +58,7 @@ export default class ClassModal extends Component {
 					api.post("classes/delete", {
 						id: this.props.modalState.id
 					}, () => {
-						this.props.refreshClasses(() => {
+						this.props.refreshContext(() => {
 							this.props.openModal("");
 						});
 					});

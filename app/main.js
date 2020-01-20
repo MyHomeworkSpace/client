@@ -41,13 +41,20 @@ var modalState = {};
 
 var currentBackground = "";
 
-var refreshClasses = function(callback) {
+var refreshContext = function(callback) {
 	api.get("auth/context", {}, function(data) {
 		MyHomeworkSpace.Classes.initWithContext(data);
+		MyHomeworkSpace.Prefixes.initWithContext(data);
 
-		MyHomeworkSpace.Classes.reload();
-		MyHomeworkSpace.Page.show("classes");
-		callback();
+		MyHomeworkSpace.Me = data.user;
+
+		MHSBridge.default.quickAdd.init();
+
+		MyHomeworkSpace.Page.show(MyHomeworkSpace.Page.current());
+
+		if (callback) {
+			callback();
+		}
 	});
 };
 
@@ -98,7 +105,7 @@ var renderModalManager = function() {
 		openModal: openModal,
 
 		classes: MyHomeworkSpace.Classes.list,
-		refreshClasses: refreshClasses,
+		refreshContext: refreshContext,
 
 		currentBackground: currentBackground,
 		setBackground: setBackground
@@ -127,6 +134,8 @@ export default {
 	},
 
 	openModal: openModal,
+
+	refreshContext: refreshContext,
 
 	background: {
 		currentBackground: currentBackground,

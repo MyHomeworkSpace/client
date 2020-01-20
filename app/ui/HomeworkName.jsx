@@ -15,11 +15,3 @@ export default class HomeworkName extends Component {
 		return <span><span style={`background-color:${background};color:#${color.color};padding:2px;`}>{tag}</span> {remain}</span>;
 	}
 };
-
-
-// Maybe put this somewhere at some point, but there's no good place right now
-// import PrefixList from "ui/PrefixList.jsx";
-// import Collapse from "ui/Collapse.jsx";
-// <Collapse title="See all Tags">
-// 	<PrefixList />
-// </Collapse>

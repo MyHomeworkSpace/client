@@ -45,8 +45,9 @@ export default class ModalManager extends Component {
 
 				me: MyHomeworkSpace.Me,
 
+				refreshContext: props.refreshContext,
+
 				classes: props.classes,
-				refreshClasses: props.refreshClasses,
 
 				currentBackground: props.currentBackground,
 				setBackground: props.setBackground,

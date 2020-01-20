@@ -52,7 +52,9 @@ export default class SettingsPage extends Component {
 					{h(currentPane.component, {
 						classes: props.classes,
 						me: props.me,
-						openModal: props.openModal
+
+						openModal: props.openModal,
+						refreshContext: props.refreshContext
 					})}
 				</div>
 			</div>

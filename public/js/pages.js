@@ -5,8 +5,11 @@ function createComponentPage(component, id) {
 				params: params,
 				classes: MyHomeworkSpace.Classes.list,
 				handleLoginComplete: MyHomeworkSpace.Pages.login.handleLoginComplete,
+
 				me: MyHomeworkSpace.Me,
-				openModal: MHSBridge.default.openModal
+
+				openModal: MHSBridge.default.openModal,
+				refreshContext: MHSBridge.default.refreshContext
 			}), document.querySelector("#" + id));
 		}
 	};

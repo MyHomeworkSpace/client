@@ -37,10 +37,11 @@ export default class AddPrefix extends Component {
 				timedEvent: false
 			}, (data) => {
 				if (data.status == "ok") {
-					this.setState({
-						loading: false,
-						words: "",
-						refresh: true
+					this.props.refreshContext(() => {
+						this.setState({
+							loading: false,
+							words: ""
+						});
 					});
 				} else {
 					this.setState({
@@ -81,7 +82,6 @@ export default class AddPrefix extends Component {
 	render(props, state) {
 		return <div class="addPrefix">
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
-			{state.refresh && <div class="alert alert-info">Your tag has been added. Refresh the page to see your changes.</div>}
 
 			<ColorPicker disabled={state.loading} onChange={this.changeBackgroundColor.bind(this)} value={state.background} />
 			<input type="text" placeholder="Tags" disabled={state.loading} class="addPrefixWords form-control" onKeyUp={this.keyup.bind(this)} onChange={linkState(this, "words")} value={state.words} />

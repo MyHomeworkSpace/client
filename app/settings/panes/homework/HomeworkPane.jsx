@@ -115,7 +115,7 @@ export default class HomeworkPane extends Component {
 		return <div class="homeworkPane">
 			<h4>Tags</h4>
 			<p class="homeworkSettingsDescription">You add custom tags to be used on MyHomeworkSpace.</p>
-			<PrefixList />
+			<PrefixList refreshContext={props.refreshContext} />
 
 			<h4>Hidden classes</h4>
 			<p class="homeworkSettingsDescription">You can hide certain classes from Homework view. If you hide a class, its homework will still appear in Planner and Calendar, but will not be displayed in any Homework columns.</p>

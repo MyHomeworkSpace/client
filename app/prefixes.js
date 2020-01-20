@@ -9,8 +9,8 @@ export default {
 	initWithContext: function(context) {
 		prefixes = context.prefixes;
 		fallback = {
-			background: context.fallbackBackground,
-			color: context.fallbackColor
+			background: context.prefixFallbackBackground,
+			color: context.prefixFallbackColor
 		};
 
 		MyHomeworkSpace.Prefixes.list = prefixes;
