@@ -117,7 +117,15 @@ export default class EnrollModal extends Component {
 				loading: true
 			}, () => {
 				this.props.refreshContext(() => {
-					this.props.openModal("");
+					// if there are required settings for the school, open them now
+					// TODO: better way of detecting this
+					if (this.state.school.schoolID == "mit") {
+						this.props.openModal("schoolSettings", {
+							school: this.state.school
+						});
+					} else {
+						this.props.openModal("");
+					}
 				});
 			});
 		}
