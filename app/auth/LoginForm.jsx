@@ -69,7 +69,7 @@ export default class LoginForm extends Component {
 				code: this.state.code,
 			}, (loginData) => {
 				if (loginData.status == "ok") {
-					api.get("auth/me", {}, (userData) => {
+					api.get("auth/context", {}, (userData) => {
 						if (userData.status == "ok") {
 							this.props.callback(userData, (this.props.params.length > 0 ? this.props.params.join(":") : ""));
 						} else {

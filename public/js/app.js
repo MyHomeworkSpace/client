@@ -4,11 +4,8 @@ MyHomeworkSpace.API = MHSBridge.default.api;
 
 MyHomeworkSpace.Classes = {
 	list: [],
-	load: function(callback) {
-		MyHomeworkSpace.API.get("classes/get", {}, function(data) {
-			MyHomeworkSpace.Classes.list = data.classes;
-			callback();
-		});
+	initWithContext: function(context) {
+		MyHomeworkSpace.Classes.list = context.classes;
 	},
 	reload: function() {
 		MHSBridge.default.quickAdd.init();
@@ -99,7 +96,7 @@ window.addEventListener("load", function() {
 			}
 		}
 
-		MyHomeworkSpace.API.get("auth/me", {}, function(data) {
+		MyHomeworkSpace.API.get("auth/context", {}, function(data) {
 			if (data.status == "ok") {
 				MyHomeworkSpace.Pages.login.handleLoginComplete(data);
 			} else {

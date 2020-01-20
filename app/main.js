@@ -42,7 +42,9 @@ var modalState = {};
 var currentBackground = "";
 
 var refreshClasses = function(callback) {
-	MyHomeworkSpace.Classes.load(function() {
+	api.get("auth/context", {}, function(data) {
+		MyHomeworkSpace.Classes.initWithContext(data);
+
 		MyHomeworkSpace.Classes.reload();
 		MyHomeworkSpace.Page.show("classes");
 		callback();

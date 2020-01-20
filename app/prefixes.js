@@ -6,18 +6,14 @@ var fallback = {};
 export default {
 	list: null,
 
-	init: function(callback) {
-		api.get("prefixes/getList", {}, function(data) {
-			prefixes = data.prefixes;
-			fallback = {
-				background: data.fallbackBackground,
-				color: data.fallbackColor
-			};
+	initWithContext: function(context) {
+		prefixes = context.prefixes;
+		fallback = {
+			background: context.fallbackBackground,
+			color: context.fallbackColor
+		};
 
-			MyHomeworkSpace.Prefixes.list = prefixes;
-
-			callback();
-		});
+		MyHomeworkSpace.Prefixes.list = prefixes;
 	},
 	matchPrefix: function(prefix) {
 		var chkPrefix = prefix.toLowerCase();

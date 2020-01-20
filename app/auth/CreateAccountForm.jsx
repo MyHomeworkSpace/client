@@ -72,7 +72,7 @@ export default class CreateAccountForm extends Component {
 				password: this.state.password
 			}, (data) => {
 				if (data.status == "ok") {
-					api.get("auth/me", {}, (userData) => {
+					api.get("auth/context", {}, (userData) => {
 						if (userData.status == "ok") {
 							this.props.handleLoginComplete(userData, "homework", () => {
 								if (data.school) {
