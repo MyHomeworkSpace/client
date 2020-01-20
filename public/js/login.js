@@ -23,7 +23,7 @@ MyHomeworkSpace.Pages.login = {
 					MyHomeworkSpace.Me = info.user;
 					MyHomeworkSpace.Tabs = info.tabs;
 
-					if (info.showMigrateMessage) {
+					if (info.user.showMigrateMessage) {
 						MHSBridge.default.openModal("accountMigrate", {});
 						MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {});
 					}			
