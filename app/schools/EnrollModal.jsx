@@ -113,8 +113,13 @@ export default class EnrollModal extends Component {
 			this.props.openModal("");
 		} else if (this.state.step == 3) {
 			// need to reload
-			// TODO: can we force a new request to auth/me from here? maybe wait for more of the app to become preacty?
-			window.location.reload();
+			this.setState({
+				loading: true
+			}, () => {
+				this.props.refreshContext(() => {
+					this.props.openModal("");
+				});
+			})
 		}
 	}
 

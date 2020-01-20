@@ -13,10 +13,18 @@ export default class SchoolList extends Component {
 
 	disconnect(school) {
 		if (confirm(`Disconnect ${school.displayName} from your account? You'll still be able to access your Calendar, but any events from ${school.displayName} will be gone.`)) {
-			api.post("schools/unenroll", {
-				school: school.schoolID
-			}, function(data) {
-				window.location.reload();
+			this.setState({
+				loading: true
+			}, () => {
+				api.post("schools/unenroll", {
+					school: school.schoolID
+				}, (data) => {
+					this.props.refreshContext(() => {
+						this.setState({
+							loading: false
+						});
+					});
+				});
 			});
 		}
 	}
@@ -28,11 +36,19 @@ export default class SchoolList extends Component {
 		}
 
 		if (confirm(message)) {
-			api.post("schools/setEnabled", {
-				school: school.schoolID,
-				enabled: enabled
-			}, function(data) {
-				window.location.reload();
+			this.setState({
+				loading: true
+			}, () => {
+				api.post("schools/setEnabled", {
+					school: school.schoolID,
+					enabled: enabled
+				}, (data) => {
+					this.props.refreshContext(() => {
+						this.setState({
+							loading: false
+						});
+					});
+				});
 			});
 		}
 	}
@@ -53,9 +69,9 @@ export default class SchoolList extends Component {
 						{!school.enabled && <div>This school has been disabled. It won't appear in your Calendar.</div>}
 					</div>
 					<div class="schoolActions pull-right">
-						{school.enabled && <button class="btn btn-primary" onClick={this.settings.bind(this, school)}><i class="fa fa-fw fa-gear" /> Settings</button>}
-						<button class={`btn btn-${school.enabled ? "default": "primary"}`} onClick={this.setEnabled.bind(this, school, !school.enabled)}><i class="fa fa-fw fa-power-off" /> {school.enabled ? "Disable" : "Enable"}</button>
-						<button class="btn btn-danger" onClick={this.disconnect.bind(this, school)}><i class="fa fa-fw fa-chain-broken" /> Disconnect</button>
+						{school.enabled && <button class="btn btn-primary" onClick={this.settings.bind(this, school)} disabled={state.loading}><i class="fa fa-fw fa-gear" /> Settings</button>}
+						<button class={`btn btn-${school.enabled ? "default": "primary"}`} onClick={this.setEnabled.bind(this, school, !school.enabled)} disabled={state.loading}><i class="fa fa-fw fa-power-off" /> {school.enabled ? "Disable" : "Enable"}</button>
+						<button class="btn btn-danger" onClick={this.disconnect.bind(this, school)} disabled={state.loading}><i class="fa fa-fw fa-chain-broken" /> Disconnect</button>
 					</div>
 					<div class="schoolClear"></div>
 				</div>;
