@@ -119,7 +119,7 @@ export default class EnrollModal extends Component {
 				this.props.refreshContext(() => {
 					this.props.openModal("");
 				});
-			})
+			});
 		}
 	}
 
