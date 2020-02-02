@@ -108,6 +108,7 @@ export default class MITEnroll extends Component {
 		}, () => {
 			api.post("schools/enroll", {
 				school: "mit",
+				reenroll: this.props.reenroll,
 				data: JSON.stringify({
 					stage: 1,
 					username: this.state.username,
