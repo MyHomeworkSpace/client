@@ -69,7 +69,7 @@ export default class CalendarWeek extends Component {
 			</div>
 
 			<div class="calendarWeekEventsContainer">
-				<CalendarEvents openModal={props.openModal} time={state.time} monday={props.monday} view={props.view} />
+				<CalendarEvents loadingEvents={props.loadingEvents} openModal={props.openModal} time={state.time} monday={props.monday} view={props.view} />
 			</div>
 		</div>;
 	}

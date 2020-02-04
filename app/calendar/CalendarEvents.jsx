@@ -18,6 +18,12 @@ export default class CalendarEvents extends Component {
 		};
 	}
 
+	componentWillReceiveProps(nextProps, nextState) {
+		if (this.state.popover && nextProps.loadingEvents) {
+			this.openPopover(null);
+		}
+	}
+
 	openPopover(top, left, type, item) {
 		if (
 			top == null ||

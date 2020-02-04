@@ -106,8 +106,8 @@ export default class CalendarPage extends Component {
 					Your schedule data for <strong>{schoolToUpdate.displayName}</strong> needs to be updated. <button class="btn btn-primary" onClick={this.updateSchool.bind(this, schoolToUpdate)}>Update</button>
 				</div>;
 			})}
-			{state.start && state.type == "week" && <CalendarWeek openModal={props.openModal} view={state.view} monday={state.start} />}
-			{state.start && state.type == "month" && <CalendarMonth openModal={props.openModal} view={state.view} start={state.start} />}
+			{state.start && state.type == "week" && <CalendarWeek loadingEvents={state.loadingEvents} openModal={props.openModal} view={state.view} monday={state.start} />}
+			{state.start && state.type == "month" && <CalendarMonth loadingEvents={state.loadingEvents} openModal={props.openModal} view={state.view} start={state.start} />}
 		</div>;
 	}
 };
