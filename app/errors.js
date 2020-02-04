@@ -11,6 +11,7 @@ var errorMap = {
 	"internal_server_error": "An internal server error occurred while processing the request.",
 	"insecure_password": "The password you picked isn't secure enough. Please try again.",
 	"invalid_params": "Some parameters of the request were invalid.",
+	"logged_out": "Your session has timed out. Please reload the page and try that again.",
 	"missing_params": "Required parameters were missing from the request.",
 	"no_account": "There's no MyHomeworkSpace account with that email address.",
 	"password_incorrect": "The password was incorrect.",
