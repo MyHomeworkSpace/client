@@ -190,11 +190,22 @@ export default {
 			}
 		}
 
+		console.log(sentence.terms().list);
+
 		// values probably shouldn't be flagged as dates
 		// this fixes things like "HW 7.2 tuesday", where "7.2 tuesday" is chosen as date
+		// we also check if it's a class name, in case you have a class named something like "6.003"
+		// it's a bit of a hack but it works
 		sentence.terms().list.forEach(function(term) {
-			if (term.get(0).tags.Value && term.get(0).tags.Date) {
-				term.get(0).tags.Date = false;
+			if (term.get(0).tags.Value) {
+				if (term.get(0).tags.Date) {
+					term.get(0).tags.Date = false;
+				}
+				var text = term.get(0).text;
+				var normalizedText = text.replace(/ /g, "").toLowerCase();
+				if (lexicon[normalizedText] == "MHSClass") {
+					term.get(0).tags.MHSClass = true;
+				}
 			}
 		});
 
