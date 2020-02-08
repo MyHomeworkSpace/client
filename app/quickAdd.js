@@ -179,7 +179,7 @@ export default {
 			due: ""
 		};
 		var sentence = nlp(text, lexicon);
-		
+
 		for (var classIndex in MyHomeworkSpace.Classes.list) {
 			var classItem = MyHomeworkSpace.Classes.list[classIndex];
 			var hasSpace = classItem.name.indexOf(" ") > -1;
@@ -189,8 +189,6 @@ export default {
 				sentence.replace(classItem.name, classItem.name.replace(/ /g, ""));
 			}
 		}
-
-		console.log(sentence.terms().list);
 
 		// values probably shouldn't be flagged as dates
 		// this fixes things like "HW 7.2 tuesday", where "7.2 tuesday" is chosen as date
