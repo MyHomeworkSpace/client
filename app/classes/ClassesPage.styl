@@ -1,13 +1,19 @@
 .classesPage
-	.classesList
-		border-right: 1px solid black
+	display: flex
+	width: 100%
+	height: 100%
 
-		.lead
-			margin-bottom: 1rem
+	.classesPageList
+		flex: 0 0 25%
+		border-right: 1px solid black
+		height: 100%
+		overflow-y: auto
+		padding-right: 10px
+
+	.classesPageDetails
+		padding-left: 10px
+		flex: 0 0 75%
 
 	.noClassSelected
-		text-align: center;
-		line-height: calc(100vh - 50px)
-
-.classesPage, .columns, .classesList
-	min-height: calc(100vh - 50px)
+		text-align: center
+		padding-top: 100px

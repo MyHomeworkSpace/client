@@ -6,11 +6,7 @@ import moment from "moment";
 
 import api from "api.js";
 
-import EditClassButton from "classes/EditClassButton.jsx";
-import SwapClassButton from "classes/SwapClassButton.jsx";
-
 import HomeworkItem from "ui/HomeworkItem.jsx";
-
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
 export default class ClassDetails extends Component {
@@ -42,6 +38,14 @@ export default class ClassDetails extends Component {
 		});
 	}
 
+	editClass() {
+		this.props.openModal("class", this.props.classObject);
+	}
+
+	swapClass() {
+		this.props.openModal("classSwap", this.props.classObject);
+	}
+
 	render(props, state) {
 		var filteredHomework;
 		if (!state.loading) {
@@ -55,11 +59,13 @@ export default class ClassDetails extends Component {
 			});
 		}
 		return <div class="classDetails">
-			<h1>{props.classObject.name}</h1>
-			{props.classObject.teacher && <p class="lead classTeacher">{props.classObject.teacher}</p>}
+			<h1 class="classDetailsName">
+				{props.classObject.name}
+				{props.classObject.teacher && <span class="lead classTeacher">{props.classObject.teacher}</span>}
+			</h1>
 			<div class="btn-group classActions" role="group">
-				<EditClassButton classItem={props.classObject} openModal={props.openModal} />
-				<SwapClassButton classItem={props.classObject} openModal={props.openModal} />
+				<button class="btn btn-default" onClick={this.editClass.bind(this, props.classObject)}><i class="fa fa-pencil-square"></i> Edit class</button>
+				<button class="btn btn-default" onClick={this.swapClass.bind(this, props.classObject)}><i class="fa fa-arrows-v"></i> Swap class</button>
 			</div>
 
 			<div>

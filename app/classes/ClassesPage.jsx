@@ -2,11 +2,14 @@ import "classes/ClassesPage.styl";
 
 import { h, Component } from "preact";
 
-import AddClass from "classes/AddClass.jsx";
 import ClassDetails from "classes/ClassDetails.jsx";
-import ClassList from "classes/ClassList.jsx";
+import ClassItem from "classes/ClassItem.jsx";
 
 export default class ClassesPage extends Component {
+	addClass() {
+		this.props.openModal("class", {});
+	}
+
 	selectClass(newClass) {
 		this.setState({
 			selectedClassID: newClass.id
@@ -28,16 +31,20 @@ export default class ClassesPage extends Component {
 		}
 
 		return <div class="classesPage">
-			<div class="row columns">
-				<div class="col-md-3 classesList">
-					<h2>Classes</h2>
-					<p class="lead">Select a class to view homework and details</p>
-					<ClassList classes={classes} onClick={this.selectClass.bind(this)} />
-					<AddClass openModal={props.openModal} />
+			<div class="classesPageList">
+				<h2>
+					Classes
+					<div class="btn btn-primary btn-sm" onClick={this.addClass.bind(this)}><i class="fa fa-plus"></i> add</div>
+				</h2>
+
+				<div class="classList">
+					{props.classes.map((classObject) => {
+						return <ClassItem classObject={classObject} selected={classObject == selectedClass} onClick={this.selectClass.bind(this, classObject)}/>;
+					})}
 				</div>
-				<div class="col-md-9">
-					{selectedClass ? <ClassDetails classObject={selectedClass} openModal={props.openModal} /> : <p class="lead noClassSelected">Select a class for details</p>}
-				</div>
+			</div>
+			<div class="classesPageDetails">
+				{selectedClass ? <ClassDetails classObject={selectedClass} openModal={props.openModal} /> : <p class="lead noClassSelected">Select a class for details</p>}
 			</div>
 		</div>;
 	}
