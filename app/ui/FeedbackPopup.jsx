@@ -98,8 +98,8 @@ export default class FeedbackPopup extends Component {
 	render(props, state) {
 		if (state.sent) {
 			return <span class="feedbackPopup feedbackPopupExtended feedbackPopupSuccess">
-				<div class="feedbackPopupHeading">Thanks for the feedback!</div>
-				<p>Your feedback has been successfully sent. While we read each feedback that we receive, we might not be able to get back to you.</p>
+				<div class="feedbackPopupHeading">Thank you!</div>
+				<p>Your feedback has been successfully sent. While we might not be able to get back to you personally, we do read and consider every piece of feedback that we receive.</p>
 			</span>;
 		}
 
