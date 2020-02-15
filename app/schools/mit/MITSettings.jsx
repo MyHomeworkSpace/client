@@ -14,7 +14,8 @@ export default class MITSettings extends Component {
 		super(props);
 
 		this.state = {
-			registration: props.currentSettings.registration
+			registration: props.currentSettings.registration,
+			peInfo: props.currentSettings.peInfo
 		};
 	}
 
@@ -89,11 +90,25 @@ export default class MITSettings extends Component {
 		}
 
 		return <div>
-			<div class="modal-body">
+			<div class="modal-body mitSettings">
 				{state.error && <div class="alert alert-danger">{state.error}</div>}
+
 				{state.registration.map((registeredClass) => {
 					return <MITClassSections registeredClass={registeredClass} setSectionForSubject={this.setSectionForSubject.bind(this)} />;
 				})}
+
+				<div>
+					<h4 class="mitSettingsInfoTitle">PE registration</h4>
+					{state.peInfo && <div>
+						<strong>{state.peInfo.sectionID} {state.peInfo.activity} - {state.peInfo.courseTitle}</strong>
+						<div>{state.peInfo.rawSchedule}</div>
+						<div>{state.peInfo.rawCalendarNotes}</div>
+					</div>}
+					{!state.peInfo && <div>
+						It looks like you haven't registered for a PE class this quarter.
+						If you think this isn't correct, contact us at <a href="mailto:hello@myhomework.space">hello@myhomework.space</a>.
+					</div>}
+				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" onClick={props.closeModal}>Close without saving</button>
