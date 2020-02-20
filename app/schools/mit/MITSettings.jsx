@@ -1,6 +1,7 @@
 import "schools/mit/MITSettings.styl";
 
 import { h, Component } from "preact";
+import linkState from "linkstate";
 
 import api from "api.js";
 import errors from "errors.js";
@@ -15,7 +16,8 @@ export default class MITSettings extends Component {
 
 		this.state = {
 			registration: props.currentSettings.registration,
-			peInfo: props.currentSettings.peInfo
+			peInfo: props.currentSettings.peInfo,
+			showPE: props.currentSettings.showPE
 		};
 	}
 
@@ -54,7 +56,8 @@ export default class MITSettings extends Component {
 
 	save() {
 		var settings = {
-			sections: {}
+			sections: {},
+			showPE: this.state.showPE
 		};
 
 		for (var i in this.state.registration) {
@@ -103,6 +106,9 @@ export default class MITSettings extends Component {
 						<strong>{state.peInfo.sectionID} {state.peInfo.activity} - {state.peInfo.courseTitle}</strong>
 						<div>{state.peInfo.rawSchedule}</div>
 						<div>{state.peInfo.rawCalendarNotes}</div>
+						<label>
+							<input type="checkbox" checked={state.showPE} onChange={linkState(this, "showPE")} /> Show this on my schedule
+						</label>
 					</div>}
 					{!state.peInfo && <div>
 						It looks like you haven't registered for a PE class this quarter.
