@@ -5,6 +5,7 @@ import linkState from "linkstate";
 
 import api from "api.js";
 
+import ClassName from "ui/ClassName.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
@@ -53,22 +54,33 @@ export default class HomeworkPickerPopup extends Component {
 	render(props, state) {
 		var noResults = "noResults";
 		var results;
+		var source;
 
 		if (state.loading) {
 			results = <p><LoadingIndicator type="inline" /> Loading, please wait...</p>;
 		} else if (state.lastQuery == "") {
-			results = state.suggestions.map((result) => {
-				return <div class="homeworkPickerPopupResult" onClick={this.resultClick.bind(this, result)}>
-					<HomeworkName name={result.name} />
-				</div>;
-			});
+			source = state.suggestions;
 		} else if (state.results.length == 0) {
 			results = <p>No results found.</p>;
 		} else {
+			source = state.results;
 			noResults = "";
-			results = state.results.map((result) => {
+		}
+
+		if (!results) {
+			results = source.map((result) => {
+				var classObject;
+				for (var classIndex in props.classes) {
+					if (props.classes[classIndex].id == result.classId) {
+						classObject = props.classes[classIndex];
+					}
+				}
+
 				return <div class="homeworkPickerPopupResult" onClick={this.resultClick.bind(this, result)}>
 					<HomeworkName name={result.name} />
+					<div class="homeworkPickerPopupResultClass">
+						<ClassName classObject={classObject} />
+					</div>
 				</div>;
 			});
 		}

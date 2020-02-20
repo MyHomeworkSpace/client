@@ -6,6 +6,7 @@ import moment from "moment";
 
 import consts from "consts.js";
 
+import ClassName from "ui/ClassName.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
 export default class CalendarEventPopover extends Component {
@@ -29,6 +30,21 @@ export default class CalendarEventPopover extends Component {
 				{props.item.ownerName}
 			</div>;
 		} else if (!props.item.tags[consts.EVENT_TAG_READ_ONLY] && props.item.id != -1) {
+			if (props.item.tags[consts.EVENT_TAG_HOMEWORK]) {
+				var homeworkItem = props.item.tags[consts.EVENT_TAG_HOMEWORK];
+
+				var classObject;
+				for (var classIndex in MyHomeworkSpace.Classes.list) {
+					if (MyHomeworkSpace.Classes.list[classIndex].id == homeworkItem.classId) {
+						classObject = MyHomeworkSpace.Classes.list[classIndex];
+					}
+				}
+
+				info = <div class="calendarEventPopoverInfo">
+					<ClassName classObject={classObject} />
+				</div>;
+			}
+
 			actions = <div class="calendarEventPopoverActions">
 				<button class="btn btn-default btn-sm" onClick={this.edit.bind(this)}><i class="fa fa-pencil" /> Edit</button>
 			</div>;

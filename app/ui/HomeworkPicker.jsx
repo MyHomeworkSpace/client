@@ -30,7 +30,7 @@ export default class HomeworkPicker extends Component {
 		}
 
 		return <Picker display={display} class="homeworkPicker" open={state.open} setOpen={this.setOpen.bind(this)}>
-			<HomeworkPickerPopup hw={props.value} selectHW={this.selectHW.bind(this)} />
+			<HomeworkPickerPopup hw={props.value} selectHW={this.selectHW.bind(this)} classes={MyHomeworkSpace.Classes.list} />
 		</Picker>;
 	}
 };
