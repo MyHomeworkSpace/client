@@ -34,6 +34,13 @@ export default class CalendarEvent extends Component {
 		var offset = start.diff(dayStart, "minutes");
 		var durationInMinutes = end.diff(start, "minutes");
 
+		if (!dayStart.isDST() && start.isDST()) {
+			offset += 60;
+		}
+		if (!start.isDST() && end.isDST()) {
+			durationInMinutes += 60;
+		}
+
 		var startDisplay = start.format("h:mm a");
 		var endDisplay = end.format("h:mm a");
 
