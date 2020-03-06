@@ -55,8 +55,10 @@ export default class HomeworkItem extends Component {
 			dueText = dueText[0].toLowerCase() + dueText.substr(1);
 		}
 
-		if (daysTo >= 7 && daysTo < 14) {
-			dueText = "next " + due.format("dddd");
+		if (daysTo > 7 && daysTo < 14) {
+			dueText = "a week from " + due.format("dddd");
+		} else if (daysTo == 7) {
+			dueText = "a week from today";
 		}
 
 		var keyword = "due ";
@@ -82,7 +84,7 @@ export default class HomeworkItem extends Component {
 			hideDue = false;
 		}
 
-		return <div class={`hwItem ${props.isOverdue ? "hwLate": ""} ${state.complete == "1" ? "done": ""}`} style={`border-left-color: #${prefixInfo.background}`} data-hwId={props.homework.id}>
+		return <div class={`hwItem ${props.isOverdue ? "hwLate" : ""} ${state.complete == "1" ? "done" : ""}`} style={`border-left-color: #${prefixInfo.background}`} data-hwId={props.homework.id}>
 			<div class="hwOptions">
 				<i class={`fa ${state.complete ? "fa-check-circle-o" : "fa-circle-o"}`} onClick={this.toggleComplete.bind(this)}></i>
 				<i class="fa fa-edit" onClick={this.edit.bind(this)}></i>
