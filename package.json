@@ -21,7 +21,7 @@
 		"dist": "cross-env NODE_ENV=production webpack -p"
 	},
 	"dependencies": {
-		"cross-env": "^4.0.0",
+		"cross-env": "7.0.2",
 		"linkstate": "1.1.1",
 		"moment": "^2.24.0",
 		"preact": "10.1.1",
