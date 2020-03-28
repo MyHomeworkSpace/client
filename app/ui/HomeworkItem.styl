@@ -1,4 +1,4 @@
-.hwItem
+.homeworkItem
 	cursor: default
 	background: white
 	border-radius: 3px
@@ -13,44 +13,47 @@
 	position: relative
 	transition: all 0.2s
 
-.hwItem.done, .hwItem.done:hover
-	background-color: #d0d0d0
+	.homeworkItemName
+		font-size: 16px
 
-.hwItem:hover
+	.homeworkItemOptions
+		color: rgb(60, 60, 60)
+		font-size: 16px
+		opacity: 0
+		position: absolute
+		right: 10px
+		transition: all 0.2s
+
+		i
+			margin-left: 4px
+
+		i:hover
+			cursor: pointer
+			color: rgb(10, 10, 10)
+
+	.homeworkItemDetails
+		position: relative
+		width: 100%
+
+		.homeworkItemDescriptionIcon
+			position: absolute
+			right: -21px
+			bottom: 2px
+			cursor: pointer
+			font-size: 15px
+
+.homeworkItem:hover
 	background-color: #dfdfdf
 	box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.2)
 
-.hwItem.done .hwName, .hwItem.done .hwSubText
-	text-decoration: line-through
+	.homeworkItemOptions
+		opacity: 1
 
-.hwItem .hwName
-	font-size: 16px
-	font-weight: 500
+.homeworkItem.done
+	background-color: #d0d0d0
 
-.hwLate
+	.homeworkItemName, .hwSubText
+		text-decoration: line-through
+
+.homeworkItem.late
 	color: red
-
-.hwOptions
-	color: rgb(60, 60, 60)
-	font-size: 16px
-	opacity: 0
-	position: absolute
-	right: 10px
-	transition: all 0.2s
-
-.hwOptions i
-	margin-left: 4px
-
-.hwOptions i:hover
-	cursor: pointer
-	color: rgb(10, 10, 10)
-
-.hwItem:hover .hwOptions
-	opacity: 1
-
-.hwDescIcon
-	position: absolute
-	right: 10px
-	bottom: 8px
-	cursor: pointer
-	font-size: 15px

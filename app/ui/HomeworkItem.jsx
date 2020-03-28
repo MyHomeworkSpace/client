@@ -84,19 +84,19 @@ export default class HomeworkItem extends Component {
 			hideDue = false;
 		}
 
-		return <div class={`hwItem ${props.isOverdue ? "hwLate" : ""} ${state.complete == "1" ? "done" : ""}`} style={`border-left-color: #${prefixInfo.background}`} data-hwId={props.homework.id}>
-			<div class="hwOptions">
+		return <div class={`homeworkItem ${props.isOverdue ? "late" : ""} ${state.complete == "1" ? "done" : ""}`} style={`border-left-color: #${prefixInfo.background}`}>
+			<div class="homeworkItemOptions">
 				<i class={`fa ${state.complete ? "fa-check-circle-o" : "fa-circle-o"}`} onClick={this.toggleComplete.bind(this)}></i>
 				<i class="fa fa-edit" onClick={this.edit.bind(this)}></i>
 			</div>
-			<div class="hwName">
+			<div class="homeworkItemName">
 				<HomeworkName name={props.homework.name} />
 			</div>
-			<div class="hwDetails">
+			<div class="homeworkItemDetails">
 				{!hideDue && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
 				<div><ClassName classObject={classObject} /></div>
+				{props.homework.desc.trim() != "" && <i class={`homeworkItemDescriptionIcon fa fa-${state.expanded ? "arrow-circle-up" : "arrow-circle-down"}`} onClick={this.toggleDescription.bind(this)}></i>}
 			</div>
-			{props.homework.desc.trim() != "" && <i class={state.expanded ? "hwDescIcon fa fa-arrow-circle-up" : "hwDescIcon fa fa-arrow-circle-down"} onClick={this.toggleDescription.bind(this)}></i>}
 			{state.expanded && <div>
 				{props.homework.desc.split("\n").map(function(line) {
 					return <div>{line}</div>;
