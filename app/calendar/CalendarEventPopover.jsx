@@ -16,6 +16,12 @@ export default class CalendarEventPopover extends Component {
 		this.props.openModal("calendarEvent", item);
 	}
 
+	editProvided() {
+		this.props.openModal("calendarEventProvided", {
+			event: this.props.item
+		});
+	}
+
 	render(props, state) {
 		var start = moment.unix(props.item.start);
 		var end = moment.unix(props.item.end);
@@ -50,12 +56,13 @@ export default class CalendarEventPopover extends Component {
 			</div>;
 		}
 
-		if (props.item.tags[consts.EVENT_TAG_ACTIONS]) {
-			var actionList = props.item.tags[consts.EVENT_TAG_ACTIONS];
+		if (props.item.tags[consts.EVENT_TAG_ACTIONS] || props.item.tags[consts.EVENT_TAG_READ_ONLY]) {
+			var actionList = props.item.tags[consts.EVENT_TAG_ACTIONS] || [];
 			actions = <div class="calendarEventPopoverActions">
 				{actionList.map((action) => {
 					return <a href={action.url} class="btn btn-default btn-sm" target="_blank" rel="noopener noreferrer"><i class={`fa fa-${action.icon}`} /> {action.name}</a>;
 				})}
+				<button class="btn btn-default btn-sm" onClick={this.editProvided.bind(this)}><i class="fa fa-pencil" /> Edit</button>
 			</div>;
 		}
 

@@ -61,8 +61,10 @@ export default class CalendarEvent extends Component {
 			recurIcon = <i class="fa fa-refresh calendarEventRecur" />;
 		}
 
+		var cancelled = props.item.tags[consts.EVENT_TAG_CANCELLED] || false;
+
 		if (props.tiny) {
-			return <div class="calendarEvent calendarEventTiny" onClick={this.click.bind(this)}>
+			return <div class={`calendarEvent calendarEventTiny ${cancelled ? "calendarEventCancelled" : ""}`} onClick={this.click.bind(this)}>
 				<div class="calendarEventDurationLine"></div>
 				<div class="calendarEventInfo">
 					<span class="calendarEventTime">{startDisplay}</span>
@@ -71,14 +73,17 @@ export default class CalendarEvent extends Component {
 			</div>;
 		} else {
 			return <div class="calendarEventContainer">
-				<div class="calendarEvent" style={`top: ${offset}px; left:${groupWidth*props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
+				<div class={`calendarEvent ${cancelled ? "calendarEventCancelled" : ""}`} style={`top: ${offset}px; left:${groupWidth*props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
 					<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
 					<div class="calendarEventName">{recurIcon}{props.item.tags[consts.EVENT_TAG_HOMEWORK] ? <HomeworkName name={displayName} /> : displayName}</div>
-					<div class="calendarEventTime">
+					{!cancelled && <div class="calendarEventTime">
 						{startDisplay} to {endDisplay}
 						{props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] && ` in ${props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}`}
 						{props.item.tags[consts.EVENT_TAG_LOCATION] && ` at ${props.item.tags[consts.EVENT_TAG_LOCATION]}`}
-					</div>
+					</div>}
+					{cancelled && <div class="calendarEventTime">
+						<i class="fa fa-ban" /> cancelled
+					</div>}
 				</div>
 			</div>;
 		}

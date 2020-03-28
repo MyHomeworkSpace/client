@@ -6,6 +6,7 @@ import AccountMigrateModal from "auth/AccountMigrateModal.jsx";
 import ChangeEmailModal from "auth/ChangeEmailModal.jsx";
 import ChangePasswordModal from "auth/ChangePasswordModal.jsx";
 import EventModal from "calendar/EventModal.jsx";
+import EventProvidedModal from "calendar/EventProvidedModal.jsx";
 import ClassModal from "classes/ClassModal.jsx";
 import ClassSwapModal from "classes/ClassSwapModal.jsx";
 import HomeworkModal from "homework/HomeworkModal.jsx";
@@ -23,6 +24,7 @@ export default class ModalManager extends Component {
 	render(props, state) {
 		var modals = {
 			calendarEvent: EventModal,
+			calendarEventProvided: EventProvidedModal,
 			class: ClassModal,
 			classSwap: ClassSwapModal,
 			homework: HomeworkModal,

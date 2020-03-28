@@ -24,6 +24,14 @@
 .calendarEvent.calendarEventTiny:hover
 	height: 17px
 
+.calendarEvent.calendarEventCancelled
+	background: transparent
+	border: dashed 1px #555555
+	border-left: none
+
+.calendarEvent.calendarEventCancelled:hover
+	margin-top: 0
+
 .calendarEvent
 	background: white
 	cursor: pointer
@@ -57,6 +65,7 @@
 
 .calendarEvent:hover
 	border-top: solid 1px #aaa
+	border-left: none
 	border-right: solid 1px #aaa
 	border-bottom: solid 1px #aaa
 	padding-right: 1px
