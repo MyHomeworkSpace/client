@@ -17,10 +17,18 @@ export default class PlannerHomeworkItem extends Component {
 		var done = (props.homeworkItem.complete == 1);
 		return <div class={`plannerHomeworkItem ${done ? "done": ""}`}>
 			<HomeworkName name={props.homeworkItem.name} />
+			{props.homeworkItem.desc && <div class="plannerHomeworkDescriptionIcon">
+				<i class="fa fa-align-left" />
+			</div>}
 			<div class="plannerHomeworkActions">
 				<i class={`fa ${done ? "fa-check-circle-o" : "fa-circle-o"}`} onClick={this.toggle.bind(this)} />
 				<i class="fa fa-edit" onClick={this.edit.bind(this)} />
 			</div>
+			{props.homeworkItem.desc && <div class="plannerHomeworkDescription">
+				{props.homeworkItem.desc.split("\n").map((line) => {
+					return <div>{line}</div>;
+				})}
+			</div>}
 		</div>;
 	}
 };
