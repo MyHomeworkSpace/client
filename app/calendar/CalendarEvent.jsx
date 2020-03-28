@@ -22,7 +22,7 @@ export default class CalendarEvent extends Component {
 		var top = scrollOffset + rect.top - scrollContainerRect.top;
 		var left = rect.left + rect.width - scrollContainerRect.left;
 
-		this.props.openPopover(top, left, this.props.type, this.props.item);
+		this.props.openPopover(top, left, this.props.type, this.props.item, this.props.groupLength);
 	}
 
 	render(props, state) {

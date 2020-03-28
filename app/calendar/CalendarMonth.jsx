@@ -25,7 +25,7 @@ export default class CalendarMonth extends Component {
 		}
 	}
 
-	openPopover(top, left, type, item) {
+	openPopover(top, left, type, item, groupLength) {
 		if (
 			top == null ||
 			(this.state.popover && this.state.popover.top == (top - 10) && this.state.popover.left == left)
@@ -43,7 +43,8 @@ export default class CalendarMonth extends Component {
 				left: left,
 				type: type,
 				item: item,
-				alternate: moment.unix(item.start).day() == 5 || moment.unix(item.start).day() == 6
+				alternate: moment.unix(item.start).day() == 5 || moment.unix(item.start).day() == 6,
+				groupLength: groupLength
 			}
 		}, function() {
 			this.handleSettingClickHandler();
@@ -146,7 +147,7 @@ export default class CalendarMonth extends Component {
 				</div>
 				{rows}
 			</div>
-			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
+			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} groupLength={state.popover.groupLength} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
 		</div>;
 	}
 };

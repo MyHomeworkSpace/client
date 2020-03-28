@@ -62,7 +62,7 @@ export default class CalendarEventPopover extends Component {
 		var left = props.left + 5;
 		
 		if (props.alternate) {
-			left = left - (document.querySelector(".calendarEventsDay") || document.querySelector(".calendarMonthDayEvents")).clientWidth;
+			left = left - ((document.querySelector(".calendarEventsDay") || document.querySelector(".calendarMonthDayEvents")).clientWidth / props.groupLength);
 			left = left - 10;
 		}
 

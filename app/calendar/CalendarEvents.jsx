@@ -24,7 +24,7 @@ export default class CalendarEvents extends Component {
 		}
 	}
 
-	openPopover(top, left, type, item) {
+	openPopover(top, left, type, item, groupLength) {
 		if (
 			top == null ||
 			(this.state.popover && this.state.popover.top == (top - 10) && this.state.popover.left == left)
@@ -42,7 +42,8 @@ export default class CalendarEvents extends Component {
 				left: left,
 				type: type,
 				item: item,
-				alternate: moment.unix(item.start).day() == 0 || moment.unix(item.start).day() == 6
+				alternate: moment.unix(item.start).day() == 0 || moment.unix(item.start).day() == 6,
+				groupLength: groupLength
 			}
 		}, function() {
 			this.handleSettingClickHandler();
@@ -168,7 +169,7 @@ export default class CalendarEvents extends Component {
 			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(4, "day")}>{eventElements[4]}</CalendarEventsDay>
 			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(5, "day")}>{eventElements[5]}</CalendarEventsDay>
 			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(6, "day")}>{eventElements[6]}</CalendarEventsDay>
-			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
+			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} groupLength={state.popover.groupLength} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
 		</div>;
 	}
 };
