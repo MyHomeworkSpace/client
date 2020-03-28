@@ -50,6 +50,15 @@ export default class CalendarEventPopover extends Component {
 			</div>;
 		}
 
+		if (props.item.tags[consts.EVENT_TAG_ACTIONS]) {
+			var actionList = props.item.tags[consts.EVENT_TAG_ACTIONS];
+			actions = <div class="calendarEventPopoverActions">
+				{actionList.map((action) => {
+					return <a href={action.url} class={`btn btn-default btn-sm`} target="_blank"><i class={`fa fa-${action.icon}`} /> {action.name}</a>;
+				})}
+			</div>;
+		}
+
 		var left = props.left + 5;
 		
 		if (props.alternate) {
