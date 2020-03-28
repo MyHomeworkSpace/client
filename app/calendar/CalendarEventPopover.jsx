@@ -54,7 +54,7 @@ export default class CalendarEventPopover extends Component {
 			var actionList = props.item.tags[consts.EVENT_TAG_ACTIONS];
 			actions = <div class="calendarEventPopoverActions">
 				{actionList.map((action) => {
-					return <a href={action.url} class={`btn btn-default btn-sm`} target="_blank"><i class={`fa fa-${action.icon}`} /> {action.name}</a>;
+					return <a href={action.url} class="btn btn-default btn-sm" target="_blank" rel="noopener noreferrer"><i class={`fa fa-${action.icon}`} /> {action.name}</a>;
 				})}
 			</div>;
 		}
