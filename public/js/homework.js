@@ -9,7 +9,7 @@ MyHomeworkSpace.Pages.homework = {
 	},
 
 	handleNew: function() {
-		if (MyHomeworkSpace.Page.current() == "homework" || MyHomeworkSpace.Page.current() == "planner") {
+		if (MyHomeworkSpace.Page.current() == "homework" || MyHomeworkSpace.Page.current() == "planner" || MyHomeworkSpace.Page.current() == "classes") {
 			MyHomeworkSpace.Page.show(MyHomeworkSpace.Page.current());
 		}
 	},
