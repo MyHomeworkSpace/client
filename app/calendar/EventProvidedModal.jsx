@@ -26,7 +26,6 @@ export default class EventProvidedModal extends Component {
 	}
 
 	componentDidMount() {
-		console.log(this.props.modalState.event);
 		api.get("calendar/eventChanges/get", {
 			eventID: this.props.modalState.event.uniqueId
 		}, (data) => {

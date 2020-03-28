@@ -75,6 +75,7 @@ export default class CalendarEventPopover extends Component {
 
 		return <div class={`calendarEventPopover ${props.alternate ? "calendarEventPopoverAlternate" : ""}`} style={`top: ${props.top}px; left: ${left}px`}>
 			<div class="calendarEventPopoverName">{props.item.tags[consts.EVENT_TAG_HOMEWORK] ? <HomeworkName name={props.item.tags[consts.EVENT_TAG_HOMEWORK].name} /> : props.item.name}</div>
+			{props.item.tags[consts.EVENT_TAG_CANCELLED] && <div class="calendarEventPopoverCancelled"><i class="fa fa-ban" /> You cancelled this event.</div>}
 			{info}
 			<div class="calendarEventPopoverTime">{startDisplay} to {endDisplay}</div>
 			{(props.item.tags[consts.EVENT_TAG_BUILDING_NAME] || props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]) && <div class="calendarEventPopoverLocation">{props.item.tags[consts.EVENT_TAG_BUILDING_NAME]} {(props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] != "Library" && props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] != "Cafeteria" && props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] != "Theater") ? "Room " : ""}{props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}</div>}
