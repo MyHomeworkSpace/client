@@ -1,6 +1,10 @@
 var baseURL = window.location.protocol + "//api-v2." + window.location.hostname.replace("app.", "") + "/";
 var csrfToken = "";
 
+if (window.location.hostname.indexOf("staging2") > -1) {
+	baseURL = "https://api-v2-staging2.myhomework.space/";
+}
+
 var buildParamStr = function(data, method) {
 	if (!data) {
 		return "";
