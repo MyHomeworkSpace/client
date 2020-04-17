@@ -195,10 +195,12 @@ export default {
 		// we also check if it's a class name, in case you have a class named something like "6.003"
 		// it's a bit of a hack but it works
 		sentence.terms().list.forEach(function(term) {
-			if (term.get(0).tags.Value) {
+			var tags = term.get(0).tags;
+			if (tags.Value || Object.keys(tags).length == 0) {
 				if (term.get(0).tags.Date) {
 					term.get(0).tags.Date = false;
 				}
+
 				var text = term.get(0).text;
 				var normalizedText = text.replace(/ /g, "").toLowerCase();
 				if (lexicon[normalizedText] == "MHSClass") {
