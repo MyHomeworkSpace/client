@@ -66,6 +66,7 @@ export default class PrefixedEdit extends Component {
 			<input
 				type="text"
 				class="prefixedEditText form-control"
+				autoComplete="nope"
 
 				placeholder={props.placeholder || ""}
 				value={value}
