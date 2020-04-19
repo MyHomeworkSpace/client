@@ -10,7 +10,7 @@
 	user-select: none
 	z-index: 10
 
-	.topName
+	.topBarName
 		display: inline-block
 		float: right
 		font-size: 16px
@@ -19,21 +19,28 @@
 		height: 50px
 		line-height: 50px
 
-	.logout
+	.topBarAction
 		display: inline-block
 		float: right
-		font-size: 22px
-		padding-left: 5px
-		padding-right: 5px
-		width: 30px
+		padding: 0 5px
 		height: 50px
 		line-height: 50px
 		text-align: center
 		transition: all 0.2s
 
-	.logout:hover
+		.fa
+			font-size: 22px
+			vertical-align: sub
+
+	.topBarToggleContainer
+		display: none
+
+	.topBarAction:hover
 		background-color: rgba(220, 220, 220, 0.5)
 		cursor: pointer
+
+	.topBarToggle
+		display: none
 
 .topBar.dimmed
 	background-color: rgba(0, 0, 0, 0.6)
@@ -43,6 +50,50 @@
 
 .topBarDropdownMainTabs
 	display: none
+
+@media (max-width: 600px)
+	.topBar
+		.topBarToggle
+			display: inline-block
+
+		.topBarToggleContainer
+			display: none
+			color: black
+			background: rgba(255, 255, 255, 0.9)
+			border-bottom: solid 2px #cccccc
+			position: absolute
+			top: 50px
+			width: 100%
+			height: auto
+
+			.topBarDropdownContainer
+				display: block
+
+				.topBarDropdown
+					display: block
+					padding: 0
+
+					.pickerAction
+						float: none
+						text-align: left
+
+			.topBarName
+				float: none
+				padding: 0 0.5rem
+
+		.topBarButton:not(.pickerContainer)
+			display: block
+
+		.topBarGroup
+			.topBarButton, .topBarName, .topBarLogout
+				display: none
+
+		.topBarDropdownMainTabs
+			display: none
+
+	.topBar.open
+		.topBarToggleContainer
+			display: block	
 
 @media (max-width: 1024px)
 	.topBarButton:not(.pickerContainer)

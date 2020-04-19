@@ -33,6 +33,12 @@ export default class TopBar extends Component {
 	}
 
 	openPage(page) {
+		if (this.state.open) {
+			this.setState({
+				open: false
+			});
+		}
+
 		if (this.props.page != page) {
 			// open the new page
 			this.props.openPage(page);
@@ -40,6 +46,12 @@ export default class TopBar extends Component {
 			// already on this page, so just hide it
 			this.props.openPage("");
 		}
+	}
+
+	toggleOpen() {
+		this.setState({
+			open: !this.state.open
+		});
 	}
 
 	enableShortcuts() {
@@ -58,22 +70,35 @@ export default class TopBar extends Component {
 			"calendar": { icon: "calendar", name: "Calendar" }
 		};
 
-		return <div class={`topBar ${props.inverted ? "inverted" : ""} ${props.dimmed ? "dimmed" : ""}`}>
-			<div>
+		var renderedTabs = [
+			Object.keys(tabs).map((tabKey) => {
+				var tab = tabs[tabKey];
+				return <TopBarButton icon={tab.icon} selected={props.page == tabKey} onClick={this.openPage.bind(this, tabKey)}>{tab.name}</TopBarButton>;
+			}),
+			<TopBarDropdown me={props.me} mainTabs={tabs} tabs={props.tabs} page={props.page} openPage={props.openPage} />
+		];
+
+		return <div class={`topBar ${props.inverted ? "inverted" : ""} ${props.dimmed ? "dimmed" : ""} ${state.open ? "open" : ""}`}>
+			<div class="topBarGroup">
 				<NavLogo />
 
-				{Object.keys(tabs).map((tabKey) => {
-					var tab = tabs[tabKey];
-					return <TopBarButton icon={tab.icon} selected={props.page == tabKey} onClick={this.openPage.bind(this, tabKey)}>{tab.name}</TopBarButton>;
-				})}
-				<TopBarDropdown me={props.me} mainTabs={tabs} tabs={props.tabs} page={props.page} openPage={props.openPage} />
+				{renderedTabs}
 			</div>
 			<AddAction page={props.page} openModal={props.openModal} />
-			<div>
+			<div class="topBarGroup">
+				<div class="topBarToggle topBarAction" onClick={this.toggleOpen.bind(this)}>
+					<i class="fa fa-fw fa-bars" />
+				</div>
 				<NotificationControl />
 				<FeedbackControl />
-				<div class="logout" onClick={this.logout.bind(this)}><i class="fa fa-sign-out"></i></div>
-				<div class="topName">{props.me && props.me.name}</div>
+				<div class="topBarLogout topBarAction" onClick={this.logout.bind(this)}><i class="fa fa-sign-out"></i></div>
+				<div class="topBarName">{props.me && props.me.name}</div>
+			</div>
+			<div class="topBarToggleContainer">
+				{renderedTabs}
+
+				<div class="topBarName">{props.me && props.me.name}</div>
+				<div class="topBarLogout topBarAction" onClick={this.logout.bind(this)}><i class="fa fa-sign-out"></i> Log out</div>
 			</div>
 		</div>;
 	}

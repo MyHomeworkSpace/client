@@ -39,7 +39,7 @@
 	.topBarButtonText
 		top: -0.2rem
 
-.topBar.inverted
+.topBar.inverted, .topBar.open
 	.topBarButton, .pickerContainer .picker.topBarDropdown
 		color: #545454
 	
@@ -57,3 +57,16 @@
 	.topBarButton.selected
 		border-bottom: solid 4px rgba(0, 0, 0, 0.9)
 		color: #000000
+
+.topBar.open
+	.topBarButton, .topBarButton:hover, .topBarButton:active, .topBarButton.selected
+		border-bottom: none
+
+	.topBarButton
+		height: 50px
+		text-align: left
+		padding: 0 0.5rem
+
+	.topBarButton:hover
+		background-color: rgba(220, 220, 220, 0.5)
+		cursor: pointer
