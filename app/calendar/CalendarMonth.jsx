@@ -147,7 +147,7 @@ export default class CalendarMonth extends Component {
 				</div>
 				{rows}
 			</div>
-			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} groupLength={state.popover.groupLength} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} />}
+			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} groupLength={state.popover.groupLength} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} openPopover={this.openPopover.bind(this)} />}
 		</div>;
 	}
 };

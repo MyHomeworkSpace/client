@@ -4,6 +4,7 @@ import { h, Component } from "preact";
 
 import moment from "moment";
 
+import api from "api.js";
 import consts from "consts.js";
 
 import ClassName from "ui/ClassName.jsx";
@@ -19,6 +20,25 @@ export default class CalendarEventPopover extends Component {
 	editProvided() {
 		this.props.openModal("calendarEventProvided", {
 			event: this.props.item
+		});
+	}
+
+	toggleCancel() {
+		var item = this.props.item;
+		api.post("calendar/eventChanges/set", {
+			eventID: item.uniqueId,
+			cancel: !item.tags[consts.EVENT_TAG_CANCELLED]
+		}, (data) => {
+			if (data.status == "ok") {
+				this.props.openPopover();
+				// TODO: this is an incredibly ugly hack that works until more of the app is using preact
+				document.querySelector("#calendar .dateHeaderControlsRefresh").click();
+			} else {
+				this.setState({
+					loading: false,
+					error: errors.getFriendlyString(data.error)
+				});
+			}
 		});
 	}
 
@@ -50,21 +70,20 @@ export default class CalendarEventPopover extends Component {
 					<ClassName classObject={classObject} />
 				</div>;
 			}
-
-			actions = <div class="calendarEventPopoverActions">
-				<button class="btn btn-default btn-sm" onClick={this.edit.bind(this)}><i class="fa fa-pencil" /> Edit</button>
-			</div>;
 		}
 
-		if (props.item.tags[consts.EVENT_TAG_ACTIONS] || props.item.tags[consts.EVENT_TAG_READ_ONLY]) {
-			var actionList = props.item.tags[consts.EVENT_TAG_ACTIONS] || [];
-			actions = <div class="calendarEventPopoverActions">
-				{actionList.map((action) => {
-					return <a href={action.url} class="btn btn-default btn-sm" target="_blank" rel="noopener noreferrer"><i class={`fa fa-${action.icon}`} /> {action.name}</a>;
-				})}
-				<button class="btn btn-default btn-sm" onClick={this.editProvided.bind(this)}><i class="fa fa-pencil" /> Edit</button>
-			</div>;
-		}
+		var actionList = props.item.tags[consts.EVENT_TAG_ACTIONS] || [];
+		actions = <div class="calendarEventPopoverActions">
+			{actionList.map((action) => {
+				return <a href={action.url} class="btn btn-default btn-sm" target="_blank" rel="noopener noreferrer"><i class={`fa fa-${action.icon}`} /> {action.name}</a>;
+			})}
+			{!props.item.tags[consts.EVENT_TAG_READ_ONLY] && <button class="btn btn-default btn-sm" onClick={this.edit.bind(this)}>
+				<i class="fa fa-pencil" /> Edit
+			</button>}
+			{props.item.tags[consts.EVENT_TAG_CANCELABLE] && <button class="btn btn-default btn-sm" onClick={this.toggleCancel.bind(this)}>
+				<i class="fa fa-fw fa-ban" /> {props.item.tags[consts.EVENT_TAG_CANCELLED] ? "Uncancel" : "Cancel"}
+			</button>}
+		</div>;
 
 		var left = props.left + 5;
 		
