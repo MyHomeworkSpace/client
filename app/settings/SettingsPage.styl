@@ -9,19 +9,23 @@
 		height: calc(100% - 14px)
 
 		.settingsPaneSelect
-			border-right: solid 1px #aaa
+			border-right: solid 1px #ccc
 			flex: 0 0 20rem
 
 			.settingsPaneOption
 				cursor: pointer
 				font-size: 1.5rem
 				padding: 0.5rem 1rem
+				transition: 0.1s all
+				user-select: none
 
 			.settingsPaneOption.settingsPaneOptionSelected, .settingsPaneOption.settingsPaneOptionSelected:hover
-				background: #ccc
+				border-left: solid 4px #3a98d4
+				color: #277aaf
+				font-weight: bold
 
 			.settingsPaneOption:hover
-				background: #ddd
+				border-left: solid 2px #3a98d4
 
 		.settingsPane
 			flex: 1 0 0
