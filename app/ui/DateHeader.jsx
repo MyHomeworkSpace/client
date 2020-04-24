@@ -45,7 +45,7 @@ export default class DateHeader extends Component {
 		return <div class="dateHeader">
 			<span class="dateHeaderInfo">
 				{props.type == "month" && <span class="dateHeaderInfoText">Month of {props.start.format("MMMM YYYY")}</span>}
-				{props.type == "week" && <span class="dateHeaderInfoText">Week of</span>}
+				{/* {props.type == "week" && <span class="dateHeaderInfoText">Week of</span>} */}
 				{props.type == "week" && <DatePicker format="MMMM D, YYYY" change={this.change.bind(this)} value={props.start} />}
 				{props.loadingEvents && <span class="dateHeaderLoading"><LoadingIndicator type="inline" /> Loading...</span>}
 			</span>

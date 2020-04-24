@@ -24,10 +24,26 @@
 		vertical-align: middle
 	
 	.pickerContainer
-		vertical-align: middle
+		vertical-align: bottom
+		line-height: 1
 
 		.picker
 			background: none
-			padding-top: 2px
-			padding-bottom: 2px
+			border: none
+			box-shadow: none
+			font-weight: bold
+			padding: 2px 0
 			width: 235px
+
+			.pickerOutput
+				color: #555
+				border-bottom: dashed 2px #555
+				padding-bottom: 0.25rem
+
+			.pickerAction
+				display: none
+
+		.picker:hover
+			.pickerOutput
+				color: black
+				border-color: black
