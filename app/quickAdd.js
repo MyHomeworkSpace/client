@@ -16,16 +16,12 @@ var findClass = function(name) {
 	var normalizedName = name.replace(/ /g, "").toLowerCase();
 	for (var classIndex in classes) {
 		var classItem = classes[classIndex];
-		var classNormalized = classItem.replace(/ /g, "").toLowerCase();
-		var classId = classIds[classIndex];
+		var classNormalized = classItem.name.replace(/ /g, "").toLowerCase();
 
 		// check for exact match
 		if (classNormalized == normalizedName) {
 			// found it
-			return {
-				id: classId,
-				name: classItem
-			};
+			return classItem;
 		}
 
 		// check all synonyms
@@ -48,10 +44,7 @@ var findClass = function(name) {
 
 			if (hasClassName && hasSearchName) {
 				// this class and the target name are synonyms
-				return {
-					id: classId,
-					name: classItem
-				};
+				return classItem;
 			}
 		}
 	}
@@ -98,7 +91,7 @@ export default {
 			// tell nlp_compromise
 			lexicon[normalizedName] = "MHSClass";
 
-			classes.push(classItem.name);
+			classes.push(classItem);
 			classIds.push(classItem.id);
 		}
 	},

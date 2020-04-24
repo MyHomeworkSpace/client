@@ -84,11 +84,12 @@ export default class AddAction extends Component {
 
 				{/*
 					the following text input serves absolutely no purpose,
-					other than to make chrome decide not to autofill this textbox
+					other than to make chrome decide not to autofill the quick add input
 					for whatever reason, it think it's smarter than the websites it visits,
 					and IGNORES autocomplete settings when they're applied to all inputs in a form
+					so, we make a fake input in order to trick it.
 
-					it also ignores the standard autocomplete="off", needing a random string instead
+					it also ignores the standard autocomplete="off", needing a random string instead.
 
 					tl;dr: google chrome is an awful browser and it makes me sad
 					see: https://bugs.chromium.org/p/chromium/issues/detail?id=468153#c164
