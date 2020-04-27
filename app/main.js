@@ -35,7 +35,7 @@ import HomeworkName from "ui/HomeworkName.jsx";
 import ModalManager from "ui/ModalManager.jsx";
 
 import TopBar from "ui/nav/TopBar.jsx";
-import getDaltonTabImage from "./getdaltontabimage.js";
+import getDaltonTabImage, { pingBeacon } from "./getdaltontabimage.js";
 
 var modalName = "";
 var modalState = {};
@@ -78,6 +78,7 @@ var setBackground = function(newBackground) {
 		if (bgVal == "-1") {
 			getDaltonTabImage((imageData) => {
 				document.getElementById("app").style.backgroundImage = "url(" + imageData.imgUrl + ")";
+				pingBeacon();
 			});
 		} else {
 			document.getElementById("app").style.backgroundImage = "url(img/backgrounds/bg" + bgVal + ".jpg)";
