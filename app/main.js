@@ -35,7 +35,7 @@ import HomeworkName from "ui/HomeworkName.jsx";
 import ModalManager from "ui/ModalManager.jsx";
 
 import TopBar from "ui/nav/TopBar.jsx";
-import getDaltonTabImage, { pingBeacon } from "./getdaltontabimage.js";
+import getDaltonTabImage, { pingBeacon } from "daltontab.js";
 
 var modalName = "";
 var modalState = {};
