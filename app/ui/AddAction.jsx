@@ -46,7 +46,7 @@ export default class AddAction extends Component {
 	}
 
 	componentDidMount() {
-		Mousetrap.bind("ctrl+space", () => {
+		Mousetrap.bind(["ctrl+space", "q"], () => {
 			this.click();
 			return false;
 		});
