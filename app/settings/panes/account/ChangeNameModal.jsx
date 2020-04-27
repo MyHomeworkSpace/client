@@ -9,7 +9,7 @@ export default class ChangeNameModal extends Component {
 		super(props);
 
 		this.state = {
-			name: MyHomeworkSpace.me.name,
+			name: props.me.name,
 			loading: false
 		};
 	}
