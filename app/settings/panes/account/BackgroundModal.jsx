@@ -16,7 +16,8 @@ export default class BackgroundModal extends Component {
 		this.state = {
 			color: "#00000",
 			dailyBgLoading: true,
-			dailyBgError: false
+			dailyBgError: false,
+			currentBg: props.currentBackground
 		};
 
 		if (props.currentBackground.indexOf("clr:") == 0) {
@@ -47,6 +48,9 @@ export default class BackgroundModal extends Component {
 	}
 
 	saveBackground(bg) {
+		this.setState({
+			currentBg: bg
+		});
 		api.post("prefs/set", {
 			key: "background",
 			value: bg
@@ -99,7 +103,9 @@ export default class BackgroundModal extends Component {
 							<strong>{state.dailyBgData.description}</strong>
 							<p>By <a href={state.dailyBgData.authorUrl}>{state.dailyBgData.authorName}</a></p>
 							<p><em>Image from <a href={state.dailyBgData.siteUrl}>{state.dailyBgData.siteName}</a></em></p>
-							<button class="btn btn-default" onClick={this.setBackgroundImage.bind(this, -1)} disabled={props.currentBackground == "img:-1"}>{props.currentBackground == "-1" ? "Selected" : "Select"}</button>
+							<button class="btn btn-default" onClick={this.setBackgroundImage.bind(this, -1)} disabled={state.currentBg == "img:-1"}>
+								{state.currentBg == "img:-1" ? "Selected" : "Select"}
+							</button>
 						</div>
 					</div>
 
