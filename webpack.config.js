@@ -1,3 +1,5 @@
+var { DefinePlugin } = require("webpack");
+
 var { CleanWebpackPlugin } = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -10,6 +12,10 @@ var mode = (process.env.NODE_ENV === "production" ? "production" : "development"
 var isProduction = (mode == "production");
 
 var plugins = [
+	new DefinePlugin({
+		PRODUCTION: JSON.stringify(isProduction),
+	}),
+
 	new CleanWebpackPlugin(),
 
 	new MiniCssExtractPlugin({

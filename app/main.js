@@ -1,5 +1,9 @@
 import "main.styl";
 
+if (!PRODUCTION) {
+	require("preact/debug");
+}
+
 import { h, render } from "preact";
 
 import api from "api.js";
