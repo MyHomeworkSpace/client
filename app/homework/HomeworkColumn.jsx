@@ -2,6 +2,8 @@ import "homework/HomeworkColumn.styl";
 
 import { h, Component } from "preact";
 
+import { edit, markComplete } from "homework.js";
+
 import HomeworkItem from "ui/HomeworkItem.jsx";
 
 export default class HomeworkColumn extends Component {
@@ -23,10 +25,10 @@ export default class HomeworkColumn extends Component {
 							isOverdue={!!props.isOverdue}
 							hideDue={!!props.hideDue}
 							edit={function(id) {
-								MyHomeworkSpace.Pages.homework.edit(id);
+								edit(id);
 							}}
 							setComplete={function(id, complete) {
-								MyHomeworkSpace.Pages.homework.markComplete(id, (complete ? "1" : "0"));
+								markComplete(id, (complete ? "1" : "0"));
 							}}
 						/>;
 					})}

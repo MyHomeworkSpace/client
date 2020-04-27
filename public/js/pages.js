@@ -25,6 +25,8 @@ MyHomeworkSpace.Pages.createAccount = createComponentPage(MHSBridge.default.auth
 
 MyHomeworkSpace.Pages.classes = createComponentPage(MHSBridge.default.pages.classes.ClassesPage, "classes");
 
+MyHomeworkSpace.Pages.homework = createComponentPage(MHSBridge.default.pages.homework.HomeworkPage, "homework");
+
 MyHomeworkSpace.Pages.planner = createComponentPage(MHSBridge.default.pages.planner.PlannerPage, "planner");
 
 MyHomeworkSpace.Pages.calendar = createComponentPage(MHSBridge.default.pages.calendar.CalendarPage, "calendar");

@@ -7,6 +7,7 @@ import moment from "moment";
 
 import api from "api.js";
 import errors from "errors.js";
+import { handleNew } from "homework.js";
 
 import ClassPicker from "ui/ClassPicker.jsx";
 import DatePicker from "ui/DatePicker.jsx";
@@ -76,7 +77,7 @@ export default class HomeworkModal extends Component {
 			api.post((this.state.isNew ? "homework/add" : "homework/edit"), homeworkInfo, (data) => {
 				if (data.status == "ok") {
 					this.props.openModal("");
-					MyHomeworkSpace.Pages.homework.handleNew();
+					handleNew();
 				} else {
 					this.setState({
 						loading: false,
@@ -96,7 +97,7 @@ export default class HomeworkModal extends Component {
 					id: this.props.modalState.id
 				}, () => {
 					this.props.openModal("");
-					MyHomeworkSpace.Pages.homework.handleNew();
+					handleNew();
 				});
 			});
 		}

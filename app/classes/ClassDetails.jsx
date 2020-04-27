@@ -5,6 +5,7 @@ import { h, Component } from "preact";
 import moment from "moment";
 
 import api from "api.js";
+import { edit, markComplete } from "homework.js";
 
 import HomeworkItem from "ui/HomeworkItem.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
@@ -76,10 +77,10 @@ export default class ClassDetails extends Component {
 						classes={MyHomeworkSpace.Classes.list}
 						isOverdue={moment(item.due).isBefore(moment(), "day")}
 						edit={function(id) {
-							MyHomeworkSpace.Pages.homework.edit(id);
+							edit(id);
 						}}
 						setComplete={function(id, complete) {
-							MyHomeworkSpace.Pages.homework.markComplete(id, (complete ? "1" : "0"));
+							markComplete(id, (complete ? "1" : "0"));
 						}}
 					/>;
 				})}
