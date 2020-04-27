@@ -15,6 +15,7 @@ import SchoolSettingsModal from "schools/SchoolSettingsModal.jsx";
 import BackgroundModal from "settings/panes/account/BackgroundModal.jsx";
 import TwoFactorModal from "settings/panes/account/TwoFactorModal.jsx";
 import LoadingModal from "ui/LoadingModal.jsx";
+import ShortcutModal from "ui/ShortcutModal.jsx";
 
 export default class ModalManager extends Component {
 	closeModal() {
@@ -36,6 +37,7 @@ export default class ModalManager extends Component {
 			changePassword: ChangePasswordModal,
 			accountMigrate: AccountMigrateModal,
 			schoolSettings: SchoolSettingsModal,
+			shortcut: ShortcutModal,
 		};
 		
 		var modal;
