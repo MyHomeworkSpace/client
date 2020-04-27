@@ -14,6 +14,7 @@ import EnrollModal from "schools/EnrollModal.jsx";
 import SchoolSettingsModal from "schools/SchoolSettingsModal.jsx";
 import BackgroundModal from "settings/panes/account/BackgroundModal.jsx";
 import TwoFactorModal from "settings/panes/account/TwoFactorModal.jsx";
+import ChangeNameModal from "settings/panes/account/ChangeNameModal.jsx";
 import LoadingModal from "ui/LoadingModal.jsx";
 import ShortcutModal from "ui/ShortcutModal.jsx";
 
@@ -38,8 +39,9 @@ export default class ModalManager extends Component {
 			accountMigrate: AccountMigrateModal,
 			schoolSettings: SchoolSettingsModal,
 			shortcut: ShortcutModal,
+			changeName: ChangeNameModal,
 		};
-		
+
 		var modal;
 
 		if (props.modalName) {

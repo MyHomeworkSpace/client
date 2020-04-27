@@ -19,6 +19,10 @@ export default class AccountPane extends Component {
 		this.props.openModal("changeEmail", {});
 	}
 
+	changeName() {
+		this.props.openModal("changeName", {});
+	}
+
 	changePassword() {
 		this.props.openModal("changePassword", {});
 	}
@@ -67,6 +71,7 @@ export default class AccountPane extends Component {
 					</h4>
 				</div>
 				<button class="btn btn-primary" onClick={this.changeEmail.bind(this)}><i class="fa fa-fw fa-envelope" /> Change email</button>
+				<button class="btn btn-primary" onClick={this.changeName.bind(this)}><i class="fa fa-fw fa-user" /> Change name</button>
 			</div>
 
 			<div class="accountGroup">

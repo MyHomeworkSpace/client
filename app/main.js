@@ -108,7 +108,9 @@ var renderModalManager = function() {
 		refreshContext: refreshContext,
 
 		currentBackground: currentBackground,
-		setBackground: setBackground
+		setBackground: setBackground,
+
+		me: MyHomeworkSpace.me,
 	}), document.querySelector("#modalManager"));
 };
 
