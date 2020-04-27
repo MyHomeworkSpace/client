@@ -8,15 +8,21 @@ var classSynonyms = [
 	["science", "sci", "bio", "biology", "chem", "chemistry", "physics"],
 	["math", "algebra", "calculus", "calc", "pre-calculus", "precalculus", "precalc", "geometry", "geo"],
 	["computer science", "compsci", "cs"],
-	["language", "french", "latin", "spanish", "mandarin"]
+	["language", "french", "latin", "spanish", "span", "mandarin"],
+	["history", "us history", "hist", "ush"],
+	["english", "eng"]
 ];
 var lexicon = {};
 
+var normalizeName = function(name) {
+	return name.replace(/ /g, "").replace(/\./g, "").toLowerCase();
+};
+
 var findClass = function(name) {
-	var normalizedName = name.replace(/ /g, "").toLowerCase();
+	var normalizedName = normalizeName(name);
 	for (var classIndex in classes) {
 		var classItem = classes[classIndex];
-		var classNormalized = classItem.name.replace(/ /g, "").toLowerCase();
+		var classNormalized = normalizeName(classItem.name);
 
 		// check for exact match
 		if (classNormalized == normalizedName) {
@@ -33,7 +39,7 @@ var findClass = function(name) {
 
 			for (var synonymIndex in synonymList) {
 				var synonym = synonymList[synonymIndex];
-				var normalizedSynonym = synonym.replace(/ /g, "").toLowerCase();
+				var normalizedSynonym = normalizeName(synonym);
 
 				if (normalizedSynonym == classNormalized){
 					hasClassName = true;	
@@ -86,10 +92,11 @@ export default {
 		for (var classIndex in MyHomeworkSpace.Classes.list) {
 			var classItem = MyHomeworkSpace.Classes.list[classIndex];
 
-			var normalizedName = classItem.name.replace(/ /g, "").toLowerCase();
-
 			// tell nlp_compromise
-			lexicon[normalizedName] = "MHSClass";
+			lexicon[classItem.name.toLowerCase()] = "MHSClass";
+			lexicon[classItem.name.toLowerCase().replace(/ /g, "")] = "MHSClass";
+			lexicon[classItem.name.toLowerCase().replace(/\./g, "")] = "MHSClass";
+			lexicon[normalizeName(classItem.name)] = "MHSClass";
 
 			classes.push(classItem);
 			classIds.push(classItem.id);
