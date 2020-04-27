@@ -109,8 +109,6 @@ var renderModalManager = function() {
 
 		currentBackground: currentBackground,
 		setBackground: setBackground,
-
-		me: MyHomeworkSpace.me,
 	}), document.querySelector("#modalManager"));
 };
 

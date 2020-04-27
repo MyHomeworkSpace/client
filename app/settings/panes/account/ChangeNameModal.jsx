@@ -1,24 +1,17 @@
-import "settings/panes/account/BackgroundModal.styl";
-
 import { h, Component } from "preact";
 import linkState from "linkstate";
 import api from "api.js";
 
 import Modal from "ui/Modal.jsx";
 
-export default class BackgroundModal extends Component {
+export default class ChangeNameModal extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			name: props.me.name,
+			name: MyHomeworkSpace.me.name,
 			loading: false
 		};
-	}
-
-	setBackgroundImage(index) {
-		this.props.setBackground("img:" + index);
-		this.saveBackground("img:" + index);
 	}
 
 	keyup(e) {
@@ -46,13 +39,6 @@ export default class BackgroundModal extends Component {
 	}
 
 	render(props, state) {
-		var backgroundCount = 10;
-		var backgroundImages = [];
-
-		for (var i = 0; i < backgroundCount; i++) {
-			backgroundImages.push(<img src={`img/backgrounds/bg${i + 1}_thumb.jpg`} onClick={this.setBackgroundImage.bind(this, i + 1)} />);
-		}
-
 		return <Modal title="Change name" openModal={props.openModal} close={this.close.bind(this)}>
 			<div class="modal-body">
 				<p>Enter your new name.</p>
