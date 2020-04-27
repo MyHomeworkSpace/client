@@ -1,13 +1,33 @@
+var { CleanWebpackPlugin } = require("clean-webpack-plugin");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
 var path = require('path');
 
 var mode = (process.env.NODE_ENV === "production" ? "production" : "development");
 var isProduction = (mode == "production");
 
 var plugins = [
+	new CleanWebpackPlugin(),
+
 	new MiniCssExtractPlugin({
-		filename: "../css/bundle.css"
+		filename: "bundle.css"
+	}),
+
+	new CopyWebpackPlugin([
+		{ from: "robots.txt", to: "" },
+		{ from: "public/css", to: "css" },
+		{ from: "public/fonts", to: "fonts" },
+		{ from: "public/img", to: "img" },
+		{ from: "public/js", to: "js" }
+	]),
+
+	new HtmlWebpackPlugin({
+		template: "base.ejs",
+		inject: false,
+		title: "MyHomeworkSpace"
 	})
 ];
 
@@ -20,9 +40,17 @@ module.exports = {
 
 	devtool: 'source-map',
 
+	devServer: {
+		contentBase: "./dist",
+		disableHostCheck: true, // TODO: this should not be needed
+		historyApiFallback: true,
+		port: 9001,
+		public: "app.myhomework.invalid:80"
+	},
+
 	output: {
 		filename: 'bundle.js',
-		path: (isProduction ? path.resolve(__dirname, 'www', 'js') : path.resolve(__dirname, 'public', 'js')),
+		path: path.resolve(__dirname, 'dist'),
 		library: "MHSBridge"
 	},
 
