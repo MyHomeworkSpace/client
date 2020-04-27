@@ -3,9 +3,9 @@ import "settings/panes/account/BackgroundModal.styl";
 import { h, Component } from "preact";
 
 import api from "api.js";
+import { getImage, pingBeacon } from "daltontab.js";
 
 import Modal from "ui/Modal.jsx";
-import { getImage, pingBeacon } from "../../../daltontab.js";
 
 export default class BackgroundModal extends Component {
 	constructor(props) {
@@ -50,11 +50,12 @@ export default class BackgroundModal extends Component {
 	saveBackground(bg) {
 		this.setState({
 			currentBg: bg
+		}, () => {
+			api.post("prefs/set", {
+				key: "background",
+				value: bg
+			}, function() {});
 		});
-		api.post("prefs/set", {
-			key: "background",
-			value: bg
-		}, function() { });
 	}
 
 	onColorChange(e) {
@@ -90,11 +91,8 @@ export default class BackgroundModal extends Component {
 
 				<h3>Image of the day</h3>
 				<p>You can also use a rotating image of the day as your background.</p>
-				{
-					state.dailyBgError && <div class="alert alert-danger">The image of the day couldn't be loaded.</div>
-				}
-				{
-					state.dailyBgLoading ? <p><i className="fa fa-circle-o-notch fa-spin"></i> Loading ...</p> : <div className="row">
+				{state.dailyBgError && <div class="alert alert-danger">The image of the day couldn't be loaded.</div>}
+				{state.dailyBgLoading ? <p><i className="fa fa-circle-o-notch fa-spin"></i> Loading ...</p> : <div className="row">
 						<div className="col-md-5">
 							<img src={state.dailyBgData.imgUrl} class="image-of-the-day" />
 						</div>
@@ -107,9 +105,7 @@ export default class BackgroundModal extends Component {
 								{state.currentBg == "img:-1" ? "Selected" : "Select"}
 							</button>
 						</div>
-					</div>
-
-				}
+					</div>}
 
 				<h3>Color</h3>
 				<p>You can also choose to have a solid background.</p>
