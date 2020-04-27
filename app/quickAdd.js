@@ -66,7 +66,13 @@ export default {
 		lexicon = {
 			// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
 			"day": undefined,
-			"week": undefined
+			"week": undefined,
+
+			// these are abberivations for dates
+			"tmr": "Date",
+			"tmrw": "Date",
+			"tue": "Date",
+			"thu": "Date",
 		};
 
 		// handle prefix list
