@@ -54,7 +54,7 @@ export default class BackgroundModal extends Component {
 			api.post("prefs/set", {
 				key: "background",
 				value: bg
-			}, function() {});
+			}, function() { });
 		});
 	}
 
@@ -93,19 +93,19 @@ export default class BackgroundModal extends Component {
 				<p>You can also use a rotating image of the day as your background.</p>
 				{state.dailyBgError && <div class="alert alert-danger">The image of the day couldn't be loaded.</div>}
 				{state.dailyBgLoading ? <p><i className="fa fa-circle-o-notch fa-spin"></i> Loading ...</p> : <div className="row">
-						<div className="col-md-5">
-							<img src={state.dailyBgData.imgUrl} class="image-of-the-day" />
-						</div>
-						<div className="col-md-7">
-							<h4>Today's background:</h4>
-							<strong>{state.dailyBgData.description}</strong>
-							<p>By <a href={state.dailyBgData.authorUrl}>{state.dailyBgData.authorName}</a></p>
-							<p><em>Image from <a href={state.dailyBgData.siteUrl}>{state.dailyBgData.siteName}</a></em></p>
-							<button class="btn btn-default" onClick={this.setBackgroundImage.bind(this, -1)} disabled={state.currentBg == "img:-1"}>
-								{state.currentBg == "img:-1" ? "Selected" : "Select"}
-							</button>
-						</div>
-					</div>}
+					<div className="col-md-5">
+						<img src={state.dailyBgData.imgUrl} class="image-of-the-day" />
+					</div>
+					<div className="col-md-7">
+						<h4>Today's background:</h4>
+						<strong>{state.dailyBgData.description}</strong>
+						<p>By <a href={state.dailyBgData.authorUrl}>{state.dailyBgData.authorName}</a></p>
+						<p><em>Image from <a href={state.dailyBgData.siteUrl}>{state.dailyBgData.siteName}</a></em></p>
+						<button class="btn btn-default" onClick={this.setBackgroundImage.bind(this, -1)} disabled={state.currentBg == "img:-1"}>
+							{state.currentBg == "img:-1" ? "Selected" : "Select"}
+						</button>
+					</div>
+				</div>}
 
 				<h3>Color</h3>
 				<p>You can also choose to have a solid background.</p>
