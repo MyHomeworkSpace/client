@@ -5,7 +5,7 @@ import { h, Component } from "preact";
 import api from "api.js";
 
 import Modal from "ui/Modal.jsx";
-import getDaltonTabImage, { pingBeacon } from "../../../daltontab.js";
+import { getImage, pingBeacon } from "../../../daltontab.js";
 
 export default class BackgroundModal extends Component {
 	constructor(props) {
@@ -27,7 +27,7 @@ export default class BackgroundModal extends Component {
 	}
 
 	loadDailyBg() {
-		getDaltonTabImage((imageData) => {
+		getImage((imageData) => {
 			console.log(imageData);
 			if (imageData.status && imageData.status == "error") {
 				this.setState({

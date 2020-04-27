@@ -1,4 +1,4 @@
-export default function getDaltonTabImage(callback) {
+export function getImage(callback) {
 	var request = new XMLHttpRequest();
 	request.open("GET", "https://daltontabservices.myhomework.space/v1/getImage", true);
 	request.onload = function() {
@@ -14,7 +14,7 @@ export default function getDaltonTabImage(callback) {
 }
 
 export function pingBeacon() {
-	getDaltonTabImage((imageData) => {
+	getImage((imageData) => {
 		var request = new XMLHttpRequest();
 		request.open("GET", imageData.beaconURL, true);
 		request.send();

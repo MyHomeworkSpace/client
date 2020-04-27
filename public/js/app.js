@@ -15,6 +15,8 @@ MyHomeworkSpace.Tabs = null; // will store the current user's tabs when logged i
 MyHomeworkSpace.Nav = {
 	inverted: false,
 	rerenderNav: function() {
+		console.log(MHSBridge.default.background)
+
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.TopBar, {
 			me: MyHomeworkSpace.Me,
 			tabs: MyHomeworkSpace.Tabs,
@@ -22,7 +24,9 @@ MyHomeworkSpace.Nav = {
 			openModal: MHSBridge.default.openModal,
 			openPage: MyHomeworkSpace.Page.show,
 			inverted: MyHomeworkSpace.Nav.inverted,
-			dimmed: MHSBridge.default.background.isDimBackground()
+			dimmed: MHSBridge.default.background.isDimBackground(),
+			currentBackground: MHSBridge.default.background.currentBackground(),
+			daltonTabBackgroundDetails: MHSBridge.default.background.daltonTabBackgroundDetails(),
 		}), document.querySelector(".topBar"));
 	},
 	init: function() {
@@ -33,7 +37,7 @@ MyHomeworkSpace.Nav = {
 };
 
 MyHomeworkSpace.Page = {
-	noLogin: [ "login", "createAccount", "completeEmail", "resetPassword" ],
+	noLogin: ["login", "createAccount", "completeEmail", "resetPassword"],
 	init: function() {
 		window.addEventListener("hashchange", function(e) {
 			var requestedPage = window.location.hash.substr(2);

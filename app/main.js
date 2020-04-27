@@ -35,12 +35,13 @@ import HomeworkName from "ui/HomeworkName.jsx";
 import ModalManager from "ui/ModalManager.jsx";
 
 import TopBar from "ui/nav/TopBar.jsx";
-import getDaltonTabImage, { pingBeacon } from "daltontab.js";
+import { pingBeacon, getImage } from "daltontab.js";
 
 var modalName = "";
 var modalState = {};
 
 var currentBackground = "";
+var daltonTabBackgroundDetails = {};
 
 var refreshContext = function(callback) {
 	api.get("auth/context", {}, function(data) {
@@ -76,8 +77,10 @@ var setBackground = function(newBackground) {
 	var bgVal = newBackground.split(":")[1];
 	if (bgType == "img") {
 		if (bgVal == "-1") {
-			getDaltonTabImage((imageData) => {
+			getImage((imageData) => {
 				document.getElementById("app").style.backgroundImage = "url(" + imageData.imgUrl + ")";
+				daltonTabBackgroundDetails = imageData;
+				MyHomeworkSpace.Nav.rerenderNav();
 				pingBeacon();
 			});
 		} else {
@@ -146,7 +149,8 @@ export default {
 	refreshContext: refreshContext,
 
 	background: {
-		currentBackground: currentBackground,
+		currentBackground: () => { return currentBackground; },
+		daltonTabBackgroundDetails: () => { return daltonTabBackgroundDetails; },
 		isDimBackground: isDimBackground,
 		setBackground: setBackground
 	},

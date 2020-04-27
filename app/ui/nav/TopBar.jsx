@@ -65,7 +65,13 @@ export default class TopBar extends Component {
 		Mousetrap.bind(["ctrl+,", "command+,"], this.openPage.bind(this, "settings"));
 	}
 
+	showImageInfo() {
+		this.props.openModal("imageInfo", { imageInfo: this.props.daltonTabBackgroundDetails });
+	}
+
 	render(props, state) {
+		console.log(props);
+
 		var tabs = {
 			"homework": { icon: "file-o", name: "Homework" },
 			"planner": { icon: "book", name: "Planner" },
@@ -92,6 +98,9 @@ export default class TopBar extends Component {
 					<i class="fa fa-fw fa-bars" />
 				</div>
 				<NotificationControl />
+				{props.currentBackground == "img:-1" && <TopBarButton icon="camera" selected={state.open} onClick={this.showImageInfo.bind(this)}>
+					{props.daltonTabBackgroundDetails.description ? props.daltonTabBackgroundDetails.description : "About image"}
+				</TopBarButton>}
 				<FeedbackControl />
 				<div class="topBarLogout topBarAction" onClick={this.logout.bind(this)}><i class="fa fa-sign-out"></i></div>
 				<div class="topBarName">{props.me && props.me.name}</div>
