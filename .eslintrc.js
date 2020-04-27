@@ -63,14 +63,15 @@ module.exports = {
 		],
 		"react/no-unknown-property": [
 			"error",
-			{ ignore: [ "class" ] }
+			{ ignore: ["class"] }
 		],
+		"no-console": 2
 	},
 	"settings": {
 		"react": {
 			"createClass": "createComponent",
 			"pragma": "h",  // Pragma to use, default to "React"
 			"version": "16.3"
-		  },
+		},
 	}
 };

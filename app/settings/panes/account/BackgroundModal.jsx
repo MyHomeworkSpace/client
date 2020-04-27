@@ -28,7 +28,6 @@ export default class BackgroundModal extends Component {
 
 	loadDailyBg() {
 		getImage((imageData) => {
-			console.log(imageData);
 			if (imageData.status && imageData.status == "error") {
 				this.setState({
 					dailyBgError: true
@@ -77,8 +76,6 @@ export default class BackgroundModal extends Component {
 		for (var i = 0; i < backgroundCount; i++) {
 			backgroundImages.push(<img src={`img/backgrounds/bg${i + 1}_thumb.jpg`} onClick={this.setBackgroundImage.bind(this, i + 1)} />);
 		}
-
-		console.log(this.state);
 
 		return <Modal title="Set background" openModal={props.openModal} class="backgroundModal">
 			<div class="modal-body">

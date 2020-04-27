@@ -70,8 +70,6 @@ export default class TopBar extends Component {
 	}
 
 	render(props, state) {
-		console.log(props);
-
 		var tabs = {
 			"homework": { icon: "file-o", name: "Homework" },
 			"planner": { icon: "book", name: "Planner" },

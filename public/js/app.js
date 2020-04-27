@@ -15,8 +15,6 @@ MyHomeworkSpace.Tabs = null; // will store the current user's tabs when logged i
 MyHomeworkSpace.Nav = {
 	inverted: false,
 	rerenderNav: function() {
-		console.log(MHSBridge.default.background)
-
 		MHSBridge.default.render(MHSBridge.default.h(MHSBridge.default.ui.TopBar, {
 			me: MyHomeworkSpace.Me,
 			tabs: MyHomeworkSpace.Tabs,
