@@ -6,3 +6,13 @@ This repository is the MyHomeworkSpace client, which runs at https://app.myhomew
 ## Related
 * [MyHomeworkSpace/api-server](https://github.com/MyHomeworkSpace/api-server) - the API server, which this client talks to
 * [MyHomeworkSpace/website](https://github.com/MyHomeworkSpace/website) - the main website, at https://myhomework.space
+
+## Setting up
+1. Make sure you've done the [api-server setup](https://github.com/MyHomeworkSpace/api-server/blob/master/README.md) first.
+2. Clone this repository to your computer, and open a terminal to that folder.
+3. Run `npm install`.
+
+## Running
+To start Webpack, just run `npm run dev`. This will start the development server, listening at port 9001.
+
+If you followed the api-server guide, this should be available at http://app.myhomework.invalid.
