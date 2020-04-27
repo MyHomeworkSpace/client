@@ -21,30 +21,30 @@ export default class ShortcutModal extends Component {
 					</thead>
 					<tbody>
 						<tr>
-							<td>h</td>
+							<td><kbd>h</kbd></td>
 							<td>Opens Homework view</td>
 						</tr>
 						<tr>
-							<td>p</td>
+							<td><kbd>p</kbd></td>
 							<td>Opens Planner view</td>
 						</tr>
 						<tr>
-							<td>c</td>
+							<td><kbd>c</kbd></td>
 							<td>Opens Calendar view</td>
 						</tr>
 						<tr>
-							<td>l</td>
+							<td><kbd>l</kbd></td>
 							<td>Opens the Classes page</td>
 						</tr>
 						<tr>
 							<td>
-								<div>q</div>
-								<div>control+space</div>
+								<div><kbd>q</kbd></div>
+								<div><kbd>control</kbd>+<kbd>space</kbd></div>
 							</td>
 							<td>Opens Quick Add</td>
 						</tr>
 						<tr>
-							<td>?</td>
+							<td><kbd>?</kbd></td>
 							<td>Opens this help page</td>
 						</tr>
 					</tbody>
