@@ -35,6 +35,7 @@ import HomeworkName from "ui/HomeworkName.jsx";
 import ModalManager from "ui/ModalManager.jsx";
 
 import TopBar from "ui/nav/TopBar.jsx";
+import getDaltonTabImage from "./getdaltontabimage.js";
 
 var modalName = "";
 var modalState = {};
@@ -62,7 +63,7 @@ var isDimBackground = function() {
 	var bgType = currentBackground.split(":")[0];
 	var bgVal = currentBackground.split(":")[1];
 	if (bgType == "img") {
-		var dimBackgrounds = [4, 5, 7, 8, 9, 10];
+		var dimBackgrounds = [-1, 4, 5, 7, 8, 9, 10];
 		if (dimBackgrounds.indexOf(parseInt(bgVal)) > -1) {
 			return true;
 		}
@@ -74,7 +75,13 @@ var setBackground = function(newBackground) {
 	var bgType = newBackground.split(":")[0];
 	var bgVal = newBackground.split(":")[1];
 	if (bgType == "img") {
-		document.getElementById("app").style.backgroundImage = "url(img/backgrounds/bg" + bgVal + ".jpg)";
+		if (bgVal == "-1") {
+			getDaltonTabImage((imageData) => {
+				document.getElementById("app").style.backgroundImage = "url(" + imageData.imgUrl + ")";
+			});
+		} else {
+			document.getElementById("app").style.backgroundImage = "url(img/backgrounds/bg" + bgVal + ".jpg)";
+		}
 		MyHomeworkSpace.Nav.inverted = false;
 	} else if (bgType == "clr") {
 		document.getElementById("app").style.backgroundImage = "none";
