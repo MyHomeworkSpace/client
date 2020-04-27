@@ -148,7 +148,7 @@ export default {
 				result.dow = 6;
 			} else if (word.substr(0, 3) == "ton") { // tonight
 				result.dow = moment().day();
-			} else if (word.substr(0, 3) == "tom") { // tomorrow
+			} else if (word.substr(0, 3) == "tom" || word.substr(0, 3) == "tmr") { // tomorrow
 				result.dow = moment().day() + 1;
 				if (result.dow == 7) {
 					result.dow = 0;

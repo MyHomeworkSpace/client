@@ -5,6 +5,7 @@ import { h, Component } from "preact";
 import moment from "moment";
 
 import prefixes from "prefixes.js";
+import { relativeDate } from "utils.js";
 
 import ClassName from "ui/ClassName.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
@@ -48,18 +49,7 @@ export default class HomeworkItem extends Component {
 		var prefixInfo = prefixes.matchPrefix(prefix);
 
 		var due = moment(props.homework.due);
-		var dueText = due.calendar().split(" at ")[0];
-		var daysTo = Math.ceil(due.diff(moment()) / 1000 / 60 / 60 / 24);
-
-		if (dueText.indexOf(" ") > -1) {
-			dueText = dueText[0].toLowerCase() + dueText.substr(1);
-		}
-
-		if (daysTo > 7 && daysTo < 14) {
-			dueText = "a week from " + due.format("dddd");
-		} else if (daysTo == 7) {
-			dueText = "a week from today";
-		}
+		var dueText = relativeDate(due);
 
 		var keyword = "due ";
 		if (prefix.toLowerCase() == "test" || prefix.toLowerCase() == "exam" || prefix.toLowerCase() == "midterm" || prefix.toLowerCase() == "quiz" || prefix.toLowerCase() == "ica" || prefix.toLowerCase() == "lab") {

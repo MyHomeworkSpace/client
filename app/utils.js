@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function closestByClass(element, className) {
 	while (!element.classList || !element.classList.contains(className)) {
 		element = element.parentNode;
@@ -7,4 +9,21 @@ export function closestByClass(element, className) {
 	}
 
 	return element;
+};
+
+export function relativeDate(due) {
+	var dueText = due.calendar().split(" at ")[0];
+	var daysTo = Math.ceil(due.diff(moment()) / 1000 / 60 / 60 / 24);
+
+	if (dueText.indexOf(" ") > -1) {
+		dueText = dueText[0].toLowerCase() + dueText.substr(1);
+	}
+
+	if (daysTo > 7 && daysTo < 14) {
+		dueText = "a week from " + due.format("dddd");
+	} else if (daysTo == 7) {
+		dueText = "a week from today";
+	}
+
+	return dueText;
 };

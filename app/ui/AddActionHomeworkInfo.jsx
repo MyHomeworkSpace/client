@@ -2,7 +2,10 @@ import "ui/AddActionHomeworkInfo.styl";
 
 import { h, Component } from "preact";
 
+import moment from "moment";
+
 import quickAdd from "quickAdd.js";
+import { relativeDate } from "utils.js";
 
 import AddActionInfo from "ui/AddActionInfo.jsx";
 import ClassName from "ui/ClassName.jsx";
@@ -21,10 +24,12 @@ export default class AddActionHomeworkInfo extends Component {
 			</AddActionInfo>;
 		}
 		var info = quickAdd.parseText(props.text);
+		var dueDate = quickAdd.parseDate(info.due) || undefined;
+		var dueDateDisplay = (dueDate ? relativeDate(moment(dueDate, "YYYY-MM-DD")) : null);
 		return <AddActionInfo class="addActionHomeworkInfo">
 			<div class="addActionHomeworkInfoName"><HomeworkName name={info.tag + " " + info.name} /></div>
-			<div class={`addActionHomeworkInfoDetails ${!info.due ? "addActionHomeworkInfoDetailsUnknown" : ""}`}>
-				<i class="fa fa-calendar-o"></i> {info.due || "unknown due date"}
+			<div class={`addActionHomeworkInfoDetails ${!dueDateDisplay ? "addActionHomeworkInfoDetailsUnknown" : ""}`}>
+				<i class="fa fa-calendar-o"></i> {dueDateDisplay || "unknown due date"}
 			</div>
 			<div class={`addActionHomeworkInfoDetails ${!info.class ? "addActionHomeworkInfoDetailsUnknown" : ""}`}>
 				<ClassName classObject={info.class ? info.class : {
