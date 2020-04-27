@@ -45,7 +45,6 @@ export default class ChangeNameModal extends Component {
 				<input type="text" class="form-control" placeholder="New name" onKeyup={this.keyup.bind(this)} onChange={linkState(this, "name")} value={state.name} disabled={state.loading} />
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" disabled={state.loading} onClick={this.close.bind(this)}>Close</button>
 				<button type="button" class="btn btn-primary" disabled={state.loading} onClick={this.save.bind(this)}>Save</button>
 			</div>
 		</Modal>;
