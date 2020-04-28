@@ -12,6 +12,8 @@ This repository is the MyHomeworkSpace client, which runs at https://app.myhomew
 2. Clone this repository to your computer, and open a terminal to that folder.
 3. Run `npm install`.
 
+If you're working on the app, the [Preact DevTools](https://github.com/preactjs/preact-devtools) ([Firefox](https://addons.mozilla.org/en-US/firefox/addon/preact-devtools/)/[Chrome](https://chrome.google.com/webstore/detail/preact-developer-tools/ilcajpmogmhpliinlbcdebhbcanbghmd)/[Edge](https://microsoftedge.microsoft.com/addons/detail/hdkhobcafnfejjieimdkmjaiihkjpmhk)) can be helpful.
+
 ## Running
 To start Webpack, just run `npm run dev`. This will start the development server, listening at port 9001.
 
