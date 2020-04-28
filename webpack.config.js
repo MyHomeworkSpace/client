@@ -66,8 +66,9 @@ module.exports = {
 				test: /.(js|jsx)$/,
 				loaders: 'buble-loader',
 				include: path.join(__dirname, 'app'),
-				query: {
-					jsx: "h"
+				options: {
+					jsx: "h",
+					objectAssign: "Object.assign"
 				}
 			},
 			{
