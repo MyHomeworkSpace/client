@@ -1,11 +1,9 @@
 import "ui/AddActionInfo.styl";
 
-import { h, Component } from "preact";
+import { h } from "preact";
 
-export default class AddActionInfo extends Component {
-	render(props, state) {
-		return <div class={`addActionInfo ${props.class || ""}`}>
-			{props.children}
-		</div>;
-	}
+export default function AddActionInfo(props) {
+	return <div class={`addActionInfo ${props.class || ""}`}>
+		{props.children}
+	</div>;
 };
