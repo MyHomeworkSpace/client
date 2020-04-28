@@ -46,15 +46,21 @@ export default function AddAction(props) {
 		}
 	});
 
-	const close = (e) => {
+	const close = useCallback((e) => {
 		if (e) {
 			e.stopPropagation();
 		}
 		setOpen(false);
-	};
+	}, []);
 
 	const keyup = useCallback((e) => {
+		if (e.keyCode == 27) {
+			// escape key
+			close();
+		}
+
 		if (e.keyCode == 13) {
+			// enter key
 			var info = quickAdd.parseText(input);
 			var dueDate = quickAdd.parseDate(info.due) || undefined;
 
@@ -71,7 +77,7 @@ export default function AddAction(props) {
 			});
 			close();
 		}
-	}, [input]);
+	}, [input, close]);
 
 	var thingToAdd = (props.page == "calendar" ? consts.EVENT_TYPE_PLAIN : consts.EVENT_TYPE_HOMEWORK);
 	return <div class="addAction">
