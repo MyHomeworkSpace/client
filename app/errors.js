@@ -16,6 +16,7 @@ var errorMap = {
 	"no_account": "There's no MyHomeworkSpace account with that email address.",
 	"password_incorrect": "The password was incorrect.",
 	"user_record_missing": "Your user ID record is missing from the database. Please contact hello@myhomework.space for assistance.",
+	"csrfToken_invalid": "There's something wrong with your session ID. Try clearing your cookies, and if that doesn't fix it, contact us at hello@myhomework.space for assistance."
 };
 
 export default {
