@@ -14,7 +14,7 @@ export default class CalendarEvent extends Component {
 		var calendarEvent = closestByClass(e.target, "calendarEvent");
 
 		var rect = calendarEvent.getBoundingClientRect();
-		
+
 		var scrollContainer = calendarEvent.parentElement.parentElement.parentElement.parentElement;
 		var scrollContainerRect = scrollContainer.getBoundingClientRect();
 		var scrollOffset = scrollContainer.scrollTop;
@@ -73,7 +73,7 @@ export default class CalendarEvent extends Component {
 			</div>;
 		} else {
 			return <div class="calendarEventContainer">
-				<div class={`calendarEvent ${cancelled ? "calendarEventCancelled" : ""}`} style={`top: ${offset}px; left:${groupWidth*props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
+				<div class={`calendarEvent ${cancelled ? "calendarEventCancelled" : ""}`} style={`top: ${offset}px; left:${groupWidth * props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
 					<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
 					<div class="calendarEventName">{recurIcon}{props.item.tags[consts.EVENT_TAG_HOMEWORK] ? <HomeworkName name={displayName} /> : displayName}</div>
 					{!cancelled && <div class="calendarEventTime">
@@ -83,6 +83,10 @@ export default class CalendarEvent extends Component {
 					</div>}
 					{cancelled && <div class="calendarEventTime">
 						<i class="fa fa-ban" /> cancelled
+					</div>}
+
+					{props.relativeTime && <div class="calendarEventTime">
+						{moment.unix(props.item.start).isBefore(moment(props.time)) && "started "} <strong>{start.from(moment(props.time))}</strong>
 					</div>}
 				</div>
 			</div>;

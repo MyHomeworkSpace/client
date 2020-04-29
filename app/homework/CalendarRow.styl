@@ -1,0 +1,41 @@
+.calendarRow
+	padding: 0 15px 0 15px
+
+	.calendarRowTitle
+		font-size: 21px
+		margin-top: 20px
+		margin-bottom: 10px
+
+	.calendarRowEvents
+		flex: none
+		display: flex
+		flex-direction: row
+		overflow: hidden
+		padding-bottom: 10px
+
+		.calendarEvent
+			position: static
+			height: 70px !important //overriding the inline style at CalendarEvent.jsx:77
+			width: 200px !important 
+			top: 0
+			left: 0
+			margin-right: 10px
+			border-left: 2px #555 solid
+			cursor: default
+
+			.calendarEventDurationLine
+				display: none
+
+		.noEvents
+			height: 70px
+			width: 200px
+			border: 1px #ccc solid
+			display: flex
+			justify-content: center
+			align-items: center
+
+		.calendarEvent:hover
+			border-right: none 
+			border-bottom: none
+			border-top: none
+			margin-top: auto
