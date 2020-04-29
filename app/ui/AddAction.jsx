@@ -61,8 +61,8 @@ export default function AddAction(props) {
 
 		if (e.keyCode == 13) {
 			// enter key
-			var info = quickAdd.parseText(input);
-			var dueDate = quickAdd.parseDate(info.due) || undefined;
+			var info = quickAdd.parseText(input)[0];
+			var dueDate = quickAdd.resolveDate(info.due) || undefined;
 
 			var hwName = "";
 

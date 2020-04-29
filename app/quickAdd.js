@@ -1,9 +1,9 @@
-import moment from "moment";
+// this don't use the import statements the rest of the code uses
+// because it makes the unit test runner sad
+var moment = require("moment");
+var prefixes = require("./prefixes");
 
-import prefixes from "prefixes.js";
-
-var classes = [];
-var classIds = [];
+var classMap = {};
 var classSynonyms = [
 	["science", "sci", "bio", "biology", "chem", "chemistry", "physics"],
 	["math", "algebra", "calculus", "calc", "pre-calculus", "precalculus", "precalc", "geometry", "geo"],
@@ -20,8 +20,8 @@ var normalizeName = function(name) {
 
 var findClass = function(name) {
 	var normalizedName = normalizeName(name);
-	for (var classIndex in classes) {
-		var classItem = classes[classIndex];
+	for (var classID in classMap) {
+		var classItem = classMap[classID];
 		var classNormalized = normalizeName(classItem.name);
 
 		// check for exact match
@@ -57,12 +57,11 @@ var findClass = function(name) {
 	return null;
 };
 
-export default {
-	init: function() {
+module.exports = {
+	init: function(classes) {
 		// reset state
 		// (required because init can be called multiple times on a page load if the class list changes)
-		classes = [];
-		classIds = [];
+		classMap = {};
 		lexicon = {
 			// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
 			"day": undefined,
@@ -95,8 +94,8 @@ export default {
 		}
 
 		// handle class list
-		for (var classIndex in MyHomeworkSpace.Classes.list) {
-			var classItem = MyHomeworkSpace.Classes.list[classIndex];
+		for (var classIndex in classes) {
+			var classItem = classes[classIndex];
 
 			// tell nlp_compromise
 			lexicon[classItem.name.toLowerCase()] = "MHSClass";
@@ -104,11 +103,10 @@ export default {
 			lexicon[classItem.name.toLowerCase().replace(/\./g, "")] = "MHSClass";
 			lexicon[normalizeName(classItem.name)] = "MHSClass";
 
-			classes.push(classItem);
-			classIds.push(classItem.id);
+			classMap[classItem.id] = classItem;
 		}
 	},
-	parseDate: function(text) {
+	resolveDate: function(text) {
 		if (!isNaN(moment(text).day())) {
 			var foundDate = moment(text);
 			if (moment().month() > foundDate.month()) {
@@ -186,8 +184,8 @@ export default {
 		};
 		var sentence = nlp(text, lexicon);
 
-		for (var classIndex in MyHomeworkSpace.Classes.list) {
-			var classItem = MyHomeworkSpace.Classes.list[classIndex];
+		for (var classID in classMap) {
+			var classItem = classMap[classID];
 			var hasSpace = classItem.name.indexOf(" ") > -1;
 
 			if (hasSpace) {
@@ -253,6 +251,6 @@ export default {
 			}
 		}
 
-		return response;
+		return [ response ];
 	}
 };

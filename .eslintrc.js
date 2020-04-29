@@ -1,6 +1,7 @@
 module.exports = {
 	"env": {
 		"browser": true,
+		"commonjs": true,
 		"es6": true
 	},
 	"extends": [
@@ -15,7 +16,6 @@ module.exports = {
 		"Mousetrap": "readonly",
 		"nlp": "readonly",
 		"PRODUCTION": "readonly",
-		"require": "readonly",
 
 		"MyHomeworkSpace": "writable",
 		"MHSBridge": "writable"

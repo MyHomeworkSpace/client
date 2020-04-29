@@ -1,9 +1,7 @@
-import api from "api.js";
-
 var prefixes = [];
 var fallback = {};
 
-export default {
+module.exports = {
 	list: null,
 
 	initWithContext: function(context) {

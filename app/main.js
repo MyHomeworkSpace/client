@@ -54,7 +54,7 @@ var refreshContext = function(callback) {
 
 		MyHomeworkSpace.Me = data.user;
 
-		MHSBridge.default.quickAdd.init();
+		MHSBridge.default.quickAdd.init(MyHomeworkSpace.Classes.list);
 
 		MyHomeworkSpace.Page.show(MyHomeworkSpace.Page.current());
 

@@ -16,7 +16,7 @@ MyHomeworkSpace.Pages.login = {
 			MyHomeworkSpace.Pages.settings.cache[prefInfo.key] = prefValue;
 		}
 
-		MHSBridge.default.quickAdd.init();
+		MHSBridge.default.quickAdd.init(MyHomeworkSpace.Classes.list);
 
 		MyHomeworkSpace.Nav.init();
 
