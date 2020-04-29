@@ -120,17 +120,10 @@ export default class MITEnroll extends Component {
 				if (data.status == "ok") {
 					this.props.next();
 				} else {
-					if (data.error == "duo_denied") {
-						this.setState({
-							loading: false,
-							error: "The Duo sign-in was denied."
-						});
-					} else {
-						this.setState({
-							loading: false,
-							error: errors.getFriendlyString(data.error)
-						});
-					}
+					this.setState({
+						loading: false,
+						error: errors.getFriendlyString(data.error)
+					});
 				}
 			});
 		});
