@@ -103,12 +103,21 @@ export default class HomeworkModal extends Component {
 		}
 	}
 
+	keypress(e) {
+		if (e.shiftKey && e.keyCode == 13) {
+			// this is a shift+enter, we don't want to actually insert it
+			e.preventDefault();
+			return false;
+		}
+	}
+
 	keyup(e) {
 		if (e.keyCode == 13 && !this.state.loading) {
 			// we either need to not be focused on the description, or have the shift key down
 			if (document.activeElement != this._descriptionTextarea || e.shiftKey) {
 				this.save();
 				e.preventDefault();
+				return false;
 			}
 		}
 	}
@@ -144,7 +153,7 @@ export default class HomeworkModal extends Component {
 				<label>
 					<input type="checkbox" checked={state.complete} onChange={linkState(this, "complete")} /> Done?
 				</label>
-				<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={linkState(this, "desc")} value={state.desc} ref={ (textarea) => {
+				<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={linkState(this, "desc")} onKeyPress={this.keypress.bind(this)} onKeyUp={this.keyup.bind(this)} value={state.desc} ref={ (textarea) => {
 					this._descriptionTextarea = textarea;
 				}}></textarea>
 			</div>
