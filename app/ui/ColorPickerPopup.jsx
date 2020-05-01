@@ -40,7 +40,7 @@ export default class ColorPickerPopup extends Component {
 				class={`colorPickerPopupColor customColorSwatch ${isCustomColor ? "selected" : ""}`}
 				style={isCustomColor ? `background-color: ${props.value}` : ""}
 				onClick={this.openCustomPicker.bind(this)}>
-				•••
+				&bull;&bull;&bull;
 				<input type="color"
 					ref={this.customColorPicker}
 					onChange={this.pickCustomColor.bind(this)}
