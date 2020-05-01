@@ -55,14 +55,14 @@ export default class TopBar extends Component {
 	}
 
 	enableShortcuts() {
-		Mousetrap.bind("h", this.openPage.bind(this, "homework"));
+		Mousetrap.bind("d", this.openPage.bind(this, "homework"));
 		Mousetrap.bind("p", this.openPage.bind(this, "planner"));
 		Mousetrap.bind("c", this.openPage.bind(this, "calendar"));
 		Mousetrap.bind("?", () => {
 			this.props.openModal("shortcut");
 		});
 		Mousetrap.bind("l", this.openPage.bind(this, "classes"));
-		Mousetrap.bind(["ctrl+,", "command+,"], this.openPage.bind(this, "settings"));
+		Mousetrap.bind(["s", "ctrl+,", "command+,"], this.openPage.bind(this, "settings"));
 	}
 
 	showImageInfo() {
