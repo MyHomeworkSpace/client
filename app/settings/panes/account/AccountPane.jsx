@@ -17,6 +17,10 @@ export default class AccountPane extends Component {
 		this.props.openModal("background", {});
 	}
 
+	changeDarkTheme(enabled) {
+		MHSBridge.default.background.setDarkTheme(enabled);
+	}
+
 	changeEmail() {
 		this.props.openModal("changeEmail", {});
 	}
@@ -79,7 +83,9 @@ export default class AccountPane extends Component {
 			<div class="accountGroup">
 				<h4>Background</h4>
 				<button class="btn btn-primary" onClick={this.changeBackground.bind(this)}><i class="fa fa-fw fa-picture-o" /> Change background</button>
-				<PrefCheckbox label="Use dark theme" pref="darkTheme" />
+				<div>
+					<PrefCheckbox label="Use dark theme" pref="darkTheme" onChange={this.changeDarkTheme.bind(this)} />
+				</div>
 			</div>
 
 			<div class="accountGroup">

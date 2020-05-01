@@ -63,6 +63,8 @@ MyHomeworkSpace.Nav = {
 		if (MyHomeworkSpace.Pages.settings.cache.background) {
 			MHSBridge.default.background.setBackground(MyHomeworkSpace.Pages.settings.cache.background);
 		}
+
+		MHSBridge.default.background.setDarkTheme(MyHomeworkSpace.Pages.settings.cache.darkTheme || false);
 	}
 };
 

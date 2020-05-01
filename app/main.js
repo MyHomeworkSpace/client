@@ -113,6 +113,19 @@ var setBackground = function(newBackground) {
 	MyHomeworkSpace.Nav.rerenderNav();
 };
 
+var setDarkTheme = function(enabled) {
+	var app = document.getElementById("app");
+	if (enabled) {
+		if (!app.classList.contains("darkTheme")) {
+			app.classList.add("darkTheme");
+		}
+	} else {
+		if (app.classList.contains("darkTheme")) {
+			app.classList.remove("darkTheme");
+		}
+	}
+};
+
 var renderModalManager = function() {
 	render(h(ModalManager, {
 		modalName: modalName,
@@ -156,7 +169,8 @@ export default {
 		currentBackground: () => { return currentBackground; },
 		daltonTabBackgroundDetails: () => { return daltonTabBackgroundDetails; },
 		isDimBackground: isDimBackground,
-		setBackground: setBackground
+		setBackground: setBackground,
+		setDarkTheme: setDarkTheme
 	},
 
 	auth: {

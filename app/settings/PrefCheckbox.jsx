@@ -13,8 +13,10 @@ export default class PrefCheckbox extends Component {
 		api.post("prefs/set", {
 			key: this.props.pref,
 			value: newVal
-		}, function(data) {
-
+		}, (data) => {
+			if (this.props.onChange) {
+				this.props.onChange(newVal);
+			}
 		});
 	}
 
