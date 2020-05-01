@@ -39,7 +39,7 @@ export default class ClassPicker extends Component {
 			display = "No class selected";
 		}
 
-		return <Picker display={display} open={state.open} setOpen={this.setOpen.bind(this)}>
+		return <Picker class={`classPicker ${!selectedClass ? "classPickerUnselected" : ""}`} display={display} open={state.open} setOpen={this.setOpen.bind(this)}>
 			<div class="pickerPopup classPickerPopup">
 				{props.classes.map((classObject) => {
 					return <ClassPickerItem classObject={classObject} onClick={this.selectClass.bind(this, classObject)} />;
