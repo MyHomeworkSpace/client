@@ -85,3 +85,39 @@
 
 			.calendarMonthToday
 				background: #ffffcc
+
+.darkTheme
+	.calendarMonth
+		.calendarMonthGrid		
+			.calendarMonthRow:nth-child(2)
+				.calendarMonthGridSpacer:last-child
+					border-right: solid 1px #333
+
+			.calendarMonthRow:last-child
+				.calendarMonthGridSpacer:first-of-type
+					border-left: solid 1px #333
+
+			.calendarMonthRow:not(.calendarMonthHeader)
+				.calendarMonthDay:first-child
+					border-left: solid 1px #333
+
+				.calendarMonthDay
+					border-right: solid 1px #333
+					border-bottom: solid 1px #333
+
+
+					.calendarMonthDayAnnouncement
+						background: black
+						border: solid 1px white
+						width: 100%
+						line-height: 18px
+						height: 20px
+						margin-bottom: 2px
+						text-align: center
+
+				.calendarMonthDayTopBorder
+					border-top: solid 1px #333
+					margin-top: -1px
+
+				.calendarMonthToday
+					background: #123456

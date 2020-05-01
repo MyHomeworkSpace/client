@@ -10,6 +10,8 @@ import TwoFactorInfo from "settings/panes/account/TwoFactorInfo.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 
+import PrefCheckbox from "settings/PrefCheckbox.jsx";
+
 export default class AccountPane extends Component {
 	changeBackground() {
 		this.props.openModal("background", {});
@@ -77,6 +79,7 @@ export default class AccountPane extends Component {
 			<div class="accountGroup">
 				<h4>Background</h4>
 				<button class="btn btn-primary" onClick={this.changeBackground.bind(this)}><i class="fa fa-fw fa-picture-o" /> Change background</button>
+				<PrefCheckbox label="Use dark theme" pref="darkTheme" />
 			</div>
 
 			<div class="accountGroup">
