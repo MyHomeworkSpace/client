@@ -1,7 +1,6 @@
-import { h, Component } from "preact";
-import linkState from "linkstate";
+import "ui/DatePicker.styl";
 
-import moment from "moment";
+import { h, Component } from "preact";
 
 import DatePickerCalendar from "ui/DatePickerCalendar.jsx";
 import Picker from "ui/Picker.jsx";
@@ -23,7 +22,7 @@ export default class DatePicker extends Component {
 
 	render(props, state) {
 		var format = props.format || "ddd, MMMM Do, YYYY";
-		return <Picker display={props.value.format(format)} open={state.open} setOpen={this.setOpen.bind(this)}>
+		return <Picker class="datePicker" display={props.value.format(format)} open={state.open} setOpen={this.setOpen.bind(this)}>
 			<DatePickerCalendar date={props.value} selectDate={this.selectDate.bind(this)} />
 		</Picker>;
 	}

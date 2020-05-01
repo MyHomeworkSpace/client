@@ -265,7 +265,7 @@ export default class EventModal extends Component {
 
 				<div class="row">
 					<div class="col-md-1 eventModalLabel">Start</div>
-					<div class="col-md-9 eventModalData">
+					<div class="col-md-10 eventModalData">
 						<DatePicker value={state.startDate} change={this.pickerChange.bind(this, "startDate")} />
 						<TimePicker value={state.startTime} change={this.pickerChange.bind(this, "startTime")} />
 					</div>
@@ -273,7 +273,7 @@ export default class EventModal extends Component {
 
 				<div class="row">
 					<div class="col-md-1 eventModalLabel">End</div>
-					<div class="col-md-9 eventModalData">
+					<div class="col-md-10 eventModalData">
 						<DatePicker value={state.endDate} change={this.pickerChange.bind(this, "endDate")} />
 						<TimePicker value={state.endTime} change={this.pickerChange.bind(this, "endTime")} suggestStart={state.startTime} />
 					</div>
@@ -281,7 +281,7 @@ export default class EventModal extends Component {
 
 				{state.type == consts.EVENT_TYPE_PLAIN && <div class="row">
 					<div class="col-md-1 eventModalLabel">Repeat</div>
-					<div class={`col-md-9 eventModalData eventModalRepeat ${state.recur ? "open" : ""}`}>
+					<div class={`col-md-10 eventModalData eventModalRepeat ${state.recur ? "open" : ""}`}>
 						<div class="row">
 							<div class="col-md-1 eventModalRepeatCheckbox">
 								<input type="checkbox" checked={state.recur} onChange={this.onRecurChange.bind(this)} />

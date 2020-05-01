@@ -28,11 +28,11 @@ export default class DatePickerCalendar extends Component {
 		return <div class="datePickerCalendar">
 			<div class="datePickerCalendarControls">
 				<div class="datePickerCalendarControl left">
-					<button class="btn btn-default" onClick={this.jumpMonth.bind(this, -1)}><i class="fa fa-chevron-left"></i></button>
+					<button class="btn btn-default" onClick={this.jumpMonth.bind(this, -1)}><i class="fa fa-angle-left"></i></button>
 				</div>
 				<div class="datePickerCalendarMonth">{state.viewDate.format("MMMM YYYY")}</div>
 				<div class="datePickerCalendarControl right">
-					<button class="btn btn-default" onClick={this.jumpMonth.bind(this, 1)}><i class="fa fa-chevron-right"></i></button>
+					<button class="btn btn-default" onClick={this.jumpMonth.bind(this, 1)}><i class="fa fa-angle-right"></i></button>
 				</div>
 			</div>
 			<DatePickerCalendarGrid date={state.viewDate} currentDate={props.date} selectDate={props.selectDate} />

@@ -28,13 +28,13 @@ export default class DatePickerCalendarGrid extends Component {
 		}
 
 		return <div class="datePickerCalendarGrid">
-			<div class="datePickerCalendarGridItem">Sun</div>
-			<div class="datePickerCalendarGridItem">Mon</div>
-			<div class="datePickerCalendarGridItem">Tue</div>
-			<div class="datePickerCalendarGridItem">Wed</div>
-			<div class="datePickerCalendarGridItem">Thu</div>
-			<div class="datePickerCalendarGridItem">Fri</div>
-			<div class="datePickerCalendarGridItem">Sat</div>
+			<div class="datePickerCalendarGridItem datePickerCalendarGridHeader">Sun</div>
+			<div class="datePickerCalendarGridItem datePickerCalendarGridHeader">Mon</div>
+			<div class="datePickerCalendarGridItem datePickerCalendarGridHeader">Tue</div>
+			<div class="datePickerCalendarGridItem datePickerCalendarGridHeader">Wed</div>
+			<div class="datePickerCalendarGridItem datePickerCalendarGridHeader">Thu</div>
+			<div class="datePickerCalendarGridItem datePickerCalendarGridHeader">Fri</div>
+			<div class="datePickerCalendarGridItem datePickerCalendarGridHeader">Sat</div>
 			{items}
 		</div>;
 	}
