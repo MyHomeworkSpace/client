@@ -1,4 +1,12 @@
 language: node_js
 node_js:
   - lts/*
-script: npm run lint
+
+jobs:
+  include:
+    - stage: "Code style"
+      script: "npm run lint"
+    - stage: "Unit tests"
+      script: "npm test"
+    - stage: "Build test"
+      script: "npm run dist"
