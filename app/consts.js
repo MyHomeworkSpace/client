@@ -2,6 +2,7 @@ export default {
 	colors: [
 		"ff4d40",
 		"ffa540",
+		"f2ec0f",
 		"40ff73",
 		"4071ff",
 		"ff4086",
