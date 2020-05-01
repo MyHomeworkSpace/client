@@ -53,7 +53,7 @@ export default function AddAction(props) {
 		setOpen(false);
 	}, []);
 
-	const keyup = useCallback((e) => {
+	const keydown = useCallback((e) => {
 		if (e.keyCode == 27) {
 			// escape key
 			close();
@@ -87,7 +87,7 @@ export default function AddAction(props) {
 		</div>}
 		{thingToAdd == consts.EVENT_TYPE_HOMEWORK && open && <form class="addActionText">
 			<div class="addActionClose" onClick={close}><i class="fa fa-times"></i></div>
-			<input type="text" autoComplete="nope" class="addActionInput" placeholder="just start typing..." onKeyup={keyup} ref={inputRef} {...bindInput} />
+			<input type="text" autoComplete="nope" class="addActionInput" placeholder="just start typing..." onKeyDown={keydown} ref={inputRef} {...bindInput} />
 
 			{/*
 				the following text input serves absolutely no purpose,
