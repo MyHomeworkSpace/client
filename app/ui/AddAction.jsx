@@ -73,7 +73,8 @@ export default function AddAction(props) {
 			MHSBridge.default.openModal("homework", {
 				name: hwName,
 				due: (dueDate ? moment(dueDate).format("YYYY-MM-DD") : null),
-				classId: (info.class ? info.class.id : -1)
+				classId: (info.class ? info.class.id : -1),
+				direct: (e.altKey || e.shiftKey || e.ctrlKey || e.metaKey)
 			});
 			close();
 		}

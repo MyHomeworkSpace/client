@@ -39,6 +39,10 @@ export default class HomeworkModal extends Component {
 		setTimeout(() => {
 			document.body.addEventListener("keyup", this._bodyKeyUp);
 		}, 10);
+
+		if (this.props.modalState.direct) {
+			this.save();
+		}
 	}
 
 	componentWillUnmount() {
