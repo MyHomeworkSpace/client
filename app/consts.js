@@ -3,6 +3,7 @@ export default {
 		"ff4d40",
 		"ffa540",
 		"f2ec0f",
+		"3c6d2b",
 		"40ff73",
 		"4071ff",
 		"ff4086",
