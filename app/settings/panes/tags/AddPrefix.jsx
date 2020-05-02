@@ -1,4 +1,4 @@
-import "settings/panes/homework/AddPrefix.styl";
+import "settings/panes/tags/AddPrefix.styl";
 
 import { h, Component } from "preact";
 import linkState from "linkstate";

@@ -1,11 +1,8 @@
-import "settings/panes/homework/HomeworkPane.styl";
-
 import { h, Component } from "preact";
 
-import PrefixList from "settings/panes/homework/PrefixList.jsx";
+import PrefixList from "settings/panes/tags/PrefixList.jsx";
 
 export default class TagsPane extends Component {
-
 	render(props, state) {
 		return <div class="homeworkPane">
 			<h4>Tags</h4>

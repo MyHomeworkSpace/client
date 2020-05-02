@@ -1,14 +1,14 @@
+import "settings/panes/dashboard/DashboardPane.styl";
+
 import { h, Component } from "preact";
 import linkState from "linkstate";
 
 import api from "api.js";
 
-import PrefCheckbox from "settings/PrefCheckbox.jsx";
 import ClassName from "ui/ClassName.jsx";
 import ClassPicker from "ui/ClassPicker.jsx";
 
-import "settings/panes/dashboard/DashboardPane.styl";
-
+import PrefCheckbox from "settings/PrefCheckbox.jsx";
 
 export default class DashboardPane extends Component {
 	constructor() {
