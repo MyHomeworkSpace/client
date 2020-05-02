@@ -1,6 +1,3 @@
-// slight hack to import nlp_compromise
-require("../public/js/compromise.min");
-
 // set up MyHomeworkSpace object to convince quickAdd + prefixes to like us
 global.MyHomeworkSpace = {
 	Prefixes: {}
@@ -35,8 +32,18 @@ describe("Quick Add", function() {
 						if (expected.classID && (!result.class || result.class.id != expected.classID)) {
 							failures.push(`Class was ${JSON.stringify(result.class)} when it should have been class with ID ${expected.classID}`);
 						}
-						if (result.due != expected.dueText) {
-							failures.push(`Due date was ${JSON.stringify(result.due)} when it should have been ${JSON.stringify(expected.due)}`);
+						if (result.dueText != expected.dueText) {
+							failures.push(`Due date text was ${JSON.stringify(result.dueText)} when it should have been ${JSON.stringify(expected.dueText)}`);
+						}
+						if (expected.dueText) {
+							// what was the actual due date we wanted?
+							var dueDate = quickAdd._resolveDate(expected.dueText);
+
+							var sameDay = dueDate.isSame(result.due, "day");
+
+							if (!sameDay) {
+								failures.push(`Due date was ${JSON.stringify(result.due ? result.due.format("YYYY-MM-DD") : result.due)} when it should have been ${JSON.stringify(dueDate.format("YYYY-MM-DD"))}`);
+							}
 						}
 
 						if (failures.length > 0) {

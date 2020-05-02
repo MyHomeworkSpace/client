@@ -62,7 +62,6 @@ export default function AddAction(props) {
 		if (e.keyCode == 13) {
 			// enter key
 			var info = quickAdd.parseText(input)[0];
-			var dueDate = quickAdd.resolveDate(info.due) || undefined;
 
 			var hwName = "";
 
@@ -72,7 +71,7 @@ export default function AddAction(props) {
 
 			MHSBridge.default.openModal("homework", {
 				name: hwName,
-				due: (dueDate ? moment(dueDate).format("YYYY-MM-DD") : null),
+				due: (info.due ? info.due.format("YYYY-MM-DD") : null),
 				classId: (info.class ? info.class.id : -1),
 				direct: (e.altKey || e.shiftKey || e.ctrlKey || e.metaKey)
 			});

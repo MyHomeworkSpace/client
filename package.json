@@ -25,11 +25,13 @@
 		"lint": "eslint --ext js,jsx .",
 		"lint:fix": "eslint --fix --ext js,jsx .",
 		"test": "mocha",
-
 		"dev": "cross-env NODE_ENV=development webpack-dev-server",
 		"dist": "cross-env NODE_ENV=production webpack -p"
 	},
 	"dependencies": {
+		"compromise": "13.2.0",
+		"compromise-dates": "0.0.5",
+		"compromise-numbers": "1.0.0",
 		"cross-env": "7.0.2",
 		"linkstate": "1.1.1",
 		"moment": "2.24.0",

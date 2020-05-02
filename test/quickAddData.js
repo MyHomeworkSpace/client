@@ -3,6 +3,8 @@ const CLASS_ID_ENGLISH = 2;
 const CLASS_ID_HISTORY = 3;
 const CLASS_ID_SCIENCE = 4;
 const CLASS_ID_LANGUAGE = 5;
+const CLASS_ID_COMPSCI = 6;
+const CLASS_ID_6004 = 7;
 
 const CLASSES = [
 	{
@@ -24,6 +26,14 @@ const CLASSES = [
 	{
 		id: CLASS_ID_LANGUAGE,
 		name: "Language"
+	},
+	{
+		id: CLASS_ID_COMPSCI,
+		name: "Computer Science"
+	},
+	{
+		id: CLASS_ID_6004,
+		name: "6.004"
 	}
 ];
 
@@ -90,7 +100,34 @@ module.exports = {
 						tag: "Write",
 						name: "about the revolution",
 						classID: CLASS_ID_HISTORY,
-						dueText: "next Friday,"
+						dueText: "next Friday"
+					}
+				},
+				{
+					input: "HW 7.2 tuesday math",
+					result: {
+						tag: "HW",
+						name: "7.2",
+						classID: CLASS_ID_MATH,
+						dueText: "tuesday"
+					}
+				},
+				{
+					input: "6.004 Quiz 3 on Tuesday",
+					result: {
+						tag: "Quiz",
+						name: "3",
+						classID: CLASS_ID_6004,
+						dueText: "Tuesday"
+					}
+				},
+				{
+					input: "Project on lists in computer science wednesday",
+					result: {
+						tag: "Project",
+						name: "on lists",
+						classID: CLASS_ID_COMPSCI,
+						dueText: "wednesday"
 					}
 				}
 			]
