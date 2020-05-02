@@ -71,7 +71,7 @@ export default class PrefixedEdit extends Component {
 				placeholder={props.placeholder || ""}
 				value={value}
 
-				onKeyUp={props.onKeyUp}
+				onKeyDown={props.onKeyDown}
 				onChange={props.onChange}
 				onInput={props.onInput}
 			/>

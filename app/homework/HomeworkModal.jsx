@@ -19,7 +19,7 @@ export default class HomeworkModal extends Component {
 	constructor(props) {
 		super(props);
 		
-		this._bodyKeyUp = this.keyup.bind(this);
+		this._bodyKeyDown = this.keydown.bind(this);
 		this._descriptionTextarea = null;
 		
 		var isNew = !props.modalState.id;
@@ -37,7 +37,7 @@ export default class HomeworkModal extends Component {
 
 	componentDidMount() {
 		setTimeout(() => {
-			document.body.addEventListener("keyup", this._bodyKeyUp);
+			document.body.addEventListener("keydown", this._bodyKeyDown);
 		}, 10);
 
 		if (this.props.modalState.direct) {
@@ -46,7 +46,7 @@ export default class HomeworkModal extends Component {
 	}
 
 	componentWillUnmount() {
-		document.body.removeEventListener("keyup", this._bodyKeyUp);
+		document.body.removeEventListener("keydown", this._bodyKeyDown);
 	}
 
 	save() {
@@ -115,7 +115,7 @@ export default class HomeworkModal extends Component {
 		}
 	}
 
-	keyup(e) {
+	keydown(e) {
 		if (e.keyCode == 13 && !this.state.loading) {
 			// we either need to not be focused on the description, or have the shift key down
 			if (document.activeElement != this._descriptionTextarea || e.shiftKey) {
@@ -151,13 +151,13 @@ export default class HomeworkModal extends Component {
 			<div class="modal-body">
 				{state.error && <div class="alert alert-danger">{state.error}</div>}
 
-				<PrefixedEdit class="homeworkModalName" placeholder="Name" value={state.name} onKeyUp={this.keyup.bind(this)} onInput={linkState(this, "name")} />
+				<PrefixedEdit class="homeworkModalName" placeholder="Name" value={state.name} onKeyDown={this.keydown.bind(this)} onInput={linkState(this, "name")} />
 				<DatePicker value={state.due} change={this.changeDue.bind(this)} />
 				<ClassPicker value={state.classId} change={this.changeClass.bind(this)} classes={props.classes} />
 				<label>
 					<input type="checkbox" checked={state.complete} onChange={linkState(this, "complete")} /> Done?
 				</label>
-				<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={linkState(this, "desc")} onKeyPress={this.keypress.bind(this)} onKeyUp={this.keyup.bind(this)} value={state.desc} ref={ (textarea) => {
+				<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={linkState(this, "desc")} onKeyPress={this.keypress.bind(this)} onKeyDown={this.keydown.bind(this)} value={state.desc} ref={ (textarea) => {
 					this._descriptionTextarea = textarea;
 				}}></textarea>
 			</div>
