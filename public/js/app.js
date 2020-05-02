@@ -96,7 +96,14 @@ MyHomeworkSpace.Page = {
 			var pageElement = document.getElementById(name);
 			pageElement.classList.remove("hidden");
 
-			window.location.hash = "!" + name + (params.length > 0 ? ":" + params.join(":") : "");
+			var newHash = "!" + name + (params.length > 0 ? ":" + params.join(":") : "");
+			if (window.location.hash) {
+				// already on a page, add a history entry
+				window.location.hash = newHash;
+			} else {
+				// overwrite the existing entry
+				window.location.replace("#" + newHash);
+			}
 			if (MyHomeworkSpace.Pages[name] && MyHomeworkSpace.Pages[name].open) {
 				MyHomeworkSpace.Pages[name].open(params);
 			}
