@@ -6,7 +6,9 @@ export default class Picker extends Component {
 	constructor(props) {
 		super(props);
 		this._bodyClick = this.onBodyClick.bind(this);
-		this.state = {};
+		this.state = {
+			focus: false
+		};
 	}
 
 	componentDidMount() {
@@ -43,10 +45,11 @@ export default class Picker extends Component {
 		}
 	}
 
-	onFocus() {
+	onFocusOrBlur(focus) {
 		if (this.props.editable) {
-			this.props.setOpen(true);
+			this.props.setOpen(focus);
 		}
+		this.setState({ focus: focus });
 	}
 
 	toggle() {
@@ -64,8 +67,14 @@ export default class Picker extends Component {
 		return <div class={`pickerContainer ${props.containerClass || ""}`} ref={ (pickerContainer) => {
 			this._pickerContainer = pickerContainer;
 		}}>
-			<div class={`picker ${props.editable ? "editable" : ""} ${props.open && props.editable ? "focus" : ""} ${props.class || ""}`} onClick={this.toggle.bind(this)}>
-				{props.editable && <input type="text" value={props.display} onChange={this.onChange.bind(this)} onFocus={this.onFocus.bind(this)} ref={ (pickerText) => {
+			<div
+				class={`picker ${props.editable ? "editable" : ""} ${state.focus ? "focus" : ""} ${props.class || ""}`}
+				onClick={this.toggle.bind(this)}
+				tabindex={props.editable ? "-1" : "0"}
+				onFocus={this.onFocusOrBlur.bind(this, true)}
+				onBlur={this.onFocusOrBlur.bind(this, false)}>
+
+				{props.editable && <input type="text" value={props.display} onChange={this.onChange.bind(this)} onFocus={this.onFocusOrBlur.bind(this, true)} onBlur={this.onFocusOrBlur.bind(this, false)} ref={ (pickerText) => {
 					this._pickerText = pickerText;
 				}}/>}
 				{!props.editable && <div class="pickerOutput">{props.display}</div>}
