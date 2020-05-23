@@ -70,7 +70,7 @@ export default class Picker extends Component {
 			<div
 				class={`picker ${props.editable ? "editable" : ""} ${state.focus ? "focus" : ""} ${props.class || ""}`}
 				onClick={this.toggle.bind(this)}
-				tabindex={props.editable ? "-1" : "0"}
+				tabIndex={props.editable ? "-1" : "0"}
 				onFocus={this.onFocusOrBlur.bind(this, true)}
 				onBlur={this.onFocusOrBlur.bind(this, false)}>
 
