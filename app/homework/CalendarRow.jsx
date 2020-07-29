@@ -2,12 +2,13 @@ import "homework/CalendarRow.styl";
 
 import { h, Component } from "preact";
 
-import api from "api.js";
 import moment from "moment";
+
+import api from "api.js";
+
 import CalendarEvent from "calendar/CalendarEvent.jsx";
 
-
-export default class HomeworkColumn extends Component {
+export default class CalendarRow extends Component {
 	constructor(props) {
 		super(props);
 

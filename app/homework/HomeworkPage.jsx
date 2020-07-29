@@ -47,7 +47,9 @@ export default class HomeworkPage extends Component {
 	render(props, state) {
 		if (state.loading) {
 			return <div class="homeworkPage">
-				Loading, please wait...
+				<div class="container-fluid">
+					Loading, please wait...
+				</div>
 			</div>;
 		}
 
