@@ -48,6 +48,8 @@ export default class Picker extends Component {
 	onFocusOrBlur(focus) {
 		if (this.props.editable) {
 			this.props.setOpen(focus);
+		} else if (!focus) {
+			this.props.setOpen(false);
 		}
 		this.setState({ focus: focus });
 	}
@@ -64,7 +66,7 @@ export default class Picker extends Component {
 	}
 
 	render(props, state) {
-		return <div class={`pickerContainer ${props.containerClass || ""}`} ref={ (pickerContainer) => {
+		return <div class={`pickerContainer ${props.containerClass || ""}`} ref={(pickerContainer) => {
 			this._pickerContainer = pickerContainer;
 		}}>
 			<div
