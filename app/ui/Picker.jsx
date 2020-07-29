@@ -46,11 +46,10 @@ export default class Picker extends Component {
 	}
 
 	onFocusOrBlur(focus) {
-		if (this.props.editable) {
-			this.props.setOpen(focus);
-		} else if (!focus) {
-			this.props.setOpen(false);
+		if (!this.props.editable) {
+			return;
 		}
+		this.props.setOpen(focus);
 		this.setState({ focus: focus });
 	}
 
