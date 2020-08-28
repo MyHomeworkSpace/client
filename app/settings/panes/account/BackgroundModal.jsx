@@ -29,7 +29,7 @@ export default class BackgroundModal extends Component {
 
 	loadDailyBg() {
 		getImage((imageData) => {
-			if (imageData.status == "ok") {
+			if (imageData.status != "error") {
 				this.setState({
 					dailyBgLoading: false,
 					dailyBgData: imageData
