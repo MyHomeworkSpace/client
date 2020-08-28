@@ -29,17 +29,17 @@ export default class BackgroundModal extends Component {
 
 	loadDailyBg() {
 		getImage((imageData) => {
-			if (imageData.status && imageData.status == "error") {
-				this.setState({
-					dailyBgLoading: false,
-					dailyBgError: true
-				});
-			} else {
+			if (imageData.status == "ok") {
 				this.setState({
 					dailyBgLoading: false,
 					dailyBgData: imageData
 				});
 				pingBeacon();
+			} else {
+				this.setState({
+					dailyBgLoading: false,
+					dailyBgError: true
+				});
 			}
 		});
 	}
@@ -93,11 +93,12 @@ export default class BackgroundModal extends Component {
 				<h3>Image of the day</h3>
 				<p>You can also use a rotating image of the day as your background.</p>
 				{state.dailyBgError && <div class="alert alert-danger">The image of the day couldn't be loaded.</div>}
-				{state.dailyBgLoading ? <p><i className="fa fa-circle-o-notch fa-spin"></i> Loading ...</p> : <div className="row">
-					<div className="col-md-5">
+				{state.dailyBgLoading && <div><i class="fa fa-circle-o-notch fa-spin"></i> Loading ...</div>}
+				{state.dailyBgData && <div class="row">
+					<div class="col-md-5">
 						<img src={state.dailyBgData.imgUrl} class="image-of-the-day" />
 					</div>
-					<div className="col-md-7">
+					<div class="col-md-7">
 						<h4>Today's background:</h4>
 						<strong>{state.dailyBgData.description}</strong>
 						<p>By <a href={state.dailyBgData.authorUrl}>{state.dailyBgData.authorName}</a></p>
