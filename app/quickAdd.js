@@ -25,7 +25,7 @@ var classSynonyms = [
 	["computer science", "compsci", "cs"],
 	["language", "french", "latin", "spanish", "span", "mandarin"],
 	["history", "us history", "hist", "ush"],
-	["english", "eng"]
+	["english", "eng", "fws"]
 ];
 var lexicon = {};
 
@@ -56,8 +56,8 @@ var findClass = function(name) {
 				var synonym = synonymList[synonymIndex];
 				var normalizedSynonym = normalizeName(synonym);
 
-				if (normalizedSynonym == classNormalized){
-					hasClassName = true;	
+				if (normalizedSynonym == classNormalized) {
+					hasClassName = true;
 				} else if (normalizedSynonym == normalizedName) {
 					hasSearchName = true;
 				}
@@ -267,6 +267,6 @@ module.exports = {
 			}
 		}
 
-		return [ response ];
+		return [response];
 	}
 };
