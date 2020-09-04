@@ -28,6 +28,11 @@ export default class TimePickerPopup extends Component {
 		return suggestionBase;
 	}
 
+	mouseDownSuggestion(e) {
+		e.preventDefault();
+		return false;
+	}
+
 	clickSuggestion(offset) {
 		var selectedTime = moment(this.getSuggestionBase()).add(offset, "minutes");
 		this.props.selectTime(selectedTime);
@@ -78,7 +83,7 @@ export default class TimePickerPopup extends Component {
 					}
 				}
 
-				return <div class="timePickerPopupSuggestion" onClick={this.clickSuggestion.bind(this, offset)}>
+				return <div class="timePickerPopupSuggestion" onMouseDown={this.mouseDownSuggestion.bind(this)} onClick={this.clickSuggestion.bind(this, offset)}>
 					{momentTime.format("h:mm a")}
 					{showDuration && <span class="timePickerPopupSuggestionDuration">
 						({durationDisplay})
