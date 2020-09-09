@@ -5,13 +5,15 @@ import errors from "errors.js";
 
 import DaltonSettings from "schools/dalton/DaltonSettings.jsx";
 import MITSettings from "schools/mit/MITSettings.jsx";
+import CornellSettings from "schools/cornell/CornellSettings.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
 
 var settingsComponents = {
 	dalton: DaltonSettings,
-	mit: MITSettings
+	mit: MITSettings,
+	cu: CornellSettings
 };
 
 export default class SchoolSettingsModal extends Component {
