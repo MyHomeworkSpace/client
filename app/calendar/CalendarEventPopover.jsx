@@ -87,7 +87,7 @@ export default class CalendarEventPopover extends Component {
 		</div>;
 
 		var left = props.left + 5;
-		
+
 		if (props.alternate) {
 			left = left - ((document.querySelector(".calendarEventsDay") || document.querySelector(".calendarMonthDayEvents")).clientWidth / props.groupLength);
 			left = left - 10;
@@ -101,6 +101,7 @@ export default class CalendarEventPopover extends Component {
 			{(props.item.tags[consts.EVENT_TAG_BUILDING_NAME] || props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]) && <div class="calendarEventPopoverLocation">{props.item.tags[consts.EVENT_TAG_BUILDING_NAME]} {(props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] != "Library" && props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] != "Cafeteria" && props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] != "Theater") ? "Room " : ""}{props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}</div>}
 			{props.item.tags[consts.EVENT_TAG_LOCATION] && <div class="calendarEventPopoverLocation">{props.item.tags[consts.EVENT_TAG_LOCATION]}</div>}
 			{props.item.tags[consts.EVENT_TAG_BLOCK] && <div class="calendarEventPopoverPeriod">{props.item.tags[consts.EVENT_TAG_BLOCK]} Period</div>}
+			{props.item.tags[consts.EVENT_TAG_SECTION] && <div class="calendarEventPopoverSection">Section {props.item.tags[consts.EVENT_TAG_SECTION]}</div>}
 			{actions}
 			{props.item.source > -1 && <div class="calendarEventPopoverOrigin"><i class="fa fa-calendar" /> from {props.view.providers[props.item.source].name}</div>}
 			{props.item.recurRule && <div class="calendarEventPopoverOrigin"><i class="fa fa-refresh" /> recurring event</div>}
