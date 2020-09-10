@@ -43,10 +43,10 @@ export default class CornellEnroll extends Component {
 			loading: true
 		}, () => {
 			api.post("schools/enroll", {
-				school: "cu",
+				school: "cornell",
 				reenroll: this.props.reenroll,
 				data: JSON.stringify({
-					netid: this.state.netID,
+					username: this.state.netID,
 					password: this.state.password
 				})
 			}, (data) => {

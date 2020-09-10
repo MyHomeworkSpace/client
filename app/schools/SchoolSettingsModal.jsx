@@ -13,7 +13,7 @@ import Modal from "ui/Modal.jsx";
 var settingsComponents = {
 	dalton: DaltonSettings,
 	mit: MITSettings,
-	cu: CornellSettings
+	cornell: CornellSettings
 };
 
 export default class SchoolSettingsModal extends Component {

@@ -25,7 +25,7 @@ import Modal from "ui/Modal.jsx";
 var enrollComponents = {
 	dalton: DaltonEnroll,
 	mit: MITEnroll,
-	cu: CornellEnroll
+	cornell: CornellEnroll
 };
 
 export default class EnrollModal extends Component {
