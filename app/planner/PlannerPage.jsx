@@ -14,16 +14,27 @@ export default class PlannerPage extends Component {
 	constructor() {
 		super();
 		this.state = {
-			loading: true
+			loading: true,
+			time: moment().unix()
 		};
 	}
 
 	componentDidMount() {
+		this.timer = setInterval(() => {
+			this.setState({
+				time: moment().unix()
+			});
+		}, 1000);
 		this.loadWeek(this.state.currentWeek || moment().weekday(1));
 	}
 
 	componentWillReceiveProps() {
 		this.loadWeek(this.state.currentWeek || moment().weekday(1));
+	}
+
+	componentWillUnmount() {
+		clearTimeout(this.timer);
+		this.timer = null;
 	}
 
 	loadWeek(week) {
@@ -89,6 +100,8 @@ export default class PlannerPage extends Component {
 			});
 		}
 
+		var now = moment.unix(state.time);
+
 		return <div class="plannerPage">
 			<DateHeader
 				start={state.currentWeek}
@@ -99,7 +112,8 @@ export default class PlannerPage extends Component {
 			<div class="plannerHeader plannerHeaderFirst">
 				{[ 0, 1, 2, 3, 4, 5, 6 ].map(function(day) {
 					var currentDay = moment(state.currentWeek).add(day, "days");
-					return <div class="plannerHeaderColumn plannerHeaderDay">
+
+					return <div class={`plannerHeaderColumn plannerHeaderDay ${currentDay.isBefore(now, "day") ? "plannerHeaderDayPast" : ""} ${currentDay.isSame(now, "day") ? "plannerHeaderDayToday" : ""}`}>
 						<span class="plannerHeaderDayOfWeek">{currentDay.format("dddd")}</span>
 						<span class="plannerHeaderDate">{currentDay.format("M/D")}</span>
 					</div>;
