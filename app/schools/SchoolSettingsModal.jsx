@@ -48,6 +48,9 @@ export default class SchoolSettingsModal extends Component {
 
 	closeModal() {
 		this.props.openModal("");
+		if (this.props.modalState.onSuccess) {
+			this.props.modalState.onSuccess();
+		}
 	}
 
 	render(props, state) {

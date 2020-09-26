@@ -79,6 +79,14 @@ export default class CalendarPage extends Component {
 		});
 	}
 
+	reloadData() {
+		if (this.state.type == "month") {
+			this.loadMonth(this.state.start);
+		} else if (this.state.type == "week") {
+			this.loadWeek(this.state.start);
+		}
+	}
+
 	switchType(type) {
 		if (type == "month") {
 			this.loadMonth(moment(this.state.start).date(1));
@@ -94,7 +102,10 @@ export default class CalendarPage extends Component {
 	updateSchool(school) {
 		this.props.openModal("enroll", {
 			email: school.emailAddress,
-			reenroll: true
+			reenroll: true,
+			onSuccess: () => {
+				this.reloadData();
+			}
 		});
 	}
 

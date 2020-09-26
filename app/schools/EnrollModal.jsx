@@ -123,10 +123,14 @@ export default class EnrollModal extends Component {
 					// TODO: better way of detecting this
 					if (this.state.school.schoolID == "mit") {
 						this.props.openModal("schoolSettings", {
-							school: this.state.school
+							school: this.state.school,
+							onSuccess: this.props.modalState.onSuccess
 						});
 					} else {
 						this.props.openModal("");
+						if (this.props.modalState.onSuccess) {
+							this.props.modalState.onSuccess();
+						}
 					}
 				});
 			});
