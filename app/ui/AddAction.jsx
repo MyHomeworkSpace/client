@@ -2,8 +2,8 @@ import "ui/AddAction.styl";
 
 import { h } from "preact";
 import { useEffect, useState, useLayoutEffect, useRef, useCallback } from "preact/hooks";
+import Mousetrap from "mousetrap";
 
-import moment from "moment";
 
 import consts from "consts.js";
 import { useInput } from "hooks.js";
@@ -13,8 +13,8 @@ import AddActionCalendarInfo from "ui/AddActionCalendarInfo.jsx";
 import AddActionHomeworkInfo from "ui/AddActionHomeworkInfo.jsx";
 
 export default function AddAction(props) {
-	const [ input, setInput, bindInput ] = useInput("");
-	const [ open, setOpen ] = useState(false);
+	const [input, setInput, bindInput] = useInput("");
+	const [open, setOpen] = useState(false);
 
 	const inputRef = useRef(null);
 
@@ -82,7 +82,7 @@ export default function AddAction(props) {
 	var thingToAdd = (props.page == "calendar" ? consts.EVENT_TYPE_PLAIN : consts.EVENT_TYPE_HOMEWORK);
 	return <div class="addAction">
 		{!open && <div class="addActionButton" onClick={click}>
-			<i class="fa fa-plus-square"></i> Add {thingToAdd == consts.EVENT_TYPE_PLAIN ? "event": "homework"}
+			<i class="fa fa-plus-square"></i> Add {thingToAdd == consts.EVENT_TYPE_PLAIN ? "event" : "homework"}
 		</div>}
 		{thingToAdd == consts.EVENT_TYPE_HOMEWORK && open && <form class="addActionText">
 			<div class="addActionClose" onClick={close}><i class="fa fa-times"></i></div>

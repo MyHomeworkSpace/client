@@ -2,5 +2,4 @@ node_modules/
 webpack.config.js
 dist/
 public/js/compromise.min.js
-public/js/mousetrap.min.js
 public/js

@@ -13,7 +13,6 @@ module.exports = {
 		"SharedArrayBuffer": "readonly",
 
 		"html2canvas": "readonly",
-		"Mousetrap": "readonly",
 		"nlp": "readonly",
 		"PRODUCTION": "readonly",
 

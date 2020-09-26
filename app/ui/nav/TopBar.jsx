@@ -1,6 +1,8 @@
 import "ui/nav/TopBar.styl";
 
 import { h, Component } from "preact";
+import Mousetrap from "mousetrap";
+
 
 import api from "api.js";
 
