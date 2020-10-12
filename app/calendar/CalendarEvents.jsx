@@ -94,7 +94,9 @@ export default class CalendarEvents extends Component {
 		}
 		events.forEach(function(eventList, dow) {
 			var groupsForDay = eventGroups[dow];
-			eventList.forEach(function(eventItem) {
+			eventList.sort((a, b) => {
+				return a.start - b.start;
+			}).forEach(function(eventItem) {
 				// find which group this event belongs to
 				var foundGroupIndex = -1;
 				for (var groupIndex in groupsForDay) {
