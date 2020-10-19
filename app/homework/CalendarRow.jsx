@@ -74,6 +74,7 @@ export default class CalendarRow extends Component {
 
 		const dayData = state.data.view.days[0];
 		const now = moment(state.time);
+		const nowTimestamp = now.unix();
 
 		if (dayData.events.length == 0) {
 			return <div class="calendarRow">
@@ -82,8 +83,8 @@ export default class CalendarRow extends Component {
 			</div>;
 		}
 
-		const events = dayData.events.sort((a, b) => moment.unix(a.start).isAfter(moment.unix(b.start)))
-			.filter((event) => now.isBefore(moment.unix(event.end)))
+		const events = dayData.events.sort((a, b) => a.start - b.start)
+			.filter((event) => nowTimestamp < event.end)
 			.map((event, i) => <CalendarEvent relativeTime key={i} type={event.type} item={event} groupIndex={0} groupLength={1} time={state.time} />);
 
 		return <div class="calendarRow">
