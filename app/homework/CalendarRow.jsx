@@ -83,7 +83,21 @@ export default class CalendarRow extends Component {
 			</div>;
 		}
 
-		const events = dayData.events.sort((a, b) => a.start - b.start)
+		const events = dayData.events
+			.sort((a, b) => {
+				if (a.start == b.start) {
+					if (a.uniqueId < b.uniqueId) {
+						return -1;
+					}
+					if (a.uniqueId > b.uniqueId) {
+						return 1;
+					}
+
+					return 0;
+				}
+
+				return a.start - b.start;
+			})
 			.filter((event) => nowTimestamp < event.end)
 			.map((event, i) => <CalendarEvent relativeTime key={i} type={event.type} item={event} groupIndex={0} groupLength={1} time={state.time} />);
 
