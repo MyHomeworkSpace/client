@@ -9,6 +9,7 @@ import errors from "errors.js";
 import consts from "consts.js";
 
 import ClassName from "ui/ClassName.jsx";
+import FormattedDescription from "ui/FormattedDescription.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
 export default class CalendarEventPopover extends Component {
@@ -105,6 +106,10 @@ export default class CalendarEventPopover extends Component {
 			{actions}
 			{props.item.source > -1 && <div class="calendarEventPopoverOrigin"><i class="fa fa-calendar" /> from {props.view.providers[props.item.source].name}</div>}
 			{props.item.recurRule && <div class="calendarEventPopoverOrigin"><i class="fa fa-refresh" /> recurring event</div>}
+
+			{props.item.tags[consts.EVENT_TAG_DESCRIPTION] && <div class="calendarEventPopoverDescription">
+				<FormattedDescription text={props.item.tags[consts.EVENT_TAG_DESCRIPTION]} />
+			</div>}
 		</div>;
 	}
 };

@@ -2,6 +2,7 @@ import "planner/PlannerHomeworkItem.styl";
 
 import { h, Component } from "preact";
 
+import FormattedDescription from "ui/FormattedDescription.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
 export default class PlannerHomeworkItem extends Component {
@@ -25,9 +26,7 @@ export default class PlannerHomeworkItem extends Component {
 				<i class="fa fa-edit" onClick={this.edit.bind(this)} />
 			</div>
 			{props.homeworkItem.desc && <div class="plannerHomeworkDescription">
-				{props.homeworkItem.desc.split("\n").map((line) => {
-					return <div>{line}</div>;
-				})}
+				<FormattedDescription text={props.homeworkItem.desc} />
 			</div>}
 		</div>;
 	}
