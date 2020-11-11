@@ -85,6 +85,13 @@ MyHomeworkSpace.Page = {
 	},
 	show: function(path) {
 		if (MyHomeworkSpace.Page.current() != "") {
+			if (MyHomeworkSpace.Page.current() == "login") {
+				// if we just hid the login page, remove it entirely
+				// it will be rerendered by preact if the user goes back there
+				// this fixes chrome seeing the password field
+				// (if chrome sees the password field, it tries to be smart and randomly suggests the user save their password whenever they add an event)
+				document.querySelector("#login").innerHTML = "";
+			}
 			document.querySelector(".page:not(.hidden)").classList.add("hidden");
 		}
 		if (path) {
