@@ -1,8 +1,10 @@
+import "ui/FormattedDescription.styl";
+
 import { h, Component } from "preact";
 
 export default class FormattedDescription extends Component {
 	render(props, state) {
-		return <div>
+		return <div class="formattedDescription">
 			{props.text.split("\n").map((line) => {
 				const linkRegex = /(http[s]*:\/\/.*?)($|\s)/ig;
 
