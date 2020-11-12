@@ -19,6 +19,15 @@ export default class EventModal extends Component {
 	constructor(props) {
 		super(props);
 
+		if (props.modalState.tags) {
+			if (props.modalState.tags[consts.EVENT_TAG_ORIGINAL_START]) {
+				props.modalState.start = props.modalState.tags[consts.EVENT_TAG_ORIGINAL_START];
+			}
+			if (props.modalState.tags[consts.EVENT_TAG_ORIGINAL_END]) {
+				props.modalState.end = props.modalState.tags[consts.EVENT_TAG_ORIGINAL_END];
+			}
+		}
+
 		var isNew = (props.modalState.id ? false : true);
 		var startTime = (isNew ? moment().second(0) : moment.unix(props.modalState.start));
 		var endTime = (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end));
