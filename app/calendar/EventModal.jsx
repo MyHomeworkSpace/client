@@ -184,14 +184,19 @@ export default class EventModal extends Component {
 
 		mergedState[type] = date;
 
-		// have we changed the start time?
-		if (type == "startTime") {
+		// have we changed the start date/time?
+		if (type == "startDate" || type == "startTime") {
 			var oldStart = this.combinedMoment("start", this.state);
 			var oldEnd = this.combinedMoment("end", this.state);
 			var differenceToOld = oldEnd.diff(oldStart, "minutes");
-			var newEnd = moment(date).add(differenceToOld, "minutes");
-			newState["endTime"] = newEnd;
-			mergedState["endTime"] = newEnd;
+
+			var newEndTime = moment(date).add(differenceToOld, "minutes");
+			var newEndDate = moment(newEndTime).startOf("day");
+
+			newState["endDate"] = newEndDate;
+			mergedState["endDate"] = newEndDate;
+			newState["endTime"] = newEndTime;
+			mergedState["endTime"] = newEndTime;
 		}
 
 		// check if we've tried to set an end date before the start date
