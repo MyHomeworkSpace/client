@@ -65,16 +65,17 @@ export default class CalendarEvents extends Component {
 	}
 
 	render(props, state) {
-		var events = [
-			[], [], [], [], [], [], []
-		];
-		var eventElements = [
-			[], [], [], [], [], [], []
-		];
+		var daysOfWeek = 7;
 
-		var eventGroups = [
-			[], [], [], [], [], [], []
-		];
+		var events = [];
+		var eventElements = [];
+		var eventGroups = [];
+		for (var i = 0; i < daysOfWeek; i++) {
+			events.push([]);
+			eventElements.push([]);
+			eventGroups.push([]);
+		}
+
 		if (props.view) {
 			props.view.days.forEach(function(day, dow) {
 				events[dow] = day.events.map(function(eventItem) {
@@ -122,10 +123,71 @@ export default class CalendarEvents extends Component {
 			});
 		});
 
+		// now, try to merge events in the same group that don't overlap
+		for (var i = 0; i < daysOfWeek; i++) {
+			var groupsForDay = eventGroups[i];
+			for (var j = 0; j < groupsForDay.length; j++) {
+				var group = groupsForDay[j];
+
+				var remainingEvents = group.slice(0);
+				var skippedEvents = [];
+
+				var subgroups = [];
+				var currentSubgroup = [];
+
+				// while we still have remaining events
+				while (skippedEvents.length > 0 || remainingEvents.length > 0) {
+					while (remainingEvents.length > 0) {
+						if (currentSubgroup.length == 0) {
+							// if our current subgroup is empty, fill it with the event
+							currentSubgroup.push(remainingEvents.pop());
+							if (remainingEvents.length == 0) {
+								break;
+							}
+						}
+
+						const nextEvent = remainingEvents.pop();
+
+						// does this event have no overlaps with anyone in our subgroup?
+						var hasOverlap = false;
+						for (var k = 0; k < currentSubgroup.length; k++) {
+							const comparisonEvent = currentSubgroup[k];
+							if (
+								(comparisonEvent.start < nextEvent.end) &&
+								(nextEvent.start < comparisonEvent.end)
+							) {
+								hasOverlap = true;
+								break;
+							}
+						}
+
+						if (!hasOverlap) {
+							// add it to our subgroup
+							currentSubgroup.push(nextEvent);
+						} else {
+							// note that we need to come back to it
+							skippedEvents.push(nextEvent);
+						}
+					}
+
+					// done with our subgroup
+					subgroups.push(currentSubgroup);
+					currentSubgroup = [];
+					remainingEvents = skippedEvents;
+					skippedEvents = [];
+				}
+
+				// finally, update the group info
+				eventGroups[i][j] = subgroups;
+			}
+		}
+
 		eventGroups.forEach((eventGroupList, dow) => {
-			eventGroupList.forEach((eventGroup) => {
-				eventGroup.forEach((eventItem, eventGroupIndex) => {
-					eventElements[dow].push(<CalendarEvent type={eventItem.type} item={eventItem} groupIndex={eventGroupIndex} groupLength={eventGroup.length} view={props.view} openPopover={this.openPopover.bind(this)} />);
+			eventGroupList.forEach((subgroupList) => {
+				subgroupList.forEach((subgroup, subgroupIndex) => {
+					subgroup.forEach((eventItem) => {
+						eventElements[dow].push(<CalendarEvent type={eventItem.type} item={eventItem} groupIndex={subgroupIndex} groupLength={subgroupList.length} view={props.view} openPopover={this.openPopover.bind(this)} />);
+					});
 				});
 			});
 		});
