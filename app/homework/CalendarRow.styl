@@ -33,8 +33,13 @@
 			justify-content: center
 			align-items: center
 
-		.calendarEvent:hover
+		.calendarEvent:not(.calendarEventCancelled):hover
 			border-right: none 
 			border-bottom: none
 			border-top: none
 			margin-top: auto
+
+		.calendarEvent.calendarEventCancelled:hover
+			border-right: dashed 1px #555555
+			border-bottom: dashed 1px #555555
+			border-top: dashed 1px #555555
