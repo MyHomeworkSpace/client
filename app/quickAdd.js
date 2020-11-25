@@ -72,18 +72,31 @@ var findClass = function(name) {
 	return null;
 };
 
+var assignYearToDate = function(date) {
+	if (moment().month() > date.month()) {
+		// today's month is after the entered month, meaning it's probably due next year
+		date.year(moment().year() + 1);
+	} else {
+		// it's this year
+		date.year(moment().year());
+	}
+	return date;
+};
+
 var resolveDate = function(text) {
+	// let's try some common formats
+	var parsed = moment(text, [
+		"YYYY-MM-DD",
+		"MM-DD-YYYY",
+		"DD-MM-YYYY"
+	]);
+	if (parsed.isValid()) {
+		return parsed;
+	}
+
 	// let's see if the browser can understand it
 	if (!isNaN(new Date(text))) {
-		var foundDate = moment(new Date(text));
-		if (moment().month() > foundDate.month()) {
-			// today's month is after the entered month, meaning it's probably due next year
-			foundDate.year(moment().year() + 1);
-		} else {
-			// it's this year
-			foundDate.year(moment().year());
-		}
-		return foundDate;
+		return moment(new Date(text));
 	}
 
 	var textToParse = text.toLowerCase().split(" ");
@@ -112,7 +125,7 @@ var resolveDate = function(text) {
 			result.dow = 5;
 		} else if (word.substr(0, 3) == "sat") {
 			result.dow = 6;
-		} else if (word.substr(0, 3) == "ton") { // tonight
+		} else if (word.substr(0, 3) == "tod" || word.substr(0, 3) == "ton") { // today, tonight
 			result.dow = moment().day();
 		} else if (word.substr(0, 3) == "tom" || word.substr(0, 3) == "tmr") { // tomorrow
 			result.dow = moment().day() + 1;
@@ -215,21 +228,38 @@ module.exports = {
 
 		var offset = new Date().getTimezoneOffset() / 60;
 
-		// filter out values because they probably shouldn't be flagged as dates
-		// this fixes things like "HW 7.2 tuesday", where "7.2 tuesday" is chosen as date
-		var sentenceDate = sentence.clone().replace("#Value", "").dates({
-			timezone: "GMT" + (offset > 0 ? "-" + offset : "+" + (-offset)),
-		}).json(0);
-		if (sentenceDate) {
-			response.dueText = sentenceDate.text;
+		// look for #Month #Value, like "May 12"
+		var dateTextResult = sentence.match("#Month #Value").terms().out().trim();
+		if (dateTextResult) {
+			var parsed = moment(dateTextResult, "MMM D");
 
-			// clean it up
-			response.dueText = nlp(response.dueText).replace("(by|before|due|on|in)", "").out().trim();
-			response.dueText = cleanPunctuation(response.dueText);
+			if (parsed.isValid()) {
+				sentence = sentence.replace("#Month #Value", "").trim();
+				response.due = assignYearToDate(parsed);
+			}
+		}
 
-			// unfortunately, compromise-dates is pretty bad at actually resolving the dates
-			// so we do it ourselves
-			response.due = resolveDate(response.dueText);
+		if (!response.due) {
+			// ask compromise-dates
+			// filter out values because they probably shouldn't be flagged as dates
+			// this fixes things like "HW 7.2 tuesday", where "7.2 tuesday" is chosen as date
+			var sentenceDate = sentence.clone().replace("#Value", "").dates({
+				timezone: "GMT" + (offset > 0 ? "-" + offset : "+" + (-offset)),
+			}).json(0);
+			if (sentenceDate) {
+				// if the length is 2, then we have something like "5-11", which can't be treated as a date
+				if (sentenceDate.text.split("-").length != 2) {
+					response.dueText = sentenceDate.text;
+
+					// clean it up
+					response.dueText = nlp(response.dueText).replace("(by|before|due|on|in)", "").out().trim();
+					response.dueText = cleanPunctuation(response.dueText);
+
+					// unfortunately, compromise-dates is pretty bad at actually resolving the dates
+					// so we do it ourselves
+					response.due = resolveDate(response.dueText);
+				}
+			}
 		}
 
 		var className = sentence.match("(#MHSClass|#MHSClassSynonym)+").terms().out().toLowerCase().trim();

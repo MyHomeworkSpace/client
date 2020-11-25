@@ -32,10 +32,14 @@ describe("Quick Add", function() {
 						if (expected.classID && (!result.class || result.class.id != expected.classID)) {
 							failures.push(`Class was ${JSON.stringify(result.class)} when it should have been class with ID ${expected.classID}`);
 						}
-						if (result.dueText != expected.dueText) {
-							failures.push(`Due date text was ${JSON.stringify(result.dueText)} when it should have been ${JSON.stringify(expected.dueText)}`);
-						}
+
 						if (expected.dueText) {
+							// it's a relative date
+
+							if (result.dueText != expected.dueText) {
+								failures.push(`Due date text was ${JSON.stringify(result.dueText)} when it should have been ${JSON.stringify(expected.dueText)}`);
+							}
+
 							// what was the actual due date we wanted?
 							var dueDate = quickAdd._resolveDate(expected.dueText);
 
@@ -43,6 +47,16 @@ describe("Quick Add", function() {
 
 							if (!sameDay) {
 								failures.push(`Due date was ${JSON.stringify(result.due ? result.due.format("YYYY-MM-DD") : result.due)} when it should have been ${JSON.stringify(dueDate.format("YYYY-MM-DD"))}`);
+							}
+						} else if (expected.dueDate) {
+							// it's an absolute date
+							if (!result.due) {
+								failures.push(`Due date was ${JSON.stringify(result.due)} when it should have been ${JSON.stringify(expected.dueDate)}`);
+							} else {
+								var resultFormat = result.due.format("YYYY-MM-DD");
+								if (resultFormat != expected.dueDate) {
+									failures.push(`Due date was ${JSON.stringify(resultFormat)} when it should have been ${JSON.stringify(expected.dueDate)}`);
+								}
 							}
 						}
 

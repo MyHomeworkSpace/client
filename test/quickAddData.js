@@ -37,16 +37,25 @@ const CLASSES = [
 	}
 ];
 
+const today = new Date();
+const currentYear = today.getFullYear();
+
+var buildDate = function(year, month, day) {
+	return year + "-" + (month < 10 ? "0" : "") + month + "-" + (day < 10 ? "0" : "") + day;
+};
+
+var noYearDate = function(month, day) {
+	if (month < today.getMonth()) {
+		// it's BEFORE this month, so we're referring to next year
+		return buildDate(currentYear + 1, month, day);
+	} else {
+		// it's ON or AFTER this month, so we're referring to this year
+		return buildDate(currentYear, month, day);
+	}
+};
+
 module.exports = {
 	CLASSES: CLASSES,
-	CLASS_IDS: {
-		MATH: CLASS_ID_MATH,
-		ENGLISH: CLASS_ID_ENGLISH,
-		HISTORY: CLASS_ID_HISTORY,
-		SCIENCE: CLASS_ID_SCIENCE,
-		LANGUAGE: CLASS_ID_LANGUAGE,
-	},
-
 	PREFIXES: [
 		{ "id": -1, "background": "4C6C9B", "color": "FFFFFF", "words": ["HW", "Read", "Reading"], "timedEvent": false, "default": true },
 		{ "id": -1, "background": "9ACD32", "color": "FFFFFF", "words": ["Project"], "timedEvent": false, "default": true },
@@ -129,7 +138,93 @@ module.exports = {
 						classID: CLASS_ID_COMPSCI,
 						dueText: "wednesday"
 					}
-				}
+				},
+				{
+					input: "paper 3 for English today",
+					result: {
+						tag: "Paper",
+						name: "3",
+						classID: CLASS_ID_ENGLISH,
+						dueText: "today"
+					}
+				},
+			]
+		},
+		{
+			name: "Date formats",
+			cases: [
+				{
+					input: "Read next chapter in english for May 12",
+					result: {
+						tag: "Read",
+						name: "next chapter",
+						classID: CLASS_ID_ENGLISH,
+						dueDate: noYearDate(5, 12)
+					}
+				},
+				{
+					input: "Read chapters 5-11 for english",
+					result: {
+						tag: "Read",
+						name: "chapters 5-11",
+						classID: CLASS_ID_ENGLISH,
+						dueDate: undefined
+					}
+				},
+				{
+					input: "Read chapters 5-11-2020 for english",
+					result: {
+						tag: "Read",
+						name: "chapters",
+						classID: CLASS_ID_ENGLISH,
+						dueDate: buildDate(2020, 5, 11)
+					}
+				},
+				{
+					input: "HW 11 math 2020-11-4",
+					result: {
+						tag: "HW",
+						name: "11",
+						classID: CLASS_ID_MATH,
+						dueDate: buildDate(2020, 11, 4)
+					}
+				},
+				{
+					input: "HW 11 math 2020-11-04",
+					result: {
+						tag: "HW",
+						name: "11",
+						classID: CLASS_ID_MATH,
+						dueDate: buildDate(2020, 11, 4)
+					}
+				},
+				{
+					input: "HW 12 math 2020-11-14",
+					result: {
+						tag: "HW",
+						name: "12",
+						classID: CLASS_ID_MATH,
+						dueDate: buildDate(2020, 11, 14)
+					}
+				},
+				{
+					input: "HW math problems 3 and 4 4-3-2020",
+					result: {
+						tag: "HW",
+						name: "problems 3 and 4",
+						classID: CLASS_ID_MATH,
+						dueDate: buildDate(2020, 4, 3)
+					}
+				},
+				{
+					input: "Paper 3 due 1/5/2021",
+					result: {
+						tag: "Paper",
+						name: "3",
+						classID: null,
+						dueDate: buildDate(2021, 1, 5)
+					}
+				},
 			]
 		}
 	]
