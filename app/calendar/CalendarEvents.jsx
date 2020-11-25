@@ -124,7 +124,7 @@ export default class CalendarEvents extends Component {
 		});
 
 		// now, try to merge events in the same group that don't overlap
-		for (var i = 0; i < daysOfWeek; i++) {
+		for (i = 0; i < daysOfWeek; i++) {
 			var groupsForDay = eventGroups[i];
 			for (var j = 0; j < groupsForDay.length; j++) {
 				var group = groupsForDay[j];
