@@ -65,9 +65,40 @@ export default class AddPrefix extends Component {
 		});
 	}
 
+	relativeLuminance(color) {
+		// see https://www.w3.org/TR/WCAG21/#dfn-relative-luminance, assume sRGB
+		var factors = [0.2126, 0.7152, 0.0722];
+		var total = 0;
+		[color.r, color.g, color.b].map((channel, i) => {
+			var scaled = channel / 255;
+			var intermediate;
+			if (scaled <= 0.03928) {
+				intermediate = scaled / 12.92;
+			} else {
+				intermediate = Math.pow((scaled + 0.055) / 1.055, 2.4);
+			}
+			total += intermediate*factors[i];
+		});
+		return total;
+	}
+
+	constrastRatio(colorA, colorB) {
+		// see https://www.w3.org/TR/WCAG21/#dfn-contrast-ratio
+		var luminanceA = this.relativeLuminance(colorA);
+		var luminanceB = this.relativeLuminance(colorB);
+		var L1 = (luminanceA > luminanceB ? luminanceA : luminanceB);
+		var L2 = (luminanceA < luminanceB ? luminanceA : luminanceB);
+		return (L1 + 0.05) / (L2 + 0.05);
+	}
+
 	calculateTextColor(colorStr) {
 		var color = this.hexToRgb(colorStr);
-		return (color.r > 128 || color.g > 128 || color.b > 128) ? "FFFFFF" : "000000";
+		var contrastRatioWhite = this.constrastRatio(color, {r: 255, g: 255, b: 255});
+		if (contrastRatioWhite > 1.5) {
+			// it's a low standard, but it's what we need to be consistent with the default tags
+			return "FFFFFF";
+		}
+		return "000000";
 	}
 
 	hexToRgb(hex) {
