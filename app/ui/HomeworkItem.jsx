@@ -8,6 +8,7 @@ import prefixes from "prefixes.js";
 import { relativeDate } from "utils.js";
 
 import ClassName from "ui/ClassName.jsx";
+import FormattedDescription from "ui/FormattedDescription.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
 export default class HomeworkItem extends Component {
@@ -88,9 +89,7 @@ export default class HomeworkItem extends Component {
 				{props.homework.desc.trim() != "" && <i class={`homeworkItemDescriptionIcon fa fa-${state.expanded ? "arrow-circle-up" : "arrow-circle-down"}`} onClick={this.toggleDescription.bind(this)}></i>}
 			</div>
 			{state.expanded && <div>
-				{props.homework.desc.split("\n").map(function(line) {
-					return <div>{line}</div>;
-				})}
+				<FormattedDescription text={props.homework.desc} />
 			</div>}
 		</div>;
 	}
