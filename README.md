@@ -1,5 +1,5 @@
 # client
-[![Build Status](https://travis-ci.org/MyHomeworkSpace/client.svg?branch=master)](https://travis-ci.org/MyHomeworkSpace/client) [![Created by the MyHomeworkSpace Team](https://img.shields.io/badge/Created%20by-MyHomeworkSpace%20Team-3698dc.svg)](https://github.com/MyHomeworkSpace)
+![CI](https://github.com/MyHomeworkSpace/client/workflows/CI/badge.svg) [![Created by the MyHomeworkSpace Team](https://img.shields.io/badge/Created%20by-MyHomeworkSpace%20Team-3698dc.svg)](https://github.com/MyHomeworkSpace)
 
 This repository is the MyHomeworkSpace client, which runs at https://app.myhomework.space.
 
