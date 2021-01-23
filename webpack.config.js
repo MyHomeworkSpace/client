@@ -5,6 +5,7 @@ var CopyWebpackPlugin = require("copy-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+var WebpackBar = require('webpackbar');
 
 var path = require('path');
 
@@ -12,6 +13,8 @@ var mode = (process.env.NODE_ENV === "production" ? "production" : "development"
 var isProduction = (mode == "production");
 
 var plugins = [
+	new WebpackBar(),
+
 	new DefinePlugin({
 		PRODUCTION: JSON.stringify(isProduction),
 	}),
@@ -95,5 +98,7 @@ module.exports = {
 			path.resolve("./app"),
 			path.resolve("./node_modules")
 		]
-	}
+	},
+
+	stats: 'errors-warnings'
 };
