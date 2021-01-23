@@ -21,6 +21,13 @@ export default class AccountPane extends Component {
 		MHSBridge.default.background.setDarkTheme(enabled);
 	}
 
+	rejoinMuggles() {
+		api.post("prefs/set", {
+			key: "hogwartsHouse",
+			value: "none"
+		}, this.props.refreshContext);
+	}
+
 	changeEmail() {
 		this.props.openModal("changeEmail", {});
 	}
@@ -104,8 +111,12 @@ export default class AccountPane extends Component {
 				<p>You can connect your school account to MyHomeworkSpace and we'll automatically import your schedule and other information.</p>
 
 				<button class="btn btn-primary" onClick={this.connectAccount.bind(this)}><i class="fa fa-fw fa-link" /> Connect account</button>
+				{(MyHomeworkSpace.Pages.settings.cache["hogwartsHouse"] && MyHomeworkSpace.Pages.settings.cache["hogwartsHouse"]) != "none" ?
+					<button class="btn btn-primary" onClick={this.rejoinMuggles.bind(this)}><i class="fa fa-fw fa-sign-out" /> Rejoin the muggles</button>
+					: null
+				}
 				<SchoolList me={props.me} openModal={props.openModal} refreshContext={props.refreshContext} />
 			</div>
-		</div>;
+		</div >;
 	}
 };

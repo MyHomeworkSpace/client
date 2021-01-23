@@ -10,6 +10,7 @@ import errors from "errors.js";
 import DaltonEnroll from "schools/dalton/DaltonEnroll.jsx";
 import MITEnroll from "schools/mit/MITEnroll.jsx";
 import CornellEnroll from "schools/cornell/CornellEnroll.jsx";
+import UtilEnroll from "schools/enrollutils/UtilEnroll.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
@@ -25,7 +26,8 @@ import Modal from "ui/Modal.jsx";
 var enrollComponents = {
 	dalton: DaltonEnroll,
 	mit: MITEnroll,
-	cornell: CornellEnroll
+	cornell: CornellEnroll,
+	other: UtilEnroll,
 };
 
 export default class EnrollModal extends Component {
@@ -72,6 +74,18 @@ export default class EnrollModal extends Component {
 			loading: true,
 			error: ""
 		}, () => {
+			if (this.state.email.indexOf("hogwarts.edu") > -1) {
+				this.setState({
+					loading: false,
+					step: 1,
+					school: {
+						displayName: "Hogwarts School of Witchcraft and Wizardry",
+						schoolID: "other"
+					}
+				});
+				return;
+			}
+
 			api.get("schools/lookup", {
 				email: this.state.email
 			}, (data) => {

@@ -86,6 +86,9 @@ export default class TopBar extends Component {
 			<TopBarDropdown me={props.me} mainTabs={tabs} tabs={props.tabs} page={props.page} openPage={props.openPage} />
 		];
 
+		var housePref = props.prefs.find(pref => pref.key == "hogwartsHouse");
+		housePref = (housePref && housePref.value == "none") ? null : housePref;
+
 		return <div class={`topBar ${props.inverted ? "inverted" : ""} ${props.dimmed ? "dimmed" : ""} ${state.open ? "open" : ""}`}>
 			<div class="topBarGroup">
 				<NavLogo />
@@ -103,12 +106,14 @@ export default class TopBar extends Component {
 				</TopBarButton>}
 				<FeedbackControl />
 				<div class="topBarLogout topBarAction" onClick={this.logout.bind(this)}><i class="fa fa-sign-out"></i></div>
-				<div class="topBarName">{props.me && props.me.name}</div>
+				<div class="topBarName">{props.me && props.me.name} {housePref && <img src={`/img/colors/${housePref.value}.png`} height="32" />}</div>
 			</div>
 			<div class="topBarToggleContainer">
 				{renderedTabs}
 
-				<div class="topBarName">{props.me && props.me.name}</div>
+				<div class="topBarName">{props.me && props.me.name}
+					{housePref && <img src={`/img/colors/${housePref.value}.png`} height="32" />}
+				</div>
 				<div class="topBarLogout topBarAction" onClick={this.logout.bind(this)}><i class="fa fa-sign-out"></i> Log out</div>
 			</div>
 		</div>;

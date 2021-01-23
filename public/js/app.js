@@ -38,6 +38,7 @@ MyHomeworkSpace.Classes = {
 	list: [],
 	initWithContext: function(context) {
 		MyHomeworkSpace.Classes.list = context.classes;
+		MyHomeworkSpace.Prefs = context.prefs
 	}
 };
 
@@ -57,6 +58,7 @@ MyHomeworkSpace.Nav = {
 			dimmed: MHSBridge.default.background.isDimBackground(),
 			currentBackground: MHSBridge.default.background.currentBackground(),
 			daltonTabBackgroundDetails: MHSBridge.default.background.daltonTabBackgroundDetails(),
+			prefs: MyHomeworkSpace.Prefs,
 		}), document.querySelector(".topBar"));
 	},
 	init: function() {
