@@ -104,7 +104,7 @@ export default class AnnouncementsPane extends Component {
 						<label>Expiry</label>
 						{state.confirmState ?
 							<input class="form-control" value={state.expiry.format("ddd, MMMM Do, YYYY")} type="text" disabled /> :
-							<DatePicker value={state.expiry} change={(d) => this.setState({ expiry: d })} />
+							<DatePicker value={state.expiry} change={linkState(this, "expiry")} />
 						}
 						<p class="help-block">This date is <strong>exclusive</strong>, and in UTC.</p>
 					</div>
