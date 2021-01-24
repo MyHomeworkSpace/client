@@ -24,7 +24,7 @@ export default class AdminPage extends Component {
 	render(props, state) {
 		var panes = {
 			home: { icon: "home", name: "Home", component: HomePane },
-			feedback: { icon: "comments-o", name: "Feedbacks", component: FeedbackPane },
+			feedback: { icon: "comments-o", name: "Feedback", component: FeedbackPane },
 			users: { icon: "user", name: "Users", component: UsersPane },
 			announcements: { icon: "bell", name: "Announcements", component: AnnouncementsPane }
 		};
