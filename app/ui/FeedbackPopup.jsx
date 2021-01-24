@@ -45,7 +45,7 @@ export default class FeedbackPopup extends Component {
 			api.post("feedback/add", {
 				type: this.state.type,
 				text: this.state.message,
-				screenshot: this.state.screenshot
+				screenshot: this.state.screenshot || ""
 			}, () => {
 				this.setState({
 					loading: false,
