@@ -76,19 +76,19 @@ export default class FeedbackPane extends Component {
 			<div className="alert alert-info">Remember to claim feedbacks on Slack in #incoming-feedback before replying to them!</div>
 			<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group" role="group">
-					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={0} name="ID descending" icon="fa-sort-numeric-desc" />
-					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={1} name="ID ascending" icon="fa-sort-numeric-asc" />
+					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this, 0)} sortType={0} name="ID descending" icon="fa-sort-numeric-desc" />
+					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this, 1)} sortType={1} name="ID ascending" icon="fa-sort-numeric-asc" />
 				</div>
 				<div class="btn-group" role="group">
-					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={2} name="Last name ascending" icon="fa-sort-alpha-asc" />
-					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={3} name="Last name descending" icon="fa-sort-alpha-desc" />
+					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this, 2)} sortType={2} name="Last name ascending" icon="fa-sort-alpha-asc" />
+					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this, 3)} sortType={3} name="Last name descending" icon="fa-sort-alpha-desc" />
 				</div>
 				<div class="btn-group" role="group">
-					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={4} name="Email ascending" icon="fa-sort-alpha-asc" />
-					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={5} name="Email descending" icon="fa-sort-alpha-desc" />
+					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this, 4)} sortType={4} name="Email ascending" icon="fa-sort-alpha-asc" />
+					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this, 5)} sortType={5} name="Email descending" icon="fa-sort-alpha-desc" />
 				</div>
 				<div class="btn-group" role="group">
-					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={6} name="Type" icon="fa-lightbulb-o" />
+					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this, 6)} sortType={6} name="Type" icon="fa-lightbulb-o" />
 				</div>
 			</div>
 			<table className="table">
