@@ -1,92 +1,56 @@
-import "admin/AdminPage.styl";
-
 import { h, Component } from "preact";
 
-import api from "api.js";
+import HomePane from "admin/panes/home/HomePane.jsx";
+import FeedbackPane from "admin/panes/feedback/FeedbackPane.jsx";
+import UsersPane from "admin/panes/users/UsersPane.jsx";
+import AnnouncementsPane from "admin/panes/announcements/AnnouncementsPane.jsx";
 
-import AdminListItem from "admin/AdminListItem.jsx";
 
 export default class AdminPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loading: true
+			pane: "home"
 		};
 	}
 
-	componentDidMount() {
-		this.load();
-	}
-
-	load() {
+	setPane(pane) {
 		this.setState({
-			loading: true,
-			users: null,
-			feedback: null,
-			notifications: null
-		}, () => {
-			api.get("admin/getUserCount", {}, (data) => {
-				this.setState({
-					userCount: data.count
-				}, this.checkIfDoneLoading);
-			});
-			api.get("admin/getAllFeedback", {}, (data) => {
-				this.setState({
-					feedback: data.feedbacks
-				}, this.checkIfDoneLoading);
-			});
-			api.get("notifications/get", {}, (data) => {
-				this.setState({
-					notifications: data.notifications
-				}, this.checkIfDoneLoading);
-			});
+			pane: pane
 		});
 	}
 
-	checkIfDoneLoading() {
-		if (this.state.feedback && this.state.userCount && this.state.notifications) {
-			this.setState({
-				loading: false
-			});
-		}
-	}
-
-	newNotification() {
-		var content = prompt("Enter notification content");
-		var expiry = prompt("Enter notification expiry");
-		if (confirm("Look good? Content: " + content + " Expires: " + expiry)) {
-			api.post("notifications/add", {expiry: expiry, content: content}, () => {
-				this.load();
-			});
-		} else {
-			alert("Aborted.");
-		}
-	}
-
+	// Borrow a bit of CSS from the settings panel
 	render(props, state) {
-		if (state.loading) {
-			return <p>Loading... please wait</p>;
-		}
+		var panes = {
+			home: { icon: "home", name: "Home", component: HomePane },
+			feedback: { icon: "comments-o", name: "Feedbacks", component: FeedbackPane },
+			users: { icon: "user", name: "Users", component: UsersPane },
+			announcements: { icon: "bell", name: "Announcements", component: AnnouncementsPane }
+		};
 
-		return <div class="adminPage">
-			<h2>Administration Tools</h2>
-			<div class="row">
-				<div class="col-md-4">
-					<h4 class="adminListTitle">Users</h4>
-					<p>There {state.userCount > 1 ? "are" : "is"} {state.userCount} user{state.userCount > 1 ? "s" : ""}.</p>
-				</div>
-				<div class="col-md-4">
-					<h4 class="adminListTitle">Feedback</h4>
-					{state.feedback.map((feedback) => {
-						return <AdminListItem type="feedback" data={feedback} load={this.load.bind(this)}/>;
+		var currentPane = panes[state.pane];
+
+		// we're going to borrow some CSS from the settings page because... uhhh... i'm lazy
+		return <div class="settingsPage">
+			<h2>Admin</h2>
+			<div class="settingsPaneContainer">
+				<div class="settingsPaneSelect">
+					{Object.keys(panes).map((paneID) => {
+						var pane = panes[paneID];
+						return <div class={`settingsPaneOption ${paneID == state.pane ? "settingsPaneOptionSelected" : ""}`} onClick={this.setPane.bind(this, paneID)}>
+							<i class={`fa fa-fw fa-${pane.icon}`} /> {pane.name}
+						</div>;
 					})}
 				</div>
-				<div class="col-md-4">
-					<h4 class="adminListTitle">Notifications</h4>
-					{state.notifications.map((notification) => {
-						return <AdminListItem type="notification" data={notification} load={this.load.bind(this)}/>;
+				<div class="settingsPane">
+					{h(currentPane.component, {
+						classes: props.classes,
+						me: props.me,
+
+						openModal: props.openModal,
+						refreshContext: props.refreshContext
 					})}
-					<button class="btn btn-primary" onClick={this.newNotification.bind(this)}>New Notification</button>
 				</div>
 			</div>
 		</div>;
