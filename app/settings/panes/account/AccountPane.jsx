@@ -111,10 +111,8 @@ export default class AccountPane extends Component {
 				<p>You can connect your school account to MyHomeworkSpace and we'll automatically import your schedule and other information.</p>
 
 				<button class="btn btn-primary" onClick={this.connectAccount.bind(this)}><i class="fa fa-fw fa-link" /> Connect account</button>
-				{(MyHomeworkSpace.Pages.settings.cache["hogwartsHouse"] && MyHomeworkSpace.Pages.settings.cache["hogwartsHouse"]) != "none" ?
-					<button class="btn btn-primary" onClick={this.rejoinMuggles.bind(this)}><i class="fa fa-fw fa-sign-out" /> Rejoin the muggles</button>
-					: null
-				}
+				{(MyHomeworkSpace.Pages.settings.cache["hogwartsHouse"] && MyHomeworkSpace.Pages.settings.cache["hogwartsHouse"] != "none") &&
+					<button class="btn btn-primary" onClick={this.rejoinMuggles.bind(this)}><i class="fa fa-fw fa-sign-out" /> Rejoin the muggles</button>}
 				<SchoolList me={props.me} openModal={props.openModal} refreshContext={props.refreshContext} />
 			</div>
 		</div >;
