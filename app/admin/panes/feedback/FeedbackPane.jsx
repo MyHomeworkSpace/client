@@ -67,6 +67,7 @@ export default class FeedbackPane extends Component {
 			(a, b) => this.alphaSort(b.userName.split(" ").pop(), a.userName.split(" ").pop()), // last name descending
 			(a, b) => this.alphaSort(a.userEmail, b.userEmail), // email ascending
 			(a, b) => this.alphaSort(b.userEmail, a.userEmail), // email descending
+			(a, b) => this.alphaSort(b.type, a.type), // type
 		];
 
 		let sorted = state.feedback.sort(sortModes[state.sortType]);
@@ -84,8 +85,11 @@ export default class FeedbackPane extends Component {
 				</div>
 				<div class="btn-group" role="group">
 					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={4} name="Email ascending" icon="fa-sort-alpha-asc" />
-					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={5} name="Email descending" icon="fa-sort-alpha-desc" />				</div>
-
+					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={5} name="Email descending" icon="fa-sort-alpha-desc" />
+				</div>
+				<div class="btn-group" role="group">
+					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this)} sortType={6} name="Type" icon="fa-lightbulb-o" />
+				</div>
 			</div>
 			<table className="table">
 				{sorted.map((feedback, i) => <Feedback feedback={feedback} key={i} />)}
