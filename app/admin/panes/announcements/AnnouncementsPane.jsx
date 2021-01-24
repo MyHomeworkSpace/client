@@ -1,15 +1,16 @@
 import "admin/panes/announcements/AnnouncementsPane.styl";
 
 import { h, Component } from "preact";
+import linkState from "linkstate";
+
+import moment from "moment";
 
 import api from "api.js";
 
-import LoadingIndicator from "ui/LoadingIndicator.jsx";
-import linkState from "linkstate";
-import DatePicker from "ui/DatePicker.jsx";
-import Announcment from "admin/panes/announcements/Announcement.jsx";
+import Announcement from "admin/panes/announcements/Announcement.jsx";
 
-import moment from "moment";
+import LoadingIndicator from "ui/LoadingIndicator.jsx";
+import DatePicker from "ui/DatePicker.jsx";
 
 export default class AnnouncementsPane extends Component {
 	constructor(props) {
@@ -122,7 +123,7 @@ export default class AnnouncementsPane extends Component {
 				</div>
 				<div class="col-md-6">
 					<h3>Manage announcements</h3>
-					{state.notifications.map((announcement, i) => <Announcment announcement={announcement} key={i} load={this.load.bind(this)} />)}
+					{state.notifications.map((announcement, i) => <Announcement announcement={announcement} key={i} load={this.load.bind(this)} />)}
 				</div>
 			</div>
 		</div >;
