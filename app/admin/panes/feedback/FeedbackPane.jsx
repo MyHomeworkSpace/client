@@ -38,10 +38,10 @@ export default class FeedbackPane extends Component {
 	alphaSort(termA, termB) {
 		let a = termA.toUpperCase();
 		let b = termB.toUpperCase();
-		if (a > b) {
+		if (a < b) {
 			return -1;
 		}
-		if (b > a) {
+		if (b < a) {
 			return 1;
 		}
 		return 0;
