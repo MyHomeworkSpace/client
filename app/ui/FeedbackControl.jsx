@@ -17,7 +17,7 @@ export default class FeedbackControl extends Component {
 	}
 
 	onBodyClick(e) {
-		if (!e.target.classList.contains("feedbackPopupFeelingOption") && !closestByClass(e.target, "feedbackControlContainer")) {
+		if (!e.target.classList.contains("feedbackPopupFeelingOption") && !e.target.classList.contains("feedbackSubmitButton") && !closestByClass(e.target, "feedbackControlContainer")) {
 			this.toggle();
 		}
 	}
