@@ -15,6 +15,8 @@ import SchoolSettingsModal from "schools/SchoolSettingsModal.jsx";
 import BackgroundModal from "settings/panes/account/BackgroundModal.jsx";
 import TwoFactorModal from "settings/panes/account/TwoFactorModal.jsx";
 import ChangeNameModal from "settings/panes/account/ChangeNameModal.jsx";
+import MyApplicationDeleteModal from "settings/panes/applications/MyApplicationDeleteModal.jsx";
+import MyApplicationSettingsModal from "settings/panes/applications/MyApplicationSettingsModal.jsx";
 import LoadingModal from "ui/LoadingModal.jsx";
 import ShortcutModal from "ui/ShortcutModal.jsx";
 import ImageInfoModal from "ui/nav/ImageInfoModal.jsx";
@@ -43,6 +45,8 @@ export default class ModalManager extends Component {
 			shortcut: ShortcutModal,
 			changeName: ChangeNameModal,
 			imageInfo: ImageInfoModal,
+			applicationDelete: MyApplicationDeleteModal,
+			applicationSettings: MyApplicationSettingsModal,
 		};
 
 		var modal;
