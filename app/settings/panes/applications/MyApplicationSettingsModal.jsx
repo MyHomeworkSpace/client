@@ -2,16 +2,20 @@ import Modal from "ui/Modal.jsx";
 
 import { h, Component } from "preact";
 import linkState from "linkstate";
+
 import api from "api.js";
+import errors from "errors.js";
 
 export default class MyApplicationDeleteModal extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			loading: false,
+			error: "",
+
 			name: props.modalState.application.name,
 			callbackUrl: props.modalState.application.callbackUrl,
-			loading: false,
 			confirmPhrase: ""
 		};
 	}
@@ -19,16 +23,23 @@ export default class MyApplicationDeleteModal extends Component {
 	save() {
 		this.setState({
 			loading: true,
+			error: ""
 		}, () => {
 			api.post("application/manage/update", {
 				id: this.props.modalState.application.id,
 				name: this.state.name,
 				callbackUrl: this.state.callbackUrl,
-			}, () => {
-				this.props.modalState.refresh(this.close.bind(this));
+			}, (data) => {
+				if (data.status == "ok") {
+					this.props.modalState.refresh(this.close.bind(this));
+				} else {
+					this.setState({
+						loading: false,
+						error: errors.getFriendlyString(data.error)
+					});
+				}
 			});
 		});
-
 	}
 
 	close() {
@@ -44,6 +55,8 @@ export default class MyApplicationDeleteModal extends Component {
 	render(props, state) {
 		return <Modal title="Update application" openModal={props.openModal} close={this.close.bind(this)}>
 			<div class="modal-body">
+				{state.error && <div class="alert alert-danger">{state.error}</div>}
+
 				<div class="form-group">
 					<label>Name</label>
 					<input value={state.name} class="form-control" type="text" placeholder="My Super Cool Application" onChange={linkState(this, "name")} onKeyUp={this.keyup.bind(this)} />
