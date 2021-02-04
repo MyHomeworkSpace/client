@@ -10,7 +10,7 @@ export default class ApplicationsPane extends Component {
 			<ApplicationList />
 			<hr />
 			<p>If you're a developer, you can integrate MyHomeworkSpace with your application. Take a look at our <a href="https://support.myhomework.space/docs/get-started-api" target="_blank" rel="noopener noreferrer">API Documentation</a> for more information.</p>
-			<p>If you'd like to change the publisher name on an application, contact us at <a href="mailto:hello@myhomework.space">hello@myhomwork.space</a>, and we'll be more than happy to help.</p>
+			<p>If you'd like to change the publisher name on an application, contact us at <a href="mailto:hello@myhomework.space">hello@myhomework.space</a>, and we'll be more than happy to help.</p>
 			<MyApplications openModal={props.openModal} />
 		</div>;
 	}
