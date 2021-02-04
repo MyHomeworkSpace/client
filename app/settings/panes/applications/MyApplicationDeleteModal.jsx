@@ -41,7 +41,7 @@ export default class MyApplicationDeleteModal extends Component {
 				<p>You are deleting the application <strong>{props.modalState.application.name}</strong> (Application ID: <code>{props.modalState.application.id}</code>). <u>This action cannot be undone.</u></p>
 				<p>Your Client ID and each of your authorization tokens will immediately be revoked, and your application's connection to MyHomeworkSpace will cease to function. You will be unable to recieve the same application ID again.</p>
 				<p>If you understand these concequences and wish to continue, type <strong class="no-select">{confirmPhrase}</strong> in the box below, then click "Delete."</p>
-				<input type="text" placeholder={confirmPhrase} class="form-control" onKeyUp={linkState(this, "confirmPhrase")} />
+				<input type="text" placeholder={confirmPhrase} class="form-control" onInput={linkState(this, "confirmPhrase")} />
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" onClick={this.close.bind(this)}>Cancel</button>
