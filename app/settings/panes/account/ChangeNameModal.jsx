@@ -21,15 +21,13 @@ export default class ChangeNameModal extends Component {
 	}
 
 	save() {
-		let that = this;
-
 		this.setState({
 			loading: true,
-		}, function() {
+		}, () => {
 			api.post("auth/changeName", {
-				new: that.state.name
-			}, function() {
-				that.props.refreshContext(that.close.bind(that));
+				new: this.state.name
+			}, () => {
+				this.props.refreshContext(this.close.bind(this));
 			});
 		});
 	}
