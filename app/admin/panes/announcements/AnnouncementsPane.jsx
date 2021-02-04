@@ -57,9 +57,9 @@ export default class AnnouncementsPane extends Component {
 	}
 
 	continueToConfirmState() {
-		if (this.state.expiry.isSameOrBefore(moment())) {
+		if (this.state.expiry.isSameOrBefore(moment(), "day")) {
 			this.setState({
-				error: "Announcement will never show, it expires today!"
+				error: "Announcement has already expired!"
 			});
 			return;
 		}
