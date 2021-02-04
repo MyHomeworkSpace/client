@@ -35,17 +35,23 @@ export default class MyApplicationDeleteModal extends Component {
 		this.props.openModal("");
 	}
 
+	keyup(e) {
+		if (e.keyCode == 13) {
+			this.save();
+		}
+	}
+
 	render(props, state) {
 		return <Modal title="Update application" openModal={props.openModal} close={this.close.bind(this)}>
 			<div class="modal-body">
 				<div class="form-group">
 					<label>Name</label>
-					<input value={state.name} class="form-control" type="text" placeholder="My Super Cool Application" onChange={linkState(this, "name")} />
+					<input value={state.name} class="form-control" type="text" placeholder="My Super Cool Application" onChange={linkState(this, "name")} onKeyUp={this.keyup.bind(this)} />
 					<p class="help-block">A name for your application. This will be shown to users, along with your name. Keep it short and sweet.</p>
 				</div>
 				<div class="form-group">
 					<label>Callback URI</label>
-					<input value={state.callbackUrl} class="form-control" type="uri" placeholder="https://example.com/myhomeworkspace/callback" onChange={linkState(this, "callbackUrl")} />
+					<input value={state.callbackUrl} class="form-control" type="uri" placeholder="https://example.com/myhomeworkspace/callback" onChange={linkState(this, "callbackUrl")} onKeyup={this.keyup.bind(this)} />
 					<p class="help-block">The callback URI for your application. Check out our <a href="https://support.myhomework.space/docs/get-started-api" target="_blank" rel="noopener noreferrer">documentation</a> for more information.</p>
 				</div>
 			</div>
