@@ -73,7 +73,7 @@ export default class FeedbackPane extends Component {
 		let sorted = state.feedback.sort(sortModes[state.sortType]);
 
 		return <div class="feedbacksPane">
-			<div className="alert alert-info">Remember to claim feedbacks on Slack in #incoming-feedback before replying to them!</div>
+			<div class="alert alert-info">Remember to claim feedbacks on Slack in #incoming-feedback before replying to them!</div>
 			<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group" role="group">
 					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this, 0)} sortType={0} name="ID descending" icon="fa-sort-numeric-desc" />
@@ -91,7 +91,7 @@ export default class FeedbackPane extends Component {
 					<SortButton currentSortType={state.sortType} setSortType={this.setSortType.bind(this, 6)} sortType={6} name="Type" icon="fa-lightbulb-o" />
 				</div>
 			</div>
-			<table className="table">
+			<table class="table">
 				{sorted.map((feedback, i) => <Feedback feedback={feedback} key={i} />)}
 			</table>
 		</div >;

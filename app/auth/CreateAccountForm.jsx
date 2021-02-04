@@ -107,7 +107,7 @@ export default class CreateAccountForm extends Component {
 	render(props, state) {
 		return <FullForm class="createAccountForm">
 			<div class="fullFormTitle">Create account</div>
-			<p className="lead">On behalf of the entire MyHomeworkSpace team, welcome! We're glad to have you.</p>
+			<p class="lead">On behalf of the entire MyHomeworkSpace team, welcome! We're glad to have you.</p>
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
 			<div class="input-group no-addon">
 				<input type="text" class="form-control" placeholder="Your name" onKeyup={this.keyup.bind(this)} onInput={linkState(this, "name")} value={state.name} disabled={state.loading} />
