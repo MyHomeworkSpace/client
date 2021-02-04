@@ -6,7 +6,7 @@ export default class MyApplicationListItem extends Component {
 	render(props, state) {
 		return <div class="application">
 			<div class="applicationInfo">
-				<div class="applicationName">[<code>{props.application.id}</code>] {props.application.name}</div>
+				<div class="applicationName">{props.application.name}</div>
 				<div class="applicationAuthor">{props.application.authorName}</div>
 				<div><strong>Client ID:</strong> <code>{props.application.clientId}</code></div>
 				<div><strong>Callback URI:</strong> {props.application.callbackUrl || <em>Unset</em>}</div>
