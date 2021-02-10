@@ -35,7 +35,7 @@
 		"compromise-numbers": "1.0.0",
 		"cross-env": "7.0.2",
 		"linkstate": "1.1.1",
-		"moment": "2.24.0",
+		"moment": "2.29.1",
 		"mousetrap": "^1.6.5",
 		"preact": "10.5.12",
 		"preact-router": "3.2.1"
