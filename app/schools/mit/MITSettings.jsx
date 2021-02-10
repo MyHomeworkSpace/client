@@ -96,6 +96,10 @@ export default class MITSettings extends Component {
 			<div class="modal-body mitSettings">
 				{state.error && <div class="alert alert-danger">{state.error}</div>}
 
+				{state.registration.length == 0 && <div>
+					<p>We couldn't find any classes in your registration for this term. Check your <a href="https://student.mit.edu/cgi-bin/shrwssor.sh" target="_blank" rel="noopener noreferrer">official Status of Registration</a>&mdash;if you've recently made changes, it may take up to 24 hours for them to take effect.</p>
+					<p>If you believe you're receiving this message in error, please contact us at <a href="mailto:hello@myhomework.space">hello@myhomework.space</a>.</p>
+				</div>}
 				{state.registration.map((registeredClass) => {
 					return <MITClassSections registeredClass={registeredClass} setSectionForSubject={this.setSectionForSubject.bind(this)} />;
 				})}
