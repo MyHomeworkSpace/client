@@ -170,6 +170,7 @@ module.exports = {
 			"tmr": "Date",
 			"tmrw": "Date",
 			"tue": "Date",
+			"wed": "Date",
 			"thu": "Date",
 		};
 
