@@ -1,3 +1,9 @@
+#classes.page
+	// we want to handle the 10px padding ourselves, so take it off the parent page
+	// this is a bit of a hack but i'm not sure what the best way to fix this is
+	// maybe padding should just be the individual page's responsibility?
+	padding: 0
+
 .classesPage
 	display: flex
 	width: 100%
@@ -8,11 +14,12 @@
 		border-right: 1px solid black
 		height: 100%
 		overflow-y: auto
-		padding-right: 10px
+		padding: 0 10px
 
 	.classesPageDetails
-		padding-left: 10px
+		padding: 0 10px
 		flex: 0 0 75%
+		overflow-y: auto
 
 	.noClassSelected
 		text-align: center
