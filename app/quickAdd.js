@@ -214,7 +214,6 @@ module.exports = {
 		// take [test on molecules] [in Science] on [next Tuesday]
 		// [next Friday] write an [essay about the revolution] [in History] class
 
-
 		var response = {
 			tag: "",
 			name: "",
@@ -236,6 +235,30 @@ module.exports = {
 			if (parsed.isValid()) {
 				sentence = sentence.replace("#Month #Value", "").trim();
 				response.due = assignYearToDate(parsed);
+			}
+		}
+
+		// look for relative dates based on the week, like "a week from tuesday"
+		// will is the only person i know who thinks of dates like this, but we do it anyways to make him happy
+		var relativeWeekResult = sentence.match("a week from (#WeekDay|today|tomorrow|yesterday)").text();
+		if (relativeWeekResult) {
+			// we came here because we are matching a relative week date
+			// we handle this by feeding it to compromise-dates, but need to match it out explicitly
+			// otherwise, compromise-dates gets distracted with the rest of the text
+
+			// workaround for some weird compromise behavior i can't figure out
+			// (might be a bug in compromise? or i'm misunderstanding their api)
+			relativeWeekResult = relativeWeekResult.replace("aweek", "a week");
+
+			var sentenceDate = nlp(relativeWeekResult, lexicon).dates({
+				timezone: "GMT"
+			});
+			if (sentenceDate) {
+				var normalDateText = sentenceDate.format("{year}-{iso-month}-{date-pad}").all().text();
+				if (normalDateText) {
+					response.dueText = relativeWeekResult;
+					response.due = resolveDate(normalDateText);
+				}
 			}
 		}
 
