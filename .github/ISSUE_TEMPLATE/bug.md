@@ -1,7 +1,7 @@
 ---
 name: Bug Report
 about: Opens an issue for a new bug report
-labels: bug
+labels: ["bug"]
 ---
 
 <!--

@@ -1,7 +1,7 @@
 ---
-name: Bug Report
+name: Feature request
 about: Opens an issue for a new feature request
-labels: enhancement
+labels: ["enhancement"]
 ---
 
 <!--
