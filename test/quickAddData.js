@@ -65,7 +65,7 @@ var dowRelativeDate = function(count, dow) {
 
 	const daysUntilNext = mod(dow - moment().day(), 7);
 
-	const target = moment().add(daysUntilNext, 'days').add(count, 'weeks');
+	const target = moment().add(daysUntilNext, "days").add(count, "weeks");
 	return buildDate(target.year(), target.month() + 1, target.date());
 };
 
