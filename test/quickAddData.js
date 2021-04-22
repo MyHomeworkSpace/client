@@ -57,18 +57,18 @@ var noYearDate = function(month, day) {
 // dowRelativeDate(n, dow) returns the nth next day of week
 // days of week start with 0 on sunday (see Date.prototype.getDay)
 var dowRelativeDate = function(count, dow) {
-	let mod = function(n, m) {
+	const mod = function(n, m) {
 		return ((n % m) + m) % m;
 	};
 
-	let now = new Date();
-	let daysUntilNext = mod(dow - now.getDay(), 7);
+	const now = new Date();
+	const daysUntilNext = mod(dow - now.getDay(), 7);
 
 	var timeDay = 1000 * 60 * 60 * 24;
 	var timeWeek = timeDay * 7;
 
-	let target = new Date(now + (timeDay * daysUntilNext) + (timeWeek * count));
-	return buildDate(target.getFullYear, target.getMonth, target.getDate);
+	const target = new Date(now + (timeDay * daysUntilNext) + (timeWeek * count));
+	return buildDate(target.getFullYear(), target.getMonth(), target.getDate());
 };
 
 module.exports = {
