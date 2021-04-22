@@ -164,7 +164,6 @@ module.exports = {
 		lexicon = {
 			// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
 			"day": undefined,
-			"week": undefined,
 
 			// these are abbreviations for dates
 			"tmr": "Date",
