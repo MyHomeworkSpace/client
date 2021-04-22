@@ -250,7 +250,7 @@ module.exports = {
 			// (might be a bug in compromise? or i'm misunderstanding their api)
 			relativeWeekResult = relativeWeekResult.replace("aweek", "a week");
 
-			var sentenceDate = nlp(relativeWeekResult, lexicon).dates({
+			const sentenceDate = nlp(relativeWeekResult, lexicon).dates({
 				timezone: "GMT"
 			});
 			if (sentenceDate) {
@@ -266,7 +266,7 @@ module.exports = {
 			// ask compromise-dates
 			// filter out values because they probably shouldn't be flagged as dates
 			// this fixes things like "HW 7.2 tuesday", where "7.2 tuesday" is chosen as date
-			var sentenceDate = sentence.clone().replace("#Value", "").dates({
+			const sentenceDate = sentence.clone().replace("#Value", "").dates({
 				timezone: "GMT" + (offset > 0 ? "-" + offset : "+" + (-offset)),
 			}).json(0);
 			if (sentenceDate) {
