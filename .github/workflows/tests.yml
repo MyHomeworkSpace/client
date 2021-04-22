@@ -25,9 +25,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Code style
-        run: npm run lint
-
       - name: Unit tests
         run: npm test
 
