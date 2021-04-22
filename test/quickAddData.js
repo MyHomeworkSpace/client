@@ -54,6 +54,23 @@ var noYearDate = function(month, day) {
 	}
 };
 
+// dowRelativeDate(n, dow) returns the nth next day of week
+// days of week start with 0 on sunday (see Date.prototype.getDay)
+var dowRelativeDate = function(count, dow) {
+	let mod = function(n, m) {
+		return ((n % m) + m) % m;
+	};
+
+	let now = new Date();
+	let daysUntilNext = mod(dow - now.getDay(), 7);
+
+	var timeDay = 1000 * 60 * 60 * 24;
+	var timeWeek = timeDay * 7;
+
+	let target = new Date(now + (timeDay * daysUntilNext) + (timeWeek * count));
+	return buildDate(target.getFullYear, target.getMonth, target.getDate);
+};
+
 module.exports = {
 	CLASSES: CLASSES,
 	PREFIXES: [
@@ -225,6 +242,24 @@ module.exports = {
 						dueDate: buildDate(2021, 1, 5)
 					}
 				},
+				{
+					input: "Paper due a week from tuesday",
+					result: {
+						tag: "Paper",
+						name: "",
+						classID: null,
+						dueDate: dowRelativeDate(1, 2),
+					}
+				},
+				{
+					input: "Paper due a week from today",
+					result: {
+						tag: "Paper",
+						name: "",
+						classID: null,
+						dueDate: dowRelativeDate(1, new Date().getDay())
+					}
+				}
 			]
 		}
 	]
