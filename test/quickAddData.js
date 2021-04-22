@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 const CLASS_ID_MATH = 1;
 const CLASS_ID_ENGLISH = 2;
 const CLASS_ID_HISTORY = 3;
@@ -61,14 +63,10 @@ var dowRelativeDate = function(count, dow) {
 		return ((n % m) + m) % m;
 	};
 
-	const now = new Date();
-	const daysUntilNext = mod(dow - now.getDay(), 7);
+	const daysUntilNext = mod(dow - moment().day(), 7);
 
-	var timeDay = 1000 * 60 * 60 * 24;
-	var timeWeek = timeDay * 7;
-
-	const target = new Date(now + (timeDay * daysUntilNext) + (timeWeek * count));
-	return buildDate(target.getFullYear(), target.getMonth(), target.getDate());
+	const target = moment().add(daysUntilNext, 'days').add(count, 'weeks');
+	return buildDate(target.year(), target.month() + 1, target.date());
 };
 
 module.exports = {
