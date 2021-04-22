@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: MyHomeworkSpace Support
+    url: https://support.myhomework.space
+    about: Learn about how to use MyHomeworkSpace.
+  - name: Contact us
+    url: https://support.myhomework.space/docs/contact.html
+    about: Get in touch with the MyHomeworkSpace team.
