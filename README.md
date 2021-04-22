@@ -1,5 +1,5 @@
 # client
-[![CI](https://github.com/MyHomeworkSpace/client/workflows/CI/badge.svg)](https://github.com/MyHomeworkSpace/client/actions?query=workflow%3ACI) [![Created by the MyHomeworkSpace Team](https://img.shields.io/badge/Created%20by-MyHomeworkSpace%20Team-3698dc.svg)](https://github.com/MyHomeworkSpace)
+[![Tests](https://github.com/MyHomeworkSpace/client/actions/workflows/tests.yml/badge.svg)](https://github.com/MyHomeworkSpace/client/actions/workflows/tests.yml) [![Style](https://github.com/MyHomeworkSpace/client/actions/workflows/style.yml/badge.svg)](https://github.com/MyHomeworkSpace/client/actions/workflows/style.yml) [![Created by the MyHomeworkSpace Team](https://img.shields.io/badge/Created%20by-MyHomeworkSpace%20Team-3698dc.svg)](https://github.com/MyHomeworkSpace)
 
 This repository is the MyHomeworkSpace client, which runs at https://app.myhomework.space.
 
