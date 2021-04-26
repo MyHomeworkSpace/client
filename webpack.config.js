@@ -71,6 +71,7 @@ module.exports = {
 				include: path.join(__dirname, 'app'),
 				options: {
 					jsx: "h",
+					jsxFragment: "Fragment",
 					objectAssign: "Object.assign"
 				}
 			},
