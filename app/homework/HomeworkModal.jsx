@@ -116,7 +116,7 @@ export default function HomeworkModal(props) {
 			<DatePicker value={due} change={setDue} />
 			<ClassPicker value={classId} change={setClassId} classes={props.classes} />
 			<label>
-				<input type="checkbox" checked={isComplete} onChange={(e) => setIsComplete(e.target.value)} /> Done?
+				<input type="checkbox" checked={isComplete} onChange={(e) => setIsComplete(e.target.checked)} /> Done?
 			</label>
 			<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={(e) => setDesc(e.target.value)} onKeyDown={keydown(true)} value={desc}></textarea>
 		</div>
