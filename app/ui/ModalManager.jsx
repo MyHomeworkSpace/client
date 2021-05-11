@@ -14,6 +14,7 @@ import EnrollModal from "schools/EnrollModal.jsx";
 import SchoolSettingsModal from "schools/SchoolSettingsModal.jsx";
 import BackgroundModal from "settings/panes/account/BackgroundModal.jsx";
 import TwoFactorModal from "settings/panes/account/TwoFactorModal.jsx";
+import WebAuthnModal from "settings/panes/account/WebAuthnModal.jsx";
 import ChangeNameModal from "settings/panes/account/ChangeNameModal.jsx";
 import MyApplicationDeleteModal from "settings/panes/applications/MyApplicationDeleteModal.jsx";
 import MyApplicationSettingsModal from "settings/panes/applications/MyApplicationSettingsModal.jsx";
@@ -37,6 +38,7 @@ export default class ModalManager extends Component {
 			enroll: EnrollModal,
 			background: BackgroundModal,
 			twoFactor: TwoFactorModal,
+			webAuthn: WebAuthnModal,
 			loading: LoadingModal,
 			changeEmail: ChangeEmailModal,
 			changePassword: ChangePasswordModal,

@@ -64,12 +64,34 @@ var rawRequest = function(path, method, data, callback) {
 	request.send(method == "POST" ? paramStr : undefined);
 };
 
+var jsonRequest = function(path, method, data, callback) {
+	var request = new XMLHttpRequest();
+
+	request.withCredentials = true;
+	request.open(method, buildURL(path, method, data), true);
+	request.onload = function() {
+		callback(JSON.parse(request.responseText), request);
+	};
+	request.onerror = function() {
+		callback({
+			status: "error",
+			error: "disconnected"
+		}, request);
+	};
+	request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+	request.send(data);
+};
+
 export default {
 	get: function(path, data, callback) {
 		return rawRequest(path, "GET", data, callback);
 	},
 	post: function(path, data, callback) {
 		return rawRequest(path, "POST", data, callback);
+	},
+	// Used only for _special_ requests
+	postJSON: function(path, data, callback) {
+		return jsonRequest(path, "POST", data, callback);
 	},
 	init: function(callback) {
 		rawRequest("auth/csrf", "GET", {}, function(data) {

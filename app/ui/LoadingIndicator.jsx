@@ -2,6 +2,6 @@ import { h, Component } from "preact";
 
 export default class LoadingIndicator extends Component {
 	render(props, state) {
-		return <i class="fa fa-refresh fa-spin" />;
+		return <i class={`fa fa-refresh fa-spin ${props.type == "large" ? "fa-3x" : ""}`} />;
 	}
 };
