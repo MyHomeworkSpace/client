@@ -17,4 +17,4 @@ If you're working on the app, the [Preact DevTools](https://github.com/preactjs/
 ## Running
 To start Webpack, just run `npm run dev`. This will start the development server, listening at port 9001.
 
-If you followed the api-server guide, this should be available at http://app.myhomework.invalid.
+If you followed the api-server guide, this should be available at http://app.myhomework.localhost.

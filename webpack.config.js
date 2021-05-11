@@ -54,7 +54,7 @@ module.exports = {
 		disableHostCheck: true, // TODO: this should not be needed
 		historyApiFallback: true,
 		port: 9001,
-		public: "app.myhomework.invalid:80"
+		public: "app.myhomework.localhost:80"
 	},
 
 	output: {
