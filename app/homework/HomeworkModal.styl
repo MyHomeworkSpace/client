@@ -1,18 +1,41 @@
 .homeworkModal
 	.modal-body
-		.homeworkModalName, .pickerContainer, .pickerContainer .picker, .pickerContainer .pickerContents .datePickerCalendar, textarea
-			width: 300px
+		.homeworkModalBody
+			display: grid
+			grid: 1fr 1fr 4fr / 1fr 1fr 1fr 1fr 1fr 1fr // stylus doesn't support repeat() :(
+			gap: 5px
 
-		.homeworkModalName
-			font-size: 18px
-			height: 34px
+			.homeworkModalNameWrapper
+				grid-row: 1 / span 1
+				grid-column: 1 / span 5
 
-			input[type=text]
+			.doneCheckbox
+				display: flex
+				justify-content: center
+				align-items: center
+
+			.dueClassIdRow
+				display: grid
+				grid: 1fr / 1fr 1fr
+				width: 100%
+
+			.datePicker, .classPicker
+				grid-column: span 3
+
+			.homeworkModalName, .pickerContainer, .pickerContainer .picker, .pickerContainer .pickerContents .datePickerCalendar, textarea
+				width: 100%
+
+			.homeworkModalName
 				font-size: 18px
+				height: 34px
 
-		.pickerContainer
-			display: block
+				input[type=text]
+					font-size: 18px
 
-		.homeworkModalDesc
-			min-width: 400px
-			min-height: 150px
+			.pickerContainer
+				display: block
+
+			.homeworkModalDesc
+				min-width: 400px
+				min-height: 150px
+				grid-column: 1 / span 6

@@ -97,10 +97,7 @@ export default function HomeworkModal(props) {
 
 	const keydown = (shiftEnter) => {
 		return (e) => {
-			if (e.shiftKey && e.keyCode == 13 && shiftEnter) {
-				e.preventDefault();
-				return false;
-			} else if (e.keyCode == 13) {
+			if (e.keyCode == 13 && !(e.shiftKey && shiftEnter)) {
 				save();
 				e.preventDefault();
 				return false;
@@ -112,17 +109,30 @@ export default function HomeworkModal(props) {
 		<div class="modal-body">
 			{err && <div class="alert alert-danger">{err}</div>}
 
-			<PrefixedEdit class="homeworkModalName" placeholder="Name" value={name} onKeyDown={keydown(false)} onInput={(e) => setName(e.target.value)} />
-			<DatePicker value={due} change={setDue} />
-			<ClassPicker value={classId} change={setClassId} classes={props.classes} />
-			<label>
-				<input type="checkbox" checked={isComplete} onChange={(e) => setIsComplete(e.target.checked)} /> Done?
-			</label>
-			<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={(e) => setDesc(e.target.value)} onKeyDown={keydown(true)} value={desc}></textarea>
+			<div class="homeworkModalBody">
+
+				<div class="homeworkModalNameWrapper">
+					<PrefixedEdit class="homeworkModalName" placeholder="Name" value={name} onKeyDown={keydown(false)} onInput={(e) => setName(e.target.value)} />
+				</div>
+
+				<div class="doneCheckbox">
+					<label>
+						<input type="checkbox" checked={isComplete} onChange={(e) => setIsComplete(e.target.checked)} />&nbsp;Done
+					</label>
+				</div>
+				<div class="datePicker">
+					<DatePicker value={due} change={setDue} />
+				</div>
+				<div class="classPicker">
+					<ClassPicker value={classId} change={setClassId} classes={props.classes} />
+				</div>
+
+				<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={(e) => setDesc(e.target.value)} onKeyDown={keydown(true)} value={desc}></textarea>
+			</div>
 		</div>
 		<div class="modal-footer">
 			{!isNew && <button type="button" class="btn btn-danger" onClick={del}>Delete</button>}
-			<button type="button" class="btn btn-primary" onClick={save}>Save changes</button>
+			<button type="button" class="btn btn-primary" onClick={save}>{isNew ? "Add homework" : "Save changes"}</button>
 		</div>
 	</Modal>;
 }
