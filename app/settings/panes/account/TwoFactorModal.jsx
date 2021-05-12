@@ -99,9 +99,9 @@ export default class TwoFactorModal extends Component {
 	}
 
 	render(props, state) {
-		var body;
-		var footer;
-		var noClose = false;
+		let body;
+		let footer;
+		let noClose = false;
 
 		if (!props.modalState.enrolled) {
 			if (state.phase == 1) {

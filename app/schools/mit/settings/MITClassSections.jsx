@@ -8,10 +8,10 @@ export default class MITClassSections extends Component {
 	}
 
 	render(props, state) {
-		var sectionGroups = {};
+		let sectionGroups = {};
 
 		props.registeredClass.sections.forEach(function(section) {
-			var sectionType = section.sectionCode[0];
+			let sectionType = section.sectionCode[0];
 
 			if (section.time != "*TO BE ARRANGED") {
 				if (!sectionGroups[sectionType]) {
@@ -22,21 +22,21 @@ export default class MITClassSections extends Component {
 			}
 		});
 
-		var sectionGroupCodes = [];
+		let sectionGroupCodes = [];
 		if (sectionGroups["L"]) { sectionGroupCodes.push("L"); }
 		if (sectionGroups["R"]) { sectionGroupCodes.push("R"); }
 		if (sectionGroups["B"]) { sectionGroupCodes.push("B"); }
 		if (sectionGroups["D"]) { sectionGroupCodes.push("D"); }
 
-		var selectedSections = props.registeredClass.selectedSections;
-		var selectedSectionsList = (selectedSections == "" ? [] : selectedSections.split(","));
+		let selectedSections = props.registeredClass.selectedSections;
+		let selectedSectionsList = (selectedSections == "" ? [] : selectedSections.split(","));
 
-		var hasCode = [];
-		for (var codeIndex in sectionGroupCodes) {
-			var code = sectionGroupCodes[codeIndex];
+		let hasCode = [];
+		for (let codeIndex in sectionGroupCodes) {
+			let code = sectionGroupCodes[codeIndex];
 
-			var foundCode = false;
-			for (var i = 0; i < selectedSectionsList.length; i++) {
+			let foundCode = false;
+			for (let i = 0; i < selectedSectionsList.length; i++) {
 				if (selectedSectionsList[i][0] == code) {
 					foundCode = true;
 					break;
@@ -49,13 +49,13 @@ export default class MITClassSections extends Component {
 			<h4 class="mitClassSectionsName">{props.registeredClass.subjectID} {props.registeredClass.title}</h4>
 			<div class="row">
 				{sectionGroupCodes.map((sectionGroupCode, i) => {
-					var codeToName = {
+					let codeToName = {
 						"B": "Lab",
 						"D": "Design",
 						"L": "Lecture",
 						"R": "Recitation"
 					};
-					var sectionsInGroup = sectionGroups[sectionGroupCode];
+					let sectionsInGroup = sectionGroups[sectionGroupCode];
 
 					return <div class="col-md-4 mitClassSectionGroup">
 						<div class="mitClassSectionGroupTitle">{codeToName[sectionGroupCode]}</div>

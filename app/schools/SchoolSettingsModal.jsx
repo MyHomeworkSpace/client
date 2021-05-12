@@ -10,7 +10,7 @@ import CornellSettings from "schools/cornell/CornellSettings.jsx";
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
 
-var settingsComponents = {
+let settingsComponents = {
 	dalton: DaltonSettings,
 	mit: MITSettings,
 	cornell: CornellSettings
@@ -54,8 +54,8 @@ export default class SchoolSettingsModal extends Component {
 	}
 
 	render(props, state) {
-		var school = props.modalState.school;
-		var title = "Settings for " + school.displayName;
+		let school = props.modalState.school;
+		let title = "Settings for " + school.displayName;
 
 		if (state.loading) {
 			return <Modal title={title} openModal={props.openModal} noClose class="schoolSettingsModal">
@@ -73,7 +73,7 @@ export default class SchoolSettingsModal extends Component {
 			</Modal>;
 		}
 
-		var settingComponent = settingsComponents[school.schoolID];
+		let settingComponent = settingsComponents[school.schoolID];
 
 		return <Modal title={title} openModal={props.openModal} noClose class="schoolSettingsModal">
 			{h(settingComponent, {

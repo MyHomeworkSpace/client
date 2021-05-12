@@ -1,10 +1,10 @@
 // this doesn't use the import statements the rest of the code uses
 // because it makes the unit test runner sad
-var moment = require("moment");
-var nlp = require("compromise");
-var nlpNumbers = require("compromise-numbers");
-var nlpDates = require("compromise-dates");
-var prefixes = require("./prefixes");
+let moment = require("moment");
+let nlp = require("compromise");
+let nlpNumbers = require("compromise-numbers");
+let nlpDates = require("compromise-dates");
+let prefixes = require("./prefixes");
 
 if (nlp.default) {
 	nlp = nlp.default;
@@ -18,8 +18,8 @@ if (nlpNumbers.default) {
 nlp.extend(nlpNumbers);
 nlp.extend(nlpDates);
 
-var classMap = {};
-var classSynonyms = [
+let classMap = {};
+let classSynonyms = [
 	["science", "sci", "bio", "biology", "chem", "chemistry", "physics"],
 	["math", "algebra", "calculus", "calc", "pre-calculus", "precalculus", "precalc", "geometry", "geo"],
 	["computer science", "compsci", "cs"],
@@ -27,17 +27,17 @@ var classSynonyms = [
 	["history", "us history", "hist", "ush"],
 	["english", "eng", "fws"]
 ];
-var lexicon = {};
+let lexicon = {};
 
-var normalizeName = function(name) {
+let normalizeName = function(name) {
 	return name.replace(/ /g, "").replace(/\./g, "").toLowerCase();
 };
 
-var findClass = function(name) {
-	var normalizedName = normalizeName(name);
-	for (var classID in classMap) {
-		var classItem = classMap[classID];
-		var classNormalized = normalizeName(classItem.name);
+let findClass = function(name) {
+	let normalizedName = normalizeName(name);
+	for (let classID in classMap) {
+		let classItem = classMap[classID];
+		let classNormalized = normalizeName(classItem.name);
 
 		// check for exact match
 		if (classNormalized == normalizedName) {
@@ -46,15 +46,15 @@ var findClass = function(name) {
 		}
 
 		// check all synonyms
-		for (var listIndex in classSynonyms) {
-			var synonymList = classSynonyms[listIndex];
+		for (let listIndex in classSynonyms) {
+			let synonymList = classSynonyms[listIndex];
 
-			var hasClassName = false;
-			var hasSearchName = false;
+			let hasClassName = false;
+			let hasSearchName = false;
 
-			for (var synonymIndex in synonymList) {
-				var synonym = synonymList[synonymIndex];
-				var normalizedSynonym = normalizeName(synonym);
+			for (let synonymIndex in synonymList) {
+				let synonym = synonymList[synonymIndex];
+				let normalizedSynonym = normalizeName(synonym);
 
 				if (normalizedSynonym == classNormalized) {
 					hasClassName = true;
@@ -72,7 +72,7 @@ var findClass = function(name) {
 	return null;
 };
 
-var assignYearToDate = function(date) {
+let assignYearToDate = function(date) {
 	if (moment().month() > date.month()) {
 		// today's month is after the entered month, meaning it's probably due next year
 		date.year(moment().year() + 1);
@@ -83,9 +83,9 @@ var assignYearToDate = function(date) {
 	return date;
 };
 
-var resolveDate = function(text) {
+let resolveDate = function(text) {
 	// let's try some common formats
-	var parsed = moment(text, [
+	let parsed = moment(text, [
 		"YYYY-MM-DD",
 		"MM-DD-YYYY",
 		"DD-MM-YYYY"
@@ -99,14 +99,14 @@ var resolveDate = function(text) {
 		return moment(new Date(text));
 	}
 
-	var textToParse = text.toLowerCase().split(" ");
-	var result = {
+	let textToParse = text.toLowerCase().split(" ");
+	let result = {
 		last: false,
 		next: false,
 		dow: -1
 	};
-	for (var wordIndex in textToParse) {
-		var word = textToParse[wordIndex];
+	for (let wordIndex in textToParse) {
+		let word = textToParse[wordIndex];
 		if (word == "last") {
 			result.last = true;
 		} else if (word == "next") {
@@ -137,8 +137,8 @@ var resolveDate = function(text) {
 	if (result.dow == -1) {
 		return "";
 	}
-	var resultDate = moment();
-	var thisWeek = resultDate.week();
+	let resultDate = moment();
+	let thisWeek = resultDate.week();
 	while (
 		((result.last || result.next) && (resultDate.week() == thisWeek || resultDate.day() != result.dow)) ||
 		((!result.last && !result.next) && (resultDate.day() != result.dow))
@@ -152,7 +152,7 @@ var resolveDate = function(text) {
 	return resultDate;
 };
 
-var cleanPunctuation = function(str) {
+let cleanPunctuation = function(str) {
 	return str.replace(/\./g, "").replace(/!/g, "").replace(/\?/g, "").replace(/,/g, "");
 };
 
@@ -174,27 +174,27 @@ module.exports = {
 		};
 
 		// handle prefix list
-		for (var prefixIndex in prefixes.list) {
-			var prefix = prefixes.list[prefixIndex];
-			for (var wordIndex in prefix.words) {
+		for (let prefixIndex in prefixes.list) {
+			let prefix = prefixes.list[prefixIndex];
+			for (let wordIndex in prefix.words) {
 				// tell nlp_compromise
-				var word = prefix.words[wordIndex];
+				let word = prefix.words[wordIndex];
 				lexicon[word.toLowerCase()] = "MHSPrefix";
 			}
 		}
 
 		// add synonyms first so that the real classes can overwrite them
-		for (var listIndex in classSynonyms) {
-			var synonymList = classSynonyms[listIndex];
-			for (var synonymIndex in synonymList) {
-				var synonym = synonymList[synonymIndex];
+		for (let listIndex in classSynonyms) {
+			let synonymList = classSynonyms[listIndex];
+			for (let synonymIndex in synonymList) {
+				let synonym = synonymList[synonymIndex];
 				lexicon[synonym.toLowerCase()] = "MHSClassSynonym";
 			}
 		}
 
 		// handle class list
-		for (var classIndex in classes) {
-			var classItem = classes[classIndex];
+		for (let classIndex in classes) {
+			let classItem = classes[classIndex];
 
 			// tell nlp_compromise
 			lexicon[classItem.name.toLowerCase()] = "MHSClass";
@@ -214,23 +214,23 @@ module.exports = {
 		// take [test on molecules] [in Science] on [next Tuesday]
 		// [next Friday] write an [essay about the revolution] [in History] class
 
-		var response = {
+		let response = {
 			tag: "",
 			name: "",
 			class: null,
 			due: null,
 			dueText: ""
 		};
-		var sentence = nlp(text, lexicon);
+		let sentence = nlp(text, lexicon);
 
 		response.tag = sentence.match("#MHSPrefix").terms(0).out().trim();
 
-		var offset = new Date().getTimezoneOffset() / 60;
+		let offset = new Date().getTimezoneOffset() / 60;
 
 		// look for #Month #Value, like "May 12"
-		var dateTextResult = sentence.match("#Month #Value").terms().out().trim();
+		let dateTextResult = sentence.match("#Month #Value").terms().out().trim();
 		if (dateTextResult) {
-			var parsed = moment(dateTextResult, "MMM D");
+			let parsed = moment(dateTextResult, "MMM D");
 
 			if (parsed.isValid()) {
 				sentence = sentence.replace("#Month #Value", "").trim();
@@ -240,7 +240,7 @@ module.exports = {
 
 		// look for relative dates based on the week, like "a week from tuesday"
 		// will is the only person i know who thinks of dates like this, but we do it anyways to make him happy
-		var relativeWeekResult = sentence.match("a week from (#WeekDay|today|tomorrow|yesterday)").text();
+		let relativeWeekResult = sentence.match("a week from (#WeekDay|today|tomorrow|yesterday)").text();
 		if (relativeWeekResult) {
 			// we came here because we are matching a relative week date
 			// we handle this by feeding it to compromise-dates, but need to match it out explicitly
@@ -254,7 +254,7 @@ module.exports = {
 				timezone: "GMT"
 			});
 			if (sentenceDate) {
-				var normalDateText = sentenceDate.format("{year}-{iso-month}-{date-pad}").all().text();
+				let normalDateText = sentenceDate.format("{year}-{iso-month}-{date-pad}").all().text();
 				if (normalDateText) {
 					response.dueText = relativeWeekResult;
 					response.due = resolveDate(normalDateText);
@@ -285,10 +285,10 @@ module.exports = {
 			}
 		}
 
-		var className = sentence.match("(#MHSClass|#MHSClassSynonym)+").terms().out().toLowerCase().trim();
+		let className = sentence.match("(#MHSClass|#MHSClassSynonym)+").terms().out().toLowerCase().trim();
 		response.class = findClass(className);
 
-		var nameSentence = sentence;
+		let nameSentence = sentence;
 
 		// class name
 		nameSentence.replace("(#Conjunction|#Preposition)? (#MHSClass|#MHSClassSynonym) class?", "");
@@ -301,18 +301,18 @@ module.exports = {
 		response.name = nameSentence.out().trim();
 
 		if (!response.tag.trim() && response.name) {
-			var nameParts = response.name.split(" ");
-			var assignedPrefix = nameParts[0];
+			let nameParts = response.name.split(" ");
+			let assignedPrefix = nameParts[0];
 			nameParts.shift();
 
 			response.tag = assignedPrefix;
 			response.name = nameParts.join(" ");
 		} else {
 			// correct capitalization of the prefix
-			for (var prefixIndex in prefixes.list) {
-				var prefix = prefixes.list[prefixIndex];
-				for (var wordIndex in prefix.words) {
-					var word = prefix.words[wordIndex];
+			for (let prefixIndex in prefixes.list) {
+				let prefix = prefixes.list[prefixIndex];
+				for (let wordIndex in prefix.words) {
+					let word = prefix.words[wordIndex];
 					if (word.toLowerCase() == response.tag.toLowerCase()) {
 						response.tag = word;
 					}

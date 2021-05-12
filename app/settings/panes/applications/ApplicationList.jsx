@@ -39,7 +39,7 @@ export default class ApplicationList extends Component {
 			return <div class="applicationList empty">You have not given any applications permission to access your account.</div>;
 		}
 
-		var authorizations = state.authorizations.map((authorization) => {
+		let authorizations = state.authorizations.map((authorization) => {
 			return <ApplicationListItem authorization={authorization} refresh={this.refresh.bind(this)} />;
 		});
 		return <div class="applicationList">{authorizations}</div>;

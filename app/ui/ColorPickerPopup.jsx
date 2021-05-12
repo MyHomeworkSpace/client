@@ -24,7 +24,7 @@ export default class ColorPickerPopup extends Component {
 	}
 
 	render(props, state) {
-		var colorElements = consts.colors.map((color) => {
+		let colorElements = consts.colors.map((color) => {
 			return <div
 				class={`colorPickerPopupColor ${props.value == color ? "selected" : ""}`}
 				style={`background-color: #${color}`}

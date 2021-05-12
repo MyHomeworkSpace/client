@@ -72,21 +72,21 @@ export default class TopBar extends Component {
 	}
 
 	render(props, state) {
-		var tabs = {
+		let tabs = {
 			"homework": { icon: "tachometer", name: "Dashboard" },
 			"planner": { icon: "book", name: "Planner" },
 			"calendar": { icon: "calendar", name: "Calendar" }
 		};
 
-		var renderedTabs = [
+		let renderedTabs = [
 			Object.keys(tabs).map((tabKey) => {
-				var tab = tabs[tabKey];
+				let tab = tabs[tabKey];
 				return <TopBarButton icon={tab.icon} selected={props.page == tabKey} onClick={this.openPage.bind(this, tabKey)}>{tab.name}</TopBarButton>;
 			}),
 			<TopBarDropdown me={props.me} mainTabs={tabs} tabs={props.tabs} page={props.page} openPage={props.openPage} />
 		];
 
-		var housePref = props.prefs.find(pref => pref.key == "hogwartsHouse");
+		let housePref = props.prefs.find(pref => pref.key == "hogwartsHouse");
 		housePref = (housePref && housePref.value == "none") ? null : housePref;
 
 		return <div class={`topBar ${props.inverted ? "inverted" : ""} ${props.dimmed ? "dimmed" : ""} ${state.open ? "open" : ""}`}>

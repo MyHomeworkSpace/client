@@ -21,7 +21,7 @@ export default class DatePicker extends Component {
 	}
 
 	render(props, state) {
-		var format = props.format || "ddd, MMMM Do, YYYY";
+		let format = props.format || "ddd, MMMM Do, YYYY";
 		return <Picker class="datePicker" display={props.value.format(format)} open={state.open} setOpen={this.setOpen.bind(this)}>
 			<DatePickerCalendar date={props.value} selectDate={this.selectDate.bind(this)} />
 		</Picker>;

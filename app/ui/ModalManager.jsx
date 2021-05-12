@@ -28,7 +28,7 @@ export default class ModalManager extends Component {
 	}
 
 	render(props, state) {
-		var modals = {
+		let modals = {
 			calendarEvent: EventModal,
 			calendarEventProvided: EventProvidedModal,
 			class: ClassModal,
@@ -49,7 +49,7 @@ export default class ModalManager extends Component {
 			applicationSettings: MyApplicationSettingsModal,
 		};
 
-		var modal;
+		let modal;
 
 		if (props.modalName) {
 			modal = h(modals[props.modalName], {

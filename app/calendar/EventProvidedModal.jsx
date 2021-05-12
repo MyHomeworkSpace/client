@@ -73,7 +73,7 @@ export default class EventProvidedModal extends Component {
 	}
 
 	render(props, state) {
-		var event = this.props.modalState.event;
+		let event = this.props.modalState.event;
 
 		if (state.loading) {
 			return <Modal title="Edit event" openModal={props.openModal} noClose class="eventProvidedModal">
@@ -83,11 +83,11 @@ export default class EventProvidedModal extends Component {
 			</Modal>;
 		}
 
-		var start = moment.unix(event.start);
-		var end = moment.unix(event.end);
+		let start = moment.unix(event.start);
+		let end = moment.unix(event.end);
 
-		var startDisplay = start.format("h:mm a");
-		var endDisplay = end.format("h:mm a");
+		let startDisplay = start.format("h:mm a");
+		let endDisplay = end.format("h:mm a");
 
 		return <Modal title="Edit event" openModal={props.openModal} class="eventProvidedModal">
 			<div class="modal-body">

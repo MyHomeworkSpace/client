@@ -26,7 +26,7 @@ export default class SettingsPage extends Component {
 	}
 
 	render(props, state) {
-		var panes = {
+		let panes = {
 			account: { icon: "user", name: "Account", component: AccountPane },
 			quickAdd: { icon: "plus", name: "Quick Add", component: QuickAddPane },
 			dashboard: { icon: "tachometer", name: "Dashboard", component: DashboardPane },
@@ -37,14 +37,14 @@ export default class SettingsPage extends Component {
 			more: { icon: "external-link", name: "More projects", component: MorePane },
 		};
 
-		var currentPane = panes[state.pane];
+		let currentPane = panes[state.pane];
 
 		return <div class="settingsPage">
 			<h2>Settings</h2>
 			<div class="settingsPaneContainer">
 				<div class="settingsPaneSelect">
 					{Object.keys(panes).map((paneID) => {
-						var pane = panes[paneID];
+						let pane = panes[paneID];
 						return <div class={`settingsPaneOption ${paneID == state.pane ? "settingsPaneOptionSelected" : ""}`} onClick={this.setPane.bind(this, paneID)}>
 							<i class={`fa fa-fw fa-${pane.icon}`} /> {pane.name}
 						</div>;

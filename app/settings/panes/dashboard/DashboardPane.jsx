@@ -47,7 +47,7 @@ export default class DashboardPane extends Component {
 	}
 
 	getAvailableClasses() {
-		var availableClasses = [];
+		let availableClasses = [];
 		this.props.classes.forEach((classObject) => {
 			if (this.state.hiddenClasses.indexOf(classObject.id) == -1) {
 				availableClasses.push(classObject);
@@ -72,7 +72,7 @@ export default class DashboardPane extends Component {
 			this.setState({
 				loading: true
 			}, () => {
-				var hiddenClasses = this.state.hiddenClasses;
+				let hiddenClasses = this.state.hiddenClasses;
 				hiddenClasses.push(parseInt(this.state.selectedClass));
 				api.post("prefs/set", {
 					key: "homeworkHiddenClasses",
@@ -92,7 +92,7 @@ export default class DashboardPane extends Component {
 		this.setState({
 			loading: true
 		}, () => {
-			var hiddenClasses = this.state.hiddenClasses;
+			let hiddenClasses = this.state.hiddenClasses;
 			hiddenClasses.splice(hiddenClasses.indexOf(classId), 1);
 			api.post("prefs/set", {
 				key: "homeworkHiddenClasses",
@@ -104,7 +104,7 @@ export default class DashboardPane extends Component {
 	}
 
 	render(props, state) {
-		var availableClasses;
+		let availableClasses;
 		if (!state.loading) {
 			availableClasses = this.getAvailableClasses();
 		}
@@ -130,7 +130,7 @@ export default class DashboardPane extends Component {
 				<div class="homeworkSettingsClassList">
 					{state.hiddenClasses.length == 0 && <p>You haven't hidden any classes.</p>}
 					{state.hiddenClasses.map((classId) => {
-						var classObject;
+						let classObject;
 						props.classes.forEach((potentialClass) => {
 							if (potentialClass.id == classId) {
 								classObject = potentialClass;

@@ -75,7 +75,7 @@ export default class FeedbackPopup extends Component {
 		this.setState({
 			loading: true,
 		}, () => {
-			var s = document.createElement("script");
+			let s = document.createElement("script");
 
 			s.src = "https://html2canvas.hertzen.com/dist/html2canvas.min.js";
 			s.onload = (() => html2canvas(document.body, { scale: window.devicePixelRatio / 3 }).then(canvas => {
@@ -103,7 +103,7 @@ export default class FeedbackPopup extends Component {
 			</span>;
 		}
 
-		var feelingIndicator = <div class="feedbackPopupFeeling">
+		let feelingIndicator = <div class="feedbackPopupFeeling">
 			<div class="feedbackPopupHeading">How do you feel?</div>
 			<div class={`feedbackPopupFeelingOption ${state.type == "smile" ? "selected" : ""}`} onClick={this.selectFeeling.bind(this, "smile")}><i class="fa fa-fw fa-smile-o" /> I'm happy</div>
 			<div class={`feedbackPopupFeelingOption ${state.type == "frown" ? "selected" : ""}`} onClick={this.selectFeeling.bind(this, "frown")}><i class="fa fa-fw fa-frown-o" /> I'm sad</div>

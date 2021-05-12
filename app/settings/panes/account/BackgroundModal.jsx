@@ -60,7 +60,7 @@ export default class BackgroundModal extends Component {
 	}
 
 	onColorChange(e) {
-		var bgStr = "clr:" + e.target.value;
+		let bgStr = "clr:" + e.target.value;
 		this.props.setBackground(bgStr);
 		if (this._colorTimeout) {
 			clearTimeout(this._colorTimeout);
@@ -76,10 +76,10 @@ export default class BackgroundModal extends Component {
 	}
 
 	render(props, state) {
-		var backgroundCount = 10;
-		var backgroundImages = [];
+		let backgroundCount = 10;
+		let backgroundImages = [];
 
-		for (var i = 0; i < backgroundCount; i++) {
+		for (let i = 0; i < backgroundCount; i++) {
 			backgroundImages.push(<img src={`img/backgrounds/bg${i + 1}_thumb.jpg`} onClick={this.setBackgroundImage.bind(this, i + 1)} />);
 		}
 

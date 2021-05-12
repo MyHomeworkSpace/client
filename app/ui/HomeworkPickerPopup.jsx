@@ -52,9 +52,9 @@ export default class HomeworkPickerPopup extends Component {
 	}
 
 	render(props, state) {
-		var noResults = "noResults";
-		var results;
-		var source;
+		let noResults = "noResults";
+		let results;
+		let source;
 
 		if (state.loading) {
 			results = <p><LoadingIndicator type="inline" /> Loading, please wait...</p>;
@@ -69,8 +69,8 @@ export default class HomeworkPickerPopup extends Component {
 
 		if (!results) {
 			results = source.map((result) => {
-				var classObject;
-				for (var classIndex in props.classes) {
+				let classObject;
+				for (let classIndex in props.classes) {
 					if (props.classes[classIndex].id == result.classId) {
 						classObject = props.classes[classIndex];
 					}

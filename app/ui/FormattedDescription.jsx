@@ -9,7 +9,7 @@ export default class FormattedDescription extends Component {
 				const linkRegex = /(http[s]*:\/\/.*?)($|\s)/ig;
 
 				const parts = [];
-				var index = 0;
+				let index = 0;
 
 				while (true) {
 					const part = linkRegex.exec(line);

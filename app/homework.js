@@ -15,7 +15,7 @@ export function handleNew() {
 
 export function markComplete(id, complete) {
 	api.get("homework/get/" + id, {}, function(data) {
-		var hwItem = data.homework;
+		let hwItem = data.homework;
 		hwItem.complete = complete;
 		api.post("homework/edit", hwItem, function(data) {
 			// yay

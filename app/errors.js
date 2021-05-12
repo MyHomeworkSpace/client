@@ -1,4 +1,4 @@
-var errorMap = {
+let errorMap = {
 	"already_enrolled": "You've already connected that school to your MyHomeworkSpace account.",
 	"already_verified": "You've already verified your email.",
 	"bad_totp_code": "The two factor authentication code you entered is incorrect.",

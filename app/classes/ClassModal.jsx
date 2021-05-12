@@ -13,7 +13,7 @@ import Modal from "ui/Modal.jsx";
 export default class ClassModal extends Component {
 	constructor(props) {
 		super(props);
-		var isNew = (props.modalState.id ? false : true);
+		let isNew = (props.modalState.id ? false : true);
 		this.state = {
 			isNew: isNew,
 			name: (isNew ? "" : props.modalState.name),
@@ -26,7 +26,7 @@ export default class ClassModal extends Component {
 		this.setState({
 			loading: true
 		}, () => {
-			var classInfo = {
+			let classInfo = {
 				name: this.state.name,
 				teacher: this.state.teacher,
 				color: this.state.color
@@ -48,7 +48,7 @@ export default class ClassModal extends Component {
 				loading: true
 			}, () => {
 				api.get("classes/hwInfo/" + this.props.modalState.id, {}, (data) => {
-					var hwItems = data.hwItems;
+					let hwItems = data.hwItems;
 					if (hwItems > 0) {
 						if (!confirm("This will ALSO delete the " + hwItems + " homework item(s) associated with this class. Are you *sure*?")) {
 							this.props.openModal("");

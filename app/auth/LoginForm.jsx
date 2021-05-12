@@ -50,7 +50,7 @@ export default class LoginForm extends Component {
 		}
 
 		if (this.state.email.indexOf("@") == -1) {
-			var daltonRegexResults = this.state.email.match(/c\d\d\w\w\d*/i);
+			let daltonRegexResults = this.state.email.match(/c\d\d\w\w\d*/i);
 			if (daltonRegexResults && daltonRegexResults.length > 0 && daltonRegexResults[0] == this.state.email) {
 				this.props.openModal("accountMigrate", {
 					username: this.state.email

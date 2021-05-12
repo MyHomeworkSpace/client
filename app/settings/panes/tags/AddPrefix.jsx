@@ -67,11 +67,11 @@ export default class AddPrefix extends Component {
 
 	relativeLuminance(color) {
 		// see https://www.w3.org/TR/WCAG21/#dfn-relative-luminance, assume sRGB
-		var factors = [0.2126, 0.7152, 0.0722];
-		var total = 0;
+		let factors = [0.2126, 0.7152, 0.0722];
+		let total = 0;
 		[color.r, color.g, color.b].map((channel, i) => {
-			var scaled = channel / 255;
-			var intermediate;
+			let scaled = channel / 255;
+			let intermediate;
 			if (scaled <= 0.03928) {
 				intermediate = scaled / 12.92;
 			} else {
@@ -84,16 +84,16 @@ export default class AddPrefix extends Component {
 
 	constrastRatio(colorA, colorB) {
 		// see https://www.w3.org/TR/WCAG21/#dfn-contrast-ratio
-		var luminanceA = this.relativeLuminance(colorA);
-		var luminanceB = this.relativeLuminance(colorB);
-		var L1 = (luminanceA > luminanceB ? luminanceA : luminanceB);
-		var L2 = (luminanceA < luminanceB ? luminanceA : luminanceB);
+		let luminanceA = this.relativeLuminance(colorA);
+		let luminanceB = this.relativeLuminance(colorB);
+		let L1 = (luminanceA > luminanceB ? luminanceA : luminanceB);
+		let L2 = (luminanceA < luminanceB ? luminanceA : luminanceB);
 		return (L1 + 0.05) / (L2 + 0.05);
 	}
 
 	calculateTextColor(colorStr) {
-		var color = this.hexToRgb(colorStr);
-		var contrastRatioWhite = this.constrastRatio(color, {r: 255, g: 255, b: 255});
+		let color = this.hexToRgb(colorStr);
+		let contrastRatioWhite = this.constrastRatio(color, {r: 255, g: 255, b: 255});
 		if (contrastRatioWhite > 1.5) {
 			// it's a low standard, but it's what we need to be consistent with the default tags
 			return "FFFFFF";
@@ -102,7 +102,7 @@ export default class AddPrefix extends Component {
 	}
 
 	hexToRgb(hex) {
-		var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+		let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
 		return result ? {
 			r: parseInt(result[1], 16),
 			g: parseInt(result[2], 16),

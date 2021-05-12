@@ -10,20 +10,20 @@ export default class DatePickerCalendarGrid extends Component {
 	}
 
 	render(props, state) {
-		var firstDay = moment(props.date).startOf("month");
-		var lastDay = moment(props.date).endOf("month");
-		var today = moment();
+		let firstDay = moment(props.date).startOf("month");
+		let lastDay = moment(props.date).endOf("month");
+		let today = moment();
 
-		var items = [];
-		for (var i = 0; i < firstDay.day(); i++) {
+		let items = [];
+		for (let i = 0; i < firstDay.day(); i++) {
 			// add spacers for days from last month
 			items.push(<div class="datePickerCalendarGridItem"></div>);
 		}
 
-		for (i = firstDay.date(); i <= lastDay.date(); i++) {
-			var thisDay = moment(props.date).date(i);
-			var isSelected = thisDay.isSame(props.currentDate, "day");
-			var isToday = thisDay.isSame(today, "day");
+		for (let i = firstDay.date(); i <= lastDay.date(); i++) {
+			let thisDay = moment(props.date).date(i);
+			let isSelected = thisDay.isSame(props.currentDate, "day");
+			let isToday = thisDay.isSame(today, "day");
 			items.push(<div class={`datePickerCalendarGridItem datePickerCalendarGridItemDay ${isSelected ? "datePickerCalendarGridItemDaySelected" : ""} ${isToday ? "datePickerCalendarGridItemDayToday" : ""}`} onClick={this.selectDate.bind(this, i)}>{i}</div>);
 		}
 

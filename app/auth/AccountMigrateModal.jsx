@@ -16,7 +16,7 @@ export default class AccountMigrateModal extends Component {
 	}
 
 	render(props, state) {
-		var username;
+		let username;
 
 		if (props.me.email) {
 			username = props.me.email.replace("@dalton.org", "");

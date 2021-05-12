@@ -29,7 +29,7 @@ export default class ClassSwapModal extends Component {
 	}
 
 	render(props, state) {
-		var title = "Swap '" + props.modalState.name + "'";
+		let title = "Swap '" + props.modalState.name + "'";
 
 		if (state.loading) {
 			return <Modal title={title} noClose openModal={props.openModal} class="classSwapModal">

@@ -22,8 +22,8 @@ export default class ClassPicker extends Component {
 	}
 
 	render(props, state) {
-		var selectedClass;
-		var display;
+		let selectedClass;
+		let display;
 
 		if (props.value != -1) {
 			props.classes.forEach(function(classObject) {

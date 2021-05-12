@@ -31,7 +31,7 @@ export default class HomeworkItem extends Component {
 	}
 
 	toggleComplete() {
-		var newComplete = !this.state.complete;
+		let newComplete = !this.state.complete;
 		this.setState({
 			complete: newComplete
 		}, function() {
@@ -46,13 +46,13 @@ export default class HomeworkItem extends Component {
 	}
 
 	render(props, state) {
-		var prefix = props.homework.name.split(" ")[0];
-		var prefixInfo = prefixes.matchPrefix(prefix);
+		let prefix = props.homework.name.split(" ")[0];
+		let prefixInfo = prefixes.matchPrefix(prefix);
 
-		var due = moment(props.homework.due);
-		var dueText = relativeDate(due);
+		let due = moment(props.homework.due);
+		let dueText = relativeDate(due);
 
-		var keyword = "due ";
+		let keyword = "due ";
 		if (prefix.toLowerCase() == "test" || prefix.toLowerCase() == "exam" || prefix.toLowerCase() == "midterm" || prefix.toLowerCase() == "quiz" || prefix.toLowerCase() == "ica" || prefix.toLowerCase() == "lab") {
 			keyword = "on ";
 		}
@@ -61,14 +61,14 @@ export default class HomeworkItem extends Component {
 			keyword = "";
 		}
 
-		var classObject;
-		for (var classIndex in props.classes) {
+		let classObject;
+		for (let classIndex in props.classes) {
 			if (props.classes[classIndex].id == props.homework.classId) {
 				classObject = props.classes[classIndex];
 			}
 		}
 
-		var hideDue = props.hideDue;
+		let hideDue = props.hideDue;
 		if (due.day() == 0 || due.day() == 6) {
 			// it's due on Saturday or Sunday, meaning that we should always show its due date
 			// this forces weekend homework items to have a due date, even when they're in the Monday column

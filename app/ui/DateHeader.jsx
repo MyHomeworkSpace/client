@@ -18,13 +18,13 @@ export default class DateHeader extends Component {
 
 	jumpToDate(date) {
 		if (this.props.type == "week") {
-			var mondayDate = moment(date);
+			let mondayDate = moment(date);
 			while (mondayDate.day() != 1) {
 				mondayDate.subtract(1, "day");
 			}
 			this.props.loadWeek(mondayDate);
 		} else if (this.props.type == "month") {
-			var startDate = moment(date).startOf("month");
+			let startDate = moment(date).startOf("month");
 			this.props.loadMonth(startDate);
 		}
 	}

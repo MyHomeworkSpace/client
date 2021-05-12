@@ -17,9 +17,9 @@ export default class ClassesPage extends Component {
 	}
 	
 	render(props, state) {
-		var classes = MyHomeworkSpace.Classes.list;
+		let classes = MyHomeworkSpace.Classes.list;
 
-		var selectedClass;
+		let selectedClass;
 
 		if (state.selectedClassID) {
 			classes.forEach(function(classObject) {
