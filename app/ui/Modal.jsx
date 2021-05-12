@@ -14,9 +14,13 @@ export default function Modal(props) {
 			setMarginTop(marginTop + y);
 		};
 
-		const mouse = ({ movementX, movementY }) => {
+		const mouse = ({ movementX, movementY, buttons }) => {
 			if (isDragging) {
 				move(movementX, movementY);
+			}
+
+			if (buttons === 0) {
+				setIsDragging(false);
 			}
 		};
 
@@ -33,7 +37,9 @@ export default function Modal(props) {
 		<div class="modal-dialog" role="document">
 			<div class="modal-drag-wrapper" style={`margin: ${marginTop}px ${-marginLeft}px ${-marginTop}px ${marginLeft}px;`}>
 				<div class="modal-content modal-animation">
-					<div class="modal-header" onMouseDown={() => setIsDragging(true)} onMouseUp={() => setIsDragging(false)}>
+					<div class="modal-header"
+						onMouseDown={() => setIsDragging(true)}
+						onMouseUp={() => setIsDragging(false)}>
 						{!props.noClose && <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={() => props.openModal("")}><span aria-hidden="true">&times;</span></button>}
 						<h4 class="modal-title">{props.title}</h4>
 					</div>
