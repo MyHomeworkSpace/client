@@ -3,6 +3,7 @@ import "ui/ModalManager.styl";
 import { h, Component } from "preact";
 
 import AccountMigrateModal from "auth/AccountMigrateModal.jsx";
+import OnboardingModal from "auth/OnboardingModal.jsx";
 import ChangeEmailModal from "auth/ChangeEmailModal.jsx";
 import ChangePasswordModal from "auth/ChangePasswordModal.jsx";
 import EventModal from "calendar/EventModal.jsx";
@@ -23,8 +24,19 @@ import ImageInfoModal from "ui/nav/ImageInfoModal.jsx";
 
 
 export default class ModalManager extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			showOverlay: true
+		};
+	}
+
 	closeModal() {
 		this.props.openModal("", {});
+	}
+
+	showOverlay(show) {
+		this.setState({ showOverlay: show });
 	}
 
 	render(props, state) {
@@ -41,6 +53,7 @@ export default class ModalManager extends Component {
 			changeEmail: ChangeEmailModal,
 			changePassword: ChangePasswordModal,
 			accountMigrate: AccountMigrateModal,
+			onboarding: OnboardingModal,
 			schoolSettings: SchoolSettingsModal,
 			shortcut: ShortcutModal,
 			changeName: ChangeNameModal,
@@ -51,6 +64,8 @@ export default class ModalManager extends Component {
 
 		var modal;
 
+		console.log(props)
+
 		if (props.modalName) {
 			modal = h(modals[props.modalName], {
 				modalState: props.modalState,
@@ -59,18 +74,21 @@ export default class ModalManager extends Component {
 				me: MyHomeworkSpace.Me,
 
 				refreshContext: props.refreshContext,
+				context: null,
 
 				classes: props.classes,
 
 				currentBackground: props.currentBackground,
 				setBackground: props.setBackground,
 
-				twoFactorEnabled: props.twoFactorEnabled
+				twoFactorEnabled: props.twoFactorEnabled,
+
+				showOverlay: this.showOverlay.bind(this),
 			});
 		}
 
 		return <div>
-			{modal && <div class="modalOverlay" onClick={this.closeModal.bind(this)}></div>}
+			{modal && state.showOverlay && <div class="modalOverlay" onClick={this.closeModal.bind(this)}></div>}
 			{modal}
 		</div>;
 	}

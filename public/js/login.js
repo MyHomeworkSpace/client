@@ -24,8 +24,8 @@ MyHomeworkSpace.Pages.login = {
 		MyHomeworkSpace.Tabs = context.tabs;
 
 		if (context.user.showMigrateMessage) {
-			MHSBridge.default.openModal("accountMigrate", {});
-			MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {});
+			MHSBridge.default.openModal("onboarding", { me: context.user });
+			// MyHomeworkSpace.API.post("auth/clearMigrateFlag", {}, function() {});
 		}
 
 		// clean existing server-side tabs
@@ -38,16 +38,16 @@ MyHomeworkSpace.Pages.login = {
 		for (var tabIndex in MyHomeworkSpace.Tabs) {
 			var tab = MyHomeworkSpace.Tabs[tabIndex];
 			var tabElement = document.createElement("div");
-				tabElement.classList.add("page", "serverTab", "hidden");
-				tabElement.id = tab.slug;
-				tabElement.style.padding = "0";
-				var frameElement = document.createElement("iframe");
-					frameElement.seamless = true;
-					frameElement.style.border = "none";
-					frameElement.style.width = "100%";
-					frameElement.style.height = "100%";
-					frameElement.src = tab.target;
-				tabElement.appendChild(frameElement);
+			tabElement.classList.add("page", "serverTab", "hidden");
+			tabElement.id = tab.slug;
+			tabElement.style.padding = "0";
+			var frameElement = document.createElement("iframe");
+			frameElement.seamless = true;
+			frameElement.style.border = "none";
+			frameElement.style.width = "100%";
+			frameElement.style.height = "100%";
+			frameElement.src = tab.target;
+			tabElement.appendChild(frameElement);
 			document.getElementById("app").appendChild(tabElement);
 		}
 
