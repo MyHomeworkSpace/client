@@ -69,6 +69,11 @@ let dowRelativeDate = function(count, dow) {
 	return buildDate(target.year(), target.month() + 1, target.date());
 };
 
+let daysFromNow = function(count) {
+	const target = moment().add(count, "days");
+	return buildDate(target.year(), target.month(), target.date());
+}
+
 module.exports = {
 	CLASSES: CLASSES,
 	PREFIXES: [
@@ -256,6 +261,24 @@ module.exports = {
 						name: "",
 						classID: null,
 						dueDate: dowRelativeDate(1, new Date().getDay())
+					}
+				},
+				{
+					input: "Paper due in two days",
+					result: {
+						tag: "Paper",
+						name: "",
+						classID: null,
+						dueDate: daysFromNow(2)
+					}
+				},
+				{
+					input: "Paper due in 2 days",
+					result: {
+						tag: "Paper",
+						name: "",
+						classID: null,
+						dueDate: daysFromNow(2)
 					}
 				}
 			]
