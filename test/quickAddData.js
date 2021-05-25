@@ -72,7 +72,7 @@ let dowRelativeDate = function(count, dow) {
 let daysFromNow = function(count) {
 	const target = moment().add(count, "days");
 	return buildDate(target.year(), target.month(), target.date());
-}
+};
 
 module.exports = {
 	CLASSES: CLASSES,
