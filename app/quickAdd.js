@@ -162,9 +162,6 @@ module.exports = {
 		// (required because init can be called multiple times on a page load if the class list changes)
 		classMap = {};
 		lexicon = {
-			// these things aren't descriptive enough to be useful dates, so remove them from the lexicon
-			"day": undefined,
-
 			// these are abbreviations for dates
 			"tmr": "Date",
 			"tmrw": "Date",
