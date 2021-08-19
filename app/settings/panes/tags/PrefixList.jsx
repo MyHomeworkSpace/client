@@ -36,13 +36,13 @@ export default class PrefixList extends Component {
 	}
 
 	render(props, state) {
-		let groups = prefixes.list.map((group) => {
+		var groups = prefixes.list.map((group) => {
 			if (group.words.indexOf("Hex") > -1) {
 				// shhhhh
 				return;
 			}
 
-			let words = group.words.map(function(word) {
+			var words = group.words.map(function(word) {
 				return <HomeworkName name={word} />;
 			});
 

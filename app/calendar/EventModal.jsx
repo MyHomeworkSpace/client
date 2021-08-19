@@ -28,9 +28,9 @@ export default class EventModal extends Component {
 			}
 		}
 
-		let isNew = (props.modalState.id ? false : true);
-		let startTime = (isNew ? moment().second(0) : moment.unix(props.modalState.start));
-		let endTime = (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end));
+		var isNew = (props.modalState.id ? false : true);
+		var startTime = (isNew ? moment().second(0) : moment.unix(props.modalState.start));
+		var endTime = (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end));
 
 		if (isNew) {
 			// round the time to a 15-minute interval
@@ -40,15 +40,15 @@ export default class EventModal extends Component {
 			endTime = moment(startTime).add(30, "minutes");
 		}
 
-		let recurRule = props.modalState.recurRule;
-		let recurUntil = null;
+		var recurRule = props.modalState.recurRule;
+		var recurUntil = null;
 		if (recurRule) {
 			if (recurRule.until != "") {
 				recurUntil = moment(recurRule.until, "YYYY-MM-DD");
 			}
 		}
 
-		let type = props.modalState.type;
+		var type = props.modalState.type;
 
 		if (!type) {
 			type = consts.EVENT_TYPE_PLAIN;
@@ -81,12 +81,12 @@ export default class EventModal extends Component {
 	}
 
 	combinedMoment(type, state) {
-		let stateToTest = state || this.state;
+		var stateToTest = state || this.state;
 
-		let date = stateToTest[type + "Date"];
-		let time = stateToTest[type + "Time"];
+		var date = stateToTest[type + "Date"];
+		var time = stateToTest[type + "Time"];
 
-		let combined = moment(date);
+		var combined = moment(date);
 		combined = combined.minute(time.minute()).hour(time.hour());
 
 		return combined;
@@ -113,10 +113,10 @@ export default class EventModal extends Component {
 			error: "",
 			loading: true
 		}, () => {
-			let start = this.combinedMoment("start");
-			let end = this.combinedMoment("end");
+			var start = this.combinedMoment("start");
+			var end = this.combinedMoment("end");
 
-			let eventInfo = {
+			var eventInfo = {
 				name: this.state.name,
 				start: start.unix(),
 				end: end.unix(),
@@ -132,7 +132,7 @@ export default class EventModal extends Component {
 			eventInfo["recur"] = this.state.recur;
 
 			if (this.state.recur) {
-				let recurRule = this.state.recurRule;
+				var recurRule = this.state.recurRule;
 				recurRule.until = moment(this.state.recurUntil).format("YYYY-MM-DD");
 
 				eventInfo["recurFrequency"] = recurRule.frequency;
@@ -142,7 +142,7 @@ export default class EventModal extends Component {
 				}
 			}
 
-			let endpointType = (this.state.type == consts.EVENT_TYPE_HOMEWORK ? "hwEvents" : "events");
+			var endpointType = (this.state.type == consts.EVENT_TYPE_HOMEWORK ? "hwEvents" : "events");
 
 			api.post((this.state.isNew ? `calendar/${endpointType}/add` : `calendar/${endpointType}/edit`), eventInfo, (data) => {
 				if (data.status == "ok") {
@@ -164,7 +164,7 @@ export default class EventModal extends Component {
 			this.setState({
 				loading: true
 			}, () => {
-				let endpointType = (this.state.type == consts.EVENT_TYPE_HOMEWORK ? "hwEvents" : "events");
+				var endpointType = (this.state.type == consts.EVENT_TYPE_HOMEWORK ? "hwEvents" : "events");
 				api.post(`calendar/${endpointType}/delete`, {
 					id: this.props.modalState.id
 				}, () => {
@@ -183,11 +183,11 @@ export default class EventModal extends Component {
 	}
 
 	pickerChange(type, date) {
-		let newState = {};
-		let mergedState = {};
+		var newState = {};
+		var mergedState = {};
 		newState[type] = date;
 
-		for (let key in this.state) {
+		for (var key in this.state) {
 			mergedState[key] = this.state[key];
 		}
 
@@ -195,12 +195,12 @@ export default class EventModal extends Component {
 
 		// have we changed the start date/time?
 		if (type == "startDate" || type == "startTime") {
-			let oldStart = this.combinedMoment("start", this.state);
-			let oldEnd = this.combinedMoment("end", this.state);
-			let differenceToOld = oldEnd.diff(oldStart, "minutes");
+			var oldStart = this.combinedMoment("start", this.state);
+			var oldEnd = this.combinedMoment("end", this.state);
+			var differenceToOld = oldEnd.diff(oldStart, "minutes");
 
-			let newEndTime = moment(date).add(differenceToOld, "minutes");
-			let newEndDate = moment(newEndTime).startOf("day");
+			var newEndTime = moment(date).add(differenceToOld, "minutes");
+			var newEndDate = moment(newEndTime).startOf("day");
 
 			newState["endDate"] = newEndDate;
 			mergedState["endDate"] = newEndDate;
@@ -221,7 +221,7 @@ export default class EventModal extends Component {
 	onRecurChange(e) {
 		if (e.target.checked) {
 			// enable it
-			let newRule = this.state.recurRule || {
+			var newRule = this.state.recurRule || {
 				frequency: consts.RECUR_FREQUENCY_DAILY,
 				interval: 1,
 				until: null
@@ -240,7 +240,7 @@ export default class EventModal extends Component {
 	}
 
 	addRecurEnd() {
-		let newRule = this.state.recurRule;
+		var newRule = this.state.recurRule;
 		newRule.until = moment(this.state.startDate).format("YYYY-MM-DD");
 		this.setState({
 			recurRule: newRule,
@@ -251,7 +251,7 @@ export default class EventModal extends Component {
 	removeRecurEnd() {
 		// hack: setTimeout because otherwise it triggers another click event for some dumb reason that I don't understand
 		setTimeout(() => {
-			let newRule = this.state.recurRule;
+			var newRule = this.state.recurRule;
 			newRule.until = null;
 			this.setState({
 				recurRule: newRule,
@@ -311,8 +311,8 @@ export default class EventModal extends Component {
 											["month", consts.RECUR_FREQUENCY_MONTHLY],
 											["year", consts.RECUR_FREQUENCY_YEARLY]
 										].map(function(pair) {
-											let label = pair[0];
-											let value = pair[1];
+											var label = pair[0];
+											var value = pair[1];
 											return <option value={value}>{label}{state.recurRule.interval > 1 ? "s" : ""}</option>;
 										})}
 									</select>

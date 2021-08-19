@@ -16,7 +16,7 @@ export default class MITEnroll extends Component {
 	constructor(props) {
 		super(props);
 
-		let username = "";
+		var username = "";
 		if (props.email) {
 			username = props.email.split("@")[0];
 		}
@@ -150,7 +150,7 @@ export default class MITEnroll extends Component {
 				To complete your sign-in, you'll need to authenticate with Duo. Select a method:
 				<div class="duoMethods">
 					{state.duo.methods.map((method, methodIndex) => {
-						let supported = (method.FriendlyName == "Duo Push");
+						var supported = (method.FriendlyName == "Duo Push");
 						return <div>
 							<label class={supported ? "" : "unsupported"}>
 								<input

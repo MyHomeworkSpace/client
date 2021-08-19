@@ -10,7 +10,7 @@ export default class DaltonEnroll extends Component {
 	constructor(props) {
 		super(props);
 
-		let username = "";
+		var username = "";
 		if (props.email) {
 			username = props.email.split("@")[0];
 		}

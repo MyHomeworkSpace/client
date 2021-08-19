@@ -6,53 +6,53 @@ import prefixes from "prefixes.js";
 
 export default class PrefixedEdit extends Component {
 	componentDidMount() {
-		let textElement = document.querySelector(".prefixedEditText");
-		let style = window.getComputedStyle(textElement, null);
+		var textElement = document.querySelector(".prefixedEditText");
+		var style = window.getComputedStyle(textElement, null);
 		this.setState({
 			computedStyle: style
 		});
 	}
 
 	render(props, state) {
-		let value = props.value || "";
+		var value = props.value || "";
 
-		let prefix = value.split(" ")[0] || "";
-		let prefixInfo = prefixes.matchPrefix(prefix);
+		var prefix = value.split(" ")[0] || "";
+		var prefixInfo = prefixes.matchPrefix(prefix);
 
-		let showPrefix = (value.trim() != "");
+		var showPrefix = (value.trim() != "");
 
-		let textComputedStyle = state.computedStyle || {};
+		var textComputedStyle = state.computedStyle || {};
 
-		let top = 0;
-		let left = 0;
-		let bottom = 0;
+		var top = 0;
+		var left = 0;
+		var bottom = 0;
 
-		let topProperties = [ "margin-top", "padding-top", "border-top-width" ];
-		let leftProperties = [ "margin-left", "padding-left", "border-left-width" ];
-		let bottomProperties = [ "margin-bottom", "padding-bottom", "border-bottom-width" ];
-		let cloneProperties = [ "font-size" ];
+		var topProperties = [ "margin-top", "padding-top", "border-top-width" ];
+		var leftProperties = [ "margin-left", "padding-left", "border-left-width" ];
+		var bottomProperties = [ "margin-bottom", "padding-bottom", "border-bottom-width" ];
+		var cloneProperties = [ "font-size" ];
 
 		topProperties.forEach(function(property) {
-			let propertyValue = parseInt((textComputedStyle[property] || "").replace("px", "")) || 0;
+			var propertyValue = parseInt((textComputedStyle[property] || "").replace("px", "")) || 0;
 			top += propertyValue;
 		});
 
 		leftProperties.forEach(function(property) {
-			let propertyValue = parseInt((textComputedStyle[property] || "").replace("px", "")) || 0;
+			var propertyValue = parseInt((textComputedStyle[property] || "").replace("px", "")) || 0;
 			left += propertyValue;
 		});
 
 		bottomProperties.forEach(function(property) {
-			let propertyValue = parseInt((textComputedStyle[property] || "").replace("px", "")) || 0;
+			var propertyValue = parseInt((textComputedStyle[property] || "").replace("px", "")) || 0;
 			bottom += propertyValue;
 		});
 
-		let computedHeight = parseInt((textComputedStyle["height"] || "").replace("px", "")) || 0;
+		var computedHeight = parseInt((textComputedStyle["height"] || "").replace("px", "")) || 0;
 
-		let positionStyle = `top:${top}px;left:${left}px;height:${computedHeight - top - bottom}px;`;
+		var positionStyle = `top:${top}px;left:${left}px;height:${computedHeight - top - bottom}px;`;
 
 		cloneProperties.forEach(function(property) {
-			let propertyValue = (textComputedStyle[property] || "");
+			var propertyValue = (textComputedStyle[property] || "");
 			positionStyle += property + ":" + propertyValue + ";";
 		});
 

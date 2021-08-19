@@ -17,7 +17,7 @@ export default class ApplicationAuthForm extends Component {
 	}
 
 	componentDidMount() {
-		let applicationID = this.props.params[0];
+		var applicationID = this.props.params[0];
 		api.get("application/get/" + applicationID, {}, (data) => {
 			if (data.status == "ok") {
 				this.setState({
@@ -44,8 +44,8 @@ export default class ApplicationAuthForm extends Component {
 	}
 
 	allow() {
-		let applicationID = this.props.params[0];
-		let state = this.props.params[1];
+		var applicationID = this.props.params[0];
+		var state = this.props.params[1];
 
 		this.setState({
 			loading: true

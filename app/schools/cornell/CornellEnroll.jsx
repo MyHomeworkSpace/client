@@ -10,7 +10,7 @@ export default class CornellEnroll extends Component {
 	constructor(props) {
 		super(props);
 
-		let netID = "";
+		var netID = "";
 		if (props.email) {
 			netID = props.email.split("@")[0];
 		}

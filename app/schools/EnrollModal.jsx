@@ -23,7 +23,7 @@ import Modal from "ui/Modal.jsx";
  * 3 = enrollment success page
  */
 
-let enrollComponents = {
+var enrollComponents = {
 	dalton: DaltonEnroll,
 	mit: MITEnroll,
 	cornell: CornellEnroll,
@@ -158,7 +158,7 @@ export default class EnrollModal extends Component {
 	}
 
 	render(props, state) {
-		let title = "Connect school account";
+		var title = "Connect school account";
 		if (this.state.step > 1) {
 			// we know what school the user is enrolling in
 			title = "Connect to " + state.school.displayName;
@@ -172,11 +172,11 @@ export default class EnrollModal extends Component {
 			</Modal>;
 		}
 
-		let contents;
-		let canBack;
-		let canNext;
-		let showDone;
-		let showFooter = true;
+		var contents;
+		var canBack;
+		var canNext;
+		var showDone;
+		var showFooter = true;
 		if (state.step == 0) {
 			canBack = false;
 			canNext = true;
@@ -210,7 +210,7 @@ export default class EnrollModal extends Component {
 				</div>;
 			}
 		} else if (state.step == 2) {
-			let enrollComponent = enrollComponents[state.school.schoolID];
+			var enrollComponent = enrollComponents[state.school.schoolID];
 
 			showFooter = false;
 			contents = h(enrollComponent, {

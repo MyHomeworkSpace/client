@@ -15,7 +15,7 @@ export default class PlannerHomeworkItem extends Component {
 	}
 
 	render(props, state) {
-		let done = (props.homeworkItem.complete == 1);
+		var done = (props.homeworkItem.complete == 1);
 		return <div class={`plannerHomeworkItem ${done ? "done": ""}`}>
 			<HomeworkName name={props.homeworkItem.name} />
 			{props.homeworkItem.desc && <div class="plannerHomeworkDescriptionIcon">

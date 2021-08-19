@@ -3,9 +3,9 @@ global.MyHomeworkSpace = {
 	Prefixes: {}
 };
 
-let data = require("./quickAddData");
-let prefixes = require("../app/prefixes");
-let quickAdd = require("../app/quickAdd");
+var data = require("./quickAddData");
+var prefixes = require("../app/prefixes");
+var quickAdd = require("../app/quickAdd");
 
 prefixes.list = data.PREFIXES;
 quickAdd.init(data.CLASSES);
@@ -16,10 +16,10 @@ describe("Quick Add", function() {
 			describe(suite.name, function() {
 				suite.cases.forEach(function(testCase, i) {
 					it("case " + (i + 1), function() {
-						let result = quickAdd.parseText(testCase.input)[0];
-						let expected = testCase.result;
+						var result = quickAdd.parseText(testCase.input)[0];
+						var expected = testCase.result;
 
-						let failures = [];
+						var failures = [];
 						if (result.tag != expected.tag) {
 							failures.push(`Tag was ${JSON.stringify(result.tag)} when it should have been ${JSON.stringify(expected.tag)}`);
 						}
@@ -41,9 +41,9 @@ describe("Quick Add", function() {
 							}
 
 							// what was the actual due date we wanted?
-							let dueDate = quickAdd._resolveDate(expected.dueText);
+							var dueDate = quickAdd._resolveDate(expected.dueText);
 
-							let sameDay = dueDate.isSame(result.due, "day");
+							var sameDay = dueDate.isSame(result.due, "day");
 
 							if (!sameDay) {
 								failures.push(`Due date was ${JSON.stringify(result.due ? result.due.format("YYYY-MM-DD") : result.due)} when it should have been ${JSON.stringify(dueDate.format("YYYY-MM-DD"))}`);
@@ -53,7 +53,7 @@ describe("Quick Add", function() {
 							if (!result.due) {
 								failures.push(`Due date was ${JSON.stringify(result.due)} when it should have been ${JSON.stringify(expected.dueDate)}`);
 							} else {
-								let resultFormat = result.due.format("YYYY-MM-DD");
+								var resultFormat = result.due.format("YYYY-MM-DD");
 								if (resultFormat != expected.dueDate) {
 									failures.push(`Due date was ${JSON.stringify(resultFormat)} when it should have been ${JSON.stringify(expected.dueDate)}`);
 								}

@@ -5,7 +5,7 @@ import "auth/PasswordSecurityCheck.styl";
 export function checkPassword(password) {
 	let failed = [];
 
-	for (let rule in passwordRules) {
+	for (var rule in passwordRules) {
 		if (!passwordRules[rule].check(password)) {
 			failed.push(parseInt(rule));
 		}
@@ -37,8 +37,8 @@ export const passwordRules = [
 
 export class PasswordSecurityCheck extends Component {
 	render(props, state) {
-		let failed = checkPassword(props.password);
-		let items = passwordRules.map((rule, i) => {
+		var failed = checkPassword(props.password);
+		var items = passwordRules.map((rule, i) => {
 			return <li>
 				<i class={`fa-li fa fa-${failed.includes(i) ? "times" : "check"}-circle ${failed.includes(i) ? "red" : "green"}`}></i> {rule.name}
 			</li>;

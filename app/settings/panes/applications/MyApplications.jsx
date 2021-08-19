@@ -49,7 +49,7 @@ export default class MyApplications extends Component {
 			</div>;
 		}
 
-		let authorizations = state.applications.map((application, i) => {
+		var authorizations = state.applications.map((application, i) => {
 			return <MyApplicationListItem application={application} key={i} refresh={this.refresh.bind(this)} openModal={props.openModal} />;
 		});
 		return <div>

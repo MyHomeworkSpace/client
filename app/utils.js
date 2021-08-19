@@ -12,8 +12,8 @@ export function closestByClass(element, className) {
 };
 
 export function relativeDate(due) {
-	let dueText = due.calendar().split(" at ")[0];
-	let daysTo = Math.ceil(due.diff(moment()) / 1000 / 60 / 60 / 24);
+	var dueText = due.calendar().split(" at ")[0];
+	var daysTo = Math.ceil(due.diff(moment()) / 1000 / 60 / 60 / 24);
 
 	if (dueText.indexOf(" ") > -1) {
 		dueText = dueText[0].toLowerCase() + dueText.substr(1);

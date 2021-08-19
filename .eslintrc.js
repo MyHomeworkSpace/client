@@ -71,9 +71,7 @@ module.exports = {
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",
 
-		"no-console": 2,
-
-		"no-var": "warn",
+		"no-console": 2
 	},
 	"settings": {
 		"react": {

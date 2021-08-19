@@ -1,5 +1,5 @@
 export function getImage(callback) {
-	let request = new XMLHttpRequest();
+	var request = new XMLHttpRequest();
 	request.open("GET", "https://daltontabservices.myhomework.space/v1/getImage", true);
 	request.onload = function() {
 		callback(JSON.parse(request.responseText), request);
@@ -15,7 +15,7 @@ export function getImage(callback) {
 
 export function pingBeacon() {
 	getImage((imageData) => {
-		let request = new XMLHttpRequest();
+		var request = new XMLHttpRequest();
 		request.open("GET", imageData.beaconURL, true);
 		request.send();
 	});

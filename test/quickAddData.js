@@ -42,11 +42,11 @@ const CLASSES = [
 const today = new Date();
 const currentYear = today.getFullYear();
 
-let buildDate = function(year, month, day) {
+var buildDate = function(year, month, day) {
 	return year + "-" + (month < 10 ? "0" : "") + month + "-" + (day < 10 ? "0" : "") + day;
 };
 
-let noYearDate = function(month, day) {
+var noYearDate = function(month, day) {
 	if (month < today.getMonth()) {
 		// it's BEFORE this month, so we're referring to next year
 		return buildDate(currentYear + 1, month, day);
@@ -58,7 +58,7 @@ let noYearDate = function(month, day) {
 
 // dowRelativeDate(n, dow) returns the nth next day of week
 // days of week start with 0 on sunday (see Date.prototype.getDay)
-let dowRelativeDate = function(count, dow) {
+var dowRelativeDate = function(count, dow) {
 	const mod = function(n, m) {
 		return ((n % m) + m) % m;
 	};

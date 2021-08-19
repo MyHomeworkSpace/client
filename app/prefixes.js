@@ -1,5 +1,5 @@
-let prefixes = [];
-let fallback = {};
+var prefixes = [];
+var fallback = {};
 
 module.exports = {
 	list: null,
@@ -14,9 +14,9 @@ module.exports = {
 		MyHomeworkSpace.Prefixes.list = prefixes;
 	},
 	matchPrefix: function(prefix) {
-		let chkPrefix = prefix.toLowerCase();
-		for (let prefixIndex in prefixes) {
-			for (let wordIndex in prefixes[prefixIndex].words) {
+		var chkPrefix = prefix.toLowerCase();
+		for (var prefixIndex in prefixes) {
+			for (var wordIndex in prefixes[prefixIndex].words) {
 				if (prefixes[prefixIndex].words[wordIndex].toLowerCase() == chkPrefix) {
 					return prefixes[prefixIndex];
 				}

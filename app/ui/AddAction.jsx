@@ -61,9 +61,9 @@ export default function AddAction(props) {
 
 		if (e.keyCode == 13) {
 			// enter key
-			let info = quickAdd.parseText(input)[0];
+			var info = quickAdd.parseText(input)[0];
 
-			let hwName = "";
+			var hwName = "";
 
 			if (info.tag || info.name) {
 				hwName = info.tag + " " + info.name;
@@ -79,7 +79,7 @@ export default function AddAction(props) {
 		}
 	}, [input, close]);
 
-	let thingToAdd = (props.page == "calendar" ? consts.EVENT_TYPE_PLAIN : consts.EVENT_TYPE_HOMEWORK);
+	var thingToAdd = (props.page == "calendar" ? consts.EVENT_TYPE_PLAIN : consts.EVENT_TYPE_HOMEWORK);
 	return <div class="addAction">
 		{!open && <div class="addActionButton" onClick={click}>
 			<i class="fa fa-plus-square"></i> Add {thingToAdd == consts.EVENT_TYPE_PLAIN ? "event" : "homework"}

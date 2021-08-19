@@ -30,7 +30,7 @@ export default class SchoolList extends Component {
 	}
 
 	setEnabled(school, enabled) {
-		let message = `Disable ${school.displayName}? It won't appear in your Calendar, but you'll be able to re-enable it at any time.`;
+		var message = `Disable ${school.displayName}? It won't appear in your Calendar, but you'll be able to re-enable it at any time.`;
 		if (enabled) {
 			message = `Enable ${school.displayName}?`;
 		}

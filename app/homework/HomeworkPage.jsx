@@ -53,7 +53,7 @@ export default class HomeworkPage extends Component {
 			</div>;
 		}
 
-		let haveOverdue = (state.homework.overdue.length > 0);
+		var haveOverdue = (state.homework.overdue.length > 0);
 
 		return <div class="homeworkPage">
 			{!MyHomeworkSpace.Pages.settings.cache.hideCalendarFromDashboard && <CalendarRow />}

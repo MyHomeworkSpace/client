@@ -1,12 +1,3 @@
-/* eslint-disable no-var */
-
-/**
- * This legacy code needs to be rewritten to use Preact, so it's okay that we're
- * disabling the eslint rule, because the code is going to get rewritten anyway.
- * 
- * See https://github.com/MyHomeworkSpace/client/issues/135
- */
-
 import "main.styl";
 
 if (!PRODUCTION) {

@@ -22,12 +22,12 @@ export default class PlannerClassRow extends Component {
 				<ClassName classObject={props.classObject} />
 			</div>
 			{[ 0, 1, 2, 3, 4, 5, 6 ].map((dayIndex) => {
-				let day = moment(props.currentWeek).add(dayIndex, "days");
-				let formattedDay = day.format("YYYY-MM-DD");
-				let homework = (props.classHomework[props.classObject.id] || []).filter((homeworkItem) => {
+				var day = moment(props.currentWeek).add(dayIndex, "days");
+				var formattedDay = day.format("YYYY-MM-DD");
+				var homework = (props.classHomework[props.classObject.id] || []).filter((homeworkItem) => {
 					return (formattedDay == homeworkItem.due);
 				});
-				let allDone = homework.reduce((allDone, homework) => {
+				var allDone = homework.reduce((allDone, homework) => {
 					if (!allDone) { return false; }
 					return (homework.complete == 1);
 				}, true);

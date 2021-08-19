@@ -65,13 +65,12 @@ export default class CalendarEvents extends Component {
 	}
 
 	render(props, state) {
-		let daysOfWeek = 7;
+		var daysOfWeek = 7;
 
-		let events = [];
-		let eventElements = [];
-		let eventGroups = [];
-		let i;
-		for (i = 0; i < daysOfWeek; i++) {
+		var events = [];
+		var eventElements = [];
+		var eventGroups = [];
+		for (var i = 0; i < daysOfWeek; i++) {
 			events.push([]);
 			eventElements.push([]);
 			eventGroups.push([]);
@@ -87,7 +86,7 @@ export default class CalendarEvents extends Component {
 					};
 					eventItem.groupInfo.offset = eventItem.groupInfo.start.diff(eventItem.groupInfo.dayStart, "minutes");
 					eventItem.groupInfo.durationInMinutes = eventItem.groupInfo.end.diff(eventItem.groupInfo.start, "minutes");
-					eventItem.groupInfo.height = (eventItem.groupInfo.durationInMinutes < 10 ? 10 : eventItem.groupInfo.durationInMinutes);
+					eventItem.groupInfo.height = (eventItem.groupInfo.durationInMinutes < 10 ? 10: eventItem.groupInfo.durationInMinutes);
 					eventItem.groupInfo.endOffset = eventItem.groupInfo.offset + eventItem.groupInfo.durationInMinutes;
 					eventItem.groupInfo.endOffsetHeight = eventItem.groupInfo.offset + eventItem.groupInfo.height;
 					return eventItem;
@@ -95,16 +94,16 @@ export default class CalendarEvents extends Component {
 			});
 		}
 		events.forEach(function(eventList, dow) {
-			let groupsForDay = eventGroups[dow];
+			var groupsForDay = eventGroups[dow];
 			eventList.sort((a, b) => {
 				return a.start - b.start;
 			}).forEach(function(eventItem) {
 				// find which group this event belongs to
-				let foundGroupIndex = -1;
-				for (let groupIndex in groupsForDay) {
-					let groupToTest = groupsForDay[groupIndex];
-					for (let eventIndex in groupToTest) {
-						let groupEventToTest = groupToTest[eventIndex];
+				var foundGroupIndex = -1;
+				for (var groupIndex in groupsForDay) {
+					var groupToTest = groupsForDay[groupIndex];
+					for (var eventIndex in groupToTest) {
+						var groupEventToTest = groupToTest[eventIndex];
 
 						if (
 							(eventItem.groupInfo.offset < groupEventToTest.groupInfo.endOffsetHeight) &&
@@ -119,22 +118,22 @@ export default class CalendarEvents extends Component {
 				if (foundGroupIndex != -1) {
 					groupsForDay[foundGroupIndex].push(eventItem);
 				} else {
-					groupsForDay.push([eventItem]);
+					groupsForDay.push([ eventItem ]);
 				}
 			});
 		});
 
 		// now, try to merge events in the same group that don't overlap
 		for (i = 0; i < daysOfWeek; i++) {
-			let groupsForDay = eventGroups[i];
-			for (let j = 0; j < groupsForDay.length; j++) {
-				let group = groupsForDay[j];
+			var groupsForDay = eventGroups[i];
+			for (var j = 0; j < groupsForDay.length; j++) {
+				var group = groupsForDay[j];
 
-				let remainingEvents = group.slice(0);
-				let skippedEvents = [];
+				var remainingEvents = group.slice(0);
+				var skippedEvents = [];
 
-				let subgroups = [];
-				let currentSubgroup = [];
+				var subgroups = [];
+				var currentSubgroup = [];
 
 				// while we still have remaining events
 				while (skippedEvents.length > 0 || remainingEvents.length > 0) {
@@ -150,8 +149,8 @@ export default class CalendarEvents extends Component {
 						const nextEvent = remainingEvents.pop();
 
 						// does this event have no overlaps with anyone in our subgroup?
-						let hasOverlap = false;
-						for (let k = 0; k < currentSubgroup.length; k++) {
+						var hasOverlap = false;
+						for (var k = 0; k < currentSubgroup.length; k++) {
 							const comparisonEvent = currentSubgroup[k];
 							if (
 								(comparisonEvent.start < nextEvent.end) &&
@@ -193,7 +192,7 @@ export default class CalendarEvents extends Component {
 			});
 		});
 
-		let today = moment.unix(props.time);
+		var today = moment.unix(props.time);
 
 		return <div class="calendarEvents">
 			<div class="calendarEventsGutter">

@@ -14,7 +14,7 @@ import HomeworkName from "ui/HomeworkName.jsx";
 
 export default class CalendarEventPopover extends Component {
 	edit() {
-		let item = this.props.item;
+		var item = this.props.item;
 		item.type = this.props.type;
 		this.props.openModal("calendarEvent", item);
 	}
@@ -26,7 +26,7 @@ export default class CalendarEventPopover extends Component {
 	}
 
 	toggleCancel() {
-		let item = this.props.item;
+		var item = this.props.item;
 		api.post("calendar/eventChanges/set", {
 			eventID: item.uniqueId,
 			cancel: !item.tags[consts.EVENT_TAG_CANCELLED]
@@ -45,24 +45,24 @@ export default class CalendarEventPopover extends Component {
 	}
 
 	render(props, state) {
-		let start = moment.unix(props.item.start);
-		let end = moment.unix(props.item.end);
+		var start = moment.unix(props.item.start);
+		var end = moment.unix(props.item.end);
 
-		let startDisplay = start.format("h:mm a");
-		let endDisplay = end.format("h:mm a");
+		var startDisplay = start.format("h:mm a");
+		var endDisplay = end.format("h:mm a");
 
-		let info;
-		let actions;
+		var info;
+		var actions;
 		if (props.item.tags[consts.EVENT_TAG_OWNER_NAME]) {
 			info = <div class="calendarEventPopoverInfo">
 				{props.item.ownerName}
 			</div>;
 		} else if (!props.item.tags[consts.EVENT_TAG_READ_ONLY] && props.item.id != -1) {
 			if (props.item.tags[consts.EVENT_TAG_HOMEWORK]) {
-				let homeworkItem = props.item.tags[consts.EVENT_TAG_HOMEWORK];
+				var homeworkItem = props.item.tags[consts.EVENT_TAG_HOMEWORK];
 
-				let classObject;
-				for (let classIndex in MyHomeworkSpace.Classes.list) {
+				var classObject;
+				for (var classIndex in MyHomeworkSpace.Classes.list) {
 					if (MyHomeworkSpace.Classes.list[classIndex].id == homeworkItem.classId) {
 						classObject = MyHomeworkSpace.Classes.list[classIndex];
 					}
@@ -74,7 +74,7 @@ export default class CalendarEventPopover extends Component {
 			}
 		}
 
-		let actionList = props.item.tags[consts.EVENT_TAG_ACTIONS] || [];
+		var actionList = props.item.tags[consts.EVENT_TAG_ACTIONS] || [];
 		actions = <div class="calendarEventPopoverActions">
 			{actionList.map((action) => {
 				return <a href={action.url} class="btn btn-default btn-sm" target="_blank" rel="noopener noreferrer"><i class={`fa fa-${action.icon}`} /> {action.name}</a>;
@@ -87,7 +87,7 @@ export default class CalendarEventPopover extends Component {
 			</button>}
 		</div>;
 
-		let left = props.left + 5;
+		var left = props.left + 5;
 
 		if (props.alternate) {
 			left = left - ((document.querySelector(".calendarEventsDay") || document.querySelector(".calendarMonthDayEvents")).clientWidth / props.groupLength);

@@ -48,7 +48,7 @@ export default class ClassDetails extends Component {
 	}
 
 	render(props, state) {
-		let filteredHomework;
+		var filteredHomework;
 		if (!state.loading) {
 			filteredHomework = state.homework.filter(function(item) {
 				if (item.name.toLowerCase().startsWith("none") || item.name.toLowerCase().startsWith("nohw")) {

@@ -22,18 +22,18 @@ export default class MITSettings extends Component {
 	}
 
 	setSectionForSubject(subjectID, sectionCode) {
-		let subjectIndex = -1;
+		var subjectIndex = -1;
 		this.state.registration.forEach(function(registeredClass, i) {
 			if (registeredClass.subjectID == subjectID) {
 				subjectIndex = i;
 			}
 		});
 
-		let sectionType = sectionCode[0];
-		let selectedSections = this.state.registration[subjectIndex].selectedSections;
-		let selectedSectionsList = (selectedSections == "" ? [] : selectedSections.split(","));
+		var sectionType = sectionCode[0];
+		var selectedSections = this.state.registration[subjectIndex].selectedSections;
+		var selectedSectionsList = (selectedSections == "" ? [] : selectedSections.split(","));
 
-		for (let i = 0; i < selectedSectionsList.length; i++) {
+		for (var i = 0; i < selectedSectionsList.length; i++) {
 			if (selectedSectionsList[i][0] == sectionType) {
 				selectedSectionsList.splice(i, 1);
 				i--;
@@ -44,9 +44,9 @@ export default class MITSettings extends Component {
 			selectedSectionsList.push(sectionCode);
 		}
 
-		let newSelectedSectionsText = selectedSectionsList.join(",");
+		var newSelectedSectionsText = selectedSectionsList.join(",");
 
-		let newRegistration = this.state.registration;
+		var newRegistration = this.state.registration;
 		newRegistration[subjectIndex].selectedSections = newSelectedSectionsText;
 
 		this.setState({
@@ -55,12 +55,12 @@ export default class MITSettings extends Component {
 	}
 
 	save() {
-		let settings = {
+		var settings = {
 			sections: {},
 			showPE: this.state.showPE
 		};
 
-		for (let i in this.state.registration) {
+		for (var i in this.state.registration) {
 			settings.sections[this.state.registration[i].subjectID] = this.state.registration[i].selectedSections;
 		}
 

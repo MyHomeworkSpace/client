@@ -22,15 +22,15 @@ export default class Picker extends Component {
 	onBodyClick(e) {
 		if (this.props.open && this._pickerContainer) {
 			// loop through the parents to see if we're one
-			let targetIsChild = false;
-			let currentElement = e.target;
+			var targetIsChild = false;
+			var currentElement = e.target;
 			while (true) {
 				if (currentElement == this._pickerContainer) {
 					// found it, so stop
 					targetIsChild = true;
 					break;
 				}
-				let parent = currentElement.parentNode;
+				var parent = currentElement.parentNode;
 				if (parent == document) {
 					// reached the top, stop now
 					break;

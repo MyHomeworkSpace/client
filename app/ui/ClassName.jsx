@@ -1,7 +1,7 @@
 import { h } from "preact";
 
 export default function ClassName(props) {
-	let classObject = props.classObject || {
+	var classObject = props.classObject || {
 		color: "000000",
 		name: "No class"
 	};

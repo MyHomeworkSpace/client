@@ -6,11 +6,11 @@ import moment from "moment";
 
 export default class TimePickerPopup extends Component {
 	componentDidMount() {
-		let showDuration = !!this.props.suggestStart;
+		var showDuration = !!this.props.suggestStart;
 
 		if (showDuration) {
 			// we're an end time picker, so calculate 
-			let offset = this.props.time.diff(this.props.suggestStart, "minutes") / 15;
+			var offset = this.props.time.diff(this.props.suggestStart, "minutes") / 15;
 			this._popup.scrollTop = Math.max(0, (offset * 24) - 45);
 		} else {
 			// we're a start time picker, so selected time is always in the center
@@ -19,7 +19,7 @@ export default class TimePickerPopup extends Component {
 	}
 
 	getSuggestionBase() {
-		let suggestionBase;
+		var suggestionBase;
 		if (this.props.suggestStart) {
 			suggestionBase = this.props.suggestStart;
 		} else {
@@ -34,16 +34,16 @@ export default class TimePickerPopup extends Component {
 	}
 
 	clickSuggestion(offset) {
-		let selectedTime = moment(this.getSuggestionBase()).add(offset, "minutes");
+		var selectedTime = moment(this.getSuggestionBase()).add(offset, "minutes");
 		this.props.selectTime(selectedTime);
 		this.props.setOpen(false);
 	}
 
 	render(props, state) {
-		let suggestionBase = this.getSuggestionBase();
-		let showDuration = !!props.suggestStart;
+		var suggestionBase = this.getSuggestionBase();
+		var showDuration = !!props.suggestStart;
 
-		let offsets = [];
+		var offsets = [];
 
 		if (!showDuration) {
 			offsets = offsets.concat([
@@ -67,14 +67,14 @@ export default class TimePickerPopup extends Component {
 			this._popup = popup;
 		}}>
 			{offsets.map((offset) => {
-				let momentTime = moment(suggestionBase).add(offset, "minutes");
+				var momentTime = moment(suggestionBase).add(offset, "minutes");
 
-				let durationDisplay = "";
+				var durationDisplay = "";
 				if (showDuration) {
-					let durationMinutes = momentTime.diff(suggestionBase, "minutes");
+					var durationMinutes = momentTime.diff(suggestionBase, "minutes");
 
-					let durationHoursDisplay = Math.floor(durationMinutes / 60);
-					let durationMinutesDisplay = durationMinutes % 60;
+					var durationHoursDisplay = Math.floor(durationMinutes / 60);
+					var durationMinutesDisplay = durationMinutes % 60;
 
 					if (durationHoursDisplay != 0) {
 						durationDisplay = durationHoursDisplay + " hr" + (durationHoursDisplay > 1 ? "s" : "") + (durationMinutesDisplay > 0 ? " " + durationMinutesDisplay + " min" : "");

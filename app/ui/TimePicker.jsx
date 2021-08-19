@@ -19,7 +19,7 @@ export default class TimePicker extends Component {
 	}
 
 	onTextChange(text) {
-		let newTime = moment(text, "hh:mm a");
+		var newTime = moment(text, "hh:mm a");
 		if (newTime._pf.charsLeftOver == 0) {
 			// parsed correctly
 			this.selectTime(newTime);

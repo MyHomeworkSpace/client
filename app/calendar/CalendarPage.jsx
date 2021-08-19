@@ -19,7 +19,7 @@ export default class CalendarPage extends Component {
 			schoolsToUpdate: [],
 			days: []
 		};
-		for (let i = 0; i < 35; i++) {
+		for (var i = 0; i < 35; i++) {
 			this.blankView.days.push({
 				day: "",
 				announcements: [],
@@ -33,7 +33,7 @@ export default class CalendarPage extends Component {
 	}
 
 	componentDidMount() {
-		let mondayDate = moment();
+		var mondayDate = moment();
 		while (mondayDate.day() != 1) {
 			mondayDate.subtract(1, "day");
 		}
@@ -91,7 +91,7 @@ export default class CalendarPage extends Component {
 		if (type == "month") {
 			this.loadMonth(moment(this.state.start).date(1));
 		} else if (type == "week") {
-			let mondayOfWeek = moment(this.state.start);
+			var mondayOfWeek = moment(this.state.start);
 			while (mondayOfWeek.day() != 1) {
 				mondayOfWeek.subtract(1, "day");
 			}

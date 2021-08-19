@@ -11,28 +11,28 @@ import HomeworkName from "ui/HomeworkName.jsx";
 
 export default class CalendarEvent extends Component {
 	click(e) {
-		let calendarEvent = closestByClass(e.target, "calendarEvent");
+		var calendarEvent = closestByClass(e.target, "calendarEvent");
 
-		let rect = calendarEvent.getBoundingClientRect();
+		var rect = calendarEvent.getBoundingClientRect();
 
-		let scrollContainer = calendarEvent.parentElement.parentElement.parentElement.parentElement;
-		let scrollContainerRect = scrollContainer.getBoundingClientRect();
-		let scrollOffset = scrollContainer.scrollTop;
+		var scrollContainer = calendarEvent.parentElement.parentElement.parentElement.parentElement;
+		var scrollContainerRect = scrollContainer.getBoundingClientRect();
+		var scrollOffset = scrollContainer.scrollTop;
 
-		let top = scrollOffset + rect.top - scrollContainerRect.top;
-		let left = rect.left + rect.width - scrollContainerRect.left;
+		var top = scrollOffset + rect.top - scrollContainerRect.top;
+		var left = rect.left + rect.width - scrollContainerRect.left;
 
 		this.props.openPopover(top, left, this.props.type, this.props.item, this.props.groupLength);
 	}
 
 	render(props, state) {
-		let dayStart = moment.unix(props.item.start).startOf("day");
+		var dayStart = moment.unix(props.item.start).startOf("day");
 
-		let start = moment.unix(props.item.start);
-		let end = moment.unix(props.item.end);
+		var start = moment.unix(props.item.start);
+		var end = moment.unix(props.item.end);
 
-		let offset = start.diff(dayStart, "minutes");
-		let durationInMinutes = end.diff(start, "minutes");
+		var offset = start.diff(dayStart, "minutes");
+		var durationInMinutes = end.diff(start, "minutes");
 
 		if (!dayStart.isDST() && start.isDST()) {
 			offset += 60;
@@ -41,27 +41,27 @@ export default class CalendarEvent extends Component {
 			durationInMinutes += 60;
 		}
 
-		let startDisplay = start.format("h:mm a");
-		let endDisplay = end.format("h:mm a");
+		var startDisplay = start.format("h:mm a");
+		var endDisplay = end.format("h:mm a");
 
-		let displayName = props.item.name;
+		var displayName = props.item.name;
 
 		if (props.item.tags[consts.EVENT_TAG_SHORT_NAME]) {
 			displayName = props.item.tags[consts.EVENT_TAG_SHORT_NAME];
 		}
 
-		let groupWidth = 100 / props.groupLength;
-		let height = durationInMinutes;
+		var groupWidth = 100 / props.groupLength;
+		var height = durationInMinutes;
 		if (height < 10) {
 			height = 10;
 		}
 
-		let recurIcon;
+		var recurIcon;
 		if (props.item.recurRule) {
 			recurIcon = <i class="fa fa-refresh calendarEventRecur" />;
 		}
 
-		let cancelled = props.item.tags[consts.EVENT_TAG_CANCELLED] || false;
+		var cancelled = props.item.tags[consts.EVENT_TAG_CANCELLED] || false;
 
 		if (props.tiny) {
 			return <div class={`calendarEvent calendarEventTiny ${cancelled ? "calendarEventCancelled" : ""}`} onClick={this.click.bind(this)}>

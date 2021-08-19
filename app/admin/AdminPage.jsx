@@ -22,14 +22,14 @@ export default class AdminPage extends Component {
 
 	// Borrow a bit of CSS from the settings panel
 	render(props, state) {
-		let panes = {
+		var panes = {
 			home: { icon: "home", name: "Home", component: HomePane },
 			feedback: { icon: "comments-o", name: "Feedback", component: FeedbackPane },
 			users: { icon: "user", name: "Users", component: UsersPane },
 			announcements: { icon: "bell", name: "Announcements", component: AnnouncementsPane }
 		};
 
-		let currentPane = panes[state.pane];
+		var currentPane = panes[state.pane];
 
 		// we're going to borrow some CSS from the settings page because... uhhh... i'm lazy
 		return <div class="settingsPage">
@@ -37,7 +37,7 @@ export default class AdminPage extends Component {
 			<div class="settingsPaneContainer">
 				<div class="settingsPaneSelect">
 					{Object.keys(panes).map((paneID) => {
-						let pane = panes[paneID];
+						var pane = panes[paneID];
 						return <div class={`settingsPaneOption ${paneID == state.pane ? "settingsPaneOptionSelected" : ""}`} onClick={this.setPane.bind(this, paneID)}>
 							<i class={`fa fa-fw fa-${pane.icon}`} /> {pane.name}
 						</div>;

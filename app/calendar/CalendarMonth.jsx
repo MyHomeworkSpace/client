@@ -79,35 +79,35 @@ export default class CalendarMonth extends Component {
 	}
 
 	render(props, state) {
-		let firstDay = moment(props.start).startOf("month");
-		let lastDay = moment(props.start).endOf("month");
+		var firstDay = moment(props.start).startOf("month");
+		var lastDay = moment(props.start).endOf("month");
+		
+		var rows = [];
+		var rowItems = [];
+		
+		var prefixDays = firstDay.day();
+		var postfixDays = 6 - lastDay.day();
+		var thisDay = moment(firstDay).subtract(prefixDays, "days");
+		for (var i = firstDay.date() - prefixDays; i <= lastDay.date() + postfixDays; i++) {
+			var isOtherMonth = (i < 1 || i > lastDay.date());
+			var isToday = thisDay.isSame(moment.unix(state.time), "day");
 
-		let rows = [];
-		let rowItems = [];
-
-		let prefixDays = firstDay.day();
-		let postfixDays = 6 - lastDay.day();
-		let thisDay = moment(firstDay).subtract(prefixDays, "days");
-		for (let i = firstDay.date() - prefixDays; i <= lastDay.date() + postfixDays; i++) {
-			let isOtherMonth = (i < 1 || i > lastDay.date());
-			let isToday = thisDay.isSame(moment.unix(state.time), "day");
-
-			let viewDay;
+			var viewDay;
 			if (props.view) {
 				viewDay = props.view.days[i - 1 + 7];
 			}
 
-			let day = <div class={`calendarMonthGridItem calendarMonthDay ${isToday ? "calendarMonthToday" : ""} ${isOtherMonth ? "calendarMonthDayOther" : ""} ${i < 8 ? "calendarMonthDayTopBorder" : ""}`}>
+			var day = <div class={`calendarMonthGridItem calendarMonthDay ${isToday ? "calendarMonthToday" : ""} ${isOtherMonth ? "calendarMonthDayOther" : ""} ${i < 8 ? "calendarMonthDayTopBorder" : ""}`}>
 				<div class="calendarMonthDayNumber">{thisDay.date()}</div>
 				<div class="calendarMonthDayEvents">
 					{viewDay && viewDay.announcements.map(function(announcement) {
 						return <div class="calendarMonthDayAnnouncement">{announcement.text}</div>;
 					})}
 					{viewDay && viewDay.events.sort((a, b) => {
-						let aStart = moment.unix(a.start);
-						let bStart = moment.unix(b.start);
-						let aOffset = aStart.diff(moment(aStart).startOf("day"), "seconds");
-						let bOffset = bStart.diff(moment(bStart).startOf("day"), "seconds");
+						var aStart = moment.unix(a.start);
+						var bStart = moment.unix(b.start);
+						var aOffset = aStart.diff(moment(aStart).startOf("day"), "seconds");
+						var bOffset = bStart.diff(moment(bStart).startOf("day"), "seconds");
 						return aOffset - bOffset;
 					}).map((event) => {
 						return <CalendarEvent tiny type={event.type} item={event} groupIndex={0} groupLength={1} view={props.view} openPopover={this.openPopover.bind(this)} />;

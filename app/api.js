@@ -1,20 +1,20 @@
-let baseURL = window.location.protocol + "//api-v2." + window.location.hostname.replace("app.", "") + "/";
-let csrfToken = "";
+var baseURL = window.location.protocol + "//api-v2." + window.location.hostname.replace("app.", "") + "/";
+var csrfToken = "";
 
 if (window.location.hostname.indexOf("staging2") > -1) {
 	baseURL = "https://api-v2-staging2.myhomework.space/";
 }
 
-let buildParamStr = function(data, method) {
+var buildParamStr = function(data, method) {
 	if (!data) {
 		return "";
 	}
 
-	let paramStr = "";
+	var paramStr = "";
 
-	let first = true;
-	for (let key in data) {
-		let value = data[key];
+	var first = true;
+	for (var key in data) {
+		var value = data[key];
 		if (first) {
 			first = false;
 		} else {
@@ -28,8 +28,8 @@ let buildParamStr = function(data, method) {
 	return paramStr;
 };
 
-let buildURL = function(path, method, data) {
-	let paramStr = buildParamStr(data, method);
+var buildURL = function(path, method, data) {
+	var paramStr = buildParamStr(data, method);
 
 	if (csrfToken) {
 		path = path + "?csrfToken=" + encodeURIComponent(csrfToken);
@@ -43,9 +43,9 @@ let buildURL = function(path, method, data) {
 	return baseURL + path + (method == "GET" ? paramStr : "");
 };
 
-let rawRequest = function(path, method, data, callback) {
-	let paramStr = buildParamStr(data, method);
-	let request = new XMLHttpRequest();
+var rawRequest = function(path, method, data, callback) {
+	var paramStr = buildParamStr(data, method);
+	var request = new XMLHttpRequest();
 
 	request.withCredentials = true;
 	request.open(method, buildURL(path, method, data), true);

@@ -60,8 +60,8 @@ export default class PlannerPage extends Component {
 	}
 
 	setDone(id, done) {
-		let editedHomework;
-		let editedHomeworkIndex;
+		var editedHomework;
+		var editedHomeworkIndex;
 		this.state.homeworkInfo.homework.forEach(function(homeworkItem, i) {
 			if (homeworkItem.id == id) {
 				editedHomework = homeworkItem;
@@ -76,7 +76,7 @@ export default class PlannerPage extends Component {
 
 		api.post("homework/edit", editedHomework, function(data) {});
 
-		let newHomeworkInfo = this.state.homeworkInfo;
+		var newHomeworkInfo = this.state.homeworkInfo;
 		newHomeworkInfo.homework[editedHomeworkIndex] = editedHomework;
 
 		this.setState({
@@ -89,7 +89,7 @@ export default class PlannerPage extends Component {
 			return <div class="plannerPage"></div>;
 		}
 
-		let classHomework = {};
+		var classHomework = {};
 		
 		if (state.homeworkInfo) {
 			state.homeworkInfo.homework.forEach(function(homeworkItem) {
@@ -100,7 +100,7 @@ export default class PlannerPage extends Component {
 			});
 		}
 
-		let now = moment.unix(state.time);
+		var now = moment.unix(state.time);
 
 		return <div class="plannerPage">
 			<DateHeader
@@ -111,7 +111,7 @@ export default class PlannerPage extends Component {
 			/>
 			<div class="plannerHeader plannerHeaderFirst">
 				{[ 0, 1, 2, 3, 4, 5, 6 ].map(function(day) {
-					let currentDay = moment(state.currentWeek).add(day, "days");
+					var currentDay = moment(state.currentWeek).add(day, "days");
 
 					return <div class={`plannerHeaderColumn plannerHeaderDay ${currentDay.isBefore(now, "day") ? "plannerHeaderDayPast" : ""} ${currentDay.isSame(now, "day") ? "plannerHeaderDayToday" : ""}`}>
 						<span class="plannerHeaderDayOfWeek">{currentDay.format("dddd")}</span>
@@ -121,8 +121,8 @@ export default class PlannerPage extends Component {
 			</div>
 			<div class="plannerHeader">
 				{[ 0, 1, 2, 3, 4, 5, 6 ].map(function(day) {
-					let currentDay = moment(state.currentWeek).add(day, "days");
-					let formattedDay = currentDay.format("YYYY-MM-DD");
+					var currentDay = moment(state.currentWeek).add(day, "days");
+					var formattedDay = currentDay.format("YYYY-MM-DD");
 					return <div class={`plannerHeaderColumn plannerHeaderAnnouncement ${day == 0 ? "plannerHeaderAnnouncementFirst": ""}`}>
 						{(state.weekInfo ? state.weekInfo.announcements : []).filter(function(announcement) {
 							return (announcement.date == formattedDay);

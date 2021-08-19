@@ -25,7 +25,7 @@ export default class CompleteEmailForm extends Component {
 	}
 
 	submit() {
-		let params = {
+		var params = {
 			token: this.props.params[0]
 		};
 
@@ -87,9 +87,9 @@ export default class CompleteEmailForm extends Component {
 			</FullForm>;
 		}
 
-		let title;
-		let contents;
-		let buttons;
+		var title;
+		var contents;
+		var buttons;
 		if (state.tokenType == consts.TOKEN_TYPE_RESET_PASSWORD) {
 			if (state.success) {
 				title = "Reset password";

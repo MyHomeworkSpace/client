@@ -81,7 +81,7 @@ export default class AnnouncementsPane extends Component {
 			</div>;
 		}
 
-		let confirmPhrase = "post my announcement";
+		var confirmPhrase = "post my announcement";
 
 		return <div class="AnnouncementsPane">
 			<div class="row">

@@ -22,7 +22,7 @@ export default class HomeworkPicker extends Component {
 	}
 
 	render(props, state) {
-		let display;
+		var display;
 		if (props.value) {
 			display = <HomeworkName name={props.value.name} />;
 		} else {

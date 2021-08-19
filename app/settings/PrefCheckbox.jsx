@@ -4,7 +4,7 @@ import api from "api.js";
 
 export default class PrefCheckbox extends Component {
 	setValue(e) {
-		let newVal = e.target.checked;
+		var newVal = e.target.checked;
 		if (this.props.inverted) {
 			newVal = !newVal;
 		}
@@ -21,7 +21,7 @@ export default class PrefCheckbox extends Component {
 	}
 
 	render(props, state) {
-		let checked = MyHomeworkSpace.Pages.settings.cache[props.pref] || false;
+		var checked = MyHomeworkSpace.Pages.settings.cache[props.pref] || false;
 
 		if (props.inverted) {
 			checked = !checked;

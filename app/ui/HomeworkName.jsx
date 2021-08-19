@@ -3,11 +3,11 @@ import { h } from "preact";
 import prefixes from "prefixes.js";
 
 export default function HomeworkName(props) {
-	let nameParts = props.name.split(" ");
-	let tag = nameParts[0];
-	let remain = nameParts.slice(1).join(" ");
-	let color = prefixes.matchPrefix(tag);
-	let background = "#" + color.background;
+	var nameParts = props.name.split(" ");
+	var tag = nameParts[0];
+	var remain = nameParts.slice(1).join(" ");
+	var color = prefixes.matchPrefix(tag);
+	var background = "#" + color.background;
 	if (tag.toLowerCase() == "none") {
 		background = "transparent";
 	}

@@ -23,9 +23,9 @@ export default function AddActionHomeworkInfo(props) {
 		</AddActionInfo>;
 	}
 
-	let info = quickAdd.parseText(props.text)[0];
-	let dueDate = info.due || undefined;
-	let dueDateDisplay = (dueDate ? relativeDate(moment(dueDate, "YYYY-MM-DD")) : null);
+	var info = quickAdd.parseText(props.text)[0];
+	var dueDate = info.due || undefined;
+	var dueDateDisplay = (dueDate ? relativeDate(moment(dueDate, "YYYY-MM-DD")) : null);
 	return <AddActionInfo class="addActionHomeworkInfo">
 		<div class="addActionHomeworkInfoName"><HomeworkName name={info.tag + " " + info.name} /></div>
 		<div class={`addActionHomeworkInfoDetails ${!dueDateDisplay ? "addActionHomeworkInfoDetailsUnknown" : ""}`}>
