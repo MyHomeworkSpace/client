@@ -243,10 +243,6 @@ module.exports = {
 			// we handle this by feeding it to compromise-dates, but need to match it out explicitly
 			// otherwise, compromise-dates gets distracted with the rest of the text
 
-			// workaround for some weird compromise behavior i can't figure out
-			// (might be a bug in compromise? or i'm misunderstanding their api)
-			relativeWeekResult = relativeWeekResult.replace("aweek", "a week");
-
 			const sentenceDate = nlp(relativeWeekResult, lexicon).dates({
 				timezone: "GMT"
 			});
