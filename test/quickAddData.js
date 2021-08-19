@@ -69,9 +69,9 @@ var dowRelativeDate = function(count, dow) {
 	return buildDate(target.year(), target.month() + 1, target.date());
 };
 
-let daysFromNow = function(count) {
+var daysFromNow = function(count) {
 	const target = moment().add(count, "days");
-	return buildDate(target.year(), target.month(), target.date());
+	return buildDate(target.year(), target.month() + 1, target.date());
 };
 
 module.exports = {
