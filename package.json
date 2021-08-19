@@ -33,7 +33,7 @@
 	"dependencies": {
 		"compromise": "13.11.3",
 		"compromise-dates": "2.2.1",
-		"compromise-numbers": "1.0.0",
+		"compromise-numbers": "1.4.0",
 		"linkstate": "1.1.1",
 		"moment": "2.29.1",
 		"mousetrap": "^1.6.5",
