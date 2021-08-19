@@ -235,21 +235,27 @@ module.exports = {
 			}
 		}
 
+		// look for relative dates that are offsets from today, like "in two days"
+		var relativeDayResult = sentence.match("in #Value (day|days)").text();
+
 		// look for relative dates based on the week, like "a week from tuesday"
 		// will is the only person i know who thinks of dates like this, but we do it anyways to make him happy
 		var relativeWeekResult = sentence.match("a week from (#WeekDay|today|tomorrow|yesterday)").text();
-		if (relativeWeekResult) {
-			// we came here because we are matching a relative week date
+
+		if (relativeDayResult || relativeWeekResult) {
+			// we came here because we are matching a relative date
 			// we handle this by feeding it to compromise-dates, but need to match it out explicitly
 			// otherwise, compromise-dates gets distracted with the rest of the text
 
-			const sentenceDate = nlp(relativeWeekResult, lexicon).dates({
+			const relativeResult = relativeDayResult || relativeWeekResult;
+
+			const sentenceDate = nlp(relativeResult, lexicon).dates({
 				timezone: "GMT"
 			});
 			if (sentenceDate) {
 				var normalDateText = sentenceDate.format("{year}-{iso-month}-{date-pad}").all().text();
 				if (normalDateText) {
-					response.dueText = relativeWeekResult;
+					response.dueText = relativeResult;
 					response.due = resolveDate(normalDateText);
 				}
 			}
