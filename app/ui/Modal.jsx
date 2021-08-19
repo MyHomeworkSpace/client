@@ -1,6 +1,6 @@
 import "ui/Modal.styl";
 
-import { h, Component } from "preact";
+import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
 
 export default function Modal(props) {
