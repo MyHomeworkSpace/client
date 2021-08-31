@@ -1,7 +1,7 @@
 import "homework/HomeworkModal.styl";
 
 import { h, Component } from "preact";
-import { useState, useEffect, useCallback } from "preact/hooks";
+import { useState, useEffect, useCallback, useRef } from "preact/hooks";
 
 import moment from "moment";
 
@@ -24,6 +24,7 @@ export default function HomeworkModal(props) {
 	const [desc, setDesc] = useState(isNew ? "" : props.modalState.desc);
 	const [err, setErr] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
+	const nameInputRef = useRef();
 
 	const save = useCallback(function() {
 		if (name == "") {
@@ -87,6 +88,10 @@ export default function HomeworkModal(props) {
 		}
 	}, [props.modalState.direct, save]);
 
+	useEffect(() => {
+		nameInputRef.current.focus();
+	}, []);
+
 	if (isLoading) {
 		return <Modal title={(isNew ? "Add homework" : "Edit homework")} openModal={props.openModal} noClose class="homeworkModal">
 			<div class="modal-body">
@@ -112,7 +117,7 @@ export default function HomeworkModal(props) {
 			<div class="homeworkModalBody">
 
 				<div class="homeworkModalNameWrapper">
-					<PrefixedEdit class="homeworkModalName" placeholder="Name" value={name} onKeyDown={keydown(false)} onInput={(e) => setName(e.target.value)} />
+					<PrefixedEdit class="homeworkModalName" placeholder="Name" inputRef={nameInputRef} value={name} onKeyDown={keydown(false)} onInput={(e) => setName(e.target.value)} />
 				</div>
 
 				<div class="doneCheckbox">
