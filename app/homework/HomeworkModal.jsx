@@ -1,6 +1,6 @@
 import "homework/HomeworkModal.styl";
 
-import { h, Component } from "preact";
+import { h } from "preact";
 import { useState, useEffect, useCallback, useRef } from "preact/hooks";
 
 import moment from "moment";
@@ -38,8 +38,7 @@ export default function HomeworkModal(props) {
 
 		setIsLoading(true);
 
-
-		let homeworkInfo = {
+		const homeworkInfo = {
 			name,
 			desc,
 			classId,
@@ -76,10 +75,8 @@ export default function HomeworkModal(props) {
 					setIsLoading(false);
 					setErr(errors.getFriendlyString(data.error));
 				}
-
 			});
 		}
-
 	};
 
 	useEffect(() => {
