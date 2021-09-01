@@ -60,6 +60,15 @@ export default class EventModal extends Component {
 			}
 		}
 
+		var descriptionMinHeight = null;
+		if (!isNew && props.modalState.tags[consts.EVENT_TAG_DESCRIPTION]) {
+			var lineCount = props.modalState.tags[consts.EVENT_TAG_DESCRIPTION].split("\n").length;
+			// set a min height for the description textbox
+			if (lineCount > 3) {
+				descriptionMinHeight = (lineCount * 14 * 1.5) + 14;
+			}
+		}
+
 		this.state = {
 			isNew: isNew,
 			type: type,
@@ -76,7 +85,9 @@ export default class EventModal extends Component {
 			startDate: (isNew ? moment().second(0) : moment.unix(props.modalState.start)),
 			startTime: startTime,
 			endDate: (isNew ? moment().second(0).add(30, "minutes") : moment.unix(props.modalState.end)),
-			endTime: endTime
+			endTime: endTime,
+
+			descriptionMinHeight: descriptionMinHeight
 		};
 	}
 
@@ -330,7 +341,7 @@ export default class EventModal extends Component {
 					</div>
 				</div>}
 
-				{state.type == consts.EVENT_TYPE_PLAIN && <textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onChange={linkState(this, "description")} />}
+				{state.type == consts.EVENT_TYPE_PLAIN && <textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onChange={linkState(this, "description")} style={state.descriptionMinHeight ? `min-height: ${state.descriptionMinHeight}px;` : ""} />}
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}
