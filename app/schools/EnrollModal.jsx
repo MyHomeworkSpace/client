@@ -10,6 +10,7 @@ import errors from "errors.js";
 import DaltonEnroll from "schools/dalton/DaltonEnroll.jsx";
 import MITEnroll from "schools/mit/MITEnroll.jsx";
 import CornellEnroll from "schools/cornell/CornellEnroll.jsx";
+import ColumbiaEnroll from "schools/columbia/ColumbiaEnroll.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
@@ -25,7 +26,8 @@ import Modal from "ui/Modal.jsx";
 var enrollComponents = {
 	dalton: DaltonEnroll,
 	mit: MITEnroll,
-	cornell: CornellEnroll
+	cornell: CornellEnroll,
+	columbia: ColumbiaEnroll
 };
 
 export default class EnrollModal extends Component {
