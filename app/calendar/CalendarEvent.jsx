@@ -72,13 +72,16 @@ export default class CalendarEvent extends Component {
 				</div>
 			</div>;
 		} else {
+			const hideBuilding = props.item.tags[consts.EVENT_TAG_HIDE_BUILDING_NAME] || false;
+			const showInText = (!hideBuilding && props.item.tags[consts.EVENT_TAG_BUILDING_NAME]) || props.item.tags[consts.EVENT_TAG_ROOM_NUMBER];
+
 			return <div class="calendarEventContainer">
 				<div class={`calendarEvent ${cancelled ? "calendarEventCancelled" : ""}`} style={`top: ${offset}px; left:${groupWidth * props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
 					<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
 					<div class="calendarEventName">{recurIcon}{props.item.tags[consts.EVENT_TAG_HOMEWORK] ? <HomeworkName name={displayName} /> : displayName}</div>
 					{!cancelled && <div class="calendarEventTime">
 						{startDisplay} to {endDisplay}
-						{props.item.tags[consts.EVENT_TAG_ROOM_NUMBER] && ` in ${props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}`}
+						{showInText && ` in ${!hideBuilding ? (props.item.tags[consts.EVENT_TAG_BUILDING_NAME] + " ") : ""}${props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}`}
 						{props.item.tags[consts.EVENT_TAG_LOCATION] && ` at ${props.item.tags[consts.EVENT_TAG_LOCATION]}`}
 					</div>}
 					{cancelled && <div class="calendarEventTime">
