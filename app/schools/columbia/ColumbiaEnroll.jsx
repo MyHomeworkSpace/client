@@ -43,7 +43,7 @@ export default class ColumbiaEnroll extends Component {
 			loading: true
 		}, () => {
 			api.post("schools/enroll", {
-				school: "columbia",
+				school: (this.props.barnard ? "barnard" : "columbia"),
 				reenroll: this.props.reenroll,
 				data: JSON.stringify({
 					username: this.state.username,
@@ -70,6 +70,9 @@ export default class ColumbiaEnroll extends Component {
 
 	render(props, state) {
 		return <div class="columbiaEnroll">
+			{props.barnard && <div class="alert alert-info">
+				Make sure to use your <em>Columbia</em> account. It's the same account you'd use for websites like CourseWorks or SSOL.
+			</div>}
 			{state.error && <div class="alert alert-danger">{state.error}</div>}
 			Sign in with your Columbia UNI and password.
 			<div class="input-group first">
