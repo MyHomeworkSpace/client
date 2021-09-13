@@ -66,7 +66,7 @@ export default function HomeworkModal(props) {
 			setIsLoading(true);
 
 			api.post("homework/delete", {
-				id: this.props.modalState.id
+				id: props.modalState.id
 			}, (data) => {
 				if (data.status == "ok") {
 					props.openModal("");
