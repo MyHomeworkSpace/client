@@ -49,7 +49,13 @@ export default function Modal(props) {
 		class={`modal modal-preact ${!props.noClose && "noClose"} ${props.class ? props.class : ""}`}
 		style="display: block; padding-left: 0px;"
 	>
-		<div class="modalOverlay" onClick={() => props.openModal("")}></div>
+		<div class="modalOverlay" onClick={() => {
+			if (props.noClose) {
+				return;
+			}
+
+			props.openModal("");
+		}}></div>
 		<div class="modal-dialog" role="document">
 			<div
 				class="modal-drag-wrapper"
