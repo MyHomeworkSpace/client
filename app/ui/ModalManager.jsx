@@ -23,10 +23,6 @@ import ImageInfoModal from "ui/nav/ImageInfoModal.jsx";
 
 
 export default class ModalManager extends Component {
-	closeModal() {
-		this.props.openModal("", {});
-	}
-
 	render(props, state) {
 		var modals = {
 			calendarEvent: EventModal,
@@ -70,7 +66,6 @@ export default class ModalManager extends Component {
 		}
 
 		return <div>
-			{modal && <div class="modalOverlay" onClick={this.closeModal.bind(this)}></div>}
 			{modal}
 		</div>;
 	}
