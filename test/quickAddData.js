@@ -282,6 +282,32 @@ module.exports = {
 					}
 				}
 			]
+		},
+		{
+			name: "Regression testing",
+			cases: [
+				/*
+				 * fixed in https://github.com/MyHomeworkSpace/client/commit/00c7fd424c85adf19dc1a4f0daebcb84d3a11af9
+				 */
+				{
+					input: "Apply to stuff",
+					result: {
+						tag: "Apply",
+						name: "to stuff",
+						classID: null,
+						dueText: ""
+					}
+				},
+				{
+					input: "Apply to stuff tomorrow",
+					result: {
+						tag: "Apply",
+						name: "to stuff",
+						classID: null,
+						dueText: "tomorrow"
+					}
+				}
+			]
 		}
 	]
 };
