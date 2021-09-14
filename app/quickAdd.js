@@ -291,8 +291,12 @@ module.exports = {
 
 		// class name
 		nameSentence.replace("(#Conjunction|#Preposition)? (#MHSClass|#MHSClassSynonym) class?", "");
+
 		// due date info
-		nameSentence.replace("(#Conjunction|#Preposition|due|on)? " + response.dueText, "");
+		if (response.dueText) {
+			nameSentence.replace("(#Conjunction|#Preposition|due|on)? " + response.dueText, "");
+		}
+
 		// prefix info
 		nameSentence.replace("*+ #MHSPrefix", "");
 		nameSentence.replace("#MHSPrefix", "");
