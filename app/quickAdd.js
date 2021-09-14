@@ -230,8 +230,8 @@ module.exports = {
 			var parsed = moment(dateTextResult, "MMM D");
 
 			if (parsed.isValid()) {
-				sentence = sentence.replace("#Month #Value", "").trim();
 				response.due = assignYearToDate(parsed);
+				response.dueText = dateTextResult;
 			}
 		}
 
