@@ -6,6 +6,8 @@ import errors from "errors.js";
 import DaltonSettings from "schools/dalton/DaltonSettings.jsx";
 import MITSettings from "schools/mit/MITSettings.jsx";
 import CornellSettings from "schools/cornell/CornellSettings.jsx";
+import ColumbiaSettings from "schools/columbia/ColumbiaSettings.jsx";
+import BarnardSettings from "schools/barnard/BarnardSettings.jsx";
 
 import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import Modal from "ui/Modal.jsx";
@@ -13,7 +15,9 @@ import Modal from "ui/Modal.jsx";
 var settingsComponents = {
 	dalton: DaltonSettings,
 	mit: MITSettings,
-	cornell: CornellSettings
+	cornell: CornellSettings,
+	columbia: ColumbiaSettings,
+	barnard: BarnardSettings
 };
 
 export default class SchoolSettingsModal extends Component {
