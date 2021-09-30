@@ -10,32 +10,32 @@ export default class DatePickerCalendarGrid extends Component {
 	}
 
 	render(props, state) {
-		var firstDay = moment(props.date).startOf("month");
-		var lastDay = moment(props.date).endOf("month");
-		var today = moment();
+		const firstDay = moment(props.date).startOf("month");
+		const lastDay = moment(props.date).endOf("month");
+		const today = moment();
 
-		var items = [];
+		const items = [];
 		for (var i = 0; i < firstDay.day(); i++) {
 			// add spacers for days from last month
-			var offset = i - firstDay.day() + 1;
+			const offset = i - firstDay.day() + 1;
 
-			var thisDay = moment(props.date).date(offset);
+			const thisDay = moment(props.date).date(offset);
 			items.push(<div class="datePickerCalendarGridItem datePickerCalendarGridItemDay datePickerCalendarGridItemDayExtra" onClick={this.selectDate.bind(this, offset)}>{thisDay.date()}</div>);
 		}
 
 		for (i = firstDay.date(); i <= lastDay.date(); i++) {
-			var thisDay = moment(props.date).date(i);
-			var isSelected = thisDay.isSame(props.currentDate, "day");
-			var isToday = thisDay.isSame(today, "day");
+			const thisDay = moment(props.date).date(i);
+			const isSelected = thisDay.isSame(props.currentDate, "day");
+			const isToday = thisDay.isSame(today, "day");
 			items.push(<div class={`datePickerCalendarGridItem datePickerCalendarGridItemDay ${isSelected ? "datePickerCalendarGridItemDaySelected" : ""} ${isToday ? "datePickerCalendarGridItemDayToday" : ""}`} onClick={this.selectDate.bind(this, i)}>{i}</div>);
 		}
 
-		for (var i = lastDay.day(); i < 6; i++) {
+		for (i = lastDay.day(); i < 6; i++) {
 			// add spacers for days in next month
-			var offset = i - lastDay.day() + 1;
-			var date = lastDay.date() + offset;
+			const offset = i - lastDay.day() + 1;
+			const date = lastDay.date() + offset;
 
-			var thisDay = moment(props.date).date(date);
+			const thisDay = moment(props.date).date(date);
 			items.push(<div class="datePickerCalendarGridItem datePickerCalendarGridItemDay datePickerCalendarGridItemDayExtra" onClick={this.selectDate.bind(this, date)}>{thisDay.date()}</div>);
 		}
 
