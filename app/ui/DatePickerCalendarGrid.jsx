@@ -17,7 +17,10 @@ export default class DatePickerCalendarGrid extends Component {
 		var items = [];
 		for (var i = 0; i < firstDay.day(); i++) {
 			// add spacers for days from last month
-			items.push(<div class="datePickerCalendarGridItem"></div>);
+			var offset = i - firstDay.day() + 1;
+
+			var thisDay = moment(props.date).date(offset);
+			items.push(<div class="datePickerCalendarGridItem datePickerCalendarGridItemDay datePickerCalendarGridItemDayExtra" onClick={this.selectDate.bind(this, offset)}>{thisDay.date()}</div>);
 		}
 
 		for (i = firstDay.date(); i <= lastDay.date(); i++) {
@@ -25,6 +28,15 @@ export default class DatePickerCalendarGrid extends Component {
 			var isSelected = thisDay.isSame(props.currentDate, "day");
 			var isToday = thisDay.isSame(today, "day");
 			items.push(<div class={`datePickerCalendarGridItem datePickerCalendarGridItemDay ${isSelected ? "datePickerCalendarGridItemDaySelected" : ""} ${isToday ? "datePickerCalendarGridItemDayToday" : ""}`} onClick={this.selectDate.bind(this, i)}>{i}</div>);
+		}
+
+		for (var i = lastDay.day(); i < 6; i++) {
+			// add spacers for days in next month
+			var offset = i - lastDay.day() + 1;
+			var date = lastDay.date() + offset;
+
+			var thisDay = moment(props.date).date(date);
+			items.push(<div class="datePickerCalendarGridItem datePickerCalendarGridItemDay datePickerCalendarGridItemDayExtra" onClick={this.selectDate.bind(this, date)}>{thisDay.date()}</div>);
 		}
 
 		return <div class="datePickerCalendarGrid">
