@@ -53,12 +53,21 @@ export default function AddAction(props) {
 		setOpen(false);
 	}, []);
 
-	const keydown = useCallback((e) => {
-		if (e.keyCode == 27) {
+	const escapeClose = useCallback((e) => {
+		if (open && e.keyCode == 27) {
 			// escape key
 			close();
 		}
+	}, [open, close]);
 
+	useEffect(() => {
+		document.body.addEventListener("keydown", escapeClose);
+		return () => {
+			document.body.removeEventListener("keydown", escapeClose);
+		};
+	});
+
+	const keydown = useCallback((e) => {
 		if (e.keyCode == 13) {
 			// enter key
 			var info = quickAdd.parseText(input)[0];
