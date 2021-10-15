@@ -108,7 +108,11 @@ export default class MITSettings extends Component {
 					<h4 class="mitSettingsInfoTitle">PE registration</h4>
 					{state.peInfo && <div>
 						<strong>{state.peInfo.sectionID} {state.peInfo.activity} - {state.peInfo.courseTitle}</strong>
-						<div>{state.peInfo.rawSchedule}</div>
+						<div>
+							{state.peInfo.rawSchedule.split("\n").map((line) => {
+								return <div>{line}</div>
+							})}
+						</div>
 						<div>{state.peInfo.rawCalendarNotes}</div>
 						<label>
 							<input type="checkbox" checked={state.showPE} onChange={linkState(this, "showPE")} /> Show this on my schedule
