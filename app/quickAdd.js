@@ -21,7 +21,7 @@ nlp.extend(nlpDates);
 var classMap = {};
 var classSynonyms = [
 	["science", "sci", "bio", "biology", "chem", "chemistry", "physics"],
-	["math", "linear algebra", "linalg", "algebra", "calculus", "calc", "pre-calculus", "precalculus", "precalc", "geometry", "geo"],
+	["math", "linear algebra", "linalg", "algebra", "calculus", "calc", "pre-calculus", "precalculus", "precalc", "differential equations", "diffeq", "difeq", "geometry", "geo"],
 	["computer science", "compsci", "cs"],
 	["language", "french", "latin", "spanish", "span", "mandarin"],
 	["history", "us history", "hist", "ush"],
