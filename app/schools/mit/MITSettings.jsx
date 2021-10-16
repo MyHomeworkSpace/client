@@ -110,7 +110,7 @@ export default class MITSettings extends Component {
 						<strong>{state.peInfo.sectionID} {state.peInfo.activity} - {state.peInfo.courseTitle}</strong>
 						<div>
 							{state.peInfo.rawSchedule.split("\n").map((line) => {
-								return <div>{line}</div>
+								return <div>{line}</div>;
 							})}
 						</div>
 						<div>{state.peInfo.rawCalendarNotes}</div>
