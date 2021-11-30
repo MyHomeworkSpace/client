@@ -38,6 +38,6 @@
 		"moment": "2.29.1",
 		"mousetrap": "^1.6.5",
 		"preact": "10.5.12",
-		"preact-router": "3.2.1"
+		"preact-router": "^3.2.1"
 	}
 }

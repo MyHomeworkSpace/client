@@ -45,7 +45,7 @@ if (isProduction) {
 }
 
 module.exports = {
-	entry: './app/main.js',
+	entry: './app/main.jsx',
 
 	devtool: 'source-map',
 

@@ -1,7 +1,7 @@
 import "ui/AddAction.styl";
 
 import { h } from "preact";
-import { useEffect, useState, useLayoutEffect, useRef, useCallback } from "preact/hooks";
+import { useEffect, useState, useLayoutEffect, useRef, useCallback, useContext } from "preact/hooks";
 import Mousetrap from "mousetrap";
 
 
@@ -11,15 +11,17 @@ import quickAdd from "quickAdd.js";
 
 import AddActionCalendarInfo from "ui/AddActionCalendarInfo.jsx";
 import AddActionHomeworkInfo from "ui/AddActionHomeworkInfo.jsx";
+import { MyHomeworkSpaceCtx } from "App.jsx";
 
 export default function AddAction(props) {
 	const [input, setInput, bindInput] = useInput("");
 	const [open, setOpen] = useState(false);
+	const MyHomeworkSpace = useContext(MyHomeworkSpaceCtx);
 
 	const inputRef = useRef(null);
 
 	const click = useCallback(() => {
-		if (MyHomeworkSpace.Pages.settings.cache.disableQuickAdd && props.page != "calendar") {
+		if (MyHomeworkSpace.prefs.disableQuickAdd && props.page != "calendar") {
 			// show the modal
 			MHSBridge.default.openModal("homework", {});
 		} else {
@@ -27,7 +29,7 @@ export default function AddAction(props) {
 			setOpen(true);
 			setInput("");
 		}
-	}, [props.page, setInput]);
+	}, [props.page, setInput, MyHomeworkSpace]);
 
 	useEffect(() => {
 		Mousetrap.bind(["ctrl+space", "q"], () => {

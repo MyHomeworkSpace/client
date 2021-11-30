@@ -4,11 +4,12 @@ import { h, Component } from "preact";
 
 import { edit, markComplete } from "homework.js";
 
+import { MyHomeworkSpaceCtx } from "App.jsx";
 import HomeworkItem from "ui/HomeworkItem.jsx";
 
-export default class HomeworkColumn extends Component {
-	render(props, state) {
-		return <div class={`homeworkColumn ${props.noColumnClass ? "" : "col-md-3"} ${props.halfHeight ? "halfHeight" : ""} ${props.top ? "top" : ""}`}>
+export default function HomeworkColumn(props) {
+	return <MyHomeworkSpaceCtx.Consumer>
+		{MyHomeworkSpace => <div class={`homeworkColumn ${props.noColumnClass ? "" : "col-md-3"} ${props.halfHeight ? "halfHeight" : ""} ${props.top ? "top" : ""}`}>
 			<div class="homeworkColumnContainer">
 				<div class={`homeworkColumnTitle ${props.isOverdue ? "overdue" : ""}`}>
 					{props.title}
@@ -21,7 +22,7 @@ export default class HomeworkColumn extends Component {
 						}
 						return <HomeworkItem
 							homework={item}
-							classes={MyHomeworkSpace.Classes.list}
+							classes={MyHomeworkSpace.classes}
 							isOverdue={!!props.isOverdue}
 							hideDue={!!props.hideDue}
 							edit={function(id) {
@@ -34,6 +35,6 @@ export default class HomeworkColumn extends Component {
 					})}
 				</div>
 			</div>
-		</div>;
-	}
+		</div>}
+	</MyHomeworkSpaceCtx.Consumer>;
 };

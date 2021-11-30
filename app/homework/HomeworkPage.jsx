@@ -7,6 +7,10 @@ import api from "api.js";
 import HomeworkColumn from "homework/HomeworkColumn.jsx";
 import CalendarRow from "homework/CalendarRow.jsx";
 
+import { MyHomeworkSpaceCtx } from "App.jsx";
+import { useContext } from "preact/hooks";
+import Page from "ui/Page.jsx";
+
 export default class HomeworkPage extends Component {
 	constructor() {
 		super();
@@ -55,15 +59,19 @@ export default class HomeworkPage extends Component {
 
 		var haveOverdue = (state.homework.overdue.length > 0);
 
-		return <div class="homeworkPage">
-			{!MyHomeworkSpace.Pages.settings.cache.hideCalendarFromDashboard && <CalendarRow />}
-			{(state.homework.showToday || haveOverdue) && <div class="col-md-3 todayContainer">
-				{state.homework.showToday && <HomeworkColumn title="Today" halfHeight hideDue top={haveOverdue} noColumnClass items={state.homework.today} />}
-				{haveOverdue && <HomeworkColumn title="Overdue" halfHeight noColumnClass isOverdue onMarkAll={this.markOverdueDone.bind(this)} items={state.homework.overdue} />}
-			</div>}
-			<HomeworkColumn title={state.homework.tomorrowName} hideDue items={state.homework.tomorrow} />
-			<HomeworkColumn title="Soon" items={state.homework.soon} />
-			<HomeworkColumn title="Long-term" items={state.homework.longterm} />
-		</div>;
+		return <Page>
+			<MyHomeworkSpaceCtx.Consumer>
+				{MyHomeworkSpace => <div class="homeworkPage">
+					{!MyHomeworkSpace.prefs.hideCalendarFromDashboard && <CalendarRow />}
+					{(state.homework.showToday || haveOverdue) && <div class="col-md-3 todayContainer">
+						{state.homework.showToday && <HomeworkColumn title="Today" halfHeight hideDue top={haveOverdue} noColumnClass items={state.homework.today} />}
+						{haveOverdue && <HomeworkColumn title="Overdue" halfHeight noColumnClass isOverdue onMarkAll={this.markOverdueDone.bind(this)} items={state.homework.overdue} />}
+					</div>}
+					<HomeworkColumn title={state.homework.tomorrowName} hideDue items={state.homework.tomorrow} />
+					<HomeworkColumn title="Soon" items={state.homework.soon} />
+					<HomeworkColumn title="Long-term" items={state.homework.longterm} />
+				</div>}
+			</MyHomeworkSpaceCtx.Consumer>
+		</Page>;
 	}
 };

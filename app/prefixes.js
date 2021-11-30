@@ -11,7 +11,7 @@ module.exports = {
 			color: context.prefixFallbackColor
 		};
 
-		MyHomeworkSpace.Prefixes.list = prefixes;
+		this.list = prefixes;
 	},
 	matchPrefix: function(prefix) {
 		var chkPrefix = prefix.toLowerCase();
