@@ -2,37 +2,49 @@ import "ui/FormattedDescription.styl";
 
 import { h, Component } from "preact";
 
-export default class FormattedDescription extends Component {
-	render(props, state) {
-		return <div class="formattedDescription">
-			{props.text.split("\n").map((line) => {
-				const linkRegex = /(http[s]*:\/\/.*?)($|\s)/ig;
+export default function FormattedDescription(props) {
+	const parseMarkup = (line) => {
+		// there's definitley a more efficient way to do this lol. This is a tiny bit too much recursion for my liking.
+		const markups = [
+			{
+				// Bold
+				regex: /(.*)\*(.*)\*(.*)/ig,
+				markup: (match) => [parseMarkup(match[1]), <strong>{parseMarkup(match[2])}</strong>, parseMarkup(match[3])]
+			},
+			{
+				// Italics
+				regex: /(.*)_(.*)_(.*)/ig,
+				markup: (match) => [parseMarkup(match[1]), <em>{parseMarkup(match[2])}</em>, parseMarkup(match[3])]
+			},
+			{
+				// Strikethrough
+				regex: /(.*)~(.*)~(.*)/ig,
+				markup: (match) => [parseMarkup(match[1]), <strike>{parseMarkup(match[2])}</strike>, parseMarkup(match[3])]
+			},
+			{
+				// Links
+				// These have to be last because they don't have insides, so otherwise nesting breaks.
+				regex: /(.*)(http[s]*:\/\/.*?)($|\s)(.*)/ig,
+				markup: (match) => [parseMarkup(match[1]), <a href={match[2]}>{match[2]}</a>, parseMarkup(match[3] + match[4])]
+			},
 
-				const parts = [];
-				var index = 0;
+		];
 
-				while (true) {
-					const part = linkRegex.exec(line);
-
-					if (!part) {
-						// we're done
-						parts.push(<span>{line.substring(index)}</span>);
-						break;
-					}
-
-					// add the part from before this match up to this match
-					parts.push(<span>{line.substring(index, part.index)}</span>);
-
-					// add the link
-					const url = part[1];
-					parts.push(<a href={url} target="_blank" rel="noopener noreferrer">{url}</a>);
-
-					// continue
-					index = part.index + url.length;
+		for (const markupKey in markups) {
+			if (Object.hasOwnProperty.call(markups, markupKey)) {
+				const markup = markups[markupKey];
+				const matches = markup.regex.exec(line);
+				if (matches) {
+					return markup.markup(matches);
 				}
+			}
+		}
+		return line;
+	};
 
-				return <div>{parts}</div>;
-			})}
-		</div>;
-	}
+	return <div class="formattedDescription">
+		{props.text.split("\n").map((line) => {
+			return <div>{parseMarkup(line)}</div>;
+		})}
+	</div>;
 };
