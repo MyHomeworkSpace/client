@@ -226,13 +226,13 @@ export default class CalendarEvents extends Component {
 					return <div class={`calendarEventsHourBackground ${i == 23 ? "last" : ""}`}></div>;
 				})}
 			</div>
-			<CalendarEventsDay today={today} time={props.time} day={props.monday}>{eventElements[0]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(1, "day")}>{eventElements[1]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(2, "day")}>{eventElements[2]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(3, "day")}>{eventElements[3]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(4, "day")}>{eventElements[4]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(5, "day")}>{eventElements[5]}</CalendarEventsDay>
-			<CalendarEventsDay today={today} time={props.time} day={moment(props.monday).add(6, "day")}>{eventElements[6]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={props.start}>{eventElements[0]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.start).add(1, "day")}>{eventElements[1]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.start).add(2, "day")}>{eventElements[2]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.start).add(3, "day")}>{eventElements[3]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.start).add(4, "day")}>{eventElements[4]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.start).add(5, "day")}>{eventElements[5]}</CalendarEventsDay>
+			<CalendarEventsDay today={today} time={props.time} day={moment(props.start).add(6, "day")}>{eventElements[6]}</CalendarEventsDay>
 			{state.popover && <CalendarEventPopover alternate={state.popover.alternate} groupLength={state.popover.groupLength} item={state.popover.item} type={state.popover.type} top={state.popover.top} left={state.popover.left} view={props.view} openModal={props.openModal} openPopover={this.openPopover.bind(this)} />}
 		</div>;
 	}
