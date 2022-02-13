@@ -26,19 +26,17 @@ export default function FormattedDescription(props) {
 				// These have to be last because they don't have insides, so otherwise nesting breaks.
 				regex: /(.*)(http[s]*:\/\/.*?)($|\s)(.*)/ig,
 				markup: (match) => [parseMarkup(match[1]), <a href={match[2]}>{match[2]}</a>, parseMarkup(match[3] + match[4])]
-			},
-
+			}
 		];
 
-		for (const markupKey in markups) {
-			if (Object.hasOwnProperty.call(markups, markupKey)) {
-				const markup = markups[markupKey];
-				const matches = markup.regex.exec(line);
-				if (matches) {
-					return markup.markup(matches);
-				}
+		for (let i = 0; i < markups.length; i++) {
+			const markup = markups[i];
+			const matches = markup.regex.exec(line);
+			if (matches) {
+				return markup.markup(matches);
 			}
 		}
+
 		return line;
 	};
 
