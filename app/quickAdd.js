@@ -228,7 +228,7 @@ module.exports = {
 			const classItem = classes[i];
 			if (classItem.name.indexOf(".") > -1) {
 				// see https://stackoverflow.com/a/6969486
-				const escapedName = classItem.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+				const escapedName = classItem.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 				text = text.replace(new RegExp(escapedName, "ig"), classItem.name.toUpperCase());
 			}
