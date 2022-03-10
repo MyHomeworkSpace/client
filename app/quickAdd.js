@@ -218,6 +218,22 @@ module.exports = {
 			due: null,
 			dueText: ""
 		};
+
+		// preprocessing for classes with dots in their name
+		// (we force their names to be uppercase)
+		// it's a hack, but the least ugly way i can think of doing this without major changes
+		// (since, without this, compromise seems to break it into two sentences and gets confused)
+		const classes = Object.values(classMap);
+		for (let i = 0; i < classes.length; i++) {
+			const classItem = classes[i];
+			if (classItem.name.indexOf(".") > -1) {
+				// see https://stackoverflow.com/a/6969486
+				const escapedName = classItem.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+				text = text.replace(new RegExp(escapedName, "ig"), classItem.name.toUpperCase());
+			}
+		}
+
 		var sentence = nlp(text, lexicon);
 
 		response.tag = sentence.match("#MHSPrefix").terms(0).out().trim();
