@@ -7,6 +7,7 @@ const CLASS_ID_SCIENCE = 4;
 const CLASS_ID_LANGUAGE = 5;
 const CLASS_ID_COMPSCI = 6;
 const CLASS_ID_6004 = 7;
+const CLASS_ID_6UAT = 8;
 
 const CLASSES = [
 	{
@@ -36,6 +37,10 @@ const CLASSES = [
 	{
 		id: CLASS_ID_6004,
 		name: "6.004"
+	},
+	{
+		id: CLASS_ID_6UAT,
+		name: "6.UAT"
 	}
 ];
 
@@ -304,6 +309,37 @@ module.exports = {
 						tag: "Apply",
 						name: "to stuff",
 						classID: null,
+						dueText: "tomorrow"
+					}
+				},
+
+				/*
+				 * fixed in https://github.com/MyHomeworkSpace/client/commit/ef7b955b8c9acdb62350a61f9748b57493758fc7
+				 */
+				{
+					input: "Presentation on things 6.UAT tomorrow",
+					result: {
+						tag: "Presentation",
+						name: "on things",
+						classID: CLASS_ID_6UAT,
+						dueText: "tomorrow"
+					}
+				},
+				{
+					input: "Presentation on things 6.uat tomorrow",
+					result: {
+						tag: "Presentation",
+						name: "on things",
+						classID: CLASS_ID_6UAT,
+						dueText: "tomorrow"
+					}
+				},
+				{
+					input: "Presentation on things tomorrow 6.Uat",
+					result: {
+						tag: "Presentation",
+						name: "on things",
+						classID: CLASS_ID_6UAT,
 						dueText: "tomorrow"
 					}
 				}
