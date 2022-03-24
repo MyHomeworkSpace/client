@@ -153,8 +153,8 @@ export default class CalendarEvents extends Component {
 						for (var k = 0; k < currentSubgroup.length; k++) {
 							const comparisonEvent = currentSubgroup[k];
 							if (
-								(comparisonEvent.start < nextEvent.end) &&
-								(nextEvent.start < comparisonEvent.end)
+								(comparisonEvent.start <= nextEvent.end) &&
+								(nextEvent.start <= comparisonEvent.end)
 							) {
 								hasOverlap = true;
 								break;
