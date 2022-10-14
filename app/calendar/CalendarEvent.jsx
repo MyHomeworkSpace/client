@@ -7,6 +7,7 @@ import moment from "moment";
 import consts from "consts.js";
 import { closestByClass } from "utils.js";
 
+import ClassName from "ui/ClassName.jsx";
 import HomeworkName from "ui/HomeworkName.jsx";
 
 export default class CalendarEvent extends Component {
@@ -79,6 +80,7 @@ export default class CalendarEvent extends Component {
 				<div class={`calendarEvent ${cancelled ? "calendarEventCancelled" : ""}`} style={`top: ${offset}px; left:${groupWidth * props.groupIndex}%; width: ${groupWidth}%; height: ${height}px;`} onClick={this.click.bind(this)}>
 					<div class="calendarEventDurationLine" style={`height: ${durationInMinutes}px;`}></div>
 					<div class="calendarEventName">{recurIcon}{props.item.tags[consts.EVENT_TAG_HOMEWORK] ? <HomeworkName name={displayName} /> : displayName}</div>
+					{props.item.tags[consts.EVENT_TAG_HOMEWORK_CLASS] && <div class="calendarEventSubname"><ClassName classObject={props.item.tags[consts.EVENT_TAG_HOMEWORK_CLASS]} /></div>}
 					{!cancelled && <div class="calendarEventTime">
 						{startDisplay} to {endDisplay}
 						{showInText && ` in ${!hideBuilding ? (props.item.tags[consts.EVENT_TAG_BUILDING_NAME] + " ") : ""}${props.item.tags[consts.EVENT_TAG_ROOM_NUMBER]}`}
