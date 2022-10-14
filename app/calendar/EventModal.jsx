@@ -74,6 +74,7 @@ export default class EventModal extends Component {
 			type: type,
 
 			name: (isNew ? "" : props.modalState.name),
+			location: ((isNew || !props.modalState.tags[consts.EVENT_TAG_LOCATION]) ? "" : props.modalState.tags[consts.EVENT_TAG_LOCATION]),
 			description: ((isNew || !props.modalState.tags[consts.EVENT_TAG_DESCRIPTION]) ? "" : props.modalState.tags[consts.EVENT_TAG_DESCRIPTION]),
 
 			homework: (props.modalState.tags && props.modalState.tags[consts.EVENT_TAG_HOMEWORK]) || null,
@@ -131,6 +132,7 @@ export default class EventModal extends Component {
 				name: this.state.name,
 				start: start.unix(),
 				end: end.unix(),
+				location: this.state.location,
 				desc: this.state.description
 			};
 			if (!this.state.isNew) {
@@ -340,6 +342,8 @@ export default class EventModal extends Component {
 						</div>
 					</div>
 				</div>}
+
+				<input type="text" class="form-control eventModalLocation" placeholder="Location" value={state.location} onKeyup={this.keyup.bind(this)} onChange={linkState(this, "location")} />
 
 				<textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onChange={linkState(this, "description")} style={state.descriptionMinHeight ? `min-height: ${state.descriptionMinHeight}px;` : ""} />
 			</div>
