@@ -341,7 +341,7 @@ export default class EventModal extends Component {
 					</div>
 				</div>}
 
-				{state.type == consts.EVENT_TYPE_PLAIN && <textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onChange={linkState(this, "description")} style={state.descriptionMinHeight ? `min-height: ${state.descriptionMinHeight}px;` : ""} />}
+				<textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onChange={linkState(this, "description")} style={state.descriptionMinHeight ? `min-height: ${state.descriptionMinHeight}px;` : ""} />
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}
