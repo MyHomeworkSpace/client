@@ -84,7 +84,7 @@ export default class HomeworkItem extends Component {
 				<HomeworkName name={props.homework.name} />
 			</div>
 			<div class="homeworkItemDetails">
-				{!hideDue && <div><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
+				{!hideDue && <div title={due.format("MMMM Do, YYYY")}><i class="fa fa-calendar-o" /> {dueText} {props.isOverdue && " (late)"}</div>}
 				<div><ClassName classObject={classObject} /></div>
 				{props.homework.desc.trim() != "" && <i class={`homeworkItemDescriptionIcon fa fa-${state.expanded ? "arrow-circle-up" : "arrow-circle-down"}`} onClick={this.toggleDescription.bind(this)}></i>}
 			</div>
