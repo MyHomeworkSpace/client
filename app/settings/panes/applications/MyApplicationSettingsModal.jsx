@@ -21,6 +21,19 @@ export default class MyApplicationDeleteModal extends Component {
 	}
 
 	save() {
+		if (!this.state.name) {
+			this.setState({
+				error: "You must enter a name for the application!"
+			});
+			return;
+		}
+		if (!this.state.callbackUrl) {
+			this.setState({
+				error: "You must enter a callback URL for the application!"
+			});
+			return;
+		}
+
 		this.setState({
 			loading: true,
 			error: ""
