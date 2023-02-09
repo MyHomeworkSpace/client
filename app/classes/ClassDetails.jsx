@@ -53,7 +53,7 @@ export default class ClassDetails extends Component {
 			filteredHomework = state.homework.filter(function(item) {
 				if (item.name.toLowerCase().startsWith("none") || item.name.toLowerCase().startsWith("nohw")) {
 					return false;
-				} else if ((moment(item.due).unix() < moment().unix()) && item.complete != 0) {
+				} else if (moment(item.due).isBefore(moment(), "day") && item.complete != 0) {
 					return false;
 				}
 				return true;
