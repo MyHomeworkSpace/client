@@ -14,7 +14,7 @@ import HomeworkName from "ui/HomeworkName.jsx";
 
 export default class CalendarEventPopover extends Component {
 	edit() {
-		var item = this.props.item;
+		const item = Object.assign({}, this.props.item);
 		item.type = this.props.type;
 		this.props.openModal("calendarEvent", item);
 	}
