@@ -57,6 +57,14 @@ export default class CalendarEvent extends Component {
 			displayName = props.item.tags[consts.EVENT_TAG_SHORT_NAME];
 		}
 
+		if (props.item.tags[consts.EVENT_TAG_IS_CONTINUATION]) {
+			startDisplay = "...";
+		}
+
+		if (props.item.tags[consts.EVENT_TAG_CONTINUES]) {
+			endDisplay = "...";
+		}
+
 		var groupWidth = 100 / props.groupLength;
 		var height = durationInMinutes;
 		if (height < 10) {
