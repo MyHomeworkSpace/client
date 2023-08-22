@@ -22,9 +22,14 @@ export default class EventModal extends Component {
 		if (props.modalState.tags) {
 			if (props.modalState.tags[consts.EVENT_TAG_ORIGINAL_START]) {
 				props.modalState.start = props.modalState.tags[consts.EVENT_TAG_ORIGINAL_START];
+			} else if (props.modalState.tags[consts.EVENT_TAG_INSTANCE_START]) {
+				props.modalState.start = props.modalState.tags[consts.EVENT_TAG_INSTANCE_START];
 			}
+
 			if (props.modalState.tags[consts.EVENT_TAG_ORIGINAL_END]) {
 				props.modalState.end = props.modalState.tags[consts.EVENT_TAG_ORIGINAL_END];
+			} else if (props.modalState.tags[consts.EVENT_TAG_INSTANCE_END]) {
+				props.modalState.end = props.modalState.tags[consts.EVENT_TAG_INSTANCE_END];
 			}
 		}
 
