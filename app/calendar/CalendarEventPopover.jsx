@@ -45,11 +45,26 @@ export default class CalendarEventPopover extends Component {
 	}
 
 	render(props, state) {
-		var start = moment.unix(props.item.start);
-		var end = moment.unix(props.item.end);
+		const chunkStart = moment.unix(props.item.start);
 
-		var startDisplay = start.format("h:mm a");
-		var endDisplay = end.format("h:mm a");
+		const displayStartTimestamp = props.item.tags[consts.EVENT_TAG_INSTANCE_START] || props.item.start;
+		const displayEndTimestamp = props.item.tags[consts.EVENT_TAG_INSTANCE_END] || props.item.end;
+
+		const displayStart = moment.unix(displayStartTimestamp);
+		const displayEnd = moment.unix(displayEndTimestamp);
+
+		let startDisplay = displayStart.format("h:mm a");
+		let endDisplay = displayEnd.format("h:mm a");
+
+		// if event instance start isn't on this day, display the start date
+		if (!displayStart.isSame(chunkStart, "day")) {
+			startDisplay = displayStart.format("M/D") + " " + startDisplay;
+		}
+
+		// if event instance end isn't on this day, display the end date
+		if (!displayEnd.isSame(chunkStart, "day")) {
+			endDisplay = displayEnd.format("M/D") + " " + endDisplay;
+		}
 
 		var info;
 		var actions;
