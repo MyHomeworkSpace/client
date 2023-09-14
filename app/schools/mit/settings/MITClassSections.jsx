@@ -7,6 +7,10 @@ export default class MITClassSections extends Component {
 		this.props.setSectionForSubject(subjectID, sectionCode);
 	}
 
+	remove() {
+		this.props.removeCustomClass(this.props.registeredClass);
+	}
+
 	render(props, state) {
 		var sectionGroups = {};
 
@@ -46,7 +50,12 @@ export default class MITClassSections extends Component {
 		}
 
 		return <div class="mitClassSections">
-			<h4 class="mitClassSectionsName">{props.registeredClass.subjectID} {props.registeredClass.title}</h4>
+			<h4 class="mitClassSectionsName">
+				{props.registeredClass.subjectID} {props.registeredClass.title}
+				{props.isCustom && <button class="btn btn-default btn-xs" onClick={this.remove.bind(this)}>
+					<i class="fa fa-fw fa-minus-circle" /> remove class
+				</button>}
+			</h4>
 			<div class="row">
 				{sectionGroupCodes.map((sectionGroupCode, i) => {
 					var codeToName = {

@@ -15,6 +15,7 @@ export default class MITSettings extends Component {
 		super(props);
 
 		this.state = {
+			loading: false,
 			registration: props.currentSettings.registration,
 			peInfo: props.currentSettings.peInfo,
 			showPE: props.currentSettings.showPE
@@ -84,6 +85,81 @@ export default class MITSettings extends Component {
 		});
 	}
 
+	addCustomClass() {
+		const subjectNumber = prompt("What is the number of the class you want to add? (8.02, 18.01, etc.)");
+		if (!subjectNumber) {
+			return;
+		}
+
+		this.setState({
+			loading: true,
+			error: ""
+		}, () => {
+			api.post("schools/settings/callMethod", {
+				school: "mit",
+				methodName: "addCustomClass",
+				methodParams: JSON.stringify({
+					subjectNumber: subjectNumber
+				})
+			}, (data) => {
+				if (data.status == "ok") {
+					this.props.loadDetails(() => {
+						this.setState({
+							loading: false
+						});
+					});
+				} else if (data.error == "invalid_params") {
+					this.setState({
+						loading: false,
+						error: "We couldn't find the class with that subject number. Make sure it's spelled as it appears in the Course Catalog.\n\nFor help, email hello@myhomework.space."
+					});
+				} else if (data.error == "already_enrolled") {
+					this.setState({
+						loading: false,
+						error: "You already have that class in your registration."
+					});
+				} else {
+					this.setState({
+						loading: false,
+						error: errors.getFriendlyString(data.error)
+					});
+				}
+			});
+		});
+	}
+
+	removeCustomClass(registeredClass) {
+		if (!confirm("Remove " + registeredClass.subjectID + " " + registeredClass.title + "?")) {
+			return;
+		}
+
+		this.setState({
+			loading: true,
+			error: ""
+		}, () => {
+			api.post("schools/settings/callMethod", {
+				school: "mit",
+				methodName: "removeCustomClass",
+				methodParams: JSON.stringify({
+					subjectNumber: registeredClass.subjectID
+				})
+			}, (data) => {
+				if (data.status == "ok") {
+					this.props.loadDetails(() => {
+						this.setState({
+							loading: false
+						});
+					});
+				} else {
+					this.setState({
+						loading: false,
+						error: errors.getFriendlyString(data.error)
+					});
+				}
+			});
+		});
+	}
+
 	render(props, state) {
 		if (state.loading) {
 			return <div>
@@ -102,8 +178,16 @@ export default class MITSettings extends Component {
 					<p>If you believe you're receiving this message in error, please contact us at <a href="mailto:hello@myhomework.space">hello@myhomework.space</a>.</p>
 				</div>}
 				{state.registration.map((registeredClass) => {
-					return <MITClassSections registeredClass={registeredClass} setSectionForSubject={this.setSectionForSubject.bind(this)} />;
+					return <MITClassSections
+						registeredClass={registeredClass}
+						setSectionForSubject={this.setSectionForSubject.bind(this)}
+						isCustom={registeredClass.custom}
+						removeCustomClass={this.removeCustomClass.bind(this)}
+					/>;
 				})}
+				<button class="btn btn-default" onClick={this.addCustomClass.bind(this)}>
+					<i class="fa fa-fw fa-plus-circle" /> Add another class
+				</button>
 
 				<div>
 					<h4 class="mitSettingsInfoTitle">PE registration</h4>
