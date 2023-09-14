@@ -33,20 +33,32 @@ export default class SchoolSettingsModal extends Component {
 	}
 
 	componentDidMount() {
-		api.get("schools/settings/get", {
-			school: this.props.modalState.school.schoolID
-		}, (data) => {
-			if (data.status == "ok") {
-				this.setState({
-					loading: false,
-					currentSettings: data.settings
-				});
-			} else {
-				this.setState({
-					loading: false,
-					error: errors.getFriendlyString(data.error)
-				});
-			}
+		this.loadDetails();
+	}
+
+	loadDetails(callback) {
+		this.setState({
+			loading: true
+		}, () => {
+			api.get("schools/settings/get", {
+				school: this.props.modalState.school.schoolID
+			}, (data) => {
+				if (data.status == "ok") {
+					this.setState({
+						loading: false,
+						currentSettings: data.settings
+					}, () => {
+						if (callback) {
+							callback();
+						}
+					});
+				} else {
+					this.setState({
+						loading: false,
+						error: errors.getFriendlyString(data.error)
+					});
+				}
+			});
 		});
 	}
 
@@ -82,6 +94,8 @@ export default class SchoolSettingsModal extends Component {
 		return <Modal title={title} openModal={props.openModal} noClose class="schoolSettingsModal">
 			{h(settingComponent, {
 				currentSettings: state.currentSettings,
+
+				loadDetails: this.loadDetails.bind(this),
 
 				closeModal: this.closeModal.bind(this)
 			})}
