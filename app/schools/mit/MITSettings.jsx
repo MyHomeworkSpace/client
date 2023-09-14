@@ -65,7 +65,8 @@ export default class MITSettings extends Component {
 		}
 
 		this.setState({
-			loading: true
+			loading: true,
+			error: ""
 		}, () => {
 			api.post("schools/settings/set", {
 				school: "mit",
