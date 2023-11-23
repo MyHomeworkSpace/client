@@ -200,9 +200,11 @@ export default class EventModal extends Component {
 		}
 	}
 
-	textboxKeyup(e) {
-		if (e.keyCode == 13 && e.ctrlKey) {
+	descriptionKeyup(e) {
+		if (e.keyCode == 13 && (e.shiftKey || e.ctrlKey)) {
 			this.save();
+			e.preventDefault();
+			return false;
 		}
 	}
 
@@ -356,7 +358,7 @@ export default class EventModal extends Component {
 
 				<input type="text" class="form-control eventModalLocation" placeholder="Location" value={state.location} onKeyup={this.keyup.bind(this)} onChange={linkState(this, "location")} />
 
-				<textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onKeyup={this.textboxKeyup.bind(this)} onInput={linkState(this, "description")} style={state.descriptionMinHeight ? `min-height: ${state.descriptionMinHeight}px;` : ""} />
+				<textarea class="form-control eventModalDescription" placeholder="Description" value={state.description} onKeyup={this.descriptionKeyup.bind(this)} onInput={linkState(this, "description")} style={state.descriptionMinHeight ? `min-height: ${state.descriptionMinHeight}px;` : ""} />
 			</div>
 			<div class="modal-footer">
 				{!state.isNew && <button type="button" class="btn btn-danger" onClick={this.delete.bind(this)}>Delete</button>}
