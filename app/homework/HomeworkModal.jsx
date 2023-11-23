@@ -97,14 +97,20 @@ export default function HomeworkModal(props) {
 		</Modal>;
 	}
 
-	const keydown = (shiftEnter) => {
-		return (e) => {
-			if (e.keyCode == 13 && !(e.shiftKey && shiftEnter)) {
-				save();
-				e.preventDefault();
-				return false;
-			}
-		};
+	const keydown = (e) => {
+		if (e.keyCode == 13) {
+			save();
+			e.preventDefault();
+			return false;
+		}
+	};
+
+	const descriptionKeydown = (e) => {
+		if (e.keyCode == 13 && (e.shiftKey || e.ctrlKey)) {
+			save();
+			e.preventDefault();
+			return false;
+		}
 	};
 
 	return <Modal title={(isNew ? "Add homework" : "Edit homework")} openModal={props.openModal} class="homeworkModal">
@@ -114,7 +120,7 @@ export default function HomeworkModal(props) {
 			<div class="homeworkModalBody">
 
 				<div class="homeworkModalNameWrapper">
-					<PrefixedEdit class="homeworkModalName" placeholder="Name" inputRef={nameInputRef} value={name} onKeyDown={keydown(false)} onInput={(e) => setName(e.target.value)} />
+					<PrefixedEdit class="homeworkModalName" placeholder="Name" inputRef={nameInputRef} value={name} onKeyDown={keydown} onInput={(e) => setName(e.target.value)} />
 				</div>
 
 				<div class="doneCheckbox">
@@ -129,7 +135,7 @@ export default function HomeworkModal(props) {
 					<ClassPicker value={classId} change={setClassId} classes={props.classes} />
 				</div>
 
-				<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={(e) => setDesc(e.target.value)} onKeyDown={keydown(true)} value={desc}></textarea>
+				<textarea class="form-control homeworkModalDesc" placeholder="Description" onInput={(e) => setDesc(e.target.value)} onKeyDown={descriptionKeydown} value={desc}></textarea>
 			</div>
 		</div>
 		<div class="modal-footer">
