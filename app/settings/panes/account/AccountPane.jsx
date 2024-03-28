@@ -13,6 +13,12 @@ import LoadingIndicator from "ui/LoadingIndicator.jsx";
 import PrefCheckbox from "settings/PrefCheckbox.jsx";
 
 export default class AccountPane extends Component {
+	componentDidMount() {
+		if (window.location.hash.indexOf("requestAccountDeletion") > -1) {
+			this.deleteAccount();
+		}
+	}
+
 	changeBackground() {
 		this.props.openModal("background", {});
 	}
