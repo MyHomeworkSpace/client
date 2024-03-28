@@ -8,7 +8,7 @@
 
 .modal-animation
 	animation: modal-appear .3s ease 1
-	
+
 .modal.modal-preact
 	pointer-events: none
 
@@ -24,6 +24,11 @@
 
 	.modal-content
 		pointer-events: all
+
+.modal
+	.modal-body
+		p:last-child
+			margin-bottom: 0
 
 .modalOverlay
 	position: fixed
