@@ -37,6 +37,10 @@ export default class AccountPane extends Component {
 		this.props.openModal("enroll", {});
 	}
 
+	deleteAccount() {
+		this.props.openModal("deleteAccount", {});
+	}
+
 	resendVerificationEmail() {
 		this.setState({
 			resendLoading: true
@@ -78,6 +82,7 @@ export default class AccountPane extends Component {
 				</div>
 				<button class="btn btn-primary" onClick={this.changeName.bind(this)}><i class="fa fa-fw fa-user" /> Change name</button>
 				<button class="btn btn-primary" onClick={this.changeEmail.bind(this)}><i class="fa fa-fw fa-envelope" /> Change email</button>
+				<button class="btn btn-primary" onClick={this.deleteAccount.bind(this)}><i class="fa fa-fw fa-trash" /> Delete account</button>
 			</div>
 
 			<div class="accountGroup">

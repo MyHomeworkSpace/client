@@ -5,6 +5,7 @@ import { h, Component } from "preact";
 import AccountMigrateModal from "auth/AccountMigrateModal.jsx";
 import ChangeEmailModal from "auth/ChangeEmailModal.jsx";
 import ChangePasswordModal from "auth/ChangePasswordModal.jsx";
+import DeleteAccountModal from "auth/DeleteAccountModal.jsx";
 import EventModal from "calendar/EventModal.jsx";
 import EventProvidedModal from "calendar/EventProvidedModal.jsx";
 import ClassModal from "classes/ClassModal.jsx";
@@ -43,6 +44,7 @@ export default class ModalManager extends Component {
 			imageInfo: ImageInfoModal,
 			applicationDelete: MyApplicationDeleteModal,
 			applicationSettings: MyApplicationSettingsModal,
+			deleteAccount: DeleteAccountModal
 		};
 
 		var modal;
